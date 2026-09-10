@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Thursday, September 10, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Today&#x27;s big lesson: your agent&#x27;s brain matters less than the machine around it — and choosing which model does which job is becoming an explicit design decision.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.decodingai.com/p/coding-agents-in-remote-headless">Stop Babysitting Your Coding Agents</a></h3>
+<div class="byline">
+<span class="src">Decoding AI Magazine — Paul Iusztin</span> &middot; Sep 10
+</div>
+<p class="dek">Your coding agent&#x27;s harness matters more than its model — and it should run overnight on the cloud, not in your terminal.</p>
+<div class="body">
+<p>In the sixth lesson of his open-source course &quot;Build a Coding Agent From Scratch,&quot; Paul Iusztin takes the Decode harness built in earlier lessons and makes it headless. First, drop the TUI for a scriptable CLI (decode run &quot;&lt;goal&gt;&quot;), then ship the whole thing to Modal as serverless background jobs, then add parallel sessions. The key architectural move: the same agent loop — same model, tools, instructions — is driven by four interchangeable serving layers (TUI, CLI, remote launcher, eval harness) through one clean interface, build_agent() plus an AgentDeps bundle. That mirrors Claude Code&#x27;s claude -p &quot;&lt;goal&gt;&quot; interface, and it&#x27;s what lets a hobby harness grow into production infrastructure without a rewrite.</p>
+<p>Three triggers feed the same loop: decode remote run/attempts fired from your CLI or CI/CD, an authenticated POST webhook reachable from Slack or Discord, and a nightly cron that pulls Linear tickets, implements them overnight, and pushes review-ready branches (decode/&lt;session-id&gt;) for you to wake up to. The &quot;attempts&quot; mode runs N parallel implementations of the same feature and a judge agent forwards only the best PR for review — plus observability through Opik so you can compare costs, latency, and token usage across runs.</p>
+<p>Why this is worth your time: LangChain&#x27;s Terminal-Bench experiment moved a coding agent from ~30th place into the top 5 by changing only the harness. The engineering around the model is where the leverage is. The serverless math works for bursty agent work — roughly $3.95 per H100-hour on Modal scaling to zero, versus maintaining machines on GCP/AWS. Ramp runs roughly half of its merged PRs through this kind of routing queue at production scale. One safety note to internalize: headless mode defaults to bypass permissions with ask_user as a no-op, so always cap loops with a max-requests budget and observe rather than trust blindly.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://creatoreconomy.so/p/gpt-6-astra-is-both-incredible-and">GPT-6 Astra Is Both Incredible and Frustrating</a></h3>
+<div class="byline">
+<span class="src">Peter Yang — Behind the Craft</span> &middot; Sep 9
+</div>
+<p class="dek">OpenAI&#x27;s newest model builds 3D games and thinks like a blunt advisor — but hesitates to actually do the work and keeps ignoring your skills.</p>
+<div class="body">
+<p>Three things Astra does exceptionally well. First, games and 3D: it went viral for building 3D models and playable games by driving Blender and Godot through MCPs — Yang built four tech demos (Star Fox-, Call of Duty-, StarCraft-, and Slay the Spire-style) on a $20/month ChatGPT plan, documented in a 24-minute tutorial video. Second, high-level strategy: his &quot;brutally honest advisor&quot; prompt test produced uncomfortably blunt, useful feedback, and an intelligence-vs-cost chart shows Astra Low scoring slightly above Sol High. Third, computer and browser use: give it a photo, ask it to open jspaint.app and draw you, and it does.</p>
+<p>Two problems hold it back as a daily driver. It often explains how to do a task instead of doing it — OpenAI&#x27;s own Astra prompting guide admits the model &quot;can stop when the user may expect it to make reasonable assumptions and persist,&quot; and recommends a custom instruction telling it to carry things through and only ask when it truly needs input. Worse, it takes liberties with his AI skills&#x27; instructions, ignoring explicit formatting rules even after he simplified them to remove conflicts — behavior he didn&#x27;t see with GPT-5.6 Sol or Claude Fable.</p>
+<p>The teaching point for your own stack: route by job, not by model. Use Astra-class models for exploration (games, strategy, one-off computer use) and keep your execution work on the model that follows your skills reliably. Higher ceiling, higher variance — the split between a &quot;thinking model&quot; and a &quot;doing model&quot; is becoming an explicit routing decision in any serious AI platform.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Money keeps pouring into AI while the questions about who pays — and whether it pays — get louder.</p>
+<div class="stories">
+<article class="lead">
+<h3>Harvey Raises $550M at a $15.6B Valuation</h3>
+<div class="byline">
+<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+</div>
+<p class="dek">The legal AI startup cements its status as the best-funded legal AI company — over $400M in ARR, up from an $11B valuation in March.</p>
+<div class="body">
+<p>Harvey sells to Big Law firms and in-house legal teams inside large companies. The round reinforces the current venture pattern: vertical AI winners monetizing specialized professional workflows are commanding the biggest multiples, while general chatbots commoditize.</p>
+</div>
+</article>
+<article class="">
+<h3>DOJ Probes Whether Nvidia&#x27;s $20B Groq Deal Dodged Antitrust Review</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">Investigators are examining how Nvidia structured its $20 billion licensing agreement with chip startup Groq, people familiar said.</p>
+<div class="body">
+<p>Structuring a transaction as a licensing deal rather than an acquisition can sidestep review thresholds. If the DOJ moves here, it sets precedent for how AI deals get engineered — and signals the regulatory gaze over AI consolidation is not letting up.</p>
+</div>
+</article>
+<article class="">
+<h3>Oracle Earnings Test the Market&#x27;s Tolerance for Heavy AI Spending</h3>
+<div class="byline">
+<span class="src">Bloomberg (Markets Daily)</span> &middot; Sep 10
+</div>
+<p class="dek">With Oracle stock down half over the past year and AI debt piling up, tonight&#x27;s report is the sector&#x27;s bellwether.</p>
+<div class="body">
+<p>Investors are balking at the massive debt load Oracle took on to build AI infrastructure; the cost of protecting its debt against default has risen more than 40% in 2026. The central question: will returns on AI capex be enough to repay the borrowing? This is the financing anxiety now hanging over the whole buildout.</p>
+</div>
+</article>
+<article class="">
+<h3>Anthropic Gives EU Access to Its Mythos Model</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">Months after release, Anthropic&#x27;s Mythos model is now available in the EU — frontier models still ship with regulatory geography attached.</p>
+<div class="body">
+<p>Worth watching as a data point on how frontier labs sequence access across jurisdictions — and as a preview of what EU deployments of your own platform will need to navigate.</p>
+</div>
+</article>
+<article class="">
+<h3>What If the AI Boom Never Pays Off?</h3>
+<div class="byline">
+<span class="src">Cory Doctorow via Bloomberg (Trumponomics)</span> &middot; Sep 10
+</div>
+<p class="dek">Doctorow asks what happens to jobs, markets, and the economy if the AI boom never pays off.</p>
+<div class="body">
+<p>The question lands on a day when Oracle&#x27;s debt, Dell&#x27;s $5B bond rush for AI servers, and Huawei&#x27;s AI chips rising 60% on insatiable Chinese demand all point the same way: the tension between record capex and uncertain returns is now the market&#x27;s central question. Doctorow&#x27;s reverse-centaur framing — humans as the body, AI as the rider, or vice versa — is a useful lens on who actually captures the value.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">A midterm-year squeeze: cash promises at home, an escalating war abroad.</p>
+<div class="stories">
+<article class="lead">
+<h3>Trump Vows a $5,000 &quot;Dividend&quot; for Every Adult if the GOP Wins the Midterms</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">The $1 trillion-plus pledge pairs with long shots like killing credit-card swipe fees — a sign of desperation, Bloomberg writes.</p>
+<div class="body">
+<p>The quid pro quo: keep the Republican congressional majority, get a $5,000 dividend. Don&#x27;t bet on it becoming law — Congress may not embrace a cash program with a $1 trillion-plus price tag, and the pledge is already feeding investor worries about Washington&#x27;s fiscal discipline. He&#x27;s urging supporters to let him &quot;finish the job.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3>Vance and Rubio Warn the Iran War Could Stretch Through Trump&#x27;s Term</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">The WSJ reports both men told the president the war may consume his entire term — as he floats renaming the Strait of Hormuz the &quot;Trump Strait.&quot;</p>
+<div class="body">
+<p>Iran says it&#x27;s ready for a more intense war, reorganizing its military around an &quot;offensive doctrine,&quot; while Pakistan&#x27;s defense minister warned that any attack on Saudi Arabia could activate the Mecca Defense Alliance. Tanker rates are at record highs, Houthi militants claim fresh strikes on Saudi energy facilities, and surging rates point to a deepening energy crisis. The ECB is set to raise borrowing costs today for the second time since the Iran war sent energy prices soaring.</p>
+</div>
+</article>
+<article class="">
+<h3>Trump Heads to Ireland&#x27;s Irish Open This Weekend</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">He meets Taoiseach Micheál Martin and President Catherine Connolly, then watches golf at Doonbeg — with protesters limbering up.</p>
+<div class="body">
+<p>Connolly has previously accused him of acting &quot;like a bully,&quot; so the stakes — diplomatic and otherwise — are high ahead of the weekend.</p>
+</div>
+</article>
+<article class="">
+<h3>NY Weighs a $100M Tax Break for a Hudson Yards Tower — Mamdani vs. His Base</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">A Sept. 15 vote on 99 Hudson Boulevard could put Mayor Zohran Mamdani at odds with his progressive base.</p>
+<div class="body">
+<p>An arm of the city&#x27;s Economic Development Corporation votes on the $100 million property-tax break for a $2.7 billion, 48-story office building on Manhattan&#x27;s far west side — a neighborhood described as thriving by almost any economic metric. Construction is scheduled to begin in January.</p>
+</div>
+</article>
+<article class="">
+<h3>Germany&#x27;s AfD Win Is Great News for Putin</h3>
+<div class="byline">
+<span class="src">Marc Champion, Bloomberg Opinion</span> &middot; Sep 10
+</div>
+<p class="dek">One of the morning&#x27;s opinions to watch on Europe&#x27;s political realignment.</p>
+</article>
+<article class="">
+<h3>We Are Still Living in the Broken World Sept. 11 Created</h3>
+<div class="byline">
+<span class="src">Noah Feldman, Bloomberg Opinion</span> &middot; Sep 10
+</div>
+<p class="dek">On the eve of the 25th anniversary, Feldman argues the way to stave off decline is to gradually rebuild American institutions — with strength, bravery, and optimism.</p>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Health, hardware, and a schoolhouse standard — the stories that don&#x27;t fit the day&#x27;s big narratives but are worth your time.</p>
+<div class="stories">
+<article class="lead">
+<h3>Eli Lilly Bets Its GLP-1 Bonanza on Women&#x27;s Health</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">Zepbound and Mounjaro made Lilly a $1 trillion company; now CEO Dave Ricks is targeting bone conditions and endometriosis.</p>
+<div class="body">
+<p>GLP-1s are already showing unexpected fertility benefits (the piece profiles Torria Leggett and her &quot;Mounjaro baby&quot;), and Lilly is investing in helping patients keep muscle as they shed fat — rapid weight reduction can mean lean muscle loss and osteoporosis risk. Ricks is using the windfall to hunt acquisitions beyond obesity, trying to beat the industry&#x27;s boom-and-bust cycle.</p>
+</div>
+</article>
+<article class="">
+<h3>Microsoft Signs a Landmark AI-in-Schools Pact With the Teachers&#x27; Union</h3>
+<div class="byline">
+<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+</div>
+<p class="dek">A 10-principle agreement with the American Federation of Teachers — no student data for model training — applies to all contracted schools Nov. 1.</p>
+<div class="body">
+<p>The pact pledges clear communication with parents, minimal data collection, and a ban on training models on student data (except limited safety uses). The AFT calls it the most comprehensive agreement of its kind. It lands after NYC public schools — the nation&#x27;s largest district — blocked AI for elementary and middle-school students, followed by LA Unified, and contrasts sharply with Google&#x27;s surprise Gemini rollout in Classroom. The market context: ChromeOS runs 58% of K-12 tablets versus Windows at 22%, so whatever standard Microsoft sets here will ripple. The AFT says it&#x27;s in preliminary talks with Google about adopting it too.</p>
+</div>
+</article>
+<article class="">
+<h3>Bessent&#x27;s Buyback Backfires as Oil Tops $101</h3>
+<div class="byline">
+<span class="src">Bloomberg (Markets Daily / Evening Briefing)</span> &middot; Sep 10
+</div>
+<p class="dek">The 10-year yield hit a three-year high of 4.85% after the Treasury&#x27;s buyback announcement — &quot;the market has called his bluff.&quot;</p>
+<div class="body">
+<p>Treasury Secretary Scott Bessent&#x27;s bond-buyback push, meant to drag yields lower, had the opposite effect as traders focused on the $40 trillion national debt and the Iran war. Brent climbed above $101–102 a barrel for the first time since July on escalating Middle East attacks and a resumption of Chinese crude buying. US stocks were steady after a three-day losing streak; Oracle, Adobe, and Copart report after the close.</p>
+</div>
+</article>
+<article class="">
+<h3>Apple&#x27;s Foldable iPhone Duo Debuts at $1,999 Under New CEO John Ternus</h3>
+<div class="byline">
+<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+</div>
+<p class="dek">Apple aims to show it can improve a category Samsung pioneered — with a sturdier foldable and more intuitive software.</p>
+<div class="body">
+<p>Ternus introduced the device alongside new iPhone, Apple Watch, and AirPod models. Meanwhile, Apple is also pushing always-listening AI features on the Watch — worth tracking as the AI wearables category heats up.</p>
+</div>
+</article>
+<article class="">
+<h3>A Hiring Spree Sweeps Brazil&#x27;s Volatile Power Market</h3>
+<div class="byline">
+<span class="src">Bloomberg (Morning Briefing — The Big Take)</span> &middot; Sep 10
+</div>
+<p class="dek">Top traders are landing million-dollar pay packages — in São Paulo and Rio, not Houston or London.</p>
+<div class="body">
+<p>A spare-no-expense hiring war is underway in one of the world&#x27;s most volatile power markets, another sign that energy-market complexity is now a premium global asset.</p>
+</div>
+</article>
+<article class="">
+<h3>Enbridge Eyes a $2B Pipeline Deal; Dow Mulls Exiting Its Aramco JV</h3>
+<div class="byline">
+<span class="src">Bloomberg (Evening Briefing)</span> &middot; Sep 9
+</div>
+<p class="dek">Energy M&amp;A keeps moving: Enbridge in advanced talks for Blackstone&#x27;s Pony Express pipeline; Dow weighing an exit from the $20B Sadara chemicals partnership.</p>
+<div class="body">
+<p>The Pony Express carries crude 900 miles from the Rockies to Cushing, Oklahoma — and the deal is a test of whether the US trade war and Canada&#x27;s retaliation bleed into energy-pipeline M&amp;A. Dow&#x27;s review signals a major shift in its Middle East priorities amid a prolonged chemicals downturn.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
