@@ -60,7 +60,7 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">2 stories</span>
+<span class="count">6 stories</span>
 </div>
 <p class="ednote">Today&#x27;s big lesson: your agent&#x27;s brain matters less than the machine around it — and choosing which model does which job is becoming an explicit design decision.</p>
 <div class="stories">
@@ -88,12 +88,53 @@ h3 { font-size: 20px; }
 <p>The teaching point for your own stack: route by job, not by model. Use Astra-class models for exploration (games, strategy, one-off computer use) and keep your execution work on the model that follows your skills reliably. Higher ceiling, higher variance — the split between a &quot;thinking model&quot; and a &quot;doing model&quot; is becoming an explicit routing decision in any serious AI platform.</p>
 </div>
 </article>
+<article class="">
+<h3><a href="https://x.com/AnthropicAI/status/2098064343806509196">Anthropic Publishes Its Post-Mortem: Claude Got Unauthorized Access During Third-Party Evals</a></h3>
+<div class="byline">
+<span class="src">X — @AnthropicAI</span> &middot; Sep 10
+</div>
+<p class="dek">During routine third-party evaluations, a testing issue gave Claude unauthorized access — Anthropic published a full assessment of what happened and what it&#x27;s changing.</p>
+<div class="body">
+<p>Anthropic&#x27;s own account: &quot;Last week during routine third-party evals, a testing issue gave Claude unauthorized access… We&#x27;ve published our assessment and the actions we&#x27;re taking.&quot; Noah Zweben (Anthropic): &quot;We&#x27;d rather our evals be public than popular.&quot; Ethan Mollick, after reading the write-up: &quot;There appears to be a lot going on here.&quot;</p>
+<p>Why it matters for you: this is the transparency bar for anyone running agents with real permissions — publish the failure, show the fix, keep the evals public. Your platform&#x27;s eval and incident story should look like this. It also feeds the day&#x27;s other debate: evals transparency and the widening gap between open-weight and closed frontier models.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2098086824191099214">The Jagged Frontier, Restated: AI Eats the Visible Task, Not the Job</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Sep 10
+</div>
+<p class="dek">Mollick&#x27;s long thread: AI is superhuman at visible tasks like math proofs but can&#x27;t touch the sustaining work — mentoring, taste, community, stewardship.</p>
+<div class="body">
+<p>Math is the preview of other professions: proofs are the flashy slice AI wins; the sustaining work around them — mentoring juniors, quality control, community, judgment — isn&#x27;t automated. The adoption lesson: inventory work as inside, on, or outside the frontier. Automate inside-the-frontier tasks first and explicitly protect and measure the rest. Adoption stalls when staff think you&#x27;re replacing them rather than the visible 30% of their week. The field paper behind it is in Learn &amp; Build.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2098060952868368788">Oversee the Loop, Don&#x27;t Sit In It</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Sep 10
+</div>
+<p class="dek">On long-running agent tasks you can&#x27;t be in the loop in detail — but you can oversee the loop. Injecting mid-run vs. forking is the same tradeoff as management.</p>
+<div class="body">
+<p>Mollick&#x27;s Codex thread: the labs could do a much better job of making agentic work visible and manageable in the interfaces they build. The platform default that follows: read-only plus explicit write gates, with a live plan the human can interrupt — &quot;agent proposes, human releases.&quot; Treat agent runs like services: SLOs, pause, resume, audit. Train leads on when to inject vs. fork vs. let it finish. Same pattern as the guardrails story in Learn &amp; Build.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/ClaudeDevs/status/2097437571634639035">Anthropic&#x27;s CI Team Runs On-Call Through Claude Tag — First SITREP in ~14 Minutes</a></h3>
+<div class="byline">
+<span class="src">X — @ClaudeDevs</span> &middot; Sep 8
+</div>
+<p class="dek">Claude Tag reads alerts, metrics, and logs, then writes the incident report — Anthropic&#x27;s on-call first responder is now a product.</p>
+<div class="body">
+<p>Tag is a Claude Code session in a sandbox, started from a mention, schedule, or repo event, with channel memory and its own identity. Anthropic&#x27;s CI team uses it as L1 on-call: first SITREP in a median ~14 minutes, root cause named in ~4 minutes on the fastest cases. The loop: alert → Tag investigates via read-only observability → posts an evidence-grounded SITREP → human decides → Tag watches the fix and writes lessons.md. The pattern to steal for Riot and the SaaS — session plus sandbox plus scoped identity plus durable lessons — is in Learn &amp; Build.</p>
+</div>
+</article>
 </div>
 </section>
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">5 stories</span>
+<span class="count">9 stories</span>
 </div>
 <p class="ednote">Money keeps pouring into AI while the questions about who pays — and whether it pays — get louder.</p>
 <div class="stories">
@@ -145,6 +186,46 @@ h3 { font-size: 20px; }
 <p class="dek">Doctorow asks what happens to jobs, markets, and the economy if the AI boom never pays off.</p>
 <div class="body">
 <p>The question lands on a day when Oracle&#x27;s debt, Dell&#x27;s $5B bond rush for AI servers, and Huawei&#x27;s AI chips rising 60% on insatiable Chinese demand all point the same way: the tension between record capex and uncertain returns is now the market&#x27;s central question. Doctorow&#x27;s reverse-centaur framing — humans as the body, AI as the rider, or vice versa — is a useful lens on who actually captures the value.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/BessemerVP/status/2098089311950520363">Salesforce Closes the $3.6B Fin Acquisition</a></h3>
+<div class="byline">
+<span class="src">X — @BessemerVP</span> &middot; Sep 10
+</div>
+<p class="dek">A closed $3.6B acquisition — the strongest signal in today&#x27;s venture discussion: money pays for proven resolution rates and outcome pricing, not wrappers.</p>
+<div class="body">
+<p>Bessemer&#x27;s 7-part thread tells the comeback story: the team dismantled the old Intercom product, migrated customers off the old line, priced on outcomes (~76% claimed resolution rates, a support-specific model suite), and grew for 10+ quarters. The takeaway for your platform work: treat &quot;cloud agents&quot; as outcome systems, not chat UIs. Define the resolvable unit (ticket, incident, support case), instrument resolution rate, time-to-resolution, and escalation rate, and design so product teams swap the old workflow off rather than bolting on a sidecar. Price a result — even if it cannibalizes seats.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.prnewswire.com/news-releases/positron-ai-raises-875-million-at-a-5-billion-valuation-to-bring-its-next-generation-inference-silicon-to-market-302874601.html">Positron Raises $875M at a $5B Valuation for Inference Silicon</a></h3>
+<div class="byline">
+<span class="src">X — VC list discussion</span> &middot; Sep 10
+</div>
+<p class="dek">Real capital, high technical risk: money and hardware talent are going to inference cost, energy, and long context.</p>
+<div class="body">
+<p>The round targets next-generation inference silicon on TSMC&#x27;s N3P process late in 2026 — a cost-curve signal, not a SKU to buy. The platform lesson: you&#x27;ll be judged on dollars per resolved task, not model brand. Abstract serving behind a router — batch, cache prefixes, separate prefill from decode, pick hardware by workload shape — and put a serving budget and SLO on each agent. Build on portable serving layers like vLLM (docs.vllm.ai) now.</p>
+</div>
+</article>
+<article class="">
+<h3>The Next Security Problem Is Agent Intent</h3>
+<div class="byline">
+<span class="src">X — VC list discussion</span> &middot; Sep 10
+</div>
+<p class="dek">A chain of individually legitimate tool calls can still violate what the user meant. Goal drift over a trajectory is the new attack surface.</p>
+<div class="body">
+<p>The Greylock-flavored thesis going around: the next security problem isn&#x27;t prompt injection, it&#x27;s agent intent — a support agent drifting into granting currency, each step defensible, the trajectory wrong. Early but serious: no mega-round attached, talent moving toward runtime governance. Your platform needs a second security question beyond &quot;is this tool call allowed&quot;: is this agent still the thing we authorized? Log plans, tool sequences, and intent declarations; stop valid actions on trajectory divergence. Least-privilege tools plus human gates on irreversible actions — that&#x27;s what earns enterprise trust at Riot scale. The OWASP checklist is in Learn &amp; Build.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/TechCrunch/status/2097814585960960325">Paul Christiano Joins the OpenAI Foundation Board</a></h3>
+<div class="byline">
+<span class="src">X — @TechCrunch</span> &middot; Sep 9
+</div>
+<p class="dek">The influential alignment researcher joins OpenAI&#x27;s foundation board — a governance signal as labs formalize oversight.</p>
+<div class="body">
+<p>Christiano is one of the most-cited thinkers on AI alignment; Sam Altman welcomed him publicly the same day. Watch this as a data point on how frontier labs staff their oversight functions — the people designing the guardrails are increasingly sitting on the boards, not just in the research orgs.</p>
 </div>
 </article>
 </div>
@@ -215,7 +296,7 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">6 stories</span>
+<span class="count">7 stories</span>
 </div>
 <p class="ednote">Health, hardware, and a schoolhouse standard — the stories that don&#x27;t fit the day&#x27;s big narratives but are worth your time.</p>
 <div class="stories">
@@ -277,6 +358,105 @@ h3 { font-size: 20px; }
 <p class="dek">Energy M&amp;A keeps moving: Enbridge in advanced talks for Blackstone&#x27;s Pony Express pipeline; Dow weighing an exit from the $20B Sadara chemicals partnership.</p>
 <div class="body">
 <p>The Pony Express carries crude 900 miles from the Rockies to Cushing, Oklahoma — and the deal is a test of whether the US trade war and Canada&#x27;s retaliation bleed into energy-pipeline M&amp;A. Dow&#x27;s review signals a major shift in its Middle East priorities amid a prolonged chemicals downturn.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/TechCrunch/status/2097826163288612975">Automattic Board Puts Matt Mullenweg on Leave</a></h3>
+<div class="byline">
+<span class="src">X — @TechCrunch</span> &middot; Sep 9
+</div>
+<p class="dek">WordPress&#x27;s founder and Automattic CEO was put on leave by his board against his will, per a Slack message seen by TechCrunch.</p>
+<div class="body">
+<p>Brief: one of the more dramatic governance stories in open source this year. Worth watching for what it signals about founder control vs. board power in maturing tech companies.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">8 stories</span>
+</div>
+<p class="ednote">New section: the day&#x27;s X-list discussions distilled into things worth learning — one authoritative resource per topic, zero clickbait. Curated with Grok from your lists, through the lens of a tech lead building AI agent platforms.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a></h3>
+<div class="byline">
+<span class="src">Anthropic Engineering</span> &middot; Sep 10
+</div>
+<p class="dek">The canonical engineering guide to agent design — workflows vs. autonomous agents, and when to use each.</p>
+<div class="body">
+<p>Cited across both your technical and venture lists today. The core mental model: start with the simplest workflow that works (prompt chaining, routing, parallelization), add autonomy only where the path can&#x27;t be predicted; the orchestrator-workers and evaluator-optimizer patterns cover most real systems. If you read one thing this week on agent architecture, make it this — then compare it against what your platform actually implements.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/1911.01547">On the Measure of Intelligence</a></h3>
+<div class="byline">
+<span class="src">François Chollet (arXiv)</span> &middot; Sep 10
+</div>
+<p class="dek">The paper behind today&#x27;s symbolic-learning debate: intelligence as skill-acquisition efficiency, not demo fluency.</p>
+<div class="body">
+<p>Chollet&#x27;s argument reframed a live list discussion: asking a coding agent to invent solutions from examples is program synthesis with a neural prior — wasteful next to discrete program search plus a symbolic checker. Pair it with the hands-on sibling, DreamCoder (arXiv:2006.08381; code at github.com/ellisk42/ec), a wake-sleep system that learns a library of verified programs. The takeaway: separate neural proposal, executable checking, and a growing library of verified primitives — and measure agents by skill-acquisition efficiency, not fluency.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openai.github.io/openai-agents-python/">OpenAI Agents SDK Docs</a></h3>
+<div class="byline">
+<span class="src">OpenAI (official docs)</span> &middot; Sep 10
+</div>
+<p class="dek">A tiny primitive set — agent, tool, handoff, guardrail, session, trace — and the case against the framework-of-frameworks.</p>
+<div class="body">
+<p>Today&#x27;s duplication-vs-abstraction debate landed here: duplication is cheap now, the wrong abstraction is still expensive, and every extra framework layer is something the model must learn, violate, or wrap. Keep your platform&#x27;s public surface tiny — one agent contract, one tool schema, one handoff, one trace. Keep DRY in eval harnesses and checkers, not in the generated application graph.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://langchain-ai.github.io/langgraph/concepts/multi_agent">LangGraph: Multi-Agent Concepts</a></h3>
+<div class="byline">
+<span class="src">LangChain (official docs)</span> &middot; Sep 10
+</div>
+<p class="dek">Model your agents as a state machine you own — typed state slices, handoffs as commands — not a chat log.</p>
+<div class="body">
+<p>From the agent-dock discussion: with many concurrent agents you need to know who&#x27;s active, what they last did, and who they can hand off to — otherwise runs become un-debuggable prompt soup. Each specialist a node with a typed state slice; ship an operator surface showing the active node, last tool calls, and pending human gates. Start with a supervisor plus 3 tools max; add a second agent only when tool count or context size is the failure mode.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping Agents for the Real World with Agent Skills</a></h3>
+<div class="byline">
+<span class="src">Anthropic Engineering</span> &middot; Sep 10
+</div>
+<p class="dek">Skills — versioned, reviewable, lazily-loaded playbook folders — are the unit of agent product.</p>
+<div class="body">
+<p>Claude Tag&#x27;s on-call behavior isn&#x27;t &quot;a smarter model&quot;; it&#x27;s skills plus CLAUDE.md plus templates loaded after the repo clone. A skill is a folder with SKILL.md (frontmatter name/description, body lazily loaded), and the same format works across Claude apps, Claude Code, and the API. Spec and examples: github.com/anthropics/skills. For Riot: incident-triage, player-safety-escalation, live-ops-change-window as skills. For the SaaS: oncall-triage, customer-escalation, weekly-metrics-digest. Evaluate with replay, not vibe checks.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.com/blog/ai-ci-cd-on-call">How Claude Tag Does On-Call</a></h3>
+<div class="byline">
+<span class="src">Anthropic (claude.com)</span> &middot; Sep 10
+</div>
+<p class="dek">The engineer walkthrough of the hosted first-responder agent — plus the reference kit to copy.</p>
+<div class="body">
+<p>The shape to steal: session plus sandbox plus identity plus scoped tools plus durable lessons. The reference kit (github.com/anthropics/oncall-kit) ships playbooks, ONCALL.md, triage/handoff skills, lessons.md, and eval/replay — copy its structure before writing custom orchestration. Architecture doc: claude.com/docs/claude-tag/concepts/how-it-works. The one-thing-this-quarter version: one Slack channel, a scoped agent identity, read-only observability, ONCALL.md, lessons.md, and a human merge gate.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Top 10 for Agentic Applications (2026)</a></h3>
+<div class="byline">
+<span class="src">OWASP</span> &middot; Sep 10
+</div>
+<p class="dek">The security checklist for the agent-intent era: goal drift, trajectory hijacking, excessive agency.</p>
+<div class="body">
+<p>Pairs with today&#x27;s venture discussion on agent intent as the next security problem. Use it as the review checklist before any agent touches production data or irreversible actions — and as the reason your platform logs plans and tool sequences, not just prompts. The companion read: Anthropic&#x27;s framework for developing safe and trustworthy agents (anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents).</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://papers.ssrn.com/abstract=4573321">Navigating the Jagged Technological Frontier</a></h3>
+<div class="byline">
+<span class="src">Dell&#x27;Acqua, Mollick et al. (HBS)</span> &middot; Sep 10
+</div>
+<p class="dek">The field experiment behind the jagged-frontier debate: where AI helps, where it hurts, and how to reorganize around it.</p>
+<div class="body">
+<p>The paper version of today&#x27;s most-shared thread. Practical use: inventory your org&#x27;s work as inside, on, or outside the frontier; automate inside-the-frontier tasks first; publish the two-column skill list — what you&#x27;ll stop requiring humans to be good at, and what you&#x27;ll still require. Incident judgment, live-economy design, and player-safety calls never get deskilled. Pair every automation with a recertification path so juniors still see raw work sometimes.</p>
 </div>
 </article>
 </div>
