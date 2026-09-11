@@ -49,79 +49,40 @@ h3 { font-size: 19px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Thursday, September 10, 2026</span>
+<span>Friday, September 11, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">6 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">Today&#x27;s big lesson: your agent&#x27;s brain matters less than the machine around it — and choosing which model does which job is becoming an explicit design decision.</p>
+<p class="ednote">The week the industry&#x27;s two biggest anxieties collided: Anthropic went on the offensive against model cloning, while Microsoft&#x27;s long-range compute plans set the scale for the next six years.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.decodingai.com/p/coding-agents-in-remote-headless">Stop Babysitting Your Coding Agents</a></h3>
+<h3><a href="https://www.reuters.com/legal/litigation/anthropic-disrupts-russian-chinese-ai-campaigns-targeting-its-claude-models-2026-09-10/">Anthropic accuses Alibaba, Moonshot, and DeepSeek of industrial-scale distillation of Claude</a></h3>
 <div class="byline">
-<span class="src">Decoding AI Magazine — Paul Iusztin</span> &middot; Sep 10
+<span class="src">Bloomberg Tech In Depth; Reuters</span> &middot; Sep 10
 </div>
-<p class="dek">Your coding agent&#x27;s harness matters more than its model — and it should run overnight on the cloud, not in your terminal.</p>
+<p class="dek">Alibaba&#x27;s 151M-exchange distillation attack and Moonshot routing live user chats through Claude — the US–China AI fight just got its most detailed charge sheet.</p>
 <div class="body">
-<p>In the sixth lesson of his open-source course &quot;Build a Coding Agent From Scratch,&quot; Paul Iusztin takes the Decode harness built in earlier lessons and makes it headless. First, drop the TUI for a scriptable CLI (decode run &quot;&lt;goal&gt;&quot;), then ship the whole thing to Modal as serverless background jobs, then add parallel sessions. The key architectural move: the same agent loop — same model, tools, instructions — is driven by four interchangeable serving layers (TUI, CLI, remote launcher, eval harness) through one clean interface, build_agent() plus an AgentDeps bundle. That mirrors Claude Code&#x27;s claude -p &quot;&lt;goal&gt;&quot; interface, and it&#x27;s what lets a hobby harness grow into production infrastructure without a rewrite.</p>
-<p>Three triggers feed the same loop: decode remote run/attempts fired from your CLI or CI/CD, an authenticated POST webhook reachable from Slack or Discord, and a nightly cron that pulls Linear tickets, implements them overnight, and pushes review-ready branches (decode/&lt;session-id&gt;) for you to wake up to. The &quot;attempts&quot; mode runs N parallel implementations of the same feature and a judge agent forwards only the best PR for review — plus observability through Opik so you can compare costs, latency, and token usage across runs.</p>
-<p>Why this is worth your time: LangChain&#x27;s Terminal-Bench experiment moved a coding agent from ~30th place into the top 5 by changing only the harness. The engineering around the model is where the leverage is. The serverless math works for bursty agent work — roughly $3.95 per H100-hour on Modal scaling to zero, versus maintaining machines on GCP/AWS. Ramp runs roughly half of its merged PRs through this kind of routing queue at production scale. One safety note to internalize: headless mode defaults to bypass permissions with ask_user as a no-op, so always cap loops with a max-requests budget and observe rather than trust blindly.</p>
+<p>Anthropic&#x27;s latest Threat Intelligence report says it disrupted what it calls the largest illicit distillation attack it has seen: operators it linked to Alibaba generated more than 151 million exchanges with Claude between May and July, peaking at nearly 3 million per day from 3,500+ fraudulent accounts — aimed, Anthropic says, at extracting Claude&#x27;s capabilities to improve Alibaba&#x27;s Qwen models.</p>
+<p>Kimi maker Moonshot and DeepSeek took a different route, per the report: instead of bulk queries, they allegedly funneled real, live customer conversations — sometimes containing sensitive data like locations and passwords — through Claude via illicit intermediary &quot;transfer stations&quot; in jurisdictions outside China, then used Claude&#x27;s responses as training data. Xiaomi and Russia-linked cyber espionage campaigns were also named.</p>
+<p>Two things matter here beyond the headlines. First, distillation itself is legitimate and everywhere: labs use it to compress big models into smaller, cheaper ones. The line Anthropic draws is between legitimate compression and illicit extraction that strips safeguards — &quot;feeding model capabilities into their own military, intelligence, and surveillance systems.&quot; Second, this is now the sharpest US–China AI battleground: Anthropic explicitly tied the disclosure to Washington&#x27;s chip-export debate and called the &quot;window to act&quot; narrow.</p>
+<p>The so-what for builders: if you&#x27;re shipping AI features on someone else&#x27;s frontier model, your threat model now has two directions — misuse of your product by bad actors, and your own product being systematically mined for capability extraction. API rate limits and ToS are not a strategy; per-account anomaly detection is becoming table stakes.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://creatoreconomy.so/p/gpt-6-astra-is-both-incredible-and">GPT-6 Astra Is Both Incredible and Frustrating</a></h3>
+<h3><a href="https://www.reuters.com/business/microsoft-plans-38-gigawatts-data-center-capacity-by-2032-bloomberg-news-reports-2026-09-10/">Microsoft plans to triple its data center fleet by 2032</a></h3>
 <div class="byline">
-<span class="src">Peter Yang — Behind the Craft</span> &middot; Sep 9
+<span class="src">Bloomberg Tech In Depth; Reuters</span> &middot; Sep 11
 </div>
-<p class="dek">OpenAI&#x27;s newest model builds 3D games and thinks like a blunt advisor — but hesitates to actually do the work and keeps ignoring your skills.</p>
+<p class="dek">12 GW today, ~38 GW by 2032 — Microsoft&#x27;s planning target for data center capacity would eclipse all of New York state.</p>
 <div class="body">
-<p>Three things Astra does exceptionally well. First, games and 3D: it went viral for building 3D models and playable games by driving Blender and Godot through MCPs — Yang built four tech demos (Star Fox-, Call of Duty-, StarCraft-, and Slay the Spire-style) on a $20/month ChatGPT plan, documented in a 24-minute tutorial video. Second, high-level strategy: his &quot;brutally honest advisor&quot; prompt test produced uncomfortably blunt, useful feedback, and an intelligence-vs-cost chart shows Astra Low scoring slightly above Sol High. Third, computer and browser use: give it a photo, ask it to open jspaint.app and draw you, and it does.</p>
-<p>Two problems hold it back as a daily driver. It often explains how to do a task instead of doing it — OpenAI&#x27;s own Astra prompting guide admits the model &quot;can stop when the user may expect it to make reasonable assumptions and persist,&quot; and recommends a custom instruction telling it to carry things through and only ask when it truly needs input. Worse, it takes liberties with his AI skills&#x27; instructions, ignoring explicit formatting rules even after he simplified them to remove conflicts — behavior he didn&#x27;t see with GPT-5.6 Sol or Claude Fable.</p>
-<p>The teaching point for your own stack: route by job, not by model. Use Astra-class models for exploration (games, strategy, one-off computer use) and keep your execution work on the model that follows your skills reliably. Higher ceiling, higher variance — the split between a &quot;thinking model&quot; and a &quot;doing model&quot; is becoming an explicit routing decision in any serious AI platform.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/AnthropicAI/status/2098064343806509196">Anthropic Publishes Its Post-Mortem: Claude Got Unauthorized Access During Third-Party Evals</a></h3>
-<div class="byline">
-<span class="src">X — @AnthropicAI</span> &middot; Sep 10
-</div>
-<p class="dek">During routine third-party evaluations, a testing issue gave Claude unauthorized access — Anthropic published a full assessment of what happened and what it&#x27;s changing.</p>
-<div class="body">
-<p>Anthropic&#x27;s own account: &quot;Last week during routine third-party evals, a testing issue gave Claude unauthorized access… We&#x27;ve published our assessment and the actions we&#x27;re taking.&quot; Noah Zweben (Anthropic): &quot;We&#x27;d rather our evals be public than popular.&quot; Ethan Mollick, after reading the write-up: &quot;There appears to be a lot going on here.&quot;</p>
-<p>Why it matters for you: this is the transparency bar for anyone running agents with real permissions — publish the failure, show the fix, keep the evals public. Your platform&#x27;s eval and incident story should look like this. It also feeds the day&#x27;s other debate: evals transparency and the widening gap between open-weight and closed frontier models.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/emollick/status/2098086824191099214">The Jagged Frontier, Restated: AI Eats the Visible Task, Not the Job</a></h3>
-<div class="byline">
-<span class="src">X — @emollick</span> &middot; Sep 10
-</div>
-<p class="dek">Mollick&#x27;s long thread: AI is superhuman at visible tasks like math proofs but can&#x27;t touch the sustaining work — mentoring, taste, community, stewardship.</p>
-<div class="body">
-<p>Math is the preview of other professions: proofs are the flashy slice AI wins; the sustaining work around them — mentoring juniors, quality control, community, judgment — isn&#x27;t automated. The adoption lesson: inventory work as inside, on, or outside the frontier. Automate inside-the-frontier tasks first and explicitly protect and measure the rest. Adoption stalls when staff think you&#x27;re replacing them rather than the visible 30% of their week. The field paper behind it is in Learn &amp; Build.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/emollick/status/2098060952868368788">Oversee the Loop, Don&#x27;t Sit In It</a></h3>
-<div class="byline">
-<span class="src">X — @emollick</span> &middot; Sep 10
-</div>
-<p class="dek">On long-running agent tasks you can&#x27;t be in the loop in detail — but you can oversee the loop. Injecting mid-run vs. forking is the same tradeoff as management.</p>
-<div class="body">
-<p>Mollick&#x27;s Codex thread: the labs could do a much better job of making agentic work visible and manageable in the interfaces they build. The platform default that follows: read-only plus explicit write gates, with a live plan the human can interrupt — &quot;agent proposes, human releases.&quot; Treat agent runs like services: SLOs, pause, resume, audit. Train leads on when to inject vs. fork vs. let it finish. Same pattern as the guardrails story in Learn &amp; Build.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/ClaudeDevs/status/2097437571634639035">Anthropic&#x27;s CI Team Runs On-Call Through Claude Tag — First SITREP in ~14 Minutes</a></h3>
-<div class="byline">
-<span class="src">X — @ClaudeDevs</span> &middot; Sep 8
-</div>
-<p class="dek">Claude Tag reads alerts, metrics, and logs, then writes the incident report — Anthropic&#x27;s on-call first responder is now a product.</p>
-<div class="body">
-<p>Tag is a Claude Code session in a sandbox, started from a mention, schedule, or repo event, with channel memory and its own identity. Anthropic&#x27;s CI team uses it as L1 on-call: first SITREP in a median ~14 minutes, root cause named in ~4 minutes on the fastest cases. The loop: alert → Tag investigates via read-only observability → posts an evidence-grounded SITREP → human decides → Tag watches the fix and writes lessons.md. The pattern to steal for Riot and the SaaS — session plus sandbox plus scoped identity plus durable lessons — is in Learn &amp; Build.</p>
+<p>Bloomberg reporting (via sources familiar with the plans) sketches Microsoft&#x27;s internal roadmap: owned-and-leased data center capacity growing from about 12 gigawatts today to roughly 38 gigawatts by 2032 — more electricity than New York state&#x27;s projected peak summer demand of 33 GW that year. Capex, including leases, hit $145 billion last fiscal year.</p>
+<p>The telling detail: only about 2 GW of today&#x27;s fleet is AI-specific silicon. The rest is general-purpose compute. By 2032, about a third of the 38 GW would be AI-specific. Two readings: Microsoft believes general cloud demand is still the bulk of the build, and the AI share is set to roughly sextuple. The same reporting notes shortages already forced Microsoft to turn away some AI and cloud business — which is why a company that walked away from ~2 GW of projects earlier in 2026 is now sketching triple.</p>
+<p>Microsoft called the numbers inaccurate without offering alternatives — treat them as a planning target, not a construction schedule. And note the accounting move: spreading long-term leases over 25 years instead of 15 lowers reported annual capex, which is exactly how you keep spending big while keeping the income statement calm.</p>
+<p>For anyone building an AI platform: power and capacity are the binding constraints now, not algorithms. Your cloud vendor&#x27;s roadmap is your product&#x27;s ceiling.</p>
 </div>
 </article>
 </div>
@@ -129,329 +90,160 @@ h3 { font-size: 19px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">9 stories</span>
+<span class="count">3 stories</span>
 </div>
-<p class="ednote">Money keeps pouring into AI while the questions about who pays — and whether it pays — get louder.</p>
+<p class="ednote">Vertical AI keeps printing money, and sovereign wealth is now writing the biggest checks in hard tech.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.reuters.com/legal/government/legal-ai-startup-harvey-reaches-155-billion-valuation-new-funding-round-2026-09-09/">Harvey Raises $550M at a $15.6B Valuation</a></h3>
+<h3><a href="https://techcrunch.com/2026/09/09/harvey-hits-15-5b-valuation-months-after-reaching-11b/">Legal-AI startup Harvey closes $550M round, launches in-house model</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+<span class="src">Bloomberg; TechCrunch</span> &middot; Sep 10
 </div>
-<p class="dek">The legal AI startup cements its status as the best-funded legal AI company — over $400M in ARR, up from an $11B valuation in March.</p>
+<p class="dek">$550M at ~$15.6B, up from $11B in March — and it&#x27;s now training its own legal models on open weights instead of renting frontier ones.</p>
 <div class="body">
-<p>Harvey sells to Big Law firms and in-house legal teams inside large companies. The round reinforces the current venture pattern: vertical AI winners monetizing specialized professional workflows are commanding the biggest multiples, while general chatbots commoditize.</p>
+<p>Harvey, the legal-AI startup, raised $550 million at a $15.5–15.6 billion valuation — up from $11 billion just six months earlier — co-led by Lightspeed and Diffusion, with Sequoia, Kleiner Perkins, a16z, and Coatue re-upping. Revenue is reported above $400M ARR, and 80% of the Am Law 100 use the product.</p>
+<p>Two moves in this round matter more than the valuation. First, Harvey acquired Guardrails AI — an AI security platform for agents, its fourth acquisition this year — betting that legal workflows will be agentic and need guardrails. Second, it shipped Harvey Tenet, its first in-house model, post-trained from the open-weight Kimi K3 (Moonshot&#x27;s model, notably — the same company accused of distillation elsewhere in this edition) with Fireworks&#x27; help, and is pushing customers to post-train their own open-weight models.</p>
+<p>That last point is the real story: Harvey is becoming a case study in how an entire industry can go deep on AI without depending on proprietary frontier labs. If your org strategy is &quot;wait for OpenAI/Anthropic to solve our vertical,&quot; watch Harvey — vertical post-training on open weights is becoming a credible alternative.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.reuters.com/legal/litigation/us-doj-probes-nvidias-licensing-deal-with-ai-startup-groq-nyt-reports-2026-09-10/">DOJ Probes Whether Nvidia&#x27;s $20B Groq Deal Dodged Antitrust Review</a></h3>
+<h3><a href="https://techcrunch.com/2026/09/10/the-boring-company-raises-3b-in-round-led-by-uae/">The Boring Company raises $3B at $23B valuation</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Tech In Depth; TechCrunch</span> &middot; Sep 10
 </div>
-<p class="dek">Investigators are examining how Nvidia structured its $20 billion licensing agreement with chip startup Groq, people familiar said.</p>
+<p class="dek">UAE-led $3B Series D values Musk&#x27;s tunneling company at $23B, anchored in 150 km of unbuilt tunnels.</p>
 <div class="body">
-<p>Structuring a transaction as a licensing deal rather than an acquisition can sidestep review thresholds. If the DOJ moves here, it sets precedent for how AI deals get engineered — and signals the regulatory gaze over AI consolidation is not letting up.</p>
+<p>Elon Musk&#x27;s tunneling company raised a $3 billion Series D at a $23 billion valuation — roughly 4x its 2022 mark. The round was led by the UAE and affiliated entities, with a16z, Sequoia, Temasek, Human Capital, Vy Capital, Valor, and Baron Capital participating. The stated plan: more than 150 km of tunnels across the UAE (on top of the Dubai Loop), plus scaling the Vegas and Nashville loops and hiring across engineering and operations.</p>
+<p>Valuation math is anchored almost entirely in unbuilt tunnels. It&#x27;s a reminder that in this market, the constraint isn&#x27;t capital — it&#x27;s credible execution capacity. Whether tunnels get dug at 4x the 2022 price is a bet on sovereign-scale infrastructure partnerships, not tunneling technology.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.reuters.com/technology/oracles-quarterly-revenue-beats-estimates-ai-boom-drives-cloud-demand-2026-09-10/">Oracle Earnings Test the Market&#x27;s Tolerance for Heavy AI Spending</a></h3>
+<h3>Oracle cloud revenue doubles on AI demand</h3>
 <div class="byline">
-<span class="src">Bloomberg (Markets Daily)</span> &middot; Sep 10
+<span class="src">Bloomberg Tech In Depth</span> &middot; 
 </div>
-<p class="dek">With Oracle stock down half over the past year and AI debt piling up, tonight&#x27;s report is the sector&#x27;s bellwether.</p>
-<div class="body">
-<p>Investors are balking at the massive debt load Oracle took on to build AI infrastructure; the cost of protecting its debt against default has risen more than 40% in 2026. The central question: will returns on AI capex be enough to repay the borrowing? This is the financing anxiety now hanging over the whole buildout.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.wsj.com/tech/anthropic-gives-eus-cybersecurity-agency-access-to-mythos-5-ai-model-33e3a3ef">Anthropic Gives EU Access to Its Mythos Model</a></h3>
-<div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
-</div>
-<p class="dek">Months after release, Anthropic&#x27;s Mythos model is now available in the EU — frontier models still ship with regulatory geography attached.</p>
-<div class="body">
-<p>Worth watching as a data point on how frontier labs sequence access across jurisdictions — and as a preview of what EU deployments of your own platform will need to navigate.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.goldmansachs.com/insights/goldman-sachs-exchanges/the-ai-investment-boom-when-will-it-pay-off">What If the AI Boom Never Pays Off?</a></h3>
-<div class="byline">
-<span class="src">Cory Doctorow via Bloomberg (Trumponomics)</span> &middot; Sep 10
-</div>
-<p class="dek">Doctorow asks what happens to jobs, markets, and the economy if the AI boom never pays off.</p>
-<div class="body">
-<p>The question lands on a day when Oracle&#x27;s debt, Dell&#x27;s $5B bond rush for AI servers, and Huawei&#x27;s AI chips rising 60% on insatiable Chinese demand all point the same way: the tension between record capex and uncertain returns is now the market&#x27;s central question. Doctorow&#x27;s reverse-centaur framing — humans as the body, AI as the rider, or vice versa — is a useful lens on who actually captures the value.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/BessemerVP/status/2098089311950520363">Salesforce Closes the $3.6B Fin Acquisition</a></h3>
-<div class="byline">
-<span class="src">X — @BessemerVP</span> &middot; Sep 10
-</div>
-<p class="dek">A closed $3.6B acquisition — the strongest signal in today&#x27;s venture discussion: money pays for proven resolution rates and outcome pricing, not wrappers.</p>
-<div class="body">
-<p>Bessemer&#x27;s 7-part thread tells the comeback story: the team dismantled the old Intercom product, migrated customers off the old line, priced on outcomes (~76% claimed resolution rates, a support-specific model suite), and grew for 10+ quarters. The takeaway for your platform work: treat &quot;cloud agents&quot; as outcome systems, not chat UIs. Define the resolvable unit (ticket, incident, support case), instrument resolution rate, time-to-resolution, and escalation rate, and design so product teams swap the old workflow off rather than bolting on a sidecar. Price a result — even if it cannibalizes seats.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.prnewswire.com/news-releases/positron-ai-raises-875-million-at-a-5-billion-valuation-to-bring-its-next-generation-inference-silicon-to-market-302874601.html">Positron Raises $875M at a $5B Valuation for Inference Silicon</a></h3>
-<div class="byline">
-<span class="src">X — VC list discussion</span> &middot; Sep 10
-</div>
-<p class="dek">Real capital, high technical risk: money and hardware talent are going to inference cost, energy, and long context.</p>
-<div class="body">
-<p>The round targets next-generation inference silicon on TSMC&#x27;s N3P process late in 2026 — a cost-curve signal, not a SKU to buy. The platform lesson: you&#x27;ll be judged on dollars per resolved task, not model brand. Abstract serving behind a router — batch, cache prefixes, separate prefill from decode, pick hardware by workload shape — and put a serving budget and SLO on each agent. Build on portable serving layers like vLLM (docs.vllm.ai) now.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.scworld.com/perspective/ai-agents-are-already-exploring-your-network-how-do-you-detect-their-intent">The Next Security Problem Is Agent Intent</a></h3>
-<div class="byline">
-<span class="src">X — VC list discussion</span> &middot; Sep 10
-</div>
-<p class="dek">A chain of individually legitimate tool calls can still violate what the user meant. Goal drift over a trajectory is the new attack surface.</p>
-<div class="body">
-<p>The Greylock-flavored thesis going around: the next security problem isn&#x27;t prompt injection, it&#x27;s agent intent — a support agent drifting into granting currency, each step defensible, the trajectory wrong. Early but serious: no mega-round attached, talent moving toward runtime governance. Your platform needs a second security question beyond &quot;is this tool call allowed&quot;: is this agent still the thing we authorized? Log plans, tool sequences, and intent declarations; stop valid actions on trajectory divergence. Least-privilege tools plus human gates on irreversible actions — that&#x27;s what earns enterprise trust at Riot scale. The OWASP checklist is in Learn &amp; Build.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/TechCrunch/status/2097814585960960325">Paul Christiano Joins the OpenAI Foundation Board</a></h3>
-<div class="byline">
-<span class="src">X — @TechCrunch</span> &middot; Sep 9
-</div>
-<p class="dek">The influential alignment researcher joins OpenAI&#x27;s foundation board — a governance signal as labs formalize oversight.</p>
-<div class="body">
-<p>Christiano is one of the most-cited thinkers on AI alignment; Sam Altman welcomed him publicly the same day. Watch this as a data point on how frontier labs staff their oversight functions — the people designing the guardrails are increasingly sitting on the boards, not just in the research orgs.</p>
-</div>
+<p class="dek">Oracle&#x27;s cloud unit doubled quarterly revenue on surging AI demand — the enterprise cloud story is now an AI story.</p>
 </article>
 </div>
 </section>
 <section>
 <div class="sec-head">
 <h2>Politics</h2>
-<span class="count">6 stories</span>
+<span class="count">4 stories</span>
 </div>
-<p class="ednote">A midterm-year squeeze: cash promises at home, an escalating war abroad.</p>
+<p class="ednote">AI safety went from an inside debate to a mainstream one in about 72 hours.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.reuters.com/world/us/trump-touts-5000-payout-if-republicans-win-vance-waits-wings-2026-09-10/">Trump Vows a $5,000 &quot;Dividend&quot; for Every Adult if the GOP Wins the Midterms</a></h3>
+<h3><a href="https://techcrunch.com/2026/09/09/gambling-with-our-lives-anthropic-researcher-quits-warns-against-self-improving-ai/">Fear and loathing in the AGI era: a resignation goes viral</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Q&amp;AI; TechCrunch</span> &middot; Sep 10
 </div>
-<p class="dek">The $1 trillion-plus pledge pairs with long shots like killing credit-card swipe fees — a sign of desperation, Bloomberg writes.</p>
+<p class="dek">An Anthropic researcher&#x27;s viral resignation — 100M+ views, backed by the lab&#x27;s own alignment lead — turned AI existential risk into a political moment.</p>
 <div class="body">
-<p>The quid pro quo: keep the Republican congressional majority, get a $5,000 dividend. Don&#x27;t bet on it becoming law — Congress may not embrace a cash program with a $1 trillion-plus price tag, and the pledge is already feeding investor worries about Washington&#x27;s fiscal discipline. He&#x27;s urging supporters to let him &quot;finish the job.&quot;</p>
+<p>The week&#x27;s most viral story didn&#x27;t come from a lab announcement but from a resignation. Jacob Coxon, a 27-year-old researcher who spent three years on pretraining at both OpenAI and Anthropic, quit and posted that both companies are &quot;racing straight to self-improving superintelligence and gambling with our lives&quot; — claiming the people building AI &quot;earnestly believe that it could kill us all by the end of the decade.&quot; The thread crossed 100 million views.</p>
+<p>What gave it weight: Anthropic&#x27;s own people backed him up publicly. Alignment lead Evan Hubinger wrote that Coxon was &quot;correct,&quot; putting his own estimate at greater than 10% chance of AI killing all humans within the decade. That came days after OpenAI chief scientist Jakub Pachocki warned that &quot;no one is prepared for the consequences of a continued rapid rise in machine intelligence,&quot; and after AI safety researcher Paul Christiano was appointed to OpenAI&#x27;s nonprofit board, saying the industry is not &quot;currently on track to reduce this risk to an acceptable level.&quot;</p>
+<p>The political class reacted fast: Bernie Sanders and Sheryl Crow amplified the concern, Rep. Anna Paulina Luna called for a special congressional session on AI, and Congressional Progressive Caucus chair Greg Casar called it &quot;an emergency.&quot; Meanwhile, in the same edition, Treasury Secretary Scott Bessent warned that &quot;if they were to pull away from us on AI, then nothing else would matter&quot; — the other pole of the politics: the race with China can&#x27;t be slowed from Washington&#x27;s perspective.</p>
+<p>Bloomberg also flagged the data-center backlash as a defining midterms issue — local opposition to the buildout is becoming electorally real. And in the background: Anthropic and OpenAI are both nearing Wall Street debuts, which will supercharge development and shareholder pressure simultaneously. Expect this tension — safety panic vs. race dynamics — to be the dominant policy frame for the next year.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/world/middle-east/trumps-top-advisers-confront-possibility-that-iran-war-lasts-through-end-of-term-5f4e23d7">Vance and Rubio Warn the Iran War Could Stretch Through Trump&#x27;s Term</a></h3>
+<h3>DOJ probes Nvidia–Groq tie-up</h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Q&amp;AI</span> &middot; 
 </div>
-<p class="dek">The WSJ reports both men told the president the war may consume his entire term — as he floats renaming the Strait of Hormuz the &quot;Trump Strait.&quot;</p>
-<div class="body">
-<p>Iran says it&#x27;s ready for a more intense war, reorganizing its military around an &quot;offensive doctrine,&quot; while Pakistan&#x27;s defense minister warned that any attack on Saudi Arabia could activate the Mecca Defense Alliance. Tanker rates are at record highs, Houthi militants claim fresh strikes on Saudi energy facilities, and surging rates point to a deepening energy crisis. The ECB is set to raise borrowing costs today for the second time since the Iran war sent energy prices soaring.</p>
-</div>
+<p class="dek">The DOJ is scrutinizing Nvidia&#x27;s tie-up with Groq on antitrust grounds — the chip bottleneck is now a regulatory story too.</p>
 </article>
 <article class="">
-<h3><a href="https://www.thetimes.com/sport/golf/article/rory-mcilroy-donald-trump-president-irish-open-doonbeg-gg5dpggbb">Trump Heads to Ireland&#x27;s Irish Open This Weekend</a></h3>
+<h3>Data-center backlash emerges as a midterms issue</h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Q&amp;AI</span> &middot; 
 </div>
-<p class="dek">He meets Taoiseach Micheál Martin and President Catherine Connolly, then watches golf at Doonbeg — with protesters limbering up.</p>
-<div class="body">
-<p>Connolly has previously accused him of acting &quot;like a bully,&quot; so the stakes — diplomatic and otherwise — are high ahead of the weekend.</p>
-</div>
+<p class="dek">The data-center backlash is becoming an electoral issue ahead of the midterms.</p>
 </article>
 <article class="">
-<h3><a href="https://news.bloomberglaw.com/new-york-brief/nyc-mulls-property-tax-break-for-2-7-billion-hudson-yards-tower">NY Weighs a $100M Tax Break for a Hudson Yards Tower — Mamdani vs. His Base</a></h3>
+<h3>US accuses Alibaba and DeepSeek of siphoning AI models</h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Q&amp;AI</span> &middot; 
 </div>
-<p class="dek">A Sept. 15 vote on 99 Hudson Boulevard could put Mayor Zohran Mamdani at odds with his progressive base.</p>
-<div class="body">
-<p>An arm of the city&#x27;s Economic Development Corporation votes on the $100 million property-tax break for a $2.7 billion, 48-story office building on Manhattan&#x27;s far west side — a neighborhood described as thriving by almost any economic metric. Construction is scheduled to begin in January.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.cnn.com/2026/09/08/europe/germany-far-right-afd-election-europe-intl">Germany&#x27;s AfD Win Is Great News for Putin</a></h3>
-<div class="byline">
-<span class="src">Marc Champion, Bloomberg Opinion</span> &middot; Sep 10
-</div>
-<p class="dek">One of the morning&#x27;s opinions to watch on Europe&#x27;s political realignment.</p>
-</article>
-<article class="">
-<h3><a href="https://www.reuters.com/world/us/twenty-five-years-after-911-americans-still-live-with-its-legacy-2026-09-07/">We Are Still Living in the Broken World Sept. 11 Created</a></h3>
-<div class="byline">
-<span class="src">Noah Feldman, Bloomberg Opinion</span> &middot; Sep 10
-</div>
-<p class="dek">On the eve of the 25th anniversary, Feldman argues the way to stave off decline is to gradually rebuild American institutions — with strength, bravery, and optimism.</p>
+<p class="dek">Washington says Alibaba and DeepSeek have &quot;systematically&quot; siphoned AI models — see AI Development Practices for the detailed charge sheet.</p>
 </article>
 </div>
 </section>
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">7 stories</span>
+<span class="count">5 stories</span>
 </div>
-<p class="ednote">Health, hardware, and a schoolhouse standard — the stories that don&#x27;t fit the day&#x27;s big narratives but are worth your time.</p>
+<p class="ednote">Money, markets, and the media economics of covering AI.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://news.bloomberglaw.com/health-law-and-business/lillys-glp-1-windfall-to-fund-investments-in-womens-health">Eli Lilly Bets Its GLP-1 Bonanza on Women&#x27;s Health</a></h3>
+<h3>$5 million a year for a tech podcast?!</h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg Soundbite</span> &middot; Sep 10
 </div>
-<p class="dek">Zepbound and Mounjaro made Lilly a $1 trillion company; now CEO Dave Ricks is targeting bone conditions and endometriosis.</p>
+<p class="dek">The Hard Fork duo is shopping a new show via UTA at up to $5M a year — the clearest price signal yet for independent AI media.</p>
 <div class="body">
-<p>GLP-1s are already showing unexpected fertility benefits (the piece profiles Torria Leggett and her &quot;Mounjaro baby&quot;), and Lilly is investing in helping patients keep muscle as they shed fat — rapid weight reduction can mean lean muscle loss and osteoporosis risk. Ricks is using the windfall to hunt acquisitions beyond obesity, trying to beat the industry&#x27;s boom-and-bust cycle.</p>
+<p>The biggest AI podcasting story this week isn&#x27;t a episode — it&#x27;s a business deal. Kevin Roose and Casey Newton, the NYT&#x27;s Hard Fork co-hosts, are ending that show and shopping a new untitled podcast via UTA, with offers reportedly coming in at seven figures annually, potentially as high as $5 million a year.</p>
+<p>The interesting tension: the guarantee is priced on the belief their Hard Fork audience transfers — and on advertisers&#x27; hunger to reach AI early adopters. The unresolved question is whether Roose and Newton will read ads for AI companies on a show that covers AI — the exact conflict of interest tech media has been circling for two years. Regardless of outcome, this is the clearest signal yet of what independent AI-media talent is worth when the buyers are tech companies with swollen marketing budgets. (Soundbite also notes music finally got its legally sanctioned generative-AI product — details scarce, worth watching.)</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://news.microsoft.com/source/2026/09/09/aft-uft-and-microsoft-announce-national-ai-safety-privacy-standard-for-schools-to-protect-students-families-and-educators/">Microsoft Signs a Landmark AI-in-Schools Pact With the Teachers&#x27; Union</a></h3>
+<h3>Markets Daily: &#x27;Worrying times&#x27;</h3>
 <div class="byline">
-<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+<span class="src">Bloomberg</span> &middot; Sep 11
 </div>
-<p class="dek">A 10-principle agreement with the American Federation of Teachers — no student data for model training — applies to all contracted schools Nov. 1.</p>
-<div class="body">
-<p>The pact pledges clear communication with parents, minimal data collection, and a ban on training models on student data (except limited safety uses). The AFT calls it the most comprehensive agreement of its kind. It lands after NYC public schools — the nation&#x27;s largest district — blocked AI for elementary and middle-school students, followed by LA Unified, and contrasts sharply with Google&#x27;s surprise Gemini rollout in Classroom. The market context: ChromeOS runs 58% of K-12 tablets versus Windows at 22%, so whatever standard Microsoft sets here will ripple. The AFT says it&#x27;s in preliminary talks with Google about adopting it too.</p>
-</div>
+<p class="dek">The 10-year yield climbed ~20 bps this week, approaching levels not seen since 2007 — bond markets are flashing.</p>
 </article>
 <article class="">
-<h3><a href="https://news.bloombergtax.com/daily-tax-report/us-treasury-triples-long-dated-debt-buyback-to-6-billion-3">Bessent&#x27;s Buyback Backfires as Oil Tops $101</a></h3>
+<h3>$109 a barrel</h3>
 <div class="byline">
-<span class="src">Bloomberg (Markets Daily / Evening Briefing)</span> &middot; Sep 10
+<span class="src">Bloomberg</span> &middot; Sep 10
 </div>
-<p class="dek">The 10-year yield hit a three-year high of 4.85% after the Treasury&#x27;s buyback announcement — &quot;the market has called his bluff.&quot;</p>
-<div class="body">
-<p>Treasury Secretary Scott Bessent&#x27;s bond-buyback push, meant to drag yields lower, had the opposite effect as traders focused on the $40 trillion national debt and the Iran war. Brent climbed above $101–102 a barrel for the first time since July on escalating Middle East attacks and a resumption of Chinese crude buying. US stocks were steady after a three-day losing streak; Oracle, Adobe, and Copart report after the close.</p>
-</div>
+<p class="dek">Evening briefing&#x27;s lead market number: crude at $109 a barrel.</p>
 </article>
 <article class="">
-<h3><a href="https://www.reuters.com/business/retail-consumer/apples-foldable-iphone-poses-1999-question-who-is-it-2026-09-10/">Apple&#x27;s Foldable iPhone Duo Debuts at $1,999 Under New CEO John Ternus</a></h3>
+<h3>MediaTek sales jump 44% on AI chips</h3>
 <div class="byline">
-<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 10
+<span class="src">Bloomberg Tech In Depth</span> &middot; Sep 11
 </div>
-<p class="dek">Apple aims to show it can improve a category Samsung pioneered — with a sturdier foldable and more intuitive software.</p>
-<div class="body">
-<p>Ternus introduced the device alongside new iPhone, Apple Watch, and AirPod models. Meanwhile, Apple is also pushing always-listening AI features on the Watch — worth tracking as the AI wearables category heats up.</p>
-</div>
+<p class="dek">A 44% jump in monthly sales, boosted by MediaTek&#x27;s emerging AI chip business — the AI silicon wave is reaching the mid-tier.</p>
 </article>
 <article class="">
-<h3><a href="https://news.bloomberglaw.com/employee-benefits/1-2-million-pay-for-trading-power-tops-oil-salaries-in-brazil">A Hiring Spree Sweeps Brazil&#x27;s Volatile Power Market</a></h3>
+<h3>Apple unveils foldable iPhone Duo</h3>
 <div class="byline">
-<span class="src">Bloomberg (Morning Briefing — The Big Take)</span> &middot; Sep 10
+<span class="src">Bloomberg Tech In Depth</span> &middot; Sep 11
 </div>
-<p class="dek">Top traders are landing million-dollar pay packages — in São Paulo and Rio, not Houston or London.</p>
-<div class="body">
-<p>A spare-no-expense hiring war is underway in one of the world&#x27;s most volatile power markets, another sign that energy-market complexity is now a premium global asset.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.reuters.com/legal/litigation/enbridge-nears-2-billion-deal-blackstones-tallgrass-pipeline-bloomberg-news-2026-09-09/">Enbridge Eyes a $2B Pipeline Deal; Dow Mulls Exiting Its Aramco JV</a></h3>
-<div class="byline">
-<span class="src">Bloomberg (Evening Briefing)</span> &middot; Sep 9
-</div>
-<p class="dek">Energy M&amp;A keeps moving: Enbridge in advanced talks for Blackstone&#x27;s Pony Express pipeline; Dow weighing an exit from the $20B Sadara chemicals partnership.</p>
-<div class="body">
-<p>The Pony Express carries crude 900 miles from the Rockies to Cushing, Oklahoma — and the deal is a test of whether the US trade war and Canada&#x27;s retaliation bleed into energy-pipeline M&amp;A. Dow&#x27;s review signals a major shift in its Middle East priorities amid a prolonged chemicals downturn.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/TechCrunch/status/2097826163288612975">Automattic Board Puts Matt Mullenweg on Leave</a></h3>
-<div class="byline">
-<span class="src">X — @TechCrunch</span> &middot; Sep 9
-</div>
-<p class="dek">WordPress&#x27;s founder and Automattic CEO was put on leave by his board against his will, per a Slack message seen by TechCrunch.</p>
-<div class="body">
-<p>Brief: one of the more dramatic governance stories in open source this year. Worth watching for what it signals about founder control vs. board power in maturing tech companies.</p>
-</div>
+<p class="dek">Apple unveiled its first foldable — the iPhone Duo at $1,999, preorders from Oct 16 in 70+ countries.</p>
 </article>
 </div>
 </section>
 <section>
 <div class="sec-head">
 <h2>Learn &amp; Build</h2>
-<span class="count">8 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">New section: the day&#x27;s X-list discussions distilled into things worth learning — one authoritative resource per topic, zero clickbait. Curated with Grok from your lists, through the lens of a tech lead building AI agent platforms.</p>
+<p class="ednote">X was unavailable today (the saved session expired), so this section draws on the Feed&#x27;s two deepest technical items instead of the usual X-list distillation.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a></h3>
+<h3><a href="https://www.reuters.com/legal/litigation/anthropic-disrupts-russian-chinese-ai-campaigns-targeting-its-claude-models-2026-09-10/">Model distillation: technique and threat model</a></h3>
 <div class="byline">
-<span class="src">Anthropic Engineering</span> &middot; Sep 10
+<span class="src">Anthropic Threat Intelligence report (via Reuters)</span> &middot; Sep 10
 </div>
-<p class="dek">The canonical engineering guide to agent design — workflows vs. autonomous agents, and when to use each.</p>
+<p class="dek">How distillation works — and how it&#x27;s allegedly being abused at industrial scale.</p>
 <div class="body">
-<p>Cited across both your technical and venture lists today. The core mental model: start with the simplest workflow that works (prompt chaining, routing, parallelization), add autonomy only where the path can&#x27;t be predicted; the orchestrator-workers and evaluator-optimizer patterns cover most real systems. If you read one thing this week on agent architecture, make it this — then compare it against what your platform actually implements.</p>
+<p>Distillation is both a core ML technique and, per Anthropic&#x27;s latest threat report, a vector for industrial-scale capability extraction. The Reuters writeup walks through how Alibaba allegedly ran 151M fraudulent exchanges against Claude, and how Moonshot/DeepSeek allegedly routed live user conversations through &quot;transfer stations&quot; to mine reasoning traces.</p>
+<p>Why it matters for you: if you&#x27;re building an AI platform or agent fleet, distillation cuts both ways. You can use it to compress and cheapen your own models — and adversaries can use it to clone yours. The takeaway: treat your model&#x27;s outputs as an asset to protect, with per-account anomaly detection and licensing guardrails, not just ToS.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://arxiv.org/abs/1911.01547">On the Measure of Intelligence</a></h3>
+<h3><a href="https://www.reuters.com/business/microsoft-plans-38-gigawatts-data-center-capacity-by-2032-bloomberg-news-reports-2026-09-10/">Data center power economics: why gigawatts matter</a></h3>
 <div class="byline">
-<span class="src">François Chollet (arXiv)</span> &middot; Sep 10
+<span class="src">Reuters</span> &middot; Sep 11
 </div>
-<p class="dek">The paper behind today&#x27;s symbolic-learning debate: intelligence as skill-acquisition efficiency, not demo fluency.</p>
+<p class="dek">Power and capacity as the binding constraints of AI strategy.</p>
 <div class="body">
-<p>Chollet&#x27;s argument reframed a live list discussion: asking a coding agent to invent solutions from examples is program synthesis with a neural prior — wasteful next to discrete program search plus a symbolic checker. Pair it with the hands-on sibling, DreamCoder (arXiv:2006.08381; code at github.com/ellisk42/ec), a wake-sleep system that learns a library of verified programs. The takeaway: separate neural proposal, executable checking, and a growing library of verified primitives — and measure agents by skill-acquisition efficiency, not fluency.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://openai.github.io/openai-agents-python/">OpenAI Agents SDK Docs</a></h3>
-<div class="byline">
-<span class="src">OpenAI (official docs)</span> &middot; Sep 10
-</div>
-<p class="dek">A tiny primitive set — agent, tool, handoff, guardrail, session, trace — and the case against the framework-of-frameworks.</p>
-<div class="body">
-<p>Today&#x27;s duplication-vs-abstraction debate landed here: duplication is cheap now, the wrong abstraction is still expensive, and every extra framework layer is something the model must learn, violate, or wrap. Keep your platform&#x27;s public surface tiny — one agent contract, one tool schema, one handoff, one trace. Keep DRY in eval harnesses and checkers, not in the generated application graph.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://langchain-ai.github.io/langgraph/concepts/multi_agent">LangGraph: Multi-Agent Concepts</a></h3>
-<div class="byline">
-<span class="src">LangChain (official docs)</span> &middot; Sep 10
-</div>
-<p class="dek">Model your agents as a state machine you own — typed state slices, handoffs as commands — not a chat log.</p>
-<div class="body">
-<p>From the agent-dock discussion: with many concurrent agents you need to know who&#x27;s active, what they last did, and who they can hand off to — otherwise runs become un-debuggable prompt soup. Each specialist a node with a typed state slice; ship an operator surface showing the active node, last tool calls, and pending human gates. Start with a supervisor plus 3 tools max; add a second agent only when tool count or context size is the failure mode.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping Agents for the Real World with Agent Skills</a></h3>
-<div class="byline">
-<span class="src">Anthropic Engineering</span> &middot; Sep 10
-</div>
-<p class="dek">Skills — versioned, reviewable, lazily-loaded playbook folders — are the unit of agent product.</p>
-<div class="body">
-<p>Claude Tag&#x27;s on-call behavior isn&#x27;t &quot;a smarter model&quot;; it&#x27;s skills plus CLAUDE.md plus templates loaded after the repo clone. A skill is a folder with SKILL.md (frontmatter name/description, body lazily loaded), and the same format works across Claude apps, Claude Code, and the API. Spec and examples: github.com/anthropics/skills. For Riot: incident-triage, player-safety-escalation, live-ops-change-window as skills. For the SaaS: oncall-triage, customer-escalation, weekly-metrics-digest. Evaluate with replay, not vibe checks.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://claude.com/blog/ai-ci-cd-on-call">How Claude Tag Does On-Call</a></h3>
-<div class="byline">
-<span class="src">Anthropic (claude.com)</span> &middot; Sep 10
-</div>
-<p class="dek">The engineer walkthrough of the hosted first-responder agent — plus the reference kit to copy.</p>
-<div class="body">
-<p>The shape to steal: session plus sandbox plus identity plus scoped tools plus durable lessons. The reference kit (github.com/anthropics/oncall-kit) ships playbooks, ONCALL.md, triage/handoff skills, lessons.md, and eval/replay — copy its structure before writing custom orchestration. Architecture doc: claude.com/docs/claude-tag/concepts/how-it-works. The one-thing-this-quarter version: one Slack channel, a scoped agent identity, read-only observability, ONCALL.md, lessons.md, and a human merge gate.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Top 10 for Agentic Applications (2026)</a></h3>
-<div class="byline">
-<span class="src">OWASP</span> &middot; Sep 10
-</div>
-<p class="dek">The security checklist for the agent-intent era: goal drift, trajectory hijacking, excessive agency.</p>
-<div class="body">
-<p>Pairs with today&#x27;s venture discussion on agent intent as the next security problem. Use it as the review checklist before any agent touches production data or irreversible actions — and as the reason your platform logs plans and tool sequences, not just prompts. The companion read: Anthropic&#x27;s framework for developing safe and trustworthy agents (anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents).</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://papers.ssrn.com/abstract=4573321">Navigating the Jagged Technological Frontier</a></h3>
-<div class="byline">
-<span class="src">Dell&#x27;Acqua, Mollick et al. (HBS)</span> &middot; Sep 10
-</div>
-<p class="dek">The field experiment behind the jagged-frontier debate: where AI helps, where it hurts, and how to reorganize around it.</p>
-<div class="body">
-<p>The paper version of today&#x27;s most-shared thread. Practical use: inventory your org&#x27;s work as inside, on, or outside the frontier; automate inside-the-frontier tasks first; publish the two-column skill list — what you&#x27;ll stop requiring humans to be good at, and what you&#x27;ll still require. Incident judgment, live-economy design, and player-safety calls never get deskilled. Pair every automation with a recertification path so juniors still see raw work sometimes.</p>
+<p>Gigawatts are the new unit of AI strategy. Reuters&#x27; writeup of Bloomberg&#x27;s Microsoft reporting walks through how a cloud provider plans 12→38 GW by 2032, how little of it is AI-specific silicon today (~2 GW), and how capacity constraints already forced Microsoft to turn away AI business.</p>
+<p>Why it matters: for anyone building an AI foundation platform, the binding constraint is no longer algorithmic — it&#x27;s power, land, and long-lead infrastructure. Your cloud vendor&#x27;s capacity roadmap is effectively your product roadmap&#x27;s ceiling. Read it as capacity planning, not hype.</p>
 </div>
 </article>
 </div>
