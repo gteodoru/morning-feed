@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woodstock, VT — Oct 1–5, 2026 · Family Trip Plan</title>
+<style>
+:root{
+  --ink:#2b2118; --cream:#faf6ef; --paper:#fffdf8; --accent:#b3541e;
+  --accent2:#5c7a3f; --line:#e4d9c6; --muted:#7a6a55;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55}
+.hero{background:linear-gradient(160deg,#3d2b1a 0%,#6b3f1d 55%,#8a5a24 100%);
+  color:#fff;padding:34px 20px 30px;text-align:center}
+.hero h1{margin:0 0 6px;font-size:28px;letter-spacing:.5px}
+.hero .sub{opacity:.92;font-size:15px}
+.badge{display:inline-block;margin-top:12px;background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  padding:6px 14px;font-size:13px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 60px}
+.daytabs{display:flex;gap:8px;overflow-x:auto;padding:16px 0 4px;position:sticky;top:0;
+  background:var(--cream);z-index:5;border-bottom:1px solid var(--line)}
+.daytabs button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--paper);
+  border-radius:12px;padding:8px 14px;font-size:14px;cursor:pointer;color:var(--ink)}
+.daytabs button.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.day{display:none}
+.day.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.block{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:16px;margin:14px 0}
+.block h3{margin:0 0 4px;font-size:16px}
+.time{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--accent2);
+  border-radius:6px;padding:2px 8px;margin-bottom:8px;letter-spacing:.4px}
+.time.drive{background:#4a6fa5}.time.eat{background:#b3541e}.time.nap{background:#8a7fb8}
+.time.note{background:var(--muted)}
+.block p{margin:6px 0;font-size:15px}
+.meta{font-size:13.5px;color:var(--muted)}
+.meta a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+h2.sec{margin:34px 0 6px;font-size:21px}
+ul.check{list-style:none;padding:0;margin:10px 0}
+ul.check li{background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;margin:8px 0;font-size:15px;display:flex;gap:10px;align-items:flex-start}
+ul.check li.done{opacity:.55;text-decoration:line-through}
+ul.check input{margin-top:4px;transform:scale(1.2)}
+.tip{background:#f3ead9;border-left:4px solid var(--accent);padding:12px 14px;border-radius:0 10px 10px 0;
+  margin:14px 0;font-size:14.5px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 16px}
+.reset{background:none;border:none;color:var(--muted);font-size:12.5px;text-decoration:underline;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>🍂 Woodstock, Vermont</h1>
+  <div class="sub">Thu Oct 1 → Mon Oct 5, 2026 · 2 adults, 1 au pair &amp; a 22-month-old</div>
+  <div class="badge">Peak foliage window · Billings Harvest Celebration weekend</div>
+</div>
+
+<div class="wrap">
+  <div class="daytabs" id="tabs"></div>
+  <div id="days"></div>
+
+  <h2 class="sec">🧳 Packing &amp; prep</h2>
+  <ul class="check" id="packList">
+    <li><input type="checkbox"><span>Warm layers for the toddler: fleece, hat, mittens, puffy jacket (nights drop to ~35–45°F)</span></li>
+    <li><input type="checkbox"><span>Waterproof shoes + rain suit for farm mud</span></li>
+    <li><input type="checkbox"><span>Carrier + umbrella stroller (farms &amp; carriage roads are stroller-friendly, trails aren't)</span></li>
+    <li><input type="checkbox"><span>White noise machine, travel crib, blackout shades if you have them</span></li>
+    <li><input type="checkbox"><span>Snacks for the car: ~4h drive each way with at least one stop</span></li>
+    <li><input type="checkbox"><span>Book lodging NOW — foliage season sells out early and prices spike</span></li>
+    <li><input type="checkbox"><span>Buy Billings Farm Harvest Celebration tickets in advance (faster entry)</span></li>
+    <li><input type="checkbox"><span>Dinner reservations: Woodstock Inn area spots book out on foliage weekends</span></li>
+  </ul>
+  <button class="reset" onclick="localStorage.removeItem('wvtrip');location.reload()">reset checklist</button>
+
+  <h2 class="sec">🌦️ What to expect</h2>
+  <div class="tip"><strong>Foliage:</strong> central VT peaks roughly Oct 7–12 — you're catching the very start of peak, which means vivid early color without the absolute crush of Columbus weekend crowds.</div>
+  <div class="tip"><strong>Weather:</strong> expect 55–65°F days, 35–45°F nights. Layers and a warm hat for the toddler are non-negotiable.</div>
+  <div class="tip"><strong>Toddler rhythm:</strong> every day is built around one nap (~12:30–2:30) — one morning outing, lunch, nap, one lazy afternoon outing. With the au pair along, tag-team any evening you want adults-only.</div>
+  <div class="tip"><strong>Rain backup:</strong> Montshire Museum of Science in Norwich (~20 min) has a dedicated preschool area; VINS in Quechee is mostly under cover.</div>
+
+  <footer>Built for the family · drive: Old Greenwich → Woodstock ≈ 4h via I-95 → I-91 N</footer>
+</div>
+
+<script>
+const days=[
+{d:"Thu, Oct 1",label:"Thu 1",blocks:[
+ {t:"🚗 DRIVE",c:"drive",h:"Old Greenwich → Woodstock (~4 hrs)",
+  p:"Leave by 8:30am so you arrive around 1–2pm with a toddler stop or two. Route: I-95 N → I-91 N. Pack the car the night before; aim for one stop in the Hartford area.",
+  m:'<a href="https://www.google.com/maps/dir/?api=1&origin=Old+Greenwich,+CT&destination=Woodstock,+VT" target="_blank">Open driving directions →</a>'},
+ {t:"NAP WINDOW",c:"nap",h:"Settle in, then easy afternoon",
+  p:"Check in, unpack, let the toddler decompress. Afternoon: stroll the village green, Faulkner Park playground, covered bridges drive-by (Middle Covered Bridge is right in town).",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Faulkner+Park+Woodstock+VT" target="_blank">Faulkner Park →</a>'},
+ {t:"DINNER",c:"eat",h:"Bentleys or Worthy Kitchen",
+  p:"<strong>Bentleys</strong> has a children's menu and a tavern area with a kids' corner — ideal first-night, low-stress dinner. <strong>Worthy Kitchen</strong> is the casual crowd-pleaser backup."}
+]},
+{d:"Fri, Oct 2",label:"Fri 2",blocks:[
+ {t:"9:30 AM",c:"",h:"Billings Farm & Museum (morning)",
+  p:"Working dairy farm: Jersey cows, sheep, horses, butter churning &amp; cider pressing demos, 1890s farmhouse. Open daily 10am–5pm through October; kids under 3 are free. Go at opening to beat the school groups.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Billings+Farm+Museum+Woodstock+VT" target="_blank">Map →</a> · 69 Old River Rd'},
+ {t:"LUNCH",c:"eat",h:"Farmhouse Café or picnic",
+  p:"Café has apple cider donuts and farm ice cream; or grab sandwiches from the Village Butcher / Woodstock Farmers' Market and picnic on the grounds."},
+ {t:"NAP WINDOW",c:"nap",h:"Back at lodging",
+  p:"Nap ~12:30–2:30. Quiet hour for everyone."},
+ {t:"3:30 PM",c:"",h:"Marsh-Billings-Rockefeller carriage roads",
+  p:"Stroller-friendly carriage roads start right across from Billings Farm — an easy golden-hour walk through the woods with foliage all around. No tickets needed.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Marsh+Billings+Rockefeller+National+Historical+Park" target="_blank">Map →</a>'},
+ {t:"DINNER",c:"eat",h:"Richardson's Tavern (Woodstock Inn)",
+  p:"Casual, kid-welcoming tavern fare right on the green — good burgers and a children's menu."}
+]},
+{d:"Sat, Oct 3",label:"Sat 3",blocks:[
+ {t:"FESTIVAL DAY",c:"",h:"🎃 Billings Farm Harvest Celebration",
+  p:"The big one — this year's celebration falls exactly on your weekend (Sat Oct 3 &amp; Sun Oct 4, 10am–5pm). Barn dancing 12–3, pumpkin bowling, wagon rides, cider pressing, apple &amp; cheese tasting, spiced cider and cider donuts. Buy tickets in advance for faster entry. Plan 3–4 hours; it's a full sensory feast for a 22-month-old.",
+  m:'<a href="https://billingsfarm.org" target="_blank">billingsfarm.org →</a>'},
+ {t:"NAP WINDOW",c:"nap",h:"Midday break",
+  p:"Head back for nap ~12:30, return for the afternoon session, or do the festival in one morning block and keep the afternoon free — follow the toddler's lead."},
+ {t:"4:00 PM",c:"",h:"Sugarbush Farm (optional add-on)",
+  p:"If energy remains: 15 min away, sample 15 cheeses + 4 grades of maple syrup, kids' play area, farm animals, maple walk through the woods. Free self-guided tours.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Sugarbush+Farm+Woodstock+VT" target="_blank">Map →</a>'},
+ {t:"DINNER",c:"eat",h:"Trailbreak Tacos (Quechee)",
+  p:"Ski-themed taco bar, 15 min away — the most kid-friendly dinner in the area. Loud, casual, fast. Perfect post-festival night.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Trailbreak+Quechee+VT" target="_blank">Map →</a>'}
+]},
+{d:"Sun, Oct 4",label:"Sun 4",blocks:[
+ {t:"10:00 AM",c:"",h:"Sleepy Hollow Farm photo stop → Woodstock Farmers' Market",
+  p:"Quick detour to Sleepy Hollow Farm (the famous red barn photo spot), then stock up at the Woodstock Farmers' Market — great prepared foods for lunches and the drive home.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Woodstock+Farmers+Market+Woodstock+VT" target="_blank">Farmers\' Market →</a>'},
+ {t:"LATE MORNING",c:"",h:"Quechee Gorge + VINS",
+  p:"Vermont's 'Little Grand Canyon' (free, dramatic, 5 min walk from parking to the overlook) + the Vermont Institute of Natural Science next door: live raptors, songbird aviaries, forest canopy walk. Ideal toddler attention-span combo.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Quechee+Gorge+Vermont" target="_blank">Gorge →</a> · <a href="https://www.google.com/maps/search/?api=1&query=VINS+Quechee+VT" target="_blank">VINS →</a>'},
+ {t:"NAP WINDOW",c:"nap",h:"Back at lodging"},
+ {t:"4:00 PM",c:"",h:"Maple creemee run",
+  p:"Get a maple creemee (soft-serve) at Mountain Creamery on the Woodstock road — a Vermont rite of passage. Low-key last full afternoon in the village.",
+  m:'<a href="https://www.google.com/maps/search/?api=1&query=Mountain+Creamery+Woodstock+VT" target="_blank">Map →</a>'},
+ {t:"DINNER",c:"eat",h:"Adults' night out option",
+  p:"Au pair covers bedtime; try the Red Rooster at the Woodstock Inn or 506 on the River Inn's candle-lit dining room. Book ahead — foliage weekend."}
+]},
+{d:"Mon, Oct 5",label:"Mon 5",blocks:[
+ {t:"MORNING",c:"",h:"Slow goodbye",
+  p:"Sleep in, pack, one last coffee + pastry run (Mon Vert Café). Quick playground stop if the toddler needs to burn energy before the car."},
+ {t:"🚗 DRIVE",c:"drive",h:"Woodstock → Old Greenwich (~4 hrs)",
+  p:"Leave by 11am–12pm; aim to be home for a normal-ish bedtime. One stop around Brattleboro or Hartford. Farmers' Market snacks make the ride easier.",
+  m:'<a href="https://www.google.com/maps/dir/?api=1&origin=Woodstock,+VT&destination=Old+Greenwich,+CT" target="_blank">Open driving directions →</a>'},
+ {t:"NOTE",c:"note",h:"Columbus Day weekend follows",
+  p:"You're dodging the absolute peak-crowd weekend (Oct 10–12) while still catching great early-peak color. Good trade."}
+]}
+];
+const tabs=document.getElementById('tabs'),wrap=document.getElementById('days');
+days.forEach((d,i)=>{
+  const b=document.createElement('button');
+  b.textContent=d.label;b.className=i===0?'active':'';
+  b.onclick=()=>{document.querySelectorAll('.daytabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.day').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');document.getElementById('day'+i).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});};
+  tabs.appendChild(b);
+  const dv=document.createElement('div');
+  dv.className='day'+(i===0?' active':'');dv.id='day'+i;
+  dv.innerHTML='<h2 class="sec">'+d.d+'</h2>'+d.blocks.map(x=>
+    '<div class="block"><span class="time '+x.c+'">'+x.t+'</span><h3>'+x.h+'</h3><p>'+x.p+'</p>'+
+    (x.m?'<p class="meta">'+x.m+'</p>':'')+'</div>').join('');
+  wrap.appendChild(dv);
+});
+// checklist persistence
+const list=document.getElementById('packList');
+const saved=JSON.parse(localStorage.getItem('wvtrip')||'[]');
+list.querySelectorAll('li').forEach((li,i)=>{
+  const cb=li.querySelector('input');
+  if(saved[i]){cb.checked=true;li.classList.add('done');}
+  cb.onchange=()=>{li.classList.toggle('done',cb.checked);
+    const s=[];list.querySelectorAll('input').forEach(c=>s.push(c.checked));
+    localStorage.setItem('wvtrip',JSON.stringify(s));};
+});
+</script>
+</body>
+</html>
