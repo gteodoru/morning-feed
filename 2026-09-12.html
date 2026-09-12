@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Saturday, September 12, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">AI agents are no longer just a tooling question — they&#x27;re a workplace status symbol, a management metric, and, per TWiST&#x27;s most practical guest, an entire org chart.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://twistartups.substack.com/p/the-pentagon-wants-equity-in-ai-startups">AI agents are the new workplace flex — and a few $200/month subscriptions may do a marketing team&#x27;s work</a></h3>
+<div class="byline">
+<span class="src">LinkedIn Editors; This Week in Startups</span> &middot; Sep 12
+</div>
+<p class="dek">Bossing around armies of bots is the new LinkedIn status signal — but the count means nothing unless the agents actually do something.</p>
+<div class="body">
+<p>The LinkedIn Editors&#x27; debate of the day, built on Sherwood&#x27;s Rani Molla, is that AI agents have become a workplace status symbol: people touting how many agents they manage as AI threatens white-collar work. As no-code tools make agents easier to build, the new flex isn&#x27;t merely using AI — it&#x27;s claiming an entire digital workforce. &quot;I manage 20 agents&quot; sends a reassuring message: I&#x27;m not being replaced by AI, I&#x27;m the boss of it.</p>
+<p>The numbers show the fixation is real and reinforced from on high: Meta&#x27;s Mark Zuckerberg is building an AI agent to help him do his job. Last quarter, 2,175 public-company transcripts mentioned agents — double a year earlier (AlphaSense data). Salesforce says more than 25,000 companies have built and deployed agents with Agentforce; Walmart built a company-wide framework of four &quot;super agents&quot; for its 2+ million employees.</p>
+<p>The pushback is just as sharp: the counts are easily gamed, and one person&#x27;s &quot;agent&quot; may bear no resemblance to another&#x27;s. As one practitioner quoted in the piece puts it, the count itself doesn&#x27;t mean anything unless the agents can actually do something — a lot of the posts are just &quot;I have agents&quot; with no evidence of real work behind them.</p>
+<p>On TWiST E2336, returning guest Tibo Louis-Lucas gave the practical version: he runs seven companies with fewer than 10 people by stacking AI agents. Jason Calacanis&#x27;s question is the one to sit with: can a few $200/month AI subscriptions really do the work of an entire marketing team? Tibo seems to think so.</p>
+<p>The takeaway for your AI foundation platform work: the agent headcount is becoming the measure of AI-adoption maturity, but it&#x27;s a vanity metric — the metric that matters is outcome-per-agent. If you&#x27;re redesigning your 12-person SaaS around agents, grade the agents on shipped work, not on how many you manage. That&#x27;s also the org-change story your Romanian team needs to hear: small team + agent stacks is the new competitive unit.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">The state is becoming the biggest check in AI: the Pentagon is negotiating a $5B loan to a GPU cloud, and the real story is what happens to venture when the government starts taking equity.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/pentagon-in-talks-to-get-into-ai-infrastructure-funding-with-a-5-billion-loan-0367eeb0">The Pentagon wants equity in AI startups</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups; Wall Street Journal</span> &middot; Sep 12
+</div>
+<p class="dek">A reported $5B loan to neocloud Fluidstack would be the Pentagon&#x27;s Office of Strategic Capital&#x27;s largest deal ever — and Jason Calacanis thinks Washington is now competing directly with venture capital.</p>
+<div class="body">
+<p>The Wall Street Journal reported Thursday that the Pentagon, through its Office of Strategic Capital (OSC), is in talks to lend roughly $5 billion to AI cloud-computing startup Fluidstack — by far the office&#x27;s largest loan to date. Fluidstack, founded in 2017, runs what is essentially a GPU-as-a-service business; it raised $830 million at a $7.5 billion valuation in July (Barron&#x27;s). The money would shore up the U.S. supply chain and manufacturing capacity for data-center components rather than fund a new AI facility outright, advised on the application by Erebor Bank, the newly chartered national bank founded by Palmer Luckey. The deal isn&#x27;t finalized and terms could change.</p>
+<p>The strategic logic, per the Journal: late last month President Trump issued an executive order declaring a national emergency over the country&#x27;s reliance on foreign-made electrical equipment used in AI data centers — the military doesn&#x27;t want any AI it uses running on foreign-built or foreign-owned machines. OSC has previously struck deals with rare-earth companies Vulcan Elements, Phoenix Tailings and Energy Fuels, plus drone companies including Unusual Machines and Sequoia-backed Neros.</p>
+<p>Calacanis&#x27;s take on TWiST E2336: the loan isn&#x27;t the real story — it&#x27;s the U.S. government owning equity in private AI companies and competing directly with venture capital. JPMorgan analysts wrote in June that lenders are expected to supply $4.1 trillion in AI-infrastructure financing through 2030, with companies tapping &quot;every single capital market&quot; to support growth.</p>
+<p>What it means: state capital is now a structural force in the AI buildout — neoclouds, chips, supply chain. For your platform work, the compute layer you sit on is being de-risked by the state; watch OSC&#x27;s portfolio as a leading indicator of where sovereign compute flows, and expect more government-term-sheet competition with private rounds.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">Inflation is back above target and moving the wrong way — the Fed is about to hike, and the bond market is pricing in more.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/business/fed-seen-likely-raise-rates-next-week-after-inflation-report-2026-09-11/">Fed rate hike next week is now a near-certainty</a></h3>
+<div class="byline">
+<span class="src">Bloomberg; Reuters</span> &middot; Sep 11
+</div>
+<p class="dek">Core CPI came in hot at 0.3% MoM, PPI surprised to the upside, and oil is above $100 — futures now price a 25bps hike next week as near-certain, with more to follow.</p>
+<div class="body">
+<p>Bloomberg&#x27;s Evening Briefing Americas: with inflation rising faster than predicted, according to new data from the Trump administration, a rate hike at the Federal Reserve&#x27;s next meeting is beginning to look like a fait accompli.</p>
+<p>The data (Reuters, Sep 11): core CPI — excluding energy and food — rose 0.3% month-over-month, more than the 0.2% economists expected; up 2.4% year-over-year, with headline inflation at 3.4%. August PPI also surprised hot, and Brent crude has soared above $100 a barrel amid renewed Middle East hostilities. The Fed&#x27;s targeted inflation measure has now been above 2% for 5½ years and is moving in the wrong direction again.</p>
+<p>Markets: futures priced in a nearly 92% chance of a 25bps hike at next week&#x27;s meeting (CME FedWatch), up from 72% the day before, with a high likelihood of a second increase before year-end. The Fed has held its policy rate at 3.50–3.75% all year; Chairman Kevin Warsh announces the decision Wednesday. At Jackson Hole last month, Warsh said the Fed may need to act absent confidence that underlying inflation is moving toward 2% &quot;clearly and at sufficient speed&quot; — Friday&#x27;s data didn&#x27;t meet that bar, per economists. Principal Asset Management&#x27;s Seema Shah: the print &quot;all but locks in&quot; next week&#x27;s hike, and &quot;more than one hike will be needed to re-establish price stability.&quot;</p>
+<p>Why it matters beyond macro: the Weekend briefing&#x27;s thesis — &quot;higher yields are here to stay&quot; — is the same regime. Rising cost of capital keeps compressing startup valuations and AI infra budgets; price your platform bets accordingly.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Brand moves and money moves: a research newsletter grows up, and the pod-shop era hits $100B.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://chamath.substack.com/p/we-moved">Chamath moves Learn With Me off Substack</a></h3>
+<div class="byline">
+<span class="src">Chamath Palihapitiya</span> &middot; Sep 11
+</div>
+<p class="dek">After four years, his research newsletter is now its own platform at research.socialcapital.com.</p>
+<div class="body">
+<p>Chamath Palihapitiya announced that Learn With Me — which started as &quot;What I Read This Week&quot; four years ago and grew into deep dives researched with his team — has moved off Substack to its own platform at research.socialcapital.com. The reasons: more happening across more areas than they can cover on Substack, plus experiments with new formats, better learning tools, and spaces to discuss the research together. Paid Substack subscriptions moved automatically (same price, same renewal date); free subscribers keep getting the weekly emails from a new address. The Substack archive stays up, but everything new publishes at the new site. A small signal of the broader trend: the most serious research publishers are outgrowing the newsletter bundle and building their own distribution.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.fa-mag.com/news/millennium-nears--100-billion-in-new-era-for-giant-hedge-funds-88394.html">The new hedge fund era: Millennium nears $100B</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Sep 11
+</div>
+<p class="dek">Izzy Englander&#x27;s pod-shop hit $97B — more than double six years ago — with $22B in new commitments closing Oct. 1.</p>
+<div class="body">
+<p>Bloomberg&#x27;s Subscriber Insider: Millennium Management may soon attain a rarefied status — $97 billion in assets, more than double what the firm oversaw six years ago, speeding toward $100 billion. Founder Izzy Englander is ramping up an unusual model: seeding dozens of smaller would-be rivals to give his firm more capacity to take on investor cash, with $22B of new commitments set to close October 1 (Bloomberg&#x27;s Hema Parmar).</p>
+<p>The backdrop is the concentration era: the pod-shop model — hundreds of semi-autonomous trading pods under ruthless risk limits — has proven it can scale past levels that killed earlier giants (Bridgewater fell back well below $100B after poor performance). Meanwhile Citadel and others have returned capital rather than grow. Concentration plus platformization is the pattern of the era — the same pattern, incidentally, as the frontier AI labs.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">The X lists were unavailable again today (Gabriel owns that login — the session keeps expiring), so this section is distilled from the Feed&#x27;s deepest items plus the All-In debate, framed for the AI foundation platform.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models/">Zero Data Retention is a fig leaf — read OpenAI&#x27;s actual ZDR terms</a></h3>
+<div class="byline">
+<span class="src">OpenAI</span> &middot; Sep 12
+</div>
+<p class="dek">What &quot;we don&#x27;t retain your data&quot; actually promises — and the gaps OpenAI is still closing with Private Safety Processing.</p>
+<div class="body">
+<p>The sharpest technical debate on this week&#x27;s All-In was about data sovereignty, and it&#x27;s directly relevant to the platform you&#x27;re building. Chamath&#x27;s position: &quot;zero data retention&quot; is Swiss cheese. De-identification removes who did the work, not the approach — &quot;a general approach to a mathematical problem, the approach is the IP.&quot; Leakage vectors are everywhere: a thumbs-up in the chat window, API usage patterns, the iterative refinement of a proprietary approach. His prescription: if your data is critical, stand up your own sovereign solution — own hardware via trusted vendors (AWS, Nebius, neoclouds), own models, provisioned to you on your terms. He predicts &quot;a handful of CIOs will get very publicly flogged and fired in the next year&quot; for leaking IP through casual API deals, and says boards&#x27; audit and risk committees are already escalating this to CEOs.</p>
+<p>Friedberg added a first-hand data point: novel scientific insights from his own chats resurfaced in later model answers — &quot;all I can say at that point is that my conversation or our analyses have been used for training.&quot; Sacks took the legal angle: AI chat data has weaker protection than email (subpoena or court order, no probable-cause warrant required), and the law needs to catch up to how personal AI has become.</p>
+<p>This OpenAI page is the authoritative reference for what ZDR actually guarantees today: eligible API customers get no retention of prompts or responses after processing, with content unavailable to OpenAI personnel — and the new Private Safety Processing preview, which tries to detect misuse patterns across interactions without exposing content to staff. Read the fine print, then read Chamath&#x27;s critique against it.</p>
+<p>The takeaway for you: draw the data boundary before you draw the architecture. Treat every hosted-API interaction as potentially learnable, put sensitive IP on sovereign infra (own VPC, own models), and negotiate confidentiality provisions into terms — ZDR toggles alone aren&#x27;t a data strategy.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/tacticalpractical-its-not-just-testing">A/B tests fail if you don&#x27;t know WHY B won</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Sep 11
+</div>
+<p class="dek">Brian Chesky&#x27;s rule from TWiST E1735: the result is worthless unless the founder understands why — and Rory Sutherland agrees.</p>
+<div class="body">
+<p>Businesses run on good data, but running a good experiment is more complex than shipping variants and watching a dashboard. On TWiST E1735 (May 2023), Airbnb co-founder and CEO Brian Chesky told Jason that an A/B test result is worthless unless the founder understands WHY they got a particular result. Only by constantly and personally reviewing Airbnb&#x27;s systems, across every team, did Chesky get a clear picture of what specifically was working — an unpopular, micromanagement-feeling process that produced 340 upgrades and innovations over three years, all grounded in his nuanced understanding of the business.</p>
+<p>Legendary ad man Rory Sutherland made the same point from the other direction on the My First Million podcast.</p>
+<p>The takeaway for your AI platform work: this is the evaluation discipline your agent systems need. Every experiment on the platform — model swap, prompt change, agent config — should be instrumented to teach a causal lesson, not just register a dashboard delta. &quot;B won&quot; is trivia; &quot;B won because the retrieval cutoff changed the failure mode&quot; is infrastructure.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>All-In Podcast</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">This week&#x27;s full episode — &quot;AI Kills Everybody or Doomer Psyop? OpenAI&#x27;s Math Breakthrough, Nike&#x27;s $200B Collapse&quot; (published Sep 11, 2026; 1:35:56, with Chamath, Jason, Sacks &amp; Friedberg). Transcript via YouTube captions, speakers normalized.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.youtube.com/watch?v=cvxjqbfLVk0">AI kills everybody — or doomer psyop?</a></h3>
+<div class="byline">
+<span class="src">All-In Podcast</span> &middot; Sep 11
+</div>
+<p class="dek">A researcher quits Anthropic with a viral &quot;racing straight to self-improving superintelligence&quot; post — and the besties say it was an orchestrated op aimed at creating a federal AI regulator.</p>
+<div class="body">
+<p>The episode&#x27;s dominant topic. Jacob Coxon — a researcher who spent three years across OpenAI and Anthropic — resigned and posted that AI builders &quot;earnestly believe it could kill us all by the end of the decade,&quot; that &quot;neither OpenAI or Anthropic is acting responsibly,&quot; and that they are &quot;racing straight to self-improving super intelligence and gambling with our lives.&quot; The post went insanely viral (~110–150M views). Evan Hubinger, who leads Alignment Science at Anthropic, endorsed it: &quot;Jacob is correct here... I personally think it is over 10% within the next decade. We do not yet have a plan to solve alignment.&quot; Bernie Sanders quote-tweeted it and proposed legislation to ban superintelligence and pause AI development; Governor JB Pritzker piled on. Coxon was booked for the pod, then canceled that morning (&quot;he couldn&#x27;t take the smoke,&quot; per Jason).</p>
+<p>Sacks first: &quot;there&#x27;s nothing new here&quot; — the same doomer histrionics, with no evidence: &quot;Show us the data. Show us the report. Show us the leaked information that the public didn&#x27;t already have... We don&#x27;t have any of that.&quot; His case that it was orchestrated: a blank account with no followers and no prior posts explodes overnight; within 10–15 minutes it was amplified by three well-funded EA doomer groups (Nathan Calvin/Encode AI, Peter Wildeford/AI Policy Network, Daniel Kokotajlo/AI Futures Project — all funded by Jan Talon, who co-led Anthropic&#x27;s Series A); and the Wall Street Journal story on the resignation was posted minutes before the tweetstorm itself (an embargo slip-up). The endgame, per Sacks: panic the public into a federal Department of AI (FDAI) that Anthropic&#x27;s allies would control. He says Anthropic must choose: renounce the &quot;whistleblower&quot; as hyperbole, or agree with Bernie Sanders that development should freeze — in which case, &quot;how can they IPO in the trillions?&quot;</p>
+<p>Chamath: the Anthropic IPO/S1 problem. &quot;Are we to believe that there is something extremely dangerous hiding inside this company?&quot; The legally dangerous tweet isn&#x27;t Coxon&#x27;s but Hubinger&#x27;s — a current senior exec co-signing a &gt;10% extinction claim raises quiet-period questions and &quot;massive long-tail product liability risk.&quot; His analogy: &quot;It&#x27;s almost like Philip Morris — we know that the cigarettes will kill you and we&#x27;re going to say it but we&#x27;re not going to disclose it yet we&#x27;re going to take the company public.&quot; Investors, he says, would demand &quot;an enormous discount.&quot;</p>
+<p>Friedberg: we&#x27;re in &quot;the hysteria phase of AI doomerism&quot; — his historical rhymes: Inconvenient Truth forecasts that were disproven, COVID lockdowns, Three Mile Island killing US nuclear (US: $15B per GW vs $4B France vs $1B China). The precautionary principle can&#x27;t work here: recursive self-improvement needs only &quot;an adequate amount of power, a set of chips, and a connection to the internet&quot; — ban it in the US and &quot;someone else will have this capacity and we will be the tribe in the Amazon.&quot; And the real target is open source: an FDAI would require central monitoring and rollback, technologically impossible for open weights, so open source gets banned de facto — leaving a closed duopoly in partnership with the government. On the mundane reality check: &quot;We all experience it. AI can do these amazing things. But if you need a human to do something as part of the process, AI doesn&#x27;t really do that much for you&quot; — humans run on human timescales, and that&#x27;s itself a safety.</p>
+<p>Jason (distinct): ran the &quot;How do we all die?&quot; game — his own answer is the Skynet/NORAD scenario, Claude inside autonomous weapons. He also broke that Jensen Huang, speaking at the Goldman Sachs conference, called Coxon&#x27;s comments &quot;outlandish and deeply untrue&quot; — asking pointedly, &quot;If Jensen can say this, why isn&#x27;t Anthropic?&quot; (Answer, per Sacks: the quiet period.)</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.youtube.com/watch?v=cvxjqbfLVk0">OpenAI&#x27;s 200-year-old math breakthrough — and the data-sovereignty fight it exposed</a></h3>
+<div class="byline">
+<span class="src">All-In Podcast</span> &middot; Sep 11
+</div>
+<p class="dek">10,000 agents and 130B output tokens to crack a Navier-Stokes-scale problem — but the mathematicians say OpenAI may have cribbed their work, and the hosts say ZDR is Swiss cheese.</p>
+<div class="body">
+<p>OpenAI says it solved a 200-year-old math problem — the Navier-Stokes fluid-dynamics equations, the basis of every aircraft, pipe, and weather model on Earth — using a reported 130 billion output tokens across 10,000 cooperating agents. Mathematicians Levent and Tristan allege their work was front-run; OpenAI&#x27;s statement: &quot;while unlikely, we cannot rule out that de-identified data derived from their usage of our products helped improve our models.&quot;</p>
+<p>Sacks: tends to believe OpenAI&#x27;s denial (&quot;nobody looked at Levent and Tristan&#x27;s prompts — that&#x27;d be insane&quot;), and pivots to the bigger issue — data privacy law. AI chat data doesn&#x27;t even reach the protection level of email: the government can get it with a subpoena or court order, no probable-cause warrant required. &quot;We need to strengthen AI data to the level of email and maybe even beyond.&quot;</p>
+<p>Chamath: the sovereignty answer. If your data is critical, &quot;you need to stand up your own sovereign solution&quot; — own hardware via trusted vendors (AWS, Nebius, neoclouds), own models, provisioned on your terms. De-identification removes who did the work, not the approach: &quot;a general approach to a mathematical problem, the approach is the IP.&quot; He says boards&#x27; audit and risk committees are now escalating this to CEOs, predicts &quot;a handful of CIOs will get very publicly flogged and fired in the next year&quot; for leaking IP through casual API deals, and notes the market response: AI app companies moving off frontier models, with Harvey announcing its own proprietary legal model (built on Kimi K3) rather than renting.</p>
+<p>Friedberg: the breakthrough is &quot;more of an insight into what AI is rather than what AI isn&#x27;t&quot; — not a stroke of genius but brute-force leverage: 50,000–500,000 human-years of work compressed into minutes, with every agent message documented and human-readable. AI is &quot;an engine that gives humans extraordinary leverage.&quot; And from personal experience: novel scientific insights from his own chats resurfaced in later model answers — &quot;all I can say at that point is that my conversation... has been used for training.&quot;</p>
+<p>Jason (distinct): framed the sovereignty question — should any scientist, law firm, or biotech trust frontier LLMs with proprietary knowledge? — and noted OpenAI heard researchers were close and &quot;threw a ton of compute at it.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.youtube.com/watch?v=cvxjqbfLVk0">Nike&#x27;s $200B collapse: booted from the S&amp;P 100</a></h3>
+<div class="byline">
+<span class="src">All-In Podcast</span> &middot; Sep 11
+</div>
+<p class="dek">After 18 straight years in the index, Nike is out — replaced by Palo Alto Networks. The hosts&#x27; diagnosis: it abandoned mastery and excellence for narrative.</p>
+<div class="body">
+<p>Nike, the 60-year-old iconic American brand, was removed from the S&amp;P 100 after 18 straight years, replaced by Palo Alto Networks. The numbers: peak market cap $264B in 2021, peak revenue $51B in 2024; since then revenue down ~10%, China sales down 30% (losing share to Anta and Li-Ning), stock down 80% — roughly $200B eviscerated. Jason&#x27;s recap of the causes: CEO John Donahoe&#x27;s aggressive direct-to-consumer pivot from 2020 alienated the retail partners who built the brand, ceding shelf space to Hoka and On Running; a reorg from sport-based divisions (basketball, tennis...) to men&#x27;s/women&#x27;s/kids; political marketing (Kaepernick, Dylan Mulvaney); and plain product decay.</p>
+<p>Sacks: &quot;the millionth example of go woke, go broke&quot; — Nike built its brand on greatness (Jordan, Serena, Tiger) then marketed images &quot;so contrary to what their brand was about&quot;; everyone in that decision chain &quot;should be drummed out of corporate America.&quot;</p>
+<p>Chamath: the north star was &quot;mastery and excellence embodied through athletics&quot; — &quot;I don&#x27;t aspire to be a fat person. Never have, never will. I aspire to be Michael Jordan.&quot; Get the north star right and the distribution details follow; miss it and nothing else works.</p>
+<p>Friedberg: the product itself decayed — &quot;The shoes literally fell apart in like 6 weeks.&quot; He switched to Brooks — Berkshire-owned, nine straight years of double-digit growth to $1.6B on Buffett&#x27;s mandate to &quot;make the product better than it was at the end of last year.&quot; Nike, he says, shifted &quot;from product to narrative&quot; — the same disease as Bud Light.</p>
+<p>Jason (distinct): his CMO pitch — rebrand to &quot;Do it or don&#x27;t,&quot; and Nike should have owned performance tech (&quot;they should have owned Strava&quot;). A classic brand-collapse case study for anyone running a product org: narrative can&#x27;t substitute for product, and distribution partners aren&#x27;t expendable.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
