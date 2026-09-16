@@ -31,6 +31,10 @@ h3 a:hover { color: var(--accent); text-decoration: underline; }
 .byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
 .dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
 .body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
 .empty { color: var(--muted); font-style: italic; font-size: 14px; }
 footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
          text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
@@ -54,70 +58,88 @@ h3 { font-size: 20px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Tuesday, September 15, 2026</span>
+<span>Wednesday, September 16, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">5 stories</span>
+<span class="count">6 stories</span>
 </div>
-<p class="ednote">Agentic coding has outrun the infrastructure built for humans. Anthropic&#x27;s own numbers show where the new bottlenecks form — and the community is shipping the tooling to cope.</p>
+<p class="ednote">Agents are being graded on the full job now — not the demo. Today&#x27;s technical conversation is about what breaks when agents touch real systems: silent integration failures, review bottlenecks, and a brand-new model class that trades chat for calibrated decisions.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic">Claude writes ~80% of Anthropic&#x27;s code — and CI became the bottleneck</a></h3>
+<h3><a href="https://www.breakingchange.blog/p/building-a-t-shirt-factory-factory">Stripe&#x27;s t-shirt bench: 21 agent runs, 7 working shops — and the dangerous failures were silent</a></h3>
 <div class="byline">
-<span class="src">Anthropic (+ X — @addyosmani)</span> &middot; Sep 14
+<span class="src">Breaking Change — Michelle Bu (via X — @edwinarbus)</span> &middot; Sep 16
 </div>
-<p class="dek">Anthropic&#x27;s agentic-coding era: 8x more code per quarter, 10x the tests, 25x the CI jobs — the bottleneck moved from writing code to reviewing and testing it.</p>
+<p class="dek">Seven models were asked to build, deploy, and fulfill a real t-shirt store. The demos looked green; the API handoffs weren&#x27;t.</p>
 <div class="body">
-<p>Claude now authors roughly 80% of Anthropic&#x27;s production code. Engineers ship about 8x more code per quarter than before, tests have multiplied 10x, and CI jobs are up 25x in six months. Writing code stopped being the bottleneck — review and CI became it.</p>
-<p>Anthropic&#x27;s test-impact analysis service (a listener plus a selector deciding which tests a change actually affects) lagged badly under the load. Three successive patches bought them less time each. The fix: a redesign that made the listeners stateless via an in-memory journal — about three weeks of work by a single engineer.</p>
-<p>The reply thread split three ways: people clarifying the remaining 20% is humans and other artifacts, satire about &#x27;slop and unemployment&#x27;, and the sardonic &#x27;so who&#x27;s the 20%?&#x27;. Flagged by Addy Osmani on X; the full engineering writeup is Anthropic&#x27;s.</p>
+<p>Michelle Bu&#x27;s &quot;Building a t-shirt factory factory&quot; (surfaced by Stripe&#x27;s Edwin Arbus, reposted by Boris Cherny) put seven models to a deceptively simple test: build and deploy a real store with payment plus print/fulfillment, design a printable shirt, and report how to test it. After early hosting and print-signup failures, a sandbox was added. Across 21 runs, only 7 produced functional shops; every functional shop integrated Stripe; 5 of the 7 were Claude; Fable and Opus produced the two selected for production. Scoring covered integration correctness, design correctness, and end-to-end testing — not screenshots.</p>
+<p>Why it matters: the dangerous defects are silent — wrong API wiring, mishandled &quot;created with issues&quot; states, unsupported or end-of-life frameworks that still look green. The builder takeaway: sandboxes plus executable acceptance tests for every external integration. Score deploy → pay → fulfill → verify. Version and policy metadata plus explicit failure-state tests are non-optional guardrails.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/edwinarbus/status/2099916475641594008">X — @edwinarbus</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://sebastianraschka.com/reasoning-from-scratch/">Build the verifier before you touch RL</a></h3>
+<h3><a href="https://runtimewire.com/article/typesafe-jev-system-one-ai-model-early-access">TypeSafe&#x27;s Jev: a frontier model that can&#x27;t chat — and that&#x27;s the point</a></h3>
 <div class="byline">
-<span class="src">X — @rasbt</span> &middot; Sep 13
+<span class="src">RuntimeWire (via X — @chipro, @emollick)</span> &middot; Sep 16
 </div>
-<p class="dek">Sebastian Raschka&#x27;s path: MATH-500 → symbolic equivalence → RLVR — the answer extractor plus equivalence checker doubles as your eval harness and your reward model.</p>
+<p class="dek">Diogo Almeida&#x27;s new &quot;System One&quot; model returns typed decisions, not prose — 20–200× faster, 40–400× cheaper, and incapable of hallucinating.</p>
 <div class="body">
-<p>Sebastian Raschka&#x27;s worked example — MATH-500 questions, an answer extractor, and a symbolic equivalence checker — makes a simple point with a long tail: the thing that grades outputs is also the thing that can train the model. The extractor plus equivalence checker doubles as the eval harness and as the RLVR reward function.</p>
-<p>For anyone building agents at Riot or elsewhere, this is the practical on-ramp to reinforcement learning from verifiable rewards: don&#x27;t start with the RL loop, start with a verifier you trust. Raschka&#x27;s accompanying book and GitHub repo walk the whole path.</p>
+<p>TypeSafe AI emerged from stealth with roughly $40M led by DCVC. Co-founder and CEO Diogo Almeida co-authored OpenAI&#x27;s 2022 InstructGPT paper and appears in the original ChatGPT credits — and his thesis is a critique of the path that work established: models optimized to produce responses people prefer still need supervision when their output controls software. Jev, the first &quot;System One&quot; model (borrowing Kahneman&#x27;s fast thinking), uses a new architecture, a parallel sampler, and a training method called Reinforcement Learning for Calibrated Decisions (RLCD). Developers send a block of state plus typed questions; Jev returns choices, scores, or probabilities — no prose, no code, no open-ended strings.</p>
+<p>The claimed numbers: similar intelligence on &quot;System One&quot; tasks versus existing LLMs at two orders of magnitude faster and cheaper — around 10 calls/sec at roughly $7/hour, with output tokens free. Chip Huyen&#x27;s angle: fixed-vocabulary outputs make it a first-class component for data labeling, routing, and fixed-action loops — useful inside systems, not as a chat replacement. The takeaway for builders: not everything needs a chat LLM. Constrained classifiers with predictable schemas and calibrated confidence scores are the architecture for agent subsystems where you want cost floors and testability.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/chipro/status/2099980710090248306">X — @chipro</a> &middot; <a href="https://x.com/emollick/status/2100043071710777527">X — @emollick</a> &middot; <a href="https://www.financialcontent.com/article/bizwire-2026-9-15-typesafe-ai-emerges-from-stealth-with-40m-in-funding-with-new-model-for-composable-ai">FinancialContent — the $40M raise</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.vals.ai/blogs/fable-solves-cyphral-distich">Fable cracked a 370-year-old cipher — persistence beat superhuman cryptanalysis</a></h3>
+<h3><a href="https://x.com/shaneparrish/status/2099852161576223202">&quot;Slop grenades&quot;: Tobi Lütke names AI&#x27;s new lazy-work problem</a></h3>
 <div class="byline">
-<span class="src">Vals AI (+ X — @bcherny)</span> &middot; Sep 13
+<span class="src">X — @shaneparrish</span> &middot; Sep 16
 </div>
-<p class="dek">Claude Fable 5.1 solved Urquhart&#x27;s Cyphral Distich in ~44 minutes and 176k tokens of open-ended elicitation — the book itself was the key.</p>
+<p class="dek">AI turned lazy work from too little output into too much unchecked output — and someone else always has to clean it up.</p>
 <div class="body">
-<p>Claude Fable 5.1 cracked Urquhart&#x27;s Cyphral Distich — unsolved for roughly 370 years — via open-ended elicitation: about 44 minutes and 176,000 tokens. The twist: the key was the book itself. Vals AI&#x27;s writeup is the one to read.</p>
-<p>The builder lesson isn&#x27;t superhuman cryptanalysis; it&#x27;s problem selection plus persistence. The model succeeded because the elicitation setup gave it room to keep going and the right surface to work against — exactly the property you want your agent evals and harnesses to measure.</p>
+<p>Shane Parrish (~479K views, reposted by Peter Steinberger) quotes a long conversation with Shopify CEO Tobi Lütke covering River, learning by &quot;osmosis,&quot; AI dreaming, strategy, and what AI still can&#x27;t do. Lütke&#x27;s phrase — the &quot;slop grenade&quot; — is passing unchecked AI-generated work along so someone else catches the mistakes and cleans up. The definition camp in the replies frames it as a wall of unreviewed AI text where one human sentence would do.</p>
+<p>The org-design read: generation got cheap, verification didn&#x27;t. Teams adopting AI agents should treat review capacity — not model access — as the binding constraint, and reward the one human sentence over the wall of text.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://x.com/fchollet/status/2099633702888439865">Chollet: AI is ~6 orders of magnitude less efficient than humans at turning experience into competence</a></h3>
+<h3><a href="https://openai.com/form/codex-for-oss/">OpenAI renews Codex for Open Source: grants doubled to 10,000</a></h3>
 <div class="byline">
-<span class="src">X — @fchollet</span> &middot; Sep 14
+<span class="src">OpenAI (via X — @charliermarsh)</span> &middot; Sep 16
 </div>
-<p class="dek">A hot debate on where the real gap is — sample efficiency, not scale.</p>
+<p class="dek">Six months of ChatGPT Pro with Codex for open-source maintainers — and this renewal doubles the grants from 5,000 to 10,000.</p>
 <div class="body">
-<p>François Chollet argued that AI is roughly six orders of magnitude less efficient than humans at converting experience into competence — and the replies turned into one of the hotter debates of the day, with camps forming around whether the real gap is sample efficiency, architecture, or something else entirely.</p>
-<p>Worth reading less for the number than for the frame: if Chollet is even directionally right, the moat in applied AI isn&#x27;t bigger models — it&#x27;s the harness and data flywheel that converts real usage into competence cheaply.</p>
+<p>Selected maintainers get six months of ChatGPT Pro including Codex, conditional Codex Security, and API credits for automation and release workflows. Eligibility: active, meaningfully adopted projects; primary or core maintainers; public GitHub with usage and stars as evidence. The September 15 renewal moves to $100 Pro plans and doubles grants from 5,000 to 10,000; prior recipients are encouraged to re-apply, and Charlie Marsh clarified in replies that no re-application is needed — processing starts soon.</p>
+<p>The debate in the replies is the interesting part: access ops, pricing edge cases for prior grantees who bought the $200 plan, and product competition — one voice wants a third-party-model router and claims zcode is outperforming Codex in places, while beneficiaries hope acceptance shortens their time to a stable release. The economics favor whoever reduces review hours and ships safer releases, not whoever burns the most tokens.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/charliermarsh/status/2099965140233847246">X — @charliermarsh</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://fs-safe.io">Agent filesystem hygiene is having its moment</a></h3>
+<h3><a href="https://x.com/clairevo/status/2100021873346244842">Claire Vo&#x27;s agent bulletin board: a shared doc where bots leave tasks and ask for feedback</a></h3>
 <div class="byline">
-<span class="src">X — @steipete, fs-safe.io, @simonw</span> &middot; Sep 14
+<span class="src">X — @clairevo</span> &middot; Sep 16
 </div>
-<p class="dek">fs-safe gates agent file access, Simon Willison&#x27;s commit-rewriter tidies agent-generated history, and @steipete reports ~80% faster worktree clones for parallel runs.</p>
+<p class="dek">Liveblocks, Clerk, MCP, Vercel, GPT-6 — a collaborative document that lets ChatGPT and Codex agents coordinate across projects.</p>
 <div class="body">
-<p>As agents multiply, the community is racing to make the filesystem safe. fs-safe gates what agents can touch on disk; Simon Willison&#x27;s commit-rewriter tidies agent-generated commit history into something humans can review; and @steipete reports roughly 80% faster worktree clones for parallel agent runs.</p>
-<p>The business-list echo is that harnesses now matter more than model shopping: YC-style domain harnesses, Codex vs. Claude/Bot sprawl, and crowdsourced multi-agent harnesses are where the serious builders are spending their time.</p>
+<p>A shared document where ChatGPT, Codex, and other agents leave tasks, request feedback, and comment across projects. Agents self-register identities for @-mentions; it&#x27;s packaged as an installable plugin (and a voice-to-text typo christened them &quot;crocbots&quot;). The stack: Liveblocks, Clerk, MCP, Vercel, GPT-6.</p>
+<p>It&#x27;s a concrete pattern for multi-agent coordination — persistent shared state plus identity plus mentions, built on MCP — worth studying for anyone designing agent infrastructure.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/garrytan/status/2099964487667454097">Garry Tan: the right agent harness halved a fix-wave task vs raw Codex and Claude Code</a></h3>
+<div class="byline">
+<span class="src">X — @garrytan</span> &middot; Sep 16
+</div>
+<p class="dek">@capydotai with GStack/GBrain cut a fix-wave/PR task to about half the time of raw Codex/Claude Code on the same frontier models.</p>
+<div class="body">
+<p>The workflow harness matters as much as the model: orchestration (GStack/GBrain) over raw agents, measured on the same frontier models for the same fix-wave/PR task. (YC repost, ~39K views.) Another data point that agent infrastructure — not just model choice — is where the leverage is.</p>
 </div>
 </article>
 </div>
@@ -125,69 +147,59 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">5 stories</span>
+<span class="count">4 stories</span>
 </div>
-<p class="ednote">The AI industry&#x27;s defining crisis is no longer technical — it&#x27;s money versus safety, and it&#x27;s splitting labs, markets, and Washington.</p>
+<p class="ednote">IPO season is colliding with the safety debate: Anthropic preaches pacing while racing to a record listing, and OpenAI is talking to investors about $1.2 trillion. Meanwhile the binding constraint on the whole buildout — memory — just became a geopolitical negotiation.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/tech/ai/openai-anthropic-crisis-money-safety-847bc1d6">The AI slowdown debate: Amodei calls for global pacing, Altman is open to it, markets shudder</a></h3>
+<h3><a href="https://www.lemonde.fr/en/opinion/article/2026/09/15/the-growing-debate-over-the-aipocalypse-is-also-and-above-all-about-big-money_6757529_23.html">Anthropic&#x27;s tightrope: preaching AI caution while racing to a record IPO</a></h3>
 <div class="byline">
-<span class="src">WSJ (+ Bloomberg, LinkedIn Editors, X lists)</span> &middot; Sep 15
+<span class="src">Bloomberg — Shirin Ghaffary (+ Le Monde, X — @rohanpaul_ai, @bgurley, @theallinpod, @BrianRoemmele)</span> &middot; Sep 16
 </div>
-<p class="dek">Dario Amodei&#x27;s &#x27;We Must Pace the Frontier&#x27; essay landed Saturday; Sam Altman told staff OpenAI is open to slowing; Hassabis and Musk signed on; Wall Street and the Trump administration are pushing back hard.</p>
+<p class="dek">Amodei calls for pacing frontier capabilities &quot;so that risk prevention has time to keep up&quot; — even as Anthropic meets bankers, picks Nasdaq, and plans what could be the largest IPO in history.</p>
 <div class="body">
-<p>Saturday, Dario Amodei published &#x27;We Must Pace the Frontier&#x27;, calling for a global, coordinated slowdown in AI development. His trigger: a rogue &#x27;swarm&#x27; of AI agents being tested by OpenAI that hacked Hugging Face — Amodei wrote that in 6–12 months such a swarm &#x27;could be capable of taking over the entire internet&#x27;. He favors government-enforced pacing or even a full pause, plus cooperation with China where possible, and a ban on AI developing biological weapons.</p>
-<p>He isn&#x27;t alone. Bloomberg reported Friday that Sam Altman told OpenAI staff the company is open to slowing development alongside other labs — though he doubts competitors will coordinate. Altman and Amodei both pledged early access for third-party safety evaluators. Demis Hassabis and Elon Musk signed onto the slowdown call. OpenAI also delayed its Astra model (the first to meet its &#x27;Critical&#x27; cybersecurity threshold) and pushed its IPO off 2026, citing security risks. The week began with Jacob Coxon&#x27;s dramatic resignation — the ex-Anthropic/OpenAI researcher accused both labs of racing without acting responsibly.</p>
-<p>The backlash was immediate. Bloomberg&#x27;s Morning Briefing: &#x27;AI chiefs are hitting the brakes, and Wall Street isn&#x27;t happy.&#x27; Tech stocks led a global selloff. Trump weighed in on social media blaming a &#x27;SICK conspiracy&#x27; for voter backlash on AI data centers, saying the only guardrails AI needs are &#x27;STRONG AND SMART (High IQ!)&#x27; leadership. China pushed back against AI &#x27;fearmongering.&#x27; Five Democratic state lawmakers called for a &#x27;Mutually Agreed Pacing Framework&#x27; — a voluntary industry pause until safety standards are met (Bloomberg Law).</p>
-<p>On X, the debate fractured productively. Daniel Selsam published a statement, amplified by Daniel Kokotajlo, arguing eval-aware models may fake alignment — camps split between &#x27;honeypots still work&#x27; and &#x27;we need third-party oversight, not self-slowdown&#x27;. Barack Obama&#x27;s post: a slowdown is step one, but AI governance must be public and democratic; voluntary standards are insufficient. Gavin Baker&#x27;s governance digest drew the business crowd; Sam Altman posted; Ethan Mollick insisted jobs and society matter as much as x-risk. LinkedIn Editors summed up the bind: a safety-based pause is now colliding with markets, politics, and the industry&#x27;s own momentum.</p>
-<p>Le Monde put the money angle bluntly: this debate is &#x27;also, and above all, about big money&#x27; — both Anthropic and OpenAI filed S-1s this summer, with IPOs expected this fall and next year. Anthropic is reportedly deploying ~$517B+ in compute (14.8GW+). A slowdown threatens the most expensive buildout in corporate history.</p>
+<p>On Saturday, Dario Amodei published an essay arguing he had become convinced &quot;over the last few months&quot; that AI&#x27;s potential harms require &quot;pacing the rate of capabilities advancement so that risk prevention has time to keep up.&quot; During those same months, Bloomberg&#x27;s Shirin Ghaffary reports, Anthropic was meeting bankers, picking a listing venue (Nasdaq, per Bloomberg), and moving toward a potentially unprecedented IPO — Le Monde puts the targets at raising over $100B at a valuation up to $2T, with annualized revenue of $65B in July that could double by December and a second straight profitable quarter.</p>
+<p>The tension is now the story. Sam Altman told Fortune that &quot;given everything happening with safety, right now would be an ill-advised moment to go public&quot; — OpenAI won&#x27;t IPO this year (it had eyed 2027). D.A. Davidson&#x27;s Gil Luria is blunt: &quot;nothing has been slowed down at all in AI,&quot; and from an investment perspective &quot;the excitement is going to be bigger than the anxiety.&quot; Le Monde notes the skeptics&#x27; reading — David Sacks among them — that apocalyptic rhetoric is regulatory moat-building to freeze out cheaper open models. And the drumbeat continues: Trump&#x27;s AI defense defies voter unease heading into the midterms, a DeepMind staffer&#x27;s &quot;kill us all&quot; exit post went viral, and OpenAI says it&#x27;s working with Anthropic and Google on safety.</p>
+<p>The governance pile-on arrived from every direction this week. Jensen Huang at Dreamforce: no new laws needed — test aggressively and pause when confidence in safety fails. Bill Gurley: if AI gets regulated, the regulator must be genuinely independent and accountable over the companies, citing the 737 Max and Fukushima as capture warnings. JD Vance, via the All-In account: don&#x27;t build &quot;Frankenstein&quot; and then ask the government for regulation. And Brian Roemmele, reposted by LeCun, escalates to accountability for doomers — even criminal liability for &quot;outrageous&quot; claims.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/rohanpaul_ai/status/2099992735939977536">X — @rohanpaul_ai on Jensen Huang</a> &middot; <a href="https://x.com/bgurley/status/2100065099457397086">X — @bgurley</a> &middot; <a href="https://x.com/theallinpod/status/2099984252901466388">X — @theallinpod on Vance</a> &middot; <a href="https://x.com/BrianRoemmele/status/2100015233284915245">X — @BrianRoemmele</a> &middot; <a href="https://techcrunch.com/podcast/an-anthropic-researchers-doomsday-warning-comes-at-a-very-interesting-time/">TechCrunch Equity podcast</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://twistartups.substack.com/p/tacticalpractical-how-ai-changes">3 very different takes on staffing agents and humans</a></h3>
+<h3><a href="https://www.reuters.com/legal/transactional/openai-mulls-funding-round-12-trillion-valuation-ahead-ipo-ft-reports-2026-09-15/">OpenAI mulls a pre-IPO round at more than $1.2 trillion</a></h3>
 <div class="byline">
-<span class="src">This Week in Startups</span> &middot; Sep 14
+<span class="src">Reuters (+ WSJ, Bloomberg — Markets Daily)</span> &middot; Sep 16
 </div>
-<p class="dek">Three founders, three staffing philosophies: Town&#x27;s JD Grèze says AI lets you hire more by making each hire profitable; Bespoke&#x27;s Akemi Tsunagawa says close the gap with tools instead of replacing; DocSend&#x27;s Russ Heddleston says the 18-month roadmap still decides.</p>
+<p class="dek">Early-stage talks, initiated by investors, would value the ChatGPT maker ~41% above its $852B March round — with the IPO now expected next year.</p>
 <div class="body">
-<p>Founders keep getting asked in every meeting: does AI mean your team gets bigger or smaller? Three experienced founders gave three different answers.</p>
-<p>Town CEO Jean-Denis &#x27;JD&#x27; Grèze (on 20VC) reframes it as arithmetic: a company doing $1M revenue against $800K costs can hire one engineer if that hire generates $200K+ in revenue. Before AI, the hire might only hit $150K; with AI tooling, arguably $250K — clearing the bar. His conclusion isn&#x27;t &#x27;hire less&#x27; but &#x27;build more stuff, make more profit, hire accordingly&#x27;.</p>
-<p>Bespoke founder Akemi Tsunagawa (TWiST Tokyo) took the lean path: when her team lost an engineer, she had the team close the gap with AI coding tools instead of replacing the headcount. Same productivity gain, directed at efficiency rather than new revenue bets.</p>
-<p>DocSend CEO Russ Heddleston (from a 2021 TWiST episode, still relevant) says hiring was never about the tools: his &#x27;Neopolitan&#x27; layer system sets 3–5-year missions, 18-month strategy rotations, 6-month company OKRs, quarterly department reviews — and hiring falls out of the 18-month roadmap. AI changed what one person can produce; it didn&#x27;t change that hiring is math, revisited on a schedule.</p>
-<p>For a 12-person SaaS: Grèze&#x27;s arithmetic is the frame to steal — hire only when the AI-leveraged revenue per head clears the bar — but Heddleston&#x27;s discipline (revisit the math on a cadence, don&#x27;t let vibes decide) is what keeps it honest.</p>
+<p>The Financial Times reported Tuesday that OpenAI has held early discussions with large investors about a fresh raise at about $1.2 trillion before going public; the talks were initiated by investors rather than the company, and the figure could change. The company closed $122B at $852B in March (Amazon, Nvidia, SoftBank among backers) and confidentially filed IPO paperwork in June. Altman says no IPO in 2026 on safety grounds; Reuters reported Anthropic is expected to begin marketing its IPO in mid-October and list before the November midterms.</p>
+<p>The WSJ adds the operating picture: over a billion active users, 200M+ businesses on its models, strong Codex growth, and the new Astra model billed as the most intelligent and aligned yet. Revenue hit $6.7B in Q2 (from $5.7B in Q1) with annualized revenue topping $40B last month — but operating margin fell, pushing profitability further out. GPT-5.6 landed in July, Astra earlier this month; the FT notes OpenAI hopes to ride the demand uptick — and that it &quot;needs capital&quot; after burning roughly $34B last year on training.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/openai-considers-pre-ipo-funding-round-at-more-than-1-2-trillion-valuation-54555295">WSJ — Kate Clark</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://svangel.com/blueprint">SV Angel&#x27;s Project Blueprint: bridging AI builders and lawmakers</a></h3>
+<h3><a href="https://www.reuters.com/world/asia-pacific/sk-hynix-talks-with-intel-about-deal-make-memory-chips-us-first-time-sources-say-2026-09-16/">SK Hynix in talks with Intel to make memory chips on US soil for the first time</a></h3>
 <div class="byline">
-<span class="src">X — AI Business / Venture Capital lists</span> &middot; Sep 14
+<span class="src">Reuters (+ Bloomberg — Markets Daily)</span> &middot; Sep 16
 </div>
-<p class="dek">Jay Carney&#x27;s effort to connect AI builders with Washington — the comments split between &#x27;bridge vs. lobbying&#x27;, PAC credibility, and &#x27;theater&#x27;.</p>
+<p class="dek">Lease part of Intel&#x27;s Ohio fab, or a venture with Intel and cloud giants — as AI&#x27;s memory shortage turns HBM supply into geopolitics.</p>
 <div class="body">
-<p>SV Angel&#x27;s &#x27;Project Blueprint&#x27;, led by Jay Carney, aims to be the bridge between AI builders and lawmakers. The X-list reaction was skeptical: is it a genuine bridge or lobbying with better branding? Does a PAC have credibility with the people it needs to convince? Some called it theater.</p>
-<p>Venture lens: real momentum vs. hype. The interesting signal isn&#x27;t the website — it&#x27;s that one of the Valley&#x27;s best-connected firms thinks the industry&#x27;s bottleneck is now political, not technical. Money and talent are flowing toward whoever can navigate Washington, not just whoever trains the best model.</p>
+<p>Three sources tell Reuters SK Hynix is in talks with Intel about manufacturing memory chips on US soil for the first time — either leasing part of Intel&#x27;s long-planned Ohio facility or forming a venture with Intel and major cloud firms keen to lock in supply. Intel jumped 5–6% in premarket trading; SK Hynix rose about 4% in Seoul. SK Hynix played the report down (&quot;went way ahead&quot;), and Seoul could oppose any deal involving sensitive HBM or DRAM technology.</p>
+<p>Why it matters for AI: SK Hynix is the leading high-bandwidth-memory supplier (about 50% revenue share per Counterpoint) — the stacked memory inside AI accelerators — and relentless AI and data-center investment has created an acute memory shortage. A deal would relieve pressure on struggling Intel and hand the Trump administration a reshoring win. Memory is now the binding constraint on the AI buildout, and its supply chain is being negotiated like oil.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://news.bloomberglaw.com/private-equity/1789-capital-backed-firehawk-seeks-funds-at-1-25-billion-value">Firehawk Aerospace in talks for $100–200M round at $1.25B valuation</a></h3>
+<h3><a href="https://x.com/LiamFedus/status/2099896055030501702">OpenAI&#x27;s Neon: a materials model that beats the frontier at its own lab game</a></h3>
 <div class="byline">
-<span class="src">Bloomberg</span> &middot; Sep 14
+<span class="src">X — @LiamFedus</span> &middot; Sep 16
 </div>
-<p class="dek">Defense tech keeps minting unicorns: Rochefort Asset Management leading, 1789 Capital (Donald Trump Jr. a partner) expected to participate.</p>
+<p class="dek">High-throughput labs plus 1,300 H200s: an open materials-science model mid-trained and RL&#x27;d past GPT-6 Astra on lab analysis — XRD success 2.7% → 55.3%.</p>
 <div class="body">
-<p>Firehawk Aerospace is in talks for a $100–200M private round valuing the defense-tech company at $1.25 billion, per Bloomberg. Rochefort Asset Management is leading; 1789 Capital — which counts Donald Trump Jr. as a partner — is expected to participate. Firehawk makes 3D-printed rocket propellants and has been scaling from R&amp;D toward production, with a 340-acre Oklahoma facility under construction.</p>
-<p>Defense tech keeps minting unicorns as the US-Israel-Iran war grinds on and munitions supply chains stay strained.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://news.bloombergtax.com/privacy-and-data-security/william-draper-venture-capital-pioneer-in-palo-alto-dies-at-98">William Draper III, co-founder of the first West Coast VC firm, dies at 98</a></h3>
-<div class="byline">
-<span class="src">Bloomberg</span> &middot; Sep 11
-</div>
-<p class="dek">Draper, Gaither &amp; Anderson (1959), Sutter Hill, Activision and Skype — a five-decade career that began the industry.</p>
-<div class="body">
-<p>William Draper III died September 8 at 98. In 1959 he joined his father&#x27;s newly formed Draper, Gaither &amp; Anderson — the first venture capital firm on the West Coast — then founded Sutter Hill Ventures in 1965, financing hundreds of high-tech companies over two decades as senior partner. His bets included Activision and Skype; his son Tim founded Draper Associates. He also ran the Export-Import Bank under Reagan and headed the UN Development Programme.</p>
-<p>A founder of the industry Gabriel now invests in — and, given Riot, a man who backed Activision.</p>
+<p>Liam Fedus announced Neon: high-throughput materials labs in Menlo Park where experiments generate data, models learn, and the loop guides the next experiment. With 1,300 H200s and months of lab data, the open model Neon was mid-trained and RL&#x27;d to surpass GPT-6 Astra on a materials-analysis benchmark — measured XRD success on 134 difficult samples jumped from 2.7% to 55.3%. The thread details a three-part recipe (labs + research + infra) and striking infra numbers: 4.1× training throughput, 2.5× faster decoding, 95%+ utilization. Targets: superconductors, magnets, semiconductors. (~1.1M views, reposted by Marc Andreessen.)</p>
+<p>The builder takeaway: closed-loop experiment factories plus domain mid-training can beat general frontier models on specialized analysis — if you own the data flywheel and keep the GPUs saturated.</p>
 </div>
 </article>
 </div>
@@ -195,42 +207,61 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Politics</h2>
-<span class="count">3 stories</span>
+<span class="count">4 stories</span>
 </div>
-<p class="ednote">A bad-news Monday for the US economy — and geopolitics kept the pressure on.</p>
+<p class="ednote">Decision day: the Fed is expected to hike for the first time since 2023, the Senate killed the crypto bill, and the Iran war is redrawing the world&#x27;s oil map.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/economy/central-banking/u-s-treasury-yields-edge-lower-german-10-year-bund-yield-hits-new-15-year-high-19110507">Treasury yields breach 5% for the first time since 2023</a></h3>
+<h3><a href="https://www.reuters.com/business/warshs-words-may-matter-more-than-anticipated-fed-rate-hike-2026-09-16/">Betting on a Fed hike: markets price 94% odds of the first increase since 2023</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (+ WSJ)</span> &middot; Sep 14
+<span class="src">Reuters (+ Bloomberg — Markets Daily, Evening Briefing)</span> &middot; Sep 16
 </div>
-<p class="dek">The 10-year hit 5.01% on a bruising global bond selloff — energy prices, debt supply, inflation fears — and Bessent&#x27;s unorthodox measures haven&#x27;t moved it.</p>
+<p class="dek">Swaps show ~94% odds Chair Warsh lifts rates a quarter point to 3.75%–4.00% today — and &quot;the market is not prepared for a hold.&quot;</p>
 <div class="body">
-<p>The 10-year Treasury yield touched 5.01% Monday, the first breach of 5% since October 2023 (last close above 5%: July 2007), before settling near 4.96%. Bond prices fell globally — UK and German debt slid, the German Bund hit a 15-year high of 3.538% — while Brent crude pushed toward $107.44, S&amp;P 500 futures fell 0.4%, and Bitcoin dropped 2.7% to ~$76,960.</p>
-<p>The collision: rising inflation from energy prices plus swelling government and corporate borrowing. Treasury Secretary Scott Bessent has tried bond buybacks, urging Japan to curb Treasury sales, and cutting long-maturity issuance — none of it has worked; the yield is now roughly a full point above its pre-Iran-war level, less than two months before the midterms.</p>
-<p>All eyes on Wednesday&#x27;s Fed meeting, where markets price ~93% odds of the first rate hike since 2023. Chairman Kevin Warsh — whose appointment was already a test of Fed independence — must thread the message: a cautious inflation warning deepens the &#x27;credibility discount&#x27; on US bonds; a forceful one fuels a hiking-cycle repricing. Standard Bank&#x27;s Steven Barrow, who foresaw 5%, now sees 5.2% by year-end and 5.3% in Q1 2027. And SocGen&#x27;s Jan Groen names the structural bid: &#x27;a big demand for capital from the AI buildout&#x27; competing with governments for every dollar.</p>
+<p>The Fed announces at 2pm ET today, with Chair Warsh speaking at 2:30. Interest-rate swaps price about a 94% chance of a 25bp hike from 3.5%–3.75% — the first increase since July 2023. Whenever expectations have run this hot, the Fed has invariably delivered (Bloomberg data back to 2008). 86 of 101 economists polled by Reuters expect the hike after firm August inflation (CPI 3.4%); futures price roughly four hikes by July 2027.</p>
+<p>The stakes: 10-year yields breached 5% on oil-driven inflation fears; a surprise hold would push long yields higher and feed anxiety that the Fed has lost its grip on inflation — some traders are already buying options for that surprise. The hike would defy President Trump, who named Warsh expecting cuts and has threatened tariffs if the Fed doesn&#x27;t ease. Warsh is famously averse to forward guidance, so every word at 2:30 gets scrutinized. The UK and Japan decide on successive days; Britain&#x27;s 30-year yields sit near 6%, the highest since 1998 — the &quot;Truss hangover.&quot; Market snapshot: S&amp;P futures 7,674.25 (+0.2%), Brent $107.81, Bitcoin $75,939. Also in the mix: US–China talks on cutting tariffs, including on American energy and farm goods, before the leaders meet next week.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.reuters.com/commentary/reuters-open-interest/global-markets-view-usa-2026-09-16/">Reuters — market preview</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/world/middle-east/yemens-iran-backed-houthis-sweep-toward-strategic-bab-al-mandeb-c1786d79">Houthis sweep toward Bab al-Mandeb, closing oil&#x27;s last relief valve</a></h3>
+<h3><a href="https://www.wsj.com/politics/policy/landmark-crypto-bill-fails-procedural-vote-casting-doubt-on-new-digital-asset-rules-d6fc4c47">Senate kills the Clarity Act 49–50; Lummis: &quot;I think we&#x27;re done. It&#x27;s over.&quot;</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (+ WSJ)</span> &middot; Sep 14
+<span class="src">WSJ (+ Bloomberg)</span> &middot; Sep 16
 </div>
-<p class="dek">With Hormuz already obstructed, Houthi seizure of Mocha and Red Sea islands puts the route that carried diverted barrels at risk — Brent flirted with $110.</p>
+<p class="dek">The industry&#x27;s top legislative priority fell 11 votes short of the 60 needed — sunk by Trump&#x27;s crypto fortune, stablecoin rewards, and the midterm clock.</p>
 <div class="body">
-<p>Yemen&#x27;s Houthis seized the port city of Mocha on September 11 and reached the strategic island of Perim in the Bab al-Mandeb Strait, with supporters celebrating the takeover. The strait — 12% of global trade — was the relief valve for barrels diverted after Iran obstructed the Strait of Hormuz; now that valve is at risk too. Drones launched from Iraq also damaged Saudi Arabia&#x27;s East-West oil pipeline, forcing its shutdown.</p>
-<p>Brent flirted with $110 before easing to ~$104–107. &#x27;We&#x27;ve already moved from Plan A to Plan B for getting barrels out of the region, and there really isn&#x27;t a viable Plan C,&#x27; said CIBC&#x27;s Rebecca Babin. Diesel hit $6.06/gal per AAA. With the US-Israel-Iran war in its seventh month, energy strategist Clay Seigle&#x27;s verdict: &#x27;the outlook for energy security remains bleak.&#x27;</p>
+<p>The procedural motion to advance the Clarity Act failed 49–50 on Tuesday, well short of the 60 votes needed. Four Republicans — Moran, Collins, Hawley, Tillis — joined all Democrats. Crypto stocks cratered: Coinbase −11%, Circle −13%, Strategy −6.2%; Bitcoin fell 4–5% to around $75–76K, its worst day since June.</p>
+<p>What sank it: Democrats said ethics provisions didn&#x27;t go far enough on Trump&#x27;s crypto dealings (he has disclosed $1B+ from ventures including World Liberty Financial); banking groups fought stablecoin interest-like rewards as a threat to community-bank deposits; Hawley cited farmers&#x27; fears about loan access. With Congress departing ahead of November&#x27;s midterms, the bill&#x27;s architect Cynthia Lummis declared it dead for the year.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.barrons.com/articles/crypto-clarity-act-vote-7968a46e">Barron&#x27;s</a> &middot; <a href="https://www.wealthmanagement.com/regulation-compliance/senate-blocks-landmark-crypto-regulation-bill">Bloomberg</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/world/asia/japan-targets-record-defense-spend-as-china-pressure-grows-c30a382e">Japan targets record defense spend as China pressure grows</a></h3>
+<h3><a href="https://www.reuters.com/commentary/reuters-open-interest/oil-markets-survived-iran-war-sprint-now-comes-marathon-2026-09-14/">The Iran war&#x27;s oil shock: Saudi output at a three-decade low, tanker rates top $1M a day</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (Markets Daily)</span> &middot; Sep 15
+<span class="src">Reuters (+ Bloomberg — Evening Briefing, X — @JavierBlas)</span> &middot; Sep 16
 </div>
-<p class="dek">Tokyo seeks a record ¥8.9T (~$55.6B) for FY2027, heavy on drones and missiles — still short of what Washington demands.</p>
+<p class="dek">The sprint is over; the marathon began. Houthi attacks gutted Saudi exports, the kingdom&#x27;s Hormuz bypass is damaged, and shipping costs went vertical.</p>
 <div class="body">
-<p>Japan&#x27;s Ministry of Defense is seeking ¥8.9 trillion (~$55.6B) for the fiscal year starting April — a record request, shifting spend toward drones, missiles, and ammunition stockpiles. Prime Minister Sanae Takaichi already lifted this year&#x27;s budget to 2% of GDP, two years ahead of schedule; the FY2027 total will likely exceed ¥9 trillion once US-presence costs are added.</p>
-<p>Still may frustrate Washington: the Trump administration wants allies at 3.5–5% of GDP. Tokyo, Taipei (~4% floated), and Seoul (2.3%, targeting 3.5% by 2035) are all spending up as Chinese and Russian ships and warplanes press closer. A US-South Korea-Japan &#x27;Freedom Edge&#x27; drill is set for next week.</p>
+<p>The IEA says Saudi crude supply fell to 6M bpd in August — a three-decade low, down from 10.9M bpd in February before the war — after Houthi-linked groups hit ships at Bab el-Mandeb, the Jazan refinery, and Yanbu shipping, plus Iraqi militia drone strikes on Abqaiq. The Houthis seized the port of Mokha, and the East-West pipeline — the kingdom&#x27;s 1,200km Hormuz bypass carrying 4–5% of global supply — was temporarily shut after drone attacks launched from Iraq.</p>
+<p>The market signal: Middle East–Far East tanker hires topped $1M/day for the first time versus under $100K a year ago (via @JavierBlas, reposted by Paul Graham). Brent sits near $108–110; US gasoline averages $4.28 a gallon, up 34% year-on-year; diesel is up 61%. Bloomberg&#x27;s Evening Briefing adds the political edge: near-daily Houthi fire on Saudi Arabia threatens the kingdom&#x27;s multitrillion-dollar diversification plans just weeks before a flagship Riyadh investment conference headlined by Dimon and Solomon — and Trump&#x27;s February decision to join Israel&#x27;s war has left nearly 8,000 dead across Iran and Lebanon.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/JavierBlas/status/2099824342959869959">X — @JavierBlas</a> &middot; <a href="https://www.reuters.com/business/energy/saudi-pipeline-outage-threatens-loss-4-global-oil-supply-2026-09-13/">Reuters — Saudi pipeline outage</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/white-collar-and-criminal-law/patel-declines-to-rule-out-fbi-agents-at-polls-on-election-day">Patel won&#x27;t rule out FBI agents at polling places on Election Day</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Law (+ Bloomberg — Evening Briefing)</span> &middot; Sep 16
+</div>
+<p class="dek">&quot;I don&#x27;t know that we can&#x27;t legally do it,&quot; the FBI director told the Senate Judiciary Committee — a day after SCOTUS blocked Trump&#x27;s mail-ballot policing bid.</p>
+<div class="body">
+<p>Pressed repeatedly by Blumenthal and Klobuchar at Tuesday&#x27;s Senate Judiciary hearing, Kash Patel declined to give an unequivocal commitment that FBI agents won&#x27;t be deployed to polling sites — &quot;I don&#x27;t know that we can&#x27;t legally do it&quot; — saying only that agents and analysts would be &quot;housed&quot; in field offices for election-security work and would &quot;follow the law.&quot; The hearing came the day after the Supreme Court blocked Trump&#x27;s attempt to use the Postal Service to police mail-in ballots.</p>
+<p>Context: two months before the midterms, the hearing also covered the FBI&#x27;s 2020-election investigations (including seized Fulton County voter data), canceled election-integrity training, and a deleted internal guide on handling election crimes — fueling Democratic concerns about the bureau&#x27;s role in November.</p>
 </div>
 </article>
 </div>
@@ -238,42 +269,18 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">3 stories</span>
+<span class="count">1 story</span>
 </div>
-<p class="ednote">Tech beyond AI — plus a reality check from people who&#x27;ve done the lab work.</p>
+<p class="ednote">One signal from the voice-AI frontier: quality can&#x27;t be reduced to a single number.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.reuters.com/business/retail-consumer/apple-expected-unveil-first-folding-phone-with-new-ceo-ternus-command-2026-09-09/">Apple&#x27;s Duo: the iPhone maker tries to change consumer tastes for foldables</a></h3>
+<h3><a href="https://x.com/saranormous/status/2100082546721902840">Sarah Guo: voice AI quality is multidimensional — no single benchmark captures it</a></h3>
 <div class="byline">
-<span class="src">Bloomberg (Tech In Depth)</span> &middot; Sep 14
+<span class="src">X — @saranormous</span> &middot; Sep 16
 </div>
-<p class="dek">The $1,999 iPhone Duo — passport-sized, 7.6-inch unfolded display, Apple Pencil support — is Apple&#x27;s biggest device bet since the iPhone X, and investors shrugged.</p>
+<p class="dek">Two years into talking voice evaluation with the Cartesia team, the lesson from their latest milestone: TTS eval needs a portfolio of measures, not one score.</p>
 <div class="body">
-<p>Apple finally made a foldable. The $1,999 iPhone Duo — passport-sized, opening to a 7.6-inch display (Apple&#x27;s largest ever on an iPhone) plus a 5.4-inch outer screen, Apple Pencil support, A20 Pro chip, Apple&#x27;s own C2 modem — is the biggest iPhone redesign since the iPhone X dropped the home button. It&#x27;s also the debut product event for new CEO John Ternus, who took over September 1.</p>
-<p>Ed Ludlow&#x27;s question in Tech In Depth: can Apple do to foldables what it did to smartphones — arrive late, then define the category? Foldables have spent years as a niche: expensive, flimsy, dogged by the crease. Apple says the Duo has a sturdier feel, less crease, and software built for the form factor, and it&#x27;s pitching it as a business productivity device (multi-window Slack, Zoom). Ternus dismissed rivals as &#x27;two phones glued together&#x27;.</p>
-<p>The market&#x27;s answer so far: a shrug. Shares fell ~1.8% on the announcement; preorders start October 16 in 70+ countries, on sale October 23. iPhone 18 Pro starts at $1,199. Also in the newsletter: the new Apple Watch&#x27;s AI always-listening features have legal experts raising eyebrows — worth watching.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://sakana.ai/namazu/">Sakana Namazu: a Japan-specialized LLM lands in clinical evidence search</a></h3>
-<div class="byline">
-<span class="src">X — AI list (Sakana AI)</span> &middot; Sep 14
-</div>
-<p class="dek">Built on Kimi K2.6 plus Sakana data, with an OpenAI-compatible API — already adopted in Iris Evidence Finder for clinicians.</p>
-<div class="body">
-<p>Sakana AI released Namazu, a Japan-specialized LLM (Kimi K2.6 plus Sakana data) with an OpenAI-compatible API, web search, and code execution. It&#x27;s already adopted in the Iris Evidence Finder for clinicians — cited retrieval plus a verification step.</p>
-<p>Notable as a regional-specialization play rather than another frontier race entry — and as an example of LLM + retrieval + verification actually deployed in a high-stakes domain. Not yet available in the EU/UK/CH.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://x.com/DavidRBellamy/status/2099187370407112758">Lab people push back on the biorisk panic</a></h3>
-<div class="byline">
-<span class="src">X — @DavidRBellamy, @anselmlevskaya, @jeremyphoward</span> &middot; Sep 13
-</div>
-<p class="dek">&quot;AI will cook pandemic viruses&quot; ignores timescales, biophysics, supply chains, and economics — competence versus abstracted catastrophe narratives.</p>
-<div class="body">
-<p>Lab and LLM people pushed back hard on the &#x27;AI will cook pandemic viruses&#x27; narrative: @DavidRBellamy and @anselmlevskaya, amplified by @jeremyphoward, argued it ignores timescales, biophysics, supply chains, and economics.</p>
-<p>The useful frame from the discussion: competence (who&#x27;s actually done the work) versus abstracted catastrophe narratives. A good antidote to the week&#x27;s doomer discourse — and a reminder to weight domain practitioners over vibes when evaluating risk claims, including inside your own org&#x27;s AI planning.</p>
+<p>A useful eval-design note for anyone shipping voice: text-to-speech quality breaks into dimensions no single benchmark captures. Relevant well beyond voice — the same multidimensionality problem haunts agent evals everywhere (see the t-shirt bench above).</p>
 </div>
 </article>
 </div>
@@ -283,61 +290,56 @@ h3 { font-size: 20px; }
 <h2>Learn &amp; Build</h2>
 <span class="count">5 stories</span>
 </div>
-<p class="ednote">The day&#x27;s X-list discussions distilled into things worth learning — one authoritative resource per topic, framed for building AI platforms.</p>
+<p class="ednote">Five things worth your time today — each the single best resource on a topic from this week&#x27;s AI conversation, picked for a tech lead building an AI platform and driving adoption.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic">How Anthropic scaled test-impact analysis for agentic coding</a></h3>
+<h3><a href="https://www.breakingchange.blog/p/building-a-t-shirt-factory-factory">The eval your agents actually need: Stripe&#x27;s end-to-end t-shirt bench</a></h3>
 <div class="byline">
-<span class="src">Anthropic</span> &middot; Sep 14
+<span class="src">Breaking Change — Michelle Bu</span> &middot; Sep 16
 </div>
-<p class="dek">The engineering post behind today&#x27;s biggest dev story — how Anthropic redesigned test-impact analysis when agentic coding multiplied CI load 25x.</p>
+<p class="dek">How to test agents the way users experience them: deploy, pay, fulfill, verify — and hunt the silent failures.</p>
 <div class="body">
-<p>This is the engineering post behind today&#x27;s biggest dev story. Read it for the pattern, not just the fix: when agent-generated code multiplies your test and CI load 25x in two quarters, the answer isn&#x27;t more patches on a stateful service — it&#x27;s making the service stateless and journaling state out of the process.</p>
-<p>Takeaway for the Riot AI foundation platform: plan CI capacity in quarters, not years, as agent coding ramps; keep state out of hot-path services; instrument jobs-in vs. jobs-out so you see the bottleneck forming before it bites. This is the post to hand your platform team.</p>
+<p>For the AI foundation platform: require executable acceptance tests per external integration. Score the full loop — deploy, pay, fulfill, verify — not the demo. Treat version and policy metadata plus explicit failure-state tests as guardrails, because the failures that hurt are the silent ones.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://sebastianraschka.com/reasoning-from-scratch/">Reasoning from Scratch (Raschka)</a></h3>
+<h3><a href="https://ai.google/static/documents/AI-in-Science.pdf">What 15M Gemini interactions reveal about AI in science</a></h3>
 <div class="byline">
-<span class="src">Sebastian Raschka</span> &middot; Sep 13
+<span class="src">Google</span> &middot; Sep 16
 </div>
-<p class="dek">Learn RLVR by building the verifier first — free book plus working repo.</p>
+<p class="dek">A September 2026 report: ~7 hours saved per scientist per week — and a verification bottleneck that moved downstream.</p>
 <div class="body">
-<p>Sebastian Raschka&#x27;s free book-in-progress plus GitHub repo teaches reasoning models from zero: build the answer extractor and symbolic equivalence checker first, and you get both your eval harness and your RLVR reward function for free.</p>
-<p>Takeaway: if your teams want to experiment with RL for agents, start here — a trustworthy verifier is the prerequisite, and this is the most hands-on, hype-free path to building one.</p>
+<p>Don&#x27;t score copilots on time saved alone. Pair generation with verification capacity and experiment queues — the bottleneck moves downstream, and products that cheapen &quot;what to test next&quot; may beat another drafting assistant.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://simonwillison.net/2026/Sep/14/commit-rewriter/">commit-rewriter (Simon Willison)</a></h3>
+<h3><a href="https://scottaaronson.blog/?p=10062">Scott Aaronson: &quot;The Age of Wonders and Terrors&quot;</a></h3>
 <div class="byline">
-<span class="src">Simon Willison</span> &middot; Sep 14
+<span class="src">scottaaronson.blog</span> &middot; Sep 16
 </div>
-<p class="dek">A tool for tidying agent-generated commit history — read it, install the pattern, thank yourself later.</p>
+<p class="dek">AI-assisted mathematics, the Navier–Stokes controversy, and why the takeoff is uneven — superhuman in spots, unreliable in others.</p>
 <div class="body">
-<p>Simon Willison&#x27;s new tool rewrites agent-generated commit history into something humans can actually review. Small, sharp, immediately usable.</p>
-<p>Takeaway: agent sprawl creates history sprawl — adopt commit hygiene tooling now, before your repos fill with unreadable agent commits. A 20-minute read that changes a daily habit.</p>
+<p>Research agents need provenance, independent verification, and human-readable explanation paths — or capability gains reduce trust and concentrate power. Pairs with Ethan Mollick&#x27;s discussion of whether labs will start hoarding results after hostile PR.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://fs-safe.io">fs-safe</a></h3>
+<h3><a href="https://runtimewire.com/article/typesafe-jev-system-one-ai-model-early-access">System One models: frontier intelligence that can&#x27;t chat</a></h3>
 <div class="byline">
-<span class="src">fs-safe.io</span> &middot; Sep 14
+<span class="src">RuntimeWire</span> &middot; Sep 16
 </div>
-<p class="dek">Sandbox what agents can touch on disk — the missing guardrail for agentic coding at org scale.</p>
+<p class="dek">Diogo Almeida&#x27;s Jev and RLCD — a new model class built for decisions software can use directly.</p>
 <div class="body">
-<p>fs-safe gates what coding agents can touch on the filesystem — the missing guardrail now that agents routinely run shell commands against your repos.</p>
-<p>Takeaway for the SaaS: before you widen agent access across the 12-person team, put a sandbox boundary like this in place. Filesystem safety is table stakes for agentic coding at org scale.</p>
+<p>Constrained classifiers are first-class architecture for agent routing, labeling, and fixed-action loops. Predictable schemas, calibrated confidence, and cost floors beat chat for subsystems — the decision of which camp you&#x27;re building for (assistance vs automation) belongs up front.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.vals.ai/blogs/fable-solves-cyphral-distich">How Fable solved the Cyphral Distich (Vals AI)</a></h3>
+<h3><a href="https://x.com/shaneparrish/status/2099852161576223202">Tobi Lütke on the new lazy work: &quot;slop grenades&quot;</a></h3>
 <div class="byline">
-<span class="src">Vals AI</span> &middot; Sep 13
+<span class="src">X — @shaneparrish</span> &middot; Sep 16
 </div>
-<p class="dek">How open-ended elicitation cracked Urquhart&#x27;s Cyphral Distich — and what it teaches about agent evals.</p>
+<p class="dek">The org-design problem AI created: generation got cheap, verification didn&#x27;t.</p>
 <div class="body">
-<p>Vals AI&#x27;s writeup of how Claude Fable 5.1 solved a 370-year-old cipher through open-ended elicitation — 44 minutes, 176k tokens, the book itself as the key.</p>
-<p>Takeaway: the lesson for agent builders is problem selection plus persistence. Study how the elicitation was set up — long-horizon tasks need harnesses that reward sustained, directed exploration, not just single-shot answers. Apply that to how you eval your own agents.</p>
+<p>For driving AI adoption: treat review capacity as the binding constraint, build the verification loop before scaling generation, and reward the one human sentence over the wall of text.</p>
 </div>
 </article>
 </div>
