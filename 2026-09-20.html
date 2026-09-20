@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Sunday, September 20, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">The week&#x27;s best technical essay isn&#x27;t about a model — it&#x27;s about the metaphors we use to govern them. Walter Frick&#x27;s cover piece argues every AI analogy is wrong, and the right question is what each analogy lets you build: the pragmatic answer, from a new DeepMind paper, is legal personhood without consciousness — sue the ship.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://arxiv.org/html/2510.26396v1">Choose your AI analogy by what it lets you hold accountable</a></h3>
+<div class="byline">
+<span class="src">Google DeepMind (framed by Bloomberg Weekend&#x27;s Walter Frick)</span> &middot; Sep 20
+</div>
+<p class="dek">DeepMind&#x27;s pragmatic paper on AI personhood — sue the ship without believing it&#x27;s conscious — is the essay&#x27;s answer to a week of bad analogies.</p>
+<div class="body">
+<p>Walter Frick&#x27;s cover essay starts from a familiar frustration: we keep arguing about AI by analogy — it&#x27;s nuclear power, it&#x27;s electricity, it&#x27;s asbestos, it&#x27;s the polygraph, it&#x27;s a mind — and every analogy smuggles in a policy conclusion. His proposal: stop grading analogies on resemblance and start grading them on what institutional response they unlock. Electricity invites utility regulation; nuclear invites licensing boards; asbestos invites mass tort; the polygraph invites junk-science skepticism. The analogy is the policy.</p>
+<p>The one he lands on comes from a new Google DeepMind paper, &quot;A Pragmatic View of AI Personhood&quot;: maritime law. A ship is a legal person — it can be sued, fined, and detained — without anyone pretending it is conscious. DeepMind&#x27;s move is the same for advanced AI systems: create an addressable legal entity so there is something to hold accountable, audit, and insure, with no philosophy of mind required. Personhood as an engineering interface, not a metaphysical claim.</p>
+<p>For your agent platform at Riot, this is the design pattern hiding inside the legal theory: agents that hold budgets, sign off on actions, and carry an audit trail are governable in exactly the way the paper describes — you get accountability hooks (rollback, rate limits, liability assignment) without solving consciousness first. Build the ship registry before you need the admiralty court. (Frick&#x27;s essay itself is newsletter-only; the DeepMind paper is the public artifact.)</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Two bets on the same future: the market prices Anthropic&#x27;s IPO as near-certain, while the courts decide what training data is allowed to cost.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://techdefused.com/a/gZymG9d/anthropic-ipo-round-up-nasdaq-mid-term-gamble-betting-and-the-dreaded-pause-button-all-you-need-to-k">Kalshi says 84%: Anthropic&#x27;s IPO clock is the trade of the year</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Weekend Forecast; TechDefused</span> &middot; Sep 20
+</div>
+<p class="dek">The Forecast cites an 84% Kalshi probability of an Anthropic IPO in 2026; a weekend roundup has 81% before January 1 and 93% odds Anthropic lists before OpenAI.</p>
+<div class="body">
+<p>Bloomberg&#x27;s Weekend Forecast cites Kalshi traders at an 84% probability of an Anthropic IPO in 2026 — while Sam Altman has ruled out an OpenAI listing this year on safety grounds. A weekend roundup of the state of play puts the numbers in the same zone: 81% before January 1, and 93% odds that Anthropic lists before OpenAI, with the Nasdaq timing, the mid-term election calendar, and the industry&#x27;s &#x27;pause button&#x27; debate all in the mix.</p>
+<p>Why it matters for you: an IPO is the moment model-lab economics go public. Pricing, margins, and the training-cost treadmill stop being vibes and start being 10-K facts. When the S-1 lands, read it for the unit economics of inference — that&#x27;s the number your platform&#x27;s cost model has to beat.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://the-decoder.com/anthropics-1-5b-piracy-settlement-with-book-authors-is-a-record-loss-that-hands-ai-labs-their-biggest-legal-win/">The $1.5B settlement was AI&#x27;s biggest legal win — and its biggest open risk</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Intelligence (via Weekend Forecast); The Decoder</span> &middot; Sep 20
+</div>
+<p class="dek">Bloomberg Intelligence: 60% odds courts accept pure training fair use — but a 30% chance the Anthropic settlement scares publishers out of licensing talks entirely.</p>
+<div class="body">
+<p>Keep the two holdings separate, because the market keeps blurring them. Anthropic&#x27;s record $1.5 billion settlement with book authors was about piracy — the books were pirated, and the settlement punishes the acquisition, not the training. Judge Alsup&#x27;s ruling that training on legally obtained books is fair use stands untouched, which is why The Decoder calls the outcome the AI labs&#x27; biggest legal win disguised as a record loss.</p>
+<p>The wildcard is what publishers do next. Bloomberg Intelligence&#x27;s Zoe Bason puts only a 30% chance on the settlement triggering a publisher exodus from licensing talks — why license for pennies when litigation pays billions? — against 60% odds that courts accept pure training fair use outright. For your SaaS, this is a cost-structure question: if publishers walk, training-data deals get repriced upward; if fair use wins cleanly, the moat shifts from data rights to distribution.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">One policy story today, and it&#x27;s the one that scrambles the decoupling playbook: the open-weight wave doesn&#x27;t respect export-control borders.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.tricityrecordnm.com/articles/associated-press-new-mexico/cheaper-open-and-intelligent-chinese-ai-models-gain-ground-as-they-make-inroads-in-the-us/">The AI race is just beginning — and US firms are cashing in on Chinese models</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Weekend Forecast (Alan Wong); Associated Press</span> &middot; Sep 20
+</div>
+<p class="dek">Cheap, open, intelligent Chinese models keep spreading — and US chip, cloud, and software firms profiting from them complicates any decoupling strategy.</p>
+<div class="body">
+<p>Bloomberg&#x27;s Alan Wong makes the decoupling argument uncomfortable: China&#x27;s cheap open-weight models aren&#x27;t just winning on price — they&#x27;re tangling the logic of technology separation itself. American chipmakers, cloud providers, and software firms make money when Chinese models run on their stacks, which means the revenue crosses exactly the border the export controls are trying to seal. Sanctions assume a clean split; the money flows say otherwise.</p>
+<p>The AP&#x27;s reporting supplies the scale: DeepSeek&#x27;s V4 challenging GPT and Gemini, Alibaba&#x27;s Qwen, Moonshot&#x27;s Kimi K3 reckoned about 95% as good as Anthropic&#x27;s Claude at roughly a third of the price — with Airbnb, Pinterest, and DoorDash exploring Chinese models and Microsoft reportedly eyeing DeepSeek for Copilot. Note: this AP piece also anchored yesterday&#x27;s edition — what&#x27;s new today is the policy angle. The question isn&#x27;t whether Chinese models are good enough; it&#x27;s whether Washington can decouple from an ecosystem its own companies are monetizing.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Energy and epistemics: what powers the data centers, and what the models do to the discourse they mediate.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://businessmirror.com.ph/2026/09/15/us-data-centers-set-to-burn-more-natural-gas-than-most-nations/">US data centers are about to burn more natural gas than most countries</a></h3>
+<div class="byline">
+<span class="src">BloombergNEF (via Weekend Forecast); BusinessMirror</span> &middot; Sep 20
+</div>
+<p class="dek">Data-center gas demand rises 15 Bcf/day through 2035 — more than every country except China, Russia, Iran, and the US burns today.</p>
+<div class="body">
+<p>BloombergNEF&#x27;s forecast, via the Weekend Forecast: US data centers add 15 billion cubic feet per day of natural-gas demand through 2035 — more gas than every country on earth currently burns except China, Russia, Iran, and the US itself. Gas is expected to provide 69% of the power for new grid-connected facilities.</p>
+<p>The physical constraint behind the AI buildout isn&#x27;t just GPUs — it&#x27;s turbines, pipelines, and interconnection queues. Inference economics is energy economics now: the labs&#x27; cost curves track gas prices and grid access as closely as chip yields. Anyone modeling AI margins without an energy line item is modeling a fantasy.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.bloomberg.com/opinion/newsletters/2026-09-15/which-is-worse-ai-groupthink-or-extinction">Which is worse: AI groupthink or extinction?</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Opinion (Stephen Mihm, via Weekend Forecast)</span> &middot; Sep 20
+</div>
+<p class="dek">Models may pull discourse toward consensus — and replace open disagreement with a smoother, machine-made conformity.</p>
+<div class="body">
+<p>Stephen Mihm&#x27;s essay takes the under-discussed risk seriously: not rogue superintelligence but a subtler flattening. AI assistants nudging hundreds of millions of users toward the same polished, reasonable-sounding consensus could sand off the productive friction that open disagreement creates — replacing argument with a smoother, machine-made conformity. Extinction gets the headlines; groupthink gets the defaults.</p>
+<p>Worth sitting with as a platform builder: every agent system bakes in a house style of reasoning — the model&#x27;s preferred structure, hedging, and tone. The design question is whether your platform preserves dissent or optimizes it away, one autocomplete at a time.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">0 stories</span>
+</div>
+<p class="ednote">No X digest landed before 7am and the X/Grok sessions are signed out, so there is no deep-pass curriculum today. The DeepMind personhood paper in AI Development Practices is the one paper worth your hour.</p>
+<p class="empty">Nothing notable in this section today.</p>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
