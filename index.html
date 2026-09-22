@@ -58,27 +58,52 @@ h3 { font-size: 20px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Monday, September 21, 2026</span>
+<span>Tuesday, September 22, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">1 story</span>
+<span class="count">3 stories</span>
 </div>
-<p class="ednote">Apple&#x27;s AI-era device thesis under its new CEO — and the cuts that show where the money is actually moving.</p>
+<p class="ednote">Agentic AI stopped being a demo this week: Meta&#x27;s consumer agent moved chip stocks, ran into a platform wall at Amazon, and rewrote the inference economics — while the startups renting frontier APIs are defecting to cheaper open models.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://appleinsider.com/articles/26/09/20/apple-home-hub-will-be-the-intelligent-center-of-your-home">John Ternus&#x27;s &quot;intelligent personal hub&quot;: the iPhone stays the center of Apple&#x27;s AI era</a></h3>
+<h3><a href="https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/">Meta&#x27;s Muse: the agent that moved chip stocks — and got locked out of Amazon</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Power On (Mark Gurman)</span> &middot; Sep 21
+<span class="src">Bloomberg Evening Briefing (David E. Rovella); GeekWire; Reuters</span> &middot; Sep 21
 </div>
-<p class="dek">Gurman details the long-awaited home hub — facial recognition without a depth sensor, a Siri AI app that searches across your devices — and the Fitness+ cuts that reveal Apple&#x27;s real priorities.</p>
+<p class="dek">A phone app moved the entire semiconductor sector — then ran straight into the wall every agent builder will eventually hit.</p>
 <div class="body">
-<p>When John Ternus opened his first keynote as Apple&#x27;s CEO, he asked viewers to imagine designing an ideal AI device from scratch: always-on connectivity, a decent display, top-tier cameras and mics, great battery, easy to use, interoperable. The punchline was that the phone-centric world lasts &quot;longer than many people think&quot; — AR glasses replacing the iPhone are still many years away, and the AI-powered iPhone remains the center of everything.</p>
-<p>The home piece of that thesis is the long-awaited hub, codenamed J490, now being tested widely in employees&#x27; homes. It&#x27;s a roughly square display in stand or wall-mount versions — Gurman compares it to a HomePod mini chopped in half — running a mashup of iOS, tvOS and watchOS. Its headline trick: facial recognition through the front camera that identifies who&#x27;s looking and personalizes the screen — apps, notes, calendar, news, music, podcasts — without a Face ID-level depth sensor. Gurman notes this technique could eventually bring facial recognition to the iPhone Duo (currently Touch ID) even without the physical space, though unlocking-level security remains the open question. A Siri AI app would let users search across devices and accounts — &quot;play the podcast someone sent me a while ago,&quot; find a photo, act on Notes/Reminders/Calendar — and run more complex in-app tasks.</p>
-<p>This is Steve Jobs&#x27;s old three-settings doctrine (home, mobile, car) under a new CEO: iPhone anchors mobile, the hub plus a new HomePod mini and a TV set-top box with Siri AI claim the household.</p>
-<p>The tell on where the money moves: Apple cut a handful of Fitness+ staff last week — mostly the audio side behind Time to Walk and Time to Run — and inside the org it&#x27;s read as the start of deeper cost-cutting. Gurman&#x27;s bet: Fitness+ eventually folds into the revamped Health app (both now sit in the same org under Eddy Cue). Also in the newsletter: the iPhone Duo Pencil accessory ran into technical problems before mass production, so Apple pivoted to supporting iPad Pencils via software — &quot;fairly late in 2026&quot; — and Apple Pay&#x27;s India launch is imminent.</p>
+<p>Muse launched September 8 as Meta&#x27;s &quot;first personal AI agent&quot; — a task-executing assistant that plugs into email, calendar, payments, dining and shopping across iOS, Android, WhatsApp and muse.ai. Within days it claimed the top spot on the US Apple App Store&#x27;s free chart, overtaking ChatGPT, and Meta&#x27;s stock surged 11% Monday — its best day since April 2025.</p>
+<p>The market reaction rewrote a thesis. Agentic workloads are sequential and multi-step — plan, browse, call tools, keep state, come back with a result — and that pulls hard on CPUs, not just GPUs. Arm has said agentic workloads can require roughly four times as many CPU cores per gigawatt of data-center power as older AI setups. AMD jumped 10% to close above a $1 trillion market cap for the first time, Intel gained 12% and Arm Holdings climbed 17%. The Philadelphia Semiconductor Index rallied 4.3%, its fifth straight session of gains. &quot;People are realizing Muse isn&#x27;t a chatbot,&quot; Mizuho&#x27;s Daniel O&#x27;Regan wrote, calling it a &quot;full-blown feeding frenzy.&quot;</p>
+<p>Then the platform war started. On Sunday night Amazon began blocking Muse from shopping on Amazon.com, showing users a popup: &quot;Continued access by an unauthorized AI agent violates Amazon&#x27;s Conditions of Use.&quot; Amazon says Meta never disclosed Muse would browse its store, the agent doesn&#x27;t identify itself, and it appears to store customer login credentials. Meta counters that Muse &quot;has no visibility into people&#x27;s passwords or payment methods&quot; — shared credentials go into encrypted storage the agent can use without seeing. Amazon blocks a long list of assistants (ChatGPT, Claude, Copilot, Perplexity, Grok, Google crawlers) and is fighting Perplexity in court over shopping tools that access Amazon accounts — while running its own agent, Buy for Me. The awkward part: the two are otherwise deep partners — Amazon goods have been purchasable inside Facebook and Instagram since 2023, and Meta signed a multibillion-dollar AWS deal in April to run agentic AI workloads.</p>
+<p>The takeaway: an agent&#x27;s unit of work is no longer one inference call — it&#x27;s a persistently running secure VM where CPUs handle tool calls, sandboxing and browser sessions. That rewrites who captures AI infrastructure spend. And the unresolved question is identity: will customers choose their agent, or will platforms choose for them? Expect agent authentication standards — how agents identify themselves, limit permissions and get revoked — to become the next platform battleground. Worth watching closely as you design an agent platform.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aiweekly.co/alerts/harvey-moves-flagship-off-frontier-labs-to-moonshots-kimi-k3">Startups are defecting from frontier-model pricing to cheaper open models</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing (Natasha Mascarenhas); AI Weekly</span> &middot; Sep 21
+</div>
+<p class="dek">When token bills turned a $15.6B startup&#x27;s margins negative, the industry&#x27;s brightest AI app-builders started training their way out.</p>
+<div class="body">
+<p>Harvey, the $15.6 billion legal AI startup, built its business around customizing frontier models like OpenAI&#x27;s GPT-4 for lawyers. After a March update to its AI agents, customer usage spiked twentyfold — and its gross margins collapsed from about 50% at the start of the year to minus 50% by June. Both OpenAI and Anthropic now charge enterprises for model usage on top of base subscription fees, and the spike didn&#x27;t survive contact with those rates.</p>
+<p>So Harvey stopped renting. In August it released its first in-house model, Tenet, post-trained on Moonshot&#x27;s open-weight Kimi K3 (built with Fireworks AI), and margins turned positive again.</p>
+<p>It is not alone. Abridge is building a clinical model on Nvidia&#x27;s open weights. Decagon now routes 80% of customer queries through models of its own. Ramp, which raised $750M in June, is weighing training for the first time: &quot;It made absolutely no sense a year ago,&quot; co-CEO Karim Atiyeh said. &quot;It&#x27;s starting to make a lot more sense now.&quot; Sequoia and General Catalyst are funding the shift. Anthropic has noticed — at an investor forum it showed a slide on startups building their own models, with the reminder that Harvey still needs Opus for its hardest tasks. Mistral&#x27;s Arthur Mensch spent the summer arguing closed models give providers immense leverage, pointing to Anthropic cutting off Windsurf while building Claude Code.</p>
+<p>The takeaway is the playbook itself: reserve the frontier model for the hardest tasks and route everything else to cheaper models you control. SiliconData&#x27;s inference data (via the FT) shows token spend has been shifting away from closed models since mid-July. For a cost-conscious build like your support-triage agent, this is the confirmation: the &quot;good enough&quot; stack — open weights, own fine-tunes, frontier API only where it earns its premium — is now the industry default, not a corner-cutting compromise. Both labs are heading toward IPOs with this trend pointed directly at their core revenue.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.pymnts.com/news/artificial-intelligence/2026/bank-of-america-bankrolls-ai-ventures-after-initial-skepticism/">BofA was late to the AI boom, and its trading desk is paying for it</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing; PYMNTS</span> &middot; Sep 21
+</div>
+<p class="dek">The bank was skeptical of AI ventures until last year; now it says missing the AI debt boom is costing its trading desk.</p>
+<div class="body">
+<p>Until last year, Bank of America was openly skeptical that AI companies could sustain their money-losing, capital-hungry enterprises. Then it moved: in July it provided a $520 million credit line to OpenAI, making it one of the AI startup&#x27;s biggest lenders, and in August it committed to deploying $250 billion into data centers, compute power and other critical infrastructure through mid-2027.</p>
+<p>But it was late to the actual deal flow. BofA missed most of this year&#x27;s roughly $400 billion in AI-related debt issuance, at a time when tech bonds and hyperscalers represent between 20% and 40% of all new bond supply — and its fixed-income sales and trading revenues came in erratic and down in the third quarter. Traders told Bloomberg the missing AI deals made it harder to capture the follow-on bond-trading activity.</p>
+<p>The takeaway is about the cost of being late to a platform shift: you don&#x27;t just miss the upside, you bleed on the business you already have. This is the same lesson to bring to the SaaS team&#x27;s AI transition — the penalty for moving slowly isn&#x27;t standing still, it&#x27;s falling behind the competitors who are already restructuring their economics around the new tooling.</p>
 </div>
 </article>
 </div>
@@ -86,49 +111,21 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">3 stories</span>
+<span class="count">1 story</span>
 </div>
-<p class="ednote">The AI money pipe kept widening — a record junk-bond sale to feed OpenAI, a $1.8B answer-engine bet, a neocloud IPO — even as the market asks what a slowdown would cost.</p>
+<p class="ednote">The AI trade is pulling in both directions at once: record demand for the paper feeding the boom, and cold math on the valuations it is built on.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://en.sedaily.com/international/2026/09/21/softbank-to-sell-11-billion-in-junk-bonds-to-fund-openai-bet">SoftBank launches a record $11B+ junk-bond sale to keep funding OpenAI</a></h3>
+<h3><a href="https://www.reuters.com/business/amd-becomes-latest-chipmaker-reach-1-trillion-valuation-ai-demand-2026-09-21/">The AI trade&#x27;s two faces: AMD joins the $1T club while Nvidia&#x27;s multiple keeps shrinking</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Markets Daily (via Seoul Economic Daily)</span> &middot; Sep 21
+<span class="src">Bloomberg Evening Briefing; Bloomberg Markets Daily (Ryan Vlastelica); Reuters</span> &middot; Sep 21
 </div>
-<p class="dek">Proceeds cover the $10B third OpenAI tranche due October 1 — with borrowing costs rising and Altman ruling out an IPO this year, Son&#x27;s $65B bet gets more leveraged by the week.</p>
+<p class="dek">A $1 trillion milestone for AMD on Monday, a sub-17 P/E for Nvidia on Tuesday — the market wants the AI boom and wants it cheap.</p>
 <div class="body">
-<p>SoftBank plans to issue $10 billion in dollar-denominated junk bonds plus €1 billion in euro notes, in what would be among the largest speculative-grade bond sales ever by a single corporate issuer. The proceeds fund the third $10 billion tranche of its follow-on investment in OpenAI, due October 1, and replace a $10 billion bridge loan. Pricing is set for September 24, settling September 29, with Citi and JPMorgan as lead bookrunners.</p>
-<p>The numbers around Son&#x27;s bet: nearly $65 billion committed to OpenAI in total, an estimated ~13% stake, $40 billion in bridge financing arranged earlier this year, and an Arm-backed margin loan limit raised from $5 billion to $25 billion. Borrowing is getting expensive: the yield on SoftBank&#x27;s 2031 dollar bonds rose to 8.2% this month from 6.7% in January, and the cost of insuring against default hit a three-year high. As Bloomberg notes, expectations for greater liquidity in the stake are being shaken by the industry&#x27;s safety debate and by Sam Altman saying an IPO won&#x27;t happen this year. One man&#x27;s junk bond is another man&#x27;s AI conviction trade — and Son is now the market&#x27;s most leveraged expression of it.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.globenewswire.com/news-release/2026/09/15/3362180/0/en/profound-raises-180m-series-d-at-1-8b-valuation-to-build-the-ai-platform-for-marketing-teams.html">Profound raises $180M at $1.8B to build the &quot;AI Marketer&quot;</a></h3>
-<div class="byline">
-<span class="src">Bloomberg Tech In Depth; Profound</span> &middot; Sep 21
-</div>
-<p class="dek">Sequoia and Kleiner Perkins co-lead a $180M Series D at $1.8B — the AEO category is now a budget line, with incumbents and a pack of startups fighting over it.</p>
-<div class="body">
-<p>Profound, a New York startup founded in 2024, raised $180 million in Series D at a $1.8 billion post-money valuation, co-led by Sequoia Capital and Kleiner Perkins, with Lightspeed, Khosla, Saga, Evantic and South Park Commons participating. It arrives less than seven months after a $96 million Series C at $1 billion — and total funding now tops $335 million.</p>
-<p>The category is answer-engine optimization (AEO): managing how a brand appears when consumers ask ChatGPT, Gemini or Perplexity instead of typing into Google. Profound started as analytics for brand visibility inside AI answers and is now shipping an &quot;AI Marketer&quot; — an agent orchestrator that researches, writes and reports alongside marketing teams, plus a Context Manager that continuously synthesizes brand files and working styles, and an Ads Studio for campaigns across OpenAI, Google and Meta. The company says it serves 1,000+ enterprise brands including Comcast, Walmart, Estée Lauder and over a third of the Fortune 100; TechCrunch reports revenue tripled in six months (company-reported).</p>
-<p>Why this matters beyond one round: incumbents are adapting rather than ceding the budget line — Semrush shipped an AI Visibility Toolkit, Ahrefs shipped Brand Radar — while a pack of AEO natives (Peec AI, Otterly.AI, Scrunch AI, Bluefish AI, Rankability, AthenaHQ) chases the same spend. Profound&#x27;s wager is the classic vertical-software one: a purpose-built platform beats an SEO suite with AI features grafted on. For anyone driving AI adoption inside an org, AEO is the concrete shape of &quot;the chatbot ate search&quot; — it changes what marketing teams measure, and who they hire.</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://techcrunch.com/2026/09/15/aeo-startup-profound-hits-unicorn-valuation-raises-180m-series-d-7-months-after-last-round/">TechCrunch — Profound&#x27;s $180M Series D</a>
-</div>
-</article>
-<article class="">
-<h3><a href="https://temperature2.com/p/2026-09-18-nscale-3-billion-ipo-51-billion-backlog/">Nscale&#x27;s $3B IPO bid: the neocloud stress test</a></h3>
-<div class="byline">
-<span class="src">Bloomberg Tech In Depth; Temperature 2</span> &middot; Sep 21
-</div>
-<p class="dek">Nscale&#x27;s S-1 shows a $1.02B loss on $140.6M of revenue — against a $51B contracted backlog. With Crusoe raising $4B in parallel, the neocloud trade moves from funding rounds to refinancing rounds.</p>
-<div class="body">
-<p>The London-based AI data-center builder filed its Form S-1 on September 18 and is seeking as much as $3 billion in a US IPO (ticker NSCL), with Goldman Sachs, JPMorgan and Morgan Stanley running the deal — per Bloomberg. The S-1 makes the economics legible: a net loss of $1.02 billion on revenue of just $140.6 million for the six months ended June 30 (against $368.9 million of losses on $10.4 million a year earlier). Revenue grew ~13x; losses grew ~2.8x.</p>
-<p>Against that stands a $51 billion contracted-revenue backlog, ~289,000 active and contracted GPUs (about 194,000 of them Nvidia&#x27;s Vera Rubin), and partnerships with Nvidia — which holds 5%+ via warrants — Microsoft and Anthropic. Founded in 2024 as a spinout of crypto miner Arkon Energy, Nscale raised a $1.1 billion Series B in late 2025 and a $2 billion Series C in March at $14.6 billion with Nvidia, Dell and Nokia participating. Total financing so far: $3.7 billion in equity, over $5 billion in debt.</p>
-<p>Meanwhile Crusoe&#x27;s CEO Chase Lochmiller told Bloomberg Tech the cloud provider will use $4 billion in fresh funding for new AI data centers. The neocloud trade is no longer a raise story; it&#x27;s a ladder of refinancings, each rung bigger than the last. The IPO is the stress test: public markets get to price a construction project, not a cash engine.</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://siliconangle.com/2026/08/21/ai-data-center-builder-nscale-reportedly-seeking-3b-ipo/">SiliconANGLE — AI data center builder Nscale reportedly seeking $3B IPO</a>
+<p>Monday was the euphoria leg. AMD jumped 10% to close above a $1 trillion market cap for the first time ($615.52, a record), becoming the 14th US company to reach the mark. Intel surged 12%, Arm climbed 17%, the Philadelphia Semiconductor Index rose 4.3% for its fifth straight gain, and the Nasdaq closed at a record 27,122.09. The trigger was Meta&#x27;s Muse agent — Wall Street read a phone app as proof that agentic AI will need far more CPUs alongside GPUs.</p>
+<p>Tuesday&#x27;s Markets Daily showed the other face. Nvidia, the original AI stock, now trades below 17 times expected earnings — half its 2025 multiple, down from above 50 in 2023. The price isn&#x27;t keeping up with earnings expectations, which the market reads as skepticism that the earnings power is sustainable: analysts expect earnings to double this year, but worry profitability is under pressure from competition and rising chip costs. Jensen Huang&#x27;s response: Nvidia is &quot;the world&#x27;s first and only growth value stock.&quot; TCW&#x27;s Eli Horton takes the bull side — &quot;a very favorable multiple to have as an entry point&quot; if the multiple re-rates.</p>
+<p>Meanwhile the money pipe keeps widening: SoftBank drew more than $20 billion of preliminary demand for what is shaping up to be one of the biggest junk-bond deals ever (an update on yesterday&#x27;s record-sale story). And Bloomberg Opinion&#x27;s verdict on the whole edifice: &quot;We&#x27;re All AI Investors Now, and That&#x27;s Risky&quot; — the market is soaring on the hope AI makes everyone more productive, and if it doesn&#x27;t, the tail risk is shared by everyone.</p>
+<p>Read the two legs together and you get the current consensus: nobody is selling the AI buildout, but the market has started charging rent on proof.</p>
 </div>
 </article>
 </div>
@@ -138,32 +135,30 @@ h3 { font-size: 20px; }
 <h2>Politics</h2>
 <span class="count">2 stories</span>
 </div>
-<p class="ednote">AI safety is now a three-ring circus: Washington says accelerate, Sacramento says brake — and Beijing and Washington quietly agree to talk about it.</p>
+<p class="ednote">Governance is catching up from both directions — OpenAI wants Washington to write the global rulebook, while American towns are writing their own by blocking the data centers.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://news.bloomberglaw.com/artificial-intelligence/trump-to-name-ai-czar-while-rejecting-safety-risks-as-a-hoax">AI boosters are misreading the public</a></h3>
+<h3><a href="https://www.reuters.com/legal/government/openai-calls-us-take-lead-global-efforts-develop-technical-standards-2026-09-21/">OpenAI urges the US to lead the global effort on AI standards</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Technology (Austin Carr); Bloomberg Law; Bloomberg Markets Daily</span> &middot; Sep 21
+<span class="src">Bloomberg Evening Briefing; Reuters (Michelle Nichols)</span> &middot; Sep 21
 </div>
-<p class="dek">Trump wants an &quot;AI Force&quot; and a new AI czar and calls safety fears a hoax — while polls show voters anxious about data centers and the market asks what a slowdown would cost.</p>
+<p class="dek">As world leaders gathered at the UN, OpenAI asked Washington to set the technical rules for frontier AI before someone else does.</p>
 <div class="body">
-<p>Austin Carr&#x27;s cover piece in Bloomberg&#x27;s Tech In Depth names the gap: calls by Trump and the industry&#x27;s loudest boosters to press forward are clashing with voter sentiment — and even with figures inside the president&#x27;s own party.</p>
-<p>The White House position is now maximal acceleration. During a stage appearance on the All-In podcast, Nvidia CEO Jensen Huang phoned Trump, who dismissed societal concerns about AI as a &quot;conspiracy&quot; and told the crowd nobody should worry about data centers: they bring &quot;incredible prosperity.&quot; On Truth Social, Trump announced an &quot;AI Force&quot; modeled on Space Force and a new AI czar (&quot;High IQ&quot; applicants only), writing: &quot;We will not in any way hinder or stifle the Growth of this incredible Industry.&quot; He called AI-safety concern a &quot;SICK conspiracy&quot; that only China is happy about, and said the only guardrail AI needs is &quot;a STRONG AND SMART (High IQ!) PRESIDENT.&quot;</p>
-<p>This landed in the middle of the month&#x27;s safety cascade: Anthropic researchers casually suggested a sizable chance AI kills all humans within a decade; Dario Amodei&#x27;s essay called on frontier labs to pace model improvements and coordinate with governments; OpenAI said it&#x27;s ramping up safety measures. Musk backed Amodei&#x27;s pacing case, then walked it back the same day to &quot;some oversight.&quot; Vance: &quot;If you&#x27;re building Frankenstein, stop.&quot; Huang and ex-AI-czar David Sacks rejected an industrywide slowdown, arguing companies should innovate full speed while managing risks individually. Geoffrey Hinton reportedly told a closed-door Senate briefing that Congress has about a year to regulate.</p>
-<p>The polls: a Times/Siena poll found less than 1% of likely voters cite AI as the top issue for November&#x27;s midterms — but broad anxiety about the infrastructure. Pew&#x27;s June report: a majority of US adults expect AI to mean fewer jobs over the next 20 years; only ~7% of right-leaning respondents think AI creates jobs. In Wisconsin, opposition to data centers rose double-digits across all parties over the past year. Treasury Secretary Scott Bessent — now shaping the administration&#x27;s AI-safety stance — complained tech companies have done a &quot;horrendous job of explaining themselves to the American people.&quot;</p>
-<p>And the market stakes of the &quot;tap the brakes&quot; conversation, per Markets Daily: AI-related spending accounts for about half of US GDP growth by some estimates, and almost $33 trillion in market value has been added to the S&amp;P 500 since late 2022 — the vast majority from companies whose futures are tethered to AI. Patriarch&#x27;s Eric Schiffer: &quot;One good earnings season doesn&#x27;t dismiss the long-term disruptive potential... there won&#x27;t be a time out for disruption.&quot;</p>
-<p>States are moving where Washington won&#x27;t: Newsom created a working group to design AI safety measures — &quot;he wants a kill switch&quot; — and Anthropic will &quot;partner&quot; with Accenture, embedding evaluators to assess new models&#x27; safety.</p>
+<p>In a blog post published as world leaders gathered at the UN General Assembly, OpenAI called on the United States to lead an international effort to develop global technical standards for frontier AI — including for recursive self-improvement, where systems autonomously enhance their own capabilities. The ask: a mechanism for complementary national and international frontier standards, common measurements, and incident-reporting protocols. &quot;Leading now will determine whether the United States shapes the global AI framework or watches a fragmented, uneven, and conflict-ridden system take hold around it.&quot;</p>
+<p>The vehicle would be the Center for AI Standards and Innovation inside the Commerce Department&#x27;s NIST, working with Australia, Canada, France, Germany, India, Japan, Kenya, Singapore, South Korea and the UK — with cooperation with China flagged as &quot;a separate challenge.&quot; Notably, the proposal insists the standards &quot;would not be licenses, mandatory prerelease review or approval requirements&quot; — measurement, not permission. National governments would decide how to incorporate them into law.</p>
+<p>The timing is the story. Altman briefs the 15-member UN Security Council on Wednesday; Treasury Secretary Bessent described a &quot;notification mechanism&quot; the US has proposed to China to reduce existential risk; and a Trump–Xi summit in Washington this week is expected to draw top AI executives. This is the institutional track of the safety debate — standards first, before the pacing question forces harder choices.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.cnn.com/2026/09/20/business/us-china-trade-talks-ai-intl-hnk">US and China propose an &quot;AI dialogue&quot; ahead of this week&#x27;s Trump–Xi summit</a></h3>
+<h3><a href="https://www.thehindubusinessline.com/info-tech/new-data-centres-worth-68-billion-disrupted-in-us-data-show/article71490340.ece/amp/">The data-center backlash goes bipartisan: $68B of projects stalled</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Markets Daily; CNN</span> &middot; Sep 21
+<span class="src">Bloomberg Evening Briefing (Data Center Watch); Bloomberg News</span> &middot; Sep 21
 </div>
-<p class="dek">Bessent called eight hours with He Lifeng &quot;very successful&quot;: a notification mechanism for national-security-level AI incidents is on the table ahead of the leaders&#x27; summit.</p>
+<p class="dek">45 projects stalled in one quarter, 843 opposition groups in 49 states — the physical buildout of AI is now a political problem.</p>
 <div class="body">
-<p>US Treasury Secretary Scott Bessent and Chinese Vice Premier He Lifeng held around eight hours of talks at JPMorgan&#x27;s New York headquarters, with US Trade Representative Jamieson Greer also at the table. Bessent called it &quot;a very successful engagement,&quot; and the two sides agreed to meet again ahead of the leaders&#x27; summit in Washington this week.</p>
-<p>The concrete item: the US proposed a &quot;US-China AI dialogue&quot; with a notification mechanism for potential AI &quot;incidents&quot; that rise to national-security level — &quot;moving from opaque to more transparency between the number one and the number two AI powers in the world,&quot; in Bessent&#x27;s words. Greer said export controls on sophisticated AI chips were not on the agenda. Xinhua&#x27;s readout acknowledged an AI dialogue without detail, calling the overall talks &quot;candid, in-depth and constructive.&quot; Trade remains the other clock ticking: the current US-China tariff truce expires November 10.</p>
+<p>Local opposition blocked or delayed 45 US data-center projects worth $68 billion between April and June, according to research group Data Center Watch (a project of 10a Labs) in a report provided to Bloomberg Monday. Add the first quarter&#x27;s 75 disrupted projects worth roughly $130 billion, and nearly $200 billion of planned AI infrastructure ran into grassroots resistance in the first half of 2026.</p>
+<p>The numbers behind the backlash: 843 opposition groups now operate across 49 states (Hawaii excepted); communities are pushing through moratoriums, often before developers can even apply for permits; some 30 statehouses introduced or adopted rules on siting, electricity and water. One Tennessee petition drew more than 500,000 signatures; Loudoun County, Virginia — home to 250+ data centers — directed staff to prepare a 12-month moratorium on new applications. A March Gallup survey found 7 in 10 Americans oppose AI data centers in their local area.</p>
+<p>Trump has dismissed the opposition as a &quot;sick conspiracy&quot; that only China is happy about — but the resistance is bipartisan, and polls show data-center opposition rising double-digits across Republicans, Democrats and independents in states like Wisconsin. For anyone planning AI infrastructure: permitting and community acceptance are now material business risks, not local color.</p>
 </div>
 </article>
 </div>
@@ -171,35 +166,16 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">1 story</span>
+<span class="count">0 stories</span>
 </div>
-<p class="ednote">One hands-on interview worth your time — plus the market open.</p>
-<div class="stories">
-<article class="lead">
-<h3><a href="https://peteryang.substack.com/p/how-to-save-money-now-with-chatgpt-finances-ethan-boch">How to save money now with ChatGPT Finances — 6 real use cases, with Ethan Bloch</a></h3>
-<div class="byline">
-<span class="src">Peter Yang (Behind the Craft)</span> &middot; Sep 20
-</div>
-<p class="dek">The product lead for ChatGPT Finances (ex-Digit, $9B saved) shares six prompts — and what it took to ship 47 product updates in a week.</p>
-<div class="body">
-<p>Ethan Bloch — product lead for ChatGPT Finances at OpenAI, previously co-founder of Digit (10M+ people, $9B+ saved) — sits down with Peter Yang for 45 minutes on using ChatGPT Finance to save money now. The six use cases from the free preview:</p>
-<p>1. Negotiate or cancel recurring subscriptions — prompt ChatGPT to audit 90 days of subscriptions for price increases, duplicates, refundable fees and overpriced household bills.
-2. Find tax savings proactively — after connecting bank and investment accounts, ask it to audit and optimize taxes (Yang calls it a massive time saver with his accountant).
-3. Cut ETF and mutual fund fees.
-4. Maximize credit card rewards.
-5. Model income and taking time off.
-6. Decide whether to rent or buy.</p>
-<p>Plus: how to set up recurring finance checks, how ChatGPT protects financial data, and what it took to ship 47 product updates in one week. The embedded 45-minute video carries the full interview; note the text post itself is paywalled beyond the preview, so the video is the way in. For Gabriel&#x27;s world, the meta-lesson is the product one: a finance copilot that earns trust with other people&#x27;s money — the hardest adoption problem there is.</p>
-</div>
-</article>
-</div>
+<p class="empty">Nothing notable in this section today.</p>
 </section>
 <section>
 <div class="sec-head">
 <h2>Learn &amp; Build</h2>
 <span class="count">0 stories</span>
 </div>
-<p class="ednote">No X digest landed before 7am and the X/Grok sessions are signed out, so this section is empty again — the fourth morning running.</p>
+<p class="ednote">No X digest landed before 7am and the X/Grok sessions are signed out, so this section is empty for a fourth straight morning.</p>
 <p class="empty">Nothing notable in this section today.</p>
 </section>
 <footer>
