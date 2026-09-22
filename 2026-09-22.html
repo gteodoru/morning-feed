@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Tuesday, September 22, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Agentic AI stopped being a demo this week: Meta&#x27;s consumer agent moved chip stocks, ran into a platform wall at Amazon, and rewrote the inference economics — while the startups renting frontier APIs are defecting to cheaper open models.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/">Meta&#x27;s Muse: the agent that moved chip stocks — and got locked out of Amazon</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing (David E. Rovella); GeekWire; Reuters</span> &middot; Sep 21
+</div>
+<p class="dek">A phone app moved the entire semiconductor sector — then ran straight into the wall every agent builder will eventually hit.</p>
+<div class="body">
+<p>Muse launched September 8 as Meta&#x27;s &quot;first personal AI agent&quot; — a task-executing assistant that plugs into email, calendar, payments, dining and shopping across iOS, Android, WhatsApp and muse.ai. Within days it claimed the top spot on the US Apple App Store&#x27;s free chart, overtaking ChatGPT, and Meta&#x27;s stock surged 11% Monday — its best day since April 2025.</p>
+<p>The market reaction rewrote a thesis. Agentic workloads are sequential and multi-step — plan, browse, call tools, keep state, come back with a result — and that pulls hard on CPUs, not just GPUs. Arm has said agentic workloads can require roughly four times as many CPU cores per gigawatt of data-center power as older AI setups. AMD jumped 10% to close above a $1 trillion market cap for the first time, Intel gained 12% and Arm Holdings climbed 17%. The Philadelphia Semiconductor Index rallied 4.3%, its fifth straight session of gains. &quot;People are realizing Muse isn&#x27;t a chatbot,&quot; Mizuho&#x27;s Daniel O&#x27;Regan wrote, calling it a &quot;full-blown feeding frenzy.&quot;</p>
+<p>Then the platform war started. On Sunday night Amazon began blocking Muse from shopping on Amazon.com, showing users a popup: &quot;Continued access by an unauthorized AI agent violates Amazon&#x27;s Conditions of Use.&quot; Amazon says Meta never disclosed Muse would browse its store, the agent doesn&#x27;t identify itself, and it appears to store customer login credentials. Meta counters that Muse &quot;has no visibility into people&#x27;s passwords or payment methods&quot; — shared credentials go into encrypted storage the agent can use without seeing. Amazon blocks a long list of assistants (ChatGPT, Claude, Copilot, Perplexity, Grok, Google crawlers) and is fighting Perplexity in court over shopping tools that access Amazon accounts — while running its own agent, Buy for Me. The awkward part: the two are otherwise deep partners — Amazon goods have been purchasable inside Facebook and Instagram since 2023, and Meta signed a multibillion-dollar AWS deal in April to run agentic AI workloads.</p>
+<p>The takeaway: an agent&#x27;s unit of work is no longer one inference call — it&#x27;s a persistently running secure VM where CPUs handle tool calls, sandboxing and browser sessions. That rewrites who captures AI infrastructure spend. And the unresolved question is identity: will customers choose their agent, or will platforms choose for them? Expect agent authentication standards — how agents identify themselves, limit permissions and get revoked — to become the next platform battleground. Worth watching closely as you design an agent platform.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aiweekly.co/alerts/harvey-moves-flagship-off-frontier-labs-to-moonshots-kimi-k3">Startups are defecting from frontier-model pricing to cheaper open models</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing (Natasha Mascarenhas); AI Weekly</span> &middot; Sep 21
+</div>
+<p class="dek">When token bills turned a $15.6B startup&#x27;s margins negative, the industry&#x27;s brightest AI app-builders started training their way out.</p>
+<div class="body">
+<p>Harvey, the $15.6 billion legal AI startup, built its business around customizing frontier models like OpenAI&#x27;s GPT-4 for lawyers. After a March update to its AI agents, customer usage spiked twentyfold — and its gross margins collapsed from about 50% at the start of the year to minus 50% by June. Both OpenAI and Anthropic now charge enterprises for model usage on top of base subscription fees, and the spike didn&#x27;t survive contact with those rates.</p>
+<p>So Harvey stopped renting. In August it released its first in-house model, Tenet, post-trained on Moonshot&#x27;s open-weight Kimi K3 (built with Fireworks AI), and margins turned positive again.</p>
+<p>It is not alone. Abridge is building a clinical model on Nvidia&#x27;s open weights. Decagon now routes 80% of customer queries through models of its own. Ramp, which raised $750M in June, is weighing training for the first time: &quot;It made absolutely no sense a year ago,&quot; co-CEO Karim Atiyeh said. &quot;It&#x27;s starting to make a lot more sense now.&quot; Sequoia and General Catalyst are funding the shift. Anthropic has noticed — at an investor forum it showed a slide on startups building their own models, with the reminder that Harvey still needs Opus for its hardest tasks. Mistral&#x27;s Arthur Mensch spent the summer arguing closed models give providers immense leverage, pointing to Anthropic cutting off Windsurf while building Claude Code.</p>
+<p>The takeaway is the playbook itself: reserve the frontier model for the hardest tasks and route everything else to cheaper models you control. SiliconData&#x27;s inference data (via the FT) shows token spend has been shifting away from closed models since mid-July. For a cost-conscious build like your support-triage agent, this is the confirmation: the &quot;good enough&quot; stack — open weights, own fine-tunes, frontier API only where it earns its premium — is now the industry default, not a corner-cutting compromise. Both labs are heading toward IPOs with this trend pointed directly at their core revenue.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.pymnts.com/news/artificial-intelligence/2026/bank-of-america-bankrolls-ai-ventures-after-initial-skepticism/">BofA was late to the AI boom, and its trading desk is paying for it</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing; PYMNTS</span> &middot; Sep 21
+</div>
+<p class="dek">The bank was skeptical of AI ventures until last year; now it says missing the AI debt boom is costing its trading desk.</p>
+<div class="body">
+<p>Until last year, Bank of America was openly skeptical that AI companies could sustain their money-losing, capital-hungry enterprises. Then it moved: in July it provided a $520 million credit line to OpenAI, making it one of the AI startup&#x27;s biggest lenders, and in August it committed to deploying $250 billion into data centers, compute power and other critical infrastructure through mid-2027.</p>
+<p>But it was late to the actual deal flow. BofA missed most of this year&#x27;s roughly $400 billion in AI-related debt issuance, at a time when tech bonds and hyperscalers represent between 20% and 40% of all new bond supply — and its fixed-income sales and trading revenues came in erratic and down in the third quarter. Traders told Bloomberg the missing AI deals made it harder to capture the follow-on bond-trading activity.</p>
+<p>The takeaway is about the cost of being late to a platform shift: you don&#x27;t just miss the upside, you bleed on the business you already have. This is the same lesson to bring to the SaaS team&#x27;s AI transition — the penalty for moving slowly isn&#x27;t standing still, it&#x27;s falling behind the competitors who are already restructuring their economics around the new tooling.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">The AI trade is pulling in both directions at once: record demand for the paper feeding the boom, and cold math on the valuations it is built on.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/business/amd-becomes-latest-chipmaker-reach-1-trillion-valuation-ai-demand-2026-09-21/">The AI trade&#x27;s two faces: AMD joins the $1T club while Nvidia&#x27;s multiple keeps shrinking</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing; Bloomberg Markets Daily (Ryan Vlastelica); Reuters</span> &middot; Sep 21
+</div>
+<p class="dek">A $1 trillion milestone for AMD on Monday, a sub-17 P/E for Nvidia on Tuesday — the market wants the AI boom and wants it cheap.</p>
+<div class="body">
+<p>Monday was the euphoria leg. AMD jumped 10% to close above a $1 trillion market cap for the first time ($615.52, a record), becoming the 14th US company to reach the mark. Intel surged 12%, Arm climbed 17%, the Philadelphia Semiconductor Index rose 4.3% for its fifth straight gain, and the Nasdaq closed at a record 27,122.09. The trigger was Meta&#x27;s Muse agent — Wall Street read a phone app as proof that agentic AI will need far more CPUs alongside GPUs.</p>
+<p>Tuesday&#x27;s Markets Daily showed the other face. Nvidia, the original AI stock, now trades below 17 times expected earnings — half its 2025 multiple, down from above 50 in 2023. The price isn&#x27;t keeping up with earnings expectations, which the market reads as skepticism that the earnings power is sustainable: analysts expect earnings to double this year, but worry profitability is under pressure from competition and rising chip costs. Jensen Huang&#x27;s response: Nvidia is &quot;the world&#x27;s first and only growth value stock.&quot; TCW&#x27;s Eli Horton takes the bull side — &quot;a very favorable multiple to have as an entry point&quot; if the multiple re-rates.</p>
+<p>Meanwhile the money pipe keeps widening: SoftBank drew more than $20 billion of preliminary demand for what is shaping up to be one of the biggest junk-bond deals ever (an update on yesterday&#x27;s record-sale story). And Bloomberg Opinion&#x27;s verdict on the whole edifice: &quot;We&#x27;re All AI Investors Now, and That&#x27;s Risky&quot; — the market is soaring on the hope AI makes everyone more productive, and if it doesn&#x27;t, the tail risk is shared by everyone.</p>
+<p>Read the two legs together and you get the current consensus: nobody is selling the AI buildout, but the market has started charging rent on proof.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Governance is catching up from both directions — OpenAI wants Washington to write the global rulebook, while American towns are writing their own by blocking the data centers.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/legal/government/openai-calls-us-take-lead-global-efforts-develop-technical-standards-2026-09-21/">OpenAI urges the US to lead the global effort on AI standards</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing; Reuters (Michelle Nichols)</span> &middot; Sep 21
+</div>
+<p class="dek">As world leaders gathered at the UN, OpenAI asked Washington to set the technical rules for frontier AI before someone else does.</p>
+<div class="body">
+<p>In a blog post published as world leaders gathered at the UN General Assembly, OpenAI called on the United States to lead an international effort to develop global technical standards for frontier AI — including for recursive self-improvement, where systems autonomously enhance their own capabilities. The ask: a mechanism for complementary national and international frontier standards, common measurements, and incident-reporting protocols. &quot;Leading now will determine whether the United States shapes the global AI framework or watches a fragmented, uneven, and conflict-ridden system take hold around it.&quot;</p>
+<p>The vehicle would be the Center for AI Standards and Innovation inside the Commerce Department&#x27;s NIST, working with Australia, Canada, France, Germany, India, Japan, Kenya, Singapore, South Korea and the UK — with cooperation with China flagged as &quot;a separate challenge.&quot; Notably, the proposal insists the standards &quot;would not be licenses, mandatory prerelease review or approval requirements&quot; — measurement, not permission. National governments would decide how to incorporate them into law.</p>
+<p>The timing is the story. Altman briefs the 15-member UN Security Council on Wednesday; Treasury Secretary Bessent described a &quot;notification mechanism&quot; the US has proposed to China to reduce existential risk; and a Trump–Xi summit in Washington this week is expected to draw top AI executives. This is the institutional track of the safety debate — standards first, before the pacing question forces harder choices.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.thehindubusinessline.com/info-tech/new-data-centres-worth-68-billion-disrupted-in-us-data-show/article71490340.ece/amp/">The data-center backlash goes bipartisan: $68B of projects stalled</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing (Data Center Watch); Bloomberg News</span> &middot; Sep 21
+</div>
+<p class="dek">45 projects stalled in one quarter, 843 opposition groups in 49 states — the physical buildout of AI is now a political problem.</p>
+<div class="body">
+<p>Local opposition blocked or delayed 45 US data-center projects worth $68 billion between April and June, according to research group Data Center Watch (a project of 10a Labs) in a report provided to Bloomberg Monday. Add the first quarter&#x27;s 75 disrupted projects worth roughly $130 billion, and nearly $200 billion of planned AI infrastructure ran into grassroots resistance in the first half of 2026.</p>
+<p>The numbers behind the backlash: 843 opposition groups now operate across 49 states (Hawaii excepted); communities are pushing through moratoriums, often before developers can even apply for permits; some 30 statehouses introduced or adopted rules on siting, electricity and water. One Tennessee petition drew more than 500,000 signatures; Loudoun County, Virginia — home to 250+ data centers — directed staff to prepare a 12-month moratorium on new applications. A March Gallup survey found 7 in 10 Americans oppose AI data centers in their local area.</p>
+<p>Trump has dismissed the opposition as a &quot;sick conspiracy&quot; that only China is happy about — but the resistance is bipartisan, and polls show data-center opposition rising double-digits across Republicans, Democrats and independents in states like Wisconsin. For anyone planning AI infrastructure: permitting and community acceptance are now material business risks, not local color.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">0 stories</span>
+</div>
+<p class="empty">Nothing notable in this section today.</p>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">0 stories</span>
+</div>
+<p class="ednote">No X digest landed before 7am and the X/Grok sessions are signed out, so this section is empty for a fourth straight morning.</p>
+<p class="empty">Nothing notable in this section today.</p>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
