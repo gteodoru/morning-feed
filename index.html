@@ -58,52 +58,30 @@ h3 { font-size: 20px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Tuesday, September 22, 2026</span>
+<span>Wednesday, September 23, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">3 stories</span>
+<span class="count">1 story</span>
 </div>
-<p class="ednote">Agentic AI stopped being a demo this week: Meta&#x27;s consumer agent moved chip stocks, ran into a platform wall at Amazon, and rewrote the inference economics — while the startups renting frontier APIs are defecting to cheaper open models.</p>
+<p class="ednote">Agent engineering is growing up: this week&#x27;s signal is evals-first — measure your own agent on your own tasks before trusting public benchmarks or model size.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/">Meta&#x27;s Muse: the agent that moved chip stocks — and got locked out of Amazon</a></h3>
+<h3><a href="https://www.decodingai.com/p/evaluate-ai-agents-benchmarks-regression-tests">I Built a Benchmark for My Agent. The Smaller Model Won.</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Evening Briefing (David E. Rovella); GeekWire; Reuters</span> &middot; Sep 21
+<span class="src">Decoding AI Magazine</span> &middot; Sep 22
 </div>
-<p class="dek">A phone app moved the entire semiconductor sector — then ran straight into the wall every agent builder will eventually hit.</p>
+<p class="dek">A 35B model scored 95% against a 120B model&#x27;s 53% — on a custom eval harness. Public benchmarks and model size mean nothing until you test on your own tasks.</p>
 <div class="body">
-<p>Muse launched September 8 as Meta&#x27;s &quot;first personal AI agent&quot; — a task-executing assistant that plugs into email, calendar, payments, dining and shopping across iOS, Android, WhatsApp and muse.ai. Within days it claimed the top spot on the US Apple App Store&#x27;s free chart, overtaking ChatGPT, and Meta&#x27;s stock surged 11% Monday — its best day since April 2025.</p>
-<p>The market reaction rewrote a thesis. Agentic workloads are sequential and multi-step — plan, browse, call tools, keep state, come back with a result — and that pulls hard on CPUs, not just GPUs. Arm has said agentic workloads can require roughly four times as many CPU cores per gigawatt of data-center power as older AI setups. AMD jumped 10% to close above a $1 trillion market cap for the first time, Intel gained 12% and Arm Holdings climbed 17%. The Philadelphia Semiconductor Index rallied 4.3%, its fifth straight session of gains. &quot;People are realizing Muse isn&#x27;t a chatbot,&quot; Mizuho&#x27;s Daniel O&#x27;Regan wrote, calling it a &quot;full-blown feeding frenzy.&quot;</p>
-<p>Then the platform war started. On Sunday night Amazon began blocking Muse from shopping on Amazon.com, showing users a popup: &quot;Continued access by an unauthorized AI agent violates Amazon&#x27;s Conditions of Use.&quot; Amazon says Meta never disclosed Muse would browse its store, the agent doesn&#x27;t identify itself, and it appears to store customer login credentials. Meta counters that Muse &quot;has no visibility into people&#x27;s passwords or payment methods&quot; — shared credentials go into encrypted storage the agent can use without seeing. Amazon blocks a long list of assistants (ChatGPT, Claude, Copilot, Perplexity, Grok, Google crawlers) and is fighting Perplexity in court over shopping tools that access Amazon accounts — while running its own agent, Buy for Me. The awkward part: the two are otherwise deep partners — Amazon goods have been purchasable inside Facebook and Instagram since 2023, and Meta signed a multibillion-dollar AWS deal in April to run agentic AI workloads.</p>
-<p>The takeaway: an agent&#x27;s unit of work is no longer one inference call — it&#x27;s a persistently running secure VM where CPUs handle tool calls, sandboxing and browser sessions. That rewrites who captures AI infrastructure spend. And the unresolved question is identity: will customers choose their agent, or will platforms choose for them? Expect agent authentication standards — how agents identify themselves, limit permissions and get revoked — to become the next platform battleground. Worth watching closely as you design an agent platform.</p>
+<p>Every AI application that wraps an agent is a harness: the loop itself is tiny (model call → tool call → append result → repeat), and everything around it — tools, context, retries, subagents — is the harness that makes the agent good. LangChain&#x27;s Terminal-Bench experiment proved it: changing only the harness, with the same model, moved a coding agent from roughly 30th place into the top 5.</p>
+<p>Iusztin&#x27;s three-question framework is worth stealing for any agent team. Benchmarks answer &quot;does it work?&quot; and run during feature development — the metrics you optimize each prompt tweak against. Regression tests answer &quot;do previous features still work?&quot; after changes (e.g. swapping models can pass benchmarks while failing the regression that checks whether the read tool fires when skills point to subfiles). Online evals answer &quot;does it work as expected?&quot; on live production traffic.</p>
+<p>On design, his rules are clean: run the agent as a separate process through the narrowest interface the product exposes (a CLI, an HTTP call), so eval and agent harnesses stay decoupled; have the agent hand back a structured report (summary.json) instead of grading raw traces; and follow Harbor&#x27;s rule — &quot;the agent never grades itself and never provisions itself.&quot; He uses Opik (open-source) to version datasets, run jobs, and compare experiments with full lineage.</p>
+<p>Takeaway for a platform team: custom evals are the cheapest way to pick models. A 35B model beating a 120B model by 42 points on your own tasks means the model bill is negotiable — build the eval harness first, then let it choose.</p>
 </div>
-</article>
-<article class="">
-<h3><a href="https://aiweekly.co/alerts/harvey-moves-flagship-off-frontier-labs-to-moonshots-kimi-k3">Startups are defecting from frontier-model pricing to cheaper open models</a></h3>
-<div class="byline">
-<span class="src">Bloomberg Evening Briefing (Natasha Mascarenhas); AI Weekly</span> &middot; Sep 21
-</div>
-<p class="dek">When token bills turned a $15.6B startup&#x27;s margins negative, the industry&#x27;s brightest AI app-builders started training their way out.</p>
-<div class="body">
-<p>Harvey, the $15.6 billion legal AI startup, built its business around customizing frontier models like OpenAI&#x27;s GPT-4 for lawyers. After a March update to its AI agents, customer usage spiked twentyfold — and its gross margins collapsed from about 50% at the start of the year to minus 50% by June. Both OpenAI and Anthropic now charge enterprises for model usage on top of base subscription fees, and the spike didn&#x27;t survive contact with those rates.</p>
-<p>So Harvey stopped renting. In August it released its first in-house model, Tenet, post-trained on Moonshot&#x27;s open-weight Kimi K3 (built with Fireworks AI), and margins turned positive again.</p>
-<p>It is not alone. Abridge is building a clinical model on Nvidia&#x27;s open weights. Decagon now routes 80% of customer queries through models of its own. Ramp, which raised $750M in June, is weighing training for the first time: &quot;It made absolutely no sense a year ago,&quot; co-CEO Karim Atiyeh said. &quot;It&#x27;s starting to make a lot more sense now.&quot; Sequoia and General Catalyst are funding the shift. Anthropic has noticed — at an investor forum it showed a slide on startups building their own models, with the reminder that Harvey still needs Opus for its hardest tasks. Mistral&#x27;s Arthur Mensch spent the summer arguing closed models give providers immense leverage, pointing to Anthropic cutting off Windsurf while building Claude Code.</p>
-<p>The takeaway is the playbook itself: reserve the frontier model for the hardest tasks and route everything else to cheaper models you control. SiliconData&#x27;s inference data (via the FT) shows token spend has been shifting away from closed models since mid-July. For a cost-conscious build like your support-triage agent, this is the confirmation: the &quot;good enough&quot; stack — open weights, own fine-tunes, frontier API only where it earns its premium — is now the industry default, not a corner-cutting compromise. Both labs are heading toward IPOs with this trend pointed directly at their core revenue.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.pymnts.com/news/artificial-intelligence/2026/bank-of-america-bankrolls-ai-ventures-after-initial-skepticism/">BofA was late to the AI boom, and its trading desk is paying for it</a></h3>
-<div class="byline">
-<span class="src">Bloomberg Evening Briefing; PYMNTS</span> &middot; Sep 21
-</div>
-<p class="dek">The bank was skeptical of AI ventures until last year; now it says missing the AI debt boom is costing its trading desk.</p>
-<div class="body">
-<p>Until last year, Bank of America was openly skeptical that AI companies could sustain their money-losing, capital-hungry enterprises. Then it moved: in July it provided a $520 million credit line to OpenAI, making it one of the AI startup&#x27;s biggest lenders, and in August it committed to deploying $250 billion into data centers, compute power and other critical infrastructure through mid-2027.</p>
-<p>But it was late to the actual deal flow. BofA missed most of this year&#x27;s roughly $400 billion in AI-related debt issuance, at a time when tech bonds and hyperscalers represent between 20% and 40% of all new bond supply — and its fixed-income sales and trading revenues came in erratic and down in the third quarter. Traders told Bloomberg the missing AI deals made it harder to capture the follow-on bond-trading activity.</p>
-<p>The takeaway is about the cost of being late to a platform shift: you don&#x27;t just miss the upside, you bleed on the business you already have. This is the same lesson to bring to the SaaS team&#x27;s AI transition — the penalty for moving slowly isn&#x27;t standing still, it&#x27;s falling behind the competitors who are already restructuring their economics around the new tooling.</p>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://substack.com/@pauliusztin/note/c-337151281">Substack note — Paul Iusztin</a>
 </div>
 </article>
 </div>
@@ -111,21 +89,45 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">1 story</span>
+<span class="count">3 stories</span>
 </div>
-<p class="ednote">The AI trade is pulling in both directions at once: record demand for the paper feeding the boom, and cold math on the valuations it is built on.</p>
+<p class="ednote">Consumer AI agents are moving markets now — and the trust layer underneath them is still being built.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.reuters.com/business/amd-becomes-latest-chipmaker-reach-1-trillion-valuation-ai-demand-2026-09-21/">The AI trade&#x27;s two faces: AMD joins the $1T club while Nvidia&#x27;s multiple keeps shrinking</a></h3>
+<h3><a href="https://en.sedaily.com/international/2026/09/22/metas-ai-assistant-muse-lifts-magnificent-seven-etf-to">The AI agent trade: Muse moves the market, but the bots still need smartening up</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Evening Briefing; Bloomberg Markets Daily (Ryan Vlastelica); Reuters</span> &middot; Sep 21
+<span class="src">Bloomberg Markets Daily; Bloomberg Technology; Reuters</span> &middot; Sep 23
 </div>
-<p class="dek">A $1 trillion milestone for AMD on Monday, a sub-17 P/E for Nvidia on Tuesday — the market wants the AI boom and wants it cheap.</p>
+<p class="dek">Muse topped the App Store, the Nasdaq hit its first record since June — while Goldman warned agents will squeeze industries built on recurring bills, and marketers warned the bots still hallucinate 20% of the time.</p>
 <div class="body">
-<p>Monday was the euphoria leg. AMD jumped 10% to close above a $1 trillion market cap for the first time ($615.52, a record), becoming the 14th US company to reach the mark. Intel surged 12%, Arm climbed 17%, the Philadelphia Semiconductor Index rose 4.3% for its fifth straight gain, and the Nasdaq closed at a record 27,122.09. The trigger was Meta&#x27;s Muse agent — Wall Street read a phone app as proof that agentic AI will need far more CPUs alongside GPUs.</p>
-<p>Tuesday&#x27;s Markets Daily showed the other face. Nvidia, the original AI stock, now trades below 17 times expected earnings — half its 2025 multiple, down from above 50 in 2023. The price isn&#x27;t keeping up with earnings expectations, which the market reads as skepticism that the earnings power is sustainable: analysts expect earnings to double this year, but worry profitability is under pressure from competition and rising chip costs. Jensen Huang&#x27;s response: Nvidia is &quot;the world&#x27;s first and only growth value stock.&quot; TCW&#x27;s Eli Horton takes the bull side — &quot;a very favorable multiple to have as an entry point&quot; if the multiple re-rates.</p>
-<p>Meanwhile the money pipe keeps widening: SoftBank drew more than $20 billion of preliminary demand for what is shaping up to be one of the biggest junk-bond deals ever (an update on yesterday&#x27;s record-sale story). And Bloomberg Opinion&#x27;s verdict on the whole edifice: &quot;We&#x27;re All AI Investors Now, and That&#x27;s Risky&quot; — the market is soaring on the hope AI makes everyone more productive, and if it doesn&#x27;t, the tail risk is shared by everyone.</p>
-<p>Read the two legs together and you get the current consensus: nobody is selling the AI buildout, but the market has started charging rent on proof.</p>
+<p>Meta&#x27;s Muse — launched September 8 as a task-executing assistant for booking, email and shopping — spent Monday as the most-downloaded free iPhone app in the US for the third straight day, ahead of ChatGPT, with 730,000 downloads in five days (Sensor Tower). Meta jumped 11% Monday, its best day in about a year, adding roughly $192 billion in market value; the Magnificent Seven ETF set a record; the Nasdaq closed at a record high for the first time since June. The Nasdaq 100 is up 22% this year on five straight sessions of gains.</p>
+<p>Goldman traders offered the sharper read: AI agents are a fix for consumer inertia — the tendency to keep buying out of habit. Industries built on recurring bills, negotiable pricing and add-ons could come under pressure as agents comparison-shop, rebook travel and argue with customer service on your behalf. Yesterday&#x27;s tape agreed: JPMorgan and Wells Fargo fell more than 3%, Allstate and Charles Schwab finished around 6% lower, Booking Holdings slipped 2.6% and Planet Fitness sank 9.5%.</p>
+<p>The counterweight, from Bloomberg Technology: at an ad-industry confab in New York, marketers warned the bots still get it wrong. AI tools show error rates as high as 20% when combing the web and surfacing information for shoppers — outdated battery specs, wrong ingredients — and &quot;when the response is wrong, consumers don&#x27;t blame AI. They blame the brand,&quot; said Bluefish AI&#x27;s Alex Sherman, whose firm monitors millions of AI queries daily for brands including Adidas and American Express. WPP&#x27;s Molly Schonthal, who runs agentic commerce there, put it bluntly: &quot;There&#x27;s a famine of content from brands&quot; — feed agents good product data or they&#x27;ll learn from obscure sites and random Reddit threads.</p>
+<p>Worth knowing the skepticism runs deep: in WSJ&#x27;s reader mail this week, one respondent wrote, &quot;I cannot think of a single thing I&#x27;d let an AI agent purchase for me. Between hallucinations and companies trying to maximize profits at all costs, how could one trust an electronic entity to work only and solely for one&#x27;s best interest?&quot; For anyone shipping agents: accuracy is the product, and verified first-party data is the moat.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.fa-mag.com/news/nvidia-s-stock-is-flashing-a-warning-sign-as-valuation-falls-88557.html">Nvidia&#x27;s stock is flashing a warning sign as valuation falls</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Sep 22
+</div>
+<p class="dek">Under 17x forward earnings — the cheapest in over a decade — as margins compress and customers build their own chips. The market is pricing a capex slowdown nobody can see yet.</p>
+<div class="body">
+<p>At under 17 times expected earnings over the next 12 months, Nvidia&#x27;s shares are trading near the cheapest level in more than a decade — half the multiple the stock commanded in 2025, and down from more than 25 times earnings estimates as recently as May. &quot;The stock has de-rated pretty significantly, which suggests a healthy dose of skepticism that the company&#x27;s current earnings power is sustainable,&quot; said TCW&#x27;s Eli Horton.</p>
+<p>The core worry is profitability: gross margin was 75% in Q2 but is projected to shrink below 72% in Q4 as memory costs rise, and big customers are building their own silicon (Meta&#x27;s home-grown chips, Alphabet&#x27;s TPUs). &quot;Companies want to reduce their reliance on Nvidia, so it is very conceivable its market position will weaken over time,&quot; said TradeStation&#x27;s David Russell. Nvidia is now the fifth-worst performer in the Philadelphia Semiconductor Index, which is up nearly 76% this year while Intel and AMD each gained more than 180%.</p>
+<p>And yet: revenue and net income are projected to jump 90% and 99% in fiscal 2027, accelerating from 65% growth last year, with fiscal 2028 sales guided up 70% — well above the 45% consensus. Jensen Huang&#x27;s retort: Nvidia is &quot;the world&#x27;s first and only growth value stock.&quot; Horton&#x27;s bottom line — the multiple &quot;really seems predicated on a slowing in AI capex, which would have to come either on hyperscalers pulling back, or a regulatory framework that delays or shuts things down&quot; — and neither looks likely, which is what makes the entry point interesting. The same de-rating story led Bloomberg&#x27;s Evening Briefing as its top markets item.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/founders-must-focus-on-metrics-that">Founders must focus on metrics that really matter</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Sep 22
+</div>
+<p class="dek">Shaan Puri and Eric Ries on why vanity metrics waste founders&#x27; time — and why teams that never define what matters can&#x27;t make tactical decisions.</p>
+<div class="body">
+<p>Charts that go up and to the right are satisfying, but the question is whether the numbers move the actual needle. On a recent My First Million episode, Shaan Puri warned founders that posting more content and growing follower counts can waste precious time for a new business: the goal isn&#x27;t to maximize audience, it&#x27;s to find the small group who care enough to take concrete action — buying the product, recommending it.</p>
+<p>The Ferrari example lands the point: Ferrari sells about 13,000 cars a year against GM&#x27;s 2.5 million, yet carries a higher market cap. Not everyone will want a $300,000 sports car — so seek out the people who do and focus on them relentlessly.</p>
+<p>And on TWiST E646, &quot;Lean Startup&quot; creator Eric Ries noted the deeper failure mode: many startups get stuck unable to make tactical decisions because they never defined the specific metrics that matter to their business. Vanity metrics don&#x27;t just mislead — they paralyze. For a founder (or a platform lead), the discipline is the same: pick the three numbers that define success and instrument everything else around them.</p>
 </div>
 </article>
 </div>
@@ -135,30 +137,30 @@ h3 { font-size: 20px; }
 <h2>Politics</h2>
 <span class="count">2 stories</span>
 </div>
-<p class="ednote">Governance is catching up from both directions — OpenAI wants Washington to write the global rulebook, while American towns are writing their own by blocking the data centers.</p>
+<p class="ednote">Trump&#x27;s UN speech set the tone for the week: maximum pressure on Iran abroad, and a fraud crackdown on health coverage at home. Also in the mix: a GOP senator calling for a Don Jr. probe, a Cornell report on the university crisis, and Chinese CEOs likely missing the Trump-Xi meeting.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.reuters.com/legal/government/openai-calls-us-take-lead-global-efforts-develop-technical-standards-2026-09-21/">OpenAI urges the US to lead the global effort on AI standards</a></h3>
+<h3><a href="https://www.lapost.com/content/trump-set-for-whirlwind-un-meetings-with-wars-in-iran-ukraine-on-agenda">Trump threatens to &#x27;annihilate&#x27; Iran in U.N. speech</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Evening Briefing; Reuters (Michelle Nichols)</span> &middot; Sep 21
+<span class="src">WSJ What&#x27;s News; Bloomberg Evening Briefing; Reuters</span> &middot; Sep 22
 </div>
-<p class="dek">As world leaders gathered at the UN, OpenAI asked Washington to set the technical rules for frontier AI before someone else does.</p>
+<p class="dek">A 37-minute address gave Tehran a binary choice — a deal or annihilation — while his envoys were secretly meeting Iranian mediators the same day.</p>
 <div class="body">
-<p>In a blog post published as world leaders gathered at the UN General Assembly, OpenAI called on the United States to lead an international effort to develop global technical standards for frontier AI — including for recursive self-improvement, where systems autonomously enhance their own capabilities. The ask: a mechanism for complementary national and international frontier standards, common measurements, and incident-reporting protocols. &quot;Leading now will determine whether the United States shapes the global AI framework or watches a fragmented, uneven, and conflict-ridden system take hold around it.&quot;</p>
-<p>The vehicle would be the Center for AI Standards and Innovation inside the Commerce Department&#x27;s NIST, working with Australia, Canada, France, Germany, India, Japan, Kenya, Singapore, South Korea and the UK — with cooperation with China flagged as &quot;a separate challenge.&quot; Notably, the proposal insists the standards &quot;would not be licenses, mandatory prerelease review or approval requirements&quot; — measurement, not permission. National governments would decide how to incorporate them into law.</p>
-<p>The timing is the story. Altman briefs the 15-member UN Security Council on Wednesday; Treasury Secretary Bessent described a &quot;notification mechanism&quot; the US has proposed to China to reduce existential risk; and a Trump–Xi summit in Washington this week is expected to draw top AI executives. This is the institutional track of the safety debate — standards first, before the pacing question forces harder choices.</p>
+<p>In a 37-minute address to the 81st UN General Assembly, Trump laid out a foreign-policy vision built on US military and economic power — and gave Tehran a binary choice. &quot;I have a big decision to make. Will a deal be made with Iran that lets them rebuild and create a far greater country than it ever was before? Or do I annihilate the Islamic Republic and do it quickly, never giving them a chance to kill and destroy people and countries again?&quot;</p>
+<p>He predicted a peace deal would follow the November 3 US midterms (&quot;I believe we&#x27;ll make a deal right after the election, because it doesn&#x27;t make sense for them not to&quot;), claimed Operation Midnight Hammer had &quot;obliterated&quot; Iran&#x27;s nuclear program, and called on other nations to economically isolate Iran. He also predicted Cuba&#x27;s government &quot;will fall&quot; — prompting the Cuban delegation to walk out — touted the &quot;spoils&quot; of oil from the Venezuela operation (&quot;to the victor belong the spoils&quot;), and attacked international organizations for infringing on the US.</p>
+<p>The twist: as he threatened annihilation, his special envoys Steve Witkoff and Jared Kushner were in a secretly arranged three-hour meeting with Iranian mediators on the UN sidelines — the first known high-level contact since a cease-fire and memorandum collapsed in July. &quot;It&#x27;s potential greatness or obliteration. It&#x27;s two choices,&quot; he told reporters.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.thehindubusinessline.com/info-tech/new-data-centres-worth-68-billion-disrupted-in-us-data-show/article71490340.ece/amp/">The data-center backlash goes bipartisan: $68B of projects stalled</a></h3>
+<h3><a href="https://www.reviewjournal.com/news/politics-and-government/760k-removed-from-affordable-care-act-over-fraud-claims-trump-administration-says-3889701/">Administration cuts 760,000 from Obamacare rolls in fraud crackdown</a></h3>
 <div class="byline">
-<span class="src">Bloomberg Evening Briefing (Data Center Watch); Bloomberg News</span> &middot; Sep 21
+<span class="src">Bloomberg Evening Briefing; Associated Press</span> &middot; Sep 22
 </div>
-<p class="dek">45 projects stalled in one quarter, 843 opposition groups in 49 states — the physical buildout of AI is now a political problem.</p>
+<p class="dek">CMS canceled 315,000 marketplace plans covering 760,000 people in August; brokers are being purged and new registrations frozen through February.</p>
 <div class="body">
-<p>Local opposition blocked or delayed 45 US data-center projects worth $68 billion between April and June, according to research group Data Center Watch (a project of 10a Labs) in a report provided to Bloomberg Monday. Add the first quarter&#x27;s 75 disrupted projects worth roughly $130 billion, and nearly $200 billion of planned AI infrastructure ran into grassroots resistance in the first half of 2026.</p>
-<p>The numbers behind the backlash: 843 opposition groups now operate across 49 states (Hawaii excepted); communities are pushing through moratoriums, often before developers can even apply for permits; some 30 statehouses introduced or adopted rules on siting, electricity and water. One Tennessee petition drew more than 500,000 signatures; Loudoun County, Virginia — home to 250+ data centers — directed staff to prepare a 12-month moratorium on new applications. A March Gallup survey found 7 in 10 Americans oppose AI data centers in their local area.</p>
-<p>Trump has dismissed the opposition as a &quot;sick conspiracy&quot; that only China is happy about — but the resistance is bipartisan, and polls show data-center opposition rising double-digits across Republicans, Democrats and independents in states like Wisconsin. For anyone planning AI infrastructure: permitting and community acceptance are now material business risks, not local color.</p>
+<p>Vice President JD Vance and CMS administrator Mehmet Oz announced that more than 760,000 people were cut from ACA marketplace coverage at the end of August — 315,000 plans canceled — with roughly 419,000 more facing &quot;additional verification&quot; of citizenship and income. The administration says many enrollments were unauthorized, submitted by brokers without consumers&#x27; knowledge; some of the 760,000 are &quot;phantom enrollees&quot; who don&#x27;t exist at all.</p>
+<p>The crackdown goes further: 569 brokers were flagged for &quot;statistically implausible&quot; 2026 applications, and CMS imposed an emergency freeze on new broker registrations through February 1, 2027 — right as open enrollment for 2027 coverage begins November 1. The administration claims $2.2 billion in taxpayer savings (an unverified estimate; the CBO hasn&#x27;t scored it). Health insurer shares fell on the news: Oscar Health dropped as much as 6.6%, Centene 3.9%, Molina 3.5%, Elevance 1.9%.</p>
+<p>The politics are sharp on both sides. Vance: &quot;We are actually making sure that people receiving Obamacare subsidies are actually entitled to receive them. Amazingly we weren&#x27;t doing that before.&quot; Brad Woodhouse of Protect Our Care called it &quot;a political stunt designed to throw even more people off their coverage while pretending to save taxpayers&#x27; money.&quot; Context worth knowing: improper enrollments were already a known problem — the Biden administration suspended hundreds of brokers in 2024 — and about 19.2 million Americans are actively enrolled in marketplace plans as of early 2026.</p>
 </div>
 </article>
 </div>
@@ -168,6 +170,7 @@ h3 { font-size: 20px; }
 <h2>Other</h2>
 <span class="count">0 stories</span>
 </div>
+<p class="ednote">Nothing else crossed the bar today.</p>
 <p class="empty">Nothing notable in this section today.</p>
 </section>
 <section>
@@ -175,7 +178,7 @@ h3 { font-size: 20px; }
 <h2>Learn &amp; Build</h2>
 <span class="count">0 stories</span>
 </div>
-<p class="ednote">No X digest landed before 7am and the X/Grok sessions are signed out, so this section is empty for a fifth straight morning.</p>
+<p class="ednote">X lists skipped today — the Daily X Digest email didn&#x27;t land in the Feed box this morning, and the X/Grok sessions are signed out, so there was nothing to distill. WSJ&#x27;s Tech section was also skipped — its session is signed out and the stored login couldn&#x27;t be restored.</p>
 <p class="empty">Nothing notable in this section today.</p>
 </section>
 <footer>
