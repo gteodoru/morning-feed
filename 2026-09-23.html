@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Wednesday, September 23, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">Agent engineering is growing up: this week&#x27;s signal is evals-first — measure your own agent on your own tasks before trusting public benchmarks or model size.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.decodingai.com/p/evaluate-ai-agents-benchmarks-regression-tests">I Built a Benchmark for My Agent. The Smaller Model Won.</a></h3>
+<div class="byline">
+<span class="src">Decoding AI Magazine</span> &middot; Sep 22
+</div>
+<p class="dek">A 35B model scored 95% against a 120B model&#x27;s 53% — on a custom eval harness. Public benchmarks and model size mean nothing until you test on your own tasks.</p>
+<div class="body">
+<p>Every AI application that wraps an agent is a harness: the loop itself is tiny (model call → tool call → append result → repeat), and everything around it — tools, context, retries, subagents — is the harness that makes the agent good. LangChain&#x27;s Terminal-Bench experiment proved it: changing only the harness, with the same model, moved a coding agent from roughly 30th place into the top 5.</p>
+<p>Iusztin&#x27;s three-question framework is worth stealing for any agent team. Benchmarks answer &quot;does it work?&quot; and run during feature development — the metrics you optimize each prompt tweak against. Regression tests answer &quot;do previous features still work?&quot; after changes (e.g. swapping models can pass benchmarks while failing the regression that checks whether the read tool fires when skills point to subfiles). Online evals answer &quot;does it work as expected?&quot; on live production traffic.</p>
+<p>On design, his rules are clean: run the agent as a separate process through the narrowest interface the product exposes (a CLI, an HTTP call), so eval and agent harnesses stay decoupled; have the agent hand back a structured report (summary.json) instead of grading raw traces; and follow Harbor&#x27;s rule — &quot;the agent never grades itself and never provisions itself.&quot; He uses Opik (open-source) to version datasets, run jobs, and compare experiments with full lineage.</p>
+<p>Takeaway for a platform team: custom evals are the cheapest way to pick models. A 35B model beating a 120B model by 42 points on your own tasks means the model bill is negotiable — build the eval harness first, then let it choose.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://substack.com/@pauliusztin/note/c-337151281">Substack note — Paul Iusztin</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Consumer AI agents are moving markets now — and the trust layer underneath them is still being built.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://en.sedaily.com/international/2026/09/22/metas-ai-assistant-muse-lifts-magnificent-seven-etf-to">The AI agent trade: Muse moves the market, but the bots still need smartening up</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Markets Daily; Bloomberg Technology; Reuters</span> &middot; Sep 23
+</div>
+<p class="dek">Muse topped the App Store, the Nasdaq hit its first record since June — while Goldman warned agents will squeeze industries built on recurring bills, and marketers warned the bots still hallucinate 20% of the time.</p>
+<div class="body">
+<p>Meta&#x27;s Muse — launched September 8 as a task-executing assistant for booking, email and shopping — spent Monday as the most-downloaded free iPhone app in the US for the third straight day, ahead of ChatGPT, with 730,000 downloads in five days (Sensor Tower). Meta jumped 11% Monday, its best day in about a year, adding roughly $192 billion in market value; the Magnificent Seven ETF set a record; the Nasdaq closed at a record high for the first time since June. The Nasdaq 100 is up 22% this year on five straight sessions of gains.</p>
+<p>Goldman traders offered the sharper read: AI agents are a fix for consumer inertia — the tendency to keep buying out of habit. Industries built on recurring bills, negotiable pricing and add-ons could come under pressure as agents comparison-shop, rebook travel and argue with customer service on your behalf. Yesterday&#x27;s tape agreed: JPMorgan and Wells Fargo fell more than 3%, Allstate and Charles Schwab finished around 6% lower, Booking Holdings slipped 2.6% and Planet Fitness sank 9.5%.</p>
+<p>The counterweight, from Bloomberg Technology: at an ad-industry confab in New York, marketers warned the bots still get it wrong. AI tools show error rates as high as 20% when combing the web and surfacing information for shoppers — outdated battery specs, wrong ingredients — and &quot;when the response is wrong, consumers don&#x27;t blame AI. They blame the brand,&quot; said Bluefish AI&#x27;s Alex Sherman, whose firm monitors millions of AI queries daily for brands including Adidas and American Express. WPP&#x27;s Molly Schonthal, who runs agentic commerce there, put it bluntly: &quot;There&#x27;s a famine of content from brands&quot; — feed agents good product data or they&#x27;ll learn from obscure sites and random Reddit threads.</p>
+<p>Worth knowing the skepticism runs deep: in WSJ&#x27;s reader mail this week, one respondent wrote, &quot;I cannot think of a single thing I&#x27;d let an AI agent purchase for me. Between hallucinations and companies trying to maximize profits at all costs, how could one trust an electronic entity to work only and solely for one&#x27;s best interest?&quot; For anyone shipping agents: accuracy is the product, and verified first-party data is the moat.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.fa-mag.com/news/nvidia-s-stock-is-flashing-a-warning-sign-as-valuation-falls-88557.html">Nvidia&#x27;s stock is flashing a warning sign as valuation falls</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Sep 22
+</div>
+<p class="dek">Under 17x forward earnings — the cheapest in over a decade — as margins compress and customers build their own chips. The market is pricing a capex slowdown nobody can see yet.</p>
+<div class="body">
+<p>At under 17 times expected earnings over the next 12 months, Nvidia&#x27;s shares are trading near the cheapest level in more than a decade — half the multiple the stock commanded in 2025, and down from more than 25 times earnings estimates as recently as May. &quot;The stock has de-rated pretty significantly, which suggests a healthy dose of skepticism that the company&#x27;s current earnings power is sustainable,&quot; said TCW&#x27;s Eli Horton.</p>
+<p>The core worry is profitability: gross margin was 75% in Q2 but is projected to shrink below 72% in Q4 as memory costs rise, and big customers are building their own silicon (Meta&#x27;s home-grown chips, Alphabet&#x27;s TPUs). &quot;Companies want to reduce their reliance on Nvidia, so it is very conceivable its market position will weaken over time,&quot; said TradeStation&#x27;s David Russell. Nvidia is now the fifth-worst performer in the Philadelphia Semiconductor Index, which is up nearly 76% this year while Intel and AMD each gained more than 180%.</p>
+<p>And yet: revenue and net income are projected to jump 90% and 99% in fiscal 2027, accelerating from 65% growth last year, with fiscal 2028 sales guided up 70% — well above the 45% consensus. Jensen Huang&#x27;s retort: Nvidia is &quot;the world&#x27;s first and only growth value stock.&quot; Horton&#x27;s bottom line — the multiple &quot;really seems predicated on a slowing in AI capex, which would have to come either on hyperscalers pulling back, or a regulatory framework that delays or shuts things down&quot; — and neither looks likely, which is what makes the entry point interesting. The same de-rating story led Bloomberg&#x27;s Evening Briefing as its top markets item.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/founders-must-focus-on-metrics-that">Founders must focus on metrics that really matter</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Sep 22
+</div>
+<p class="dek">Shaan Puri and Eric Ries on why vanity metrics waste founders&#x27; time — and why teams that never define what matters can&#x27;t make tactical decisions.</p>
+<div class="body">
+<p>Charts that go up and to the right are satisfying, but the question is whether the numbers move the actual needle. On a recent My First Million episode, Shaan Puri warned founders that posting more content and growing follower counts can waste precious time for a new business: the goal isn&#x27;t to maximize audience, it&#x27;s to find the small group who care enough to take concrete action — buying the product, recommending it.</p>
+<p>The Ferrari example lands the point: Ferrari sells about 13,000 cars a year against GM&#x27;s 2.5 million, yet carries a higher market cap. Not everyone will want a $300,000 sports car — so seek out the people who do and focus on them relentlessly.</p>
+<p>And on TWiST E646, &quot;Lean Startup&quot; creator Eric Ries noted the deeper failure mode: many startups get stuck unable to make tactical decisions because they never defined the specific metrics that matter to their business. Vanity metrics don&#x27;t just mislead — they paralyze. For a founder (or a platform lead), the discipline is the same: pick the three numbers that define success and instrument everything else around them.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Trump&#x27;s UN speech set the tone for the week: maximum pressure on Iran abroad, and a fraud crackdown on health coverage at home. Also in the mix: a GOP senator calling for a Don Jr. probe, a Cornell report on the university crisis, and Chinese CEOs likely missing the Trump-Xi meeting.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.lapost.com/content/trump-set-for-whirlwind-un-meetings-with-wars-in-iran-ukraine-on-agenda">Trump threatens to &#x27;annihilate&#x27; Iran in U.N. speech</a></h3>
+<div class="byline">
+<span class="src">WSJ What&#x27;s News; Bloomberg Evening Briefing; Reuters</span> &middot; Sep 22
+</div>
+<p class="dek">A 37-minute address gave Tehran a binary choice — a deal or annihilation — while his envoys were secretly meeting Iranian mediators the same day.</p>
+<div class="body">
+<p>In a 37-minute address to the 81st UN General Assembly, Trump laid out a foreign-policy vision built on US military and economic power — and gave Tehran a binary choice. &quot;I have a big decision to make. Will a deal be made with Iran that lets them rebuild and create a far greater country than it ever was before? Or do I annihilate the Islamic Republic and do it quickly, never giving them a chance to kill and destroy people and countries again?&quot;</p>
+<p>He predicted a peace deal would follow the November 3 US midterms (&quot;I believe we&#x27;ll make a deal right after the election, because it doesn&#x27;t make sense for them not to&quot;), claimed Operation Midnight Hammer had &quot;obliterated&quot; Iran&#x27;s nuclear program, and called on other nations to economically isolate Iran. He also predicted Cuba&#x27;s government &quot;will fall&quot; — prompting the Cuban delegation to walk out — touted the &quot;spoils&quot; of oil from the Venezuela operation (&quot;to the victor belong the spoils&quot;), and attacked international organizations for infringing on the US.</p>
+<p>The twist: as he threatened annihilation, his special envoys Steve Witkoff and Jared Kushner were in a secretly arranged three-hour meeting with Iranian mediators on the UN sidelines — the first known high-level contact since a cease-fire and memorandum collapsed in July. &quot;It&#x27;s potential greatness or obliteration. It&#x27;s two choices,&quot; he told reporters.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.reviewjournal.com/news/politics-and-government/760k-removed-from-affordable-care-act-over-fraud-claims-trump-administration-says-3889701/">Administration cuts 760,000 from Obamacare rolls in fraud crackdown</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Evening Briefing; Associated Press</span> &middot; Sep 22
+</div>
+<p class="dek">CMS canceled 315,000 marketplace plans covering 760,000 people in August; brokers are being purged and new registrations frozen through February.</p>
+<div class="body">
+<p>Vice President JD Vance and CMS administrator Mehmet Oz announced that more than 760,000 people were cut from ACA marketplace coverage at the end of August — 315,000 plans canceled — with roughly 419,000 more facing &quot;additional verification&quot; of citizenship and income. The administration says many enrollments were unauthorized, submitted by brokers without consumers&#x27; knowledge; some of the 760,000 are &quot;phantom enrollees&quot; who don&#x27;t exist at all.</p>
+<p>The crackdown goes further: 569 brokers were flagged for &quot;statistically implausible&quot; 2026 applications, and CMS imposed an emergency freeze on new broker registrations through February 1, 2027 — right as open enrollment for 2027 coverage begins November 1. The administration claims $2.2 billion in taxpayer savings (an unverified estimate; the CBO hasn&#x27;t scored it). Health insurer shares fell on the news: Oscar Health dropped as much as 6.6%, Centene 3.9%, Molina 3.5%, Elevance 1.9%.</p>
+<p>The politics are sharp on both sides. Vance: &quot;We are actually making sure that people receiving Obamacare subsidies are actually entitled to receive them. Amazingly we weren&#x27;t doing that before.&quot; Brad Woodhouse of Protect Our Care called it &quot;a political stunt designed to throw even more people off their coverage while pretending to save taxpayers&#x27; money.&quot; Context worth knowing: improper enrollments were already a known problem — the Biden administration suspended hundreds of brokers in 2024 — and about 19.2 million Americans are actively enrolled in marketplace plans as of early 2026.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">0 stories</span>
+</div>
+<p class="ednote">Nothing else crossed the bar today.</p>
+<p class="empty">Nothing notable in this section today.</p>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">0 stories</span>
+</div>
+<p class="ednote">X lists skipped today — the Daily X Digest email didn&#x27;t land in the Feed box this morning, and the X/Grok sessions are signed out, so there was nothing to distill. WSJ&#x27;s Tech section was also skipped — its session is signed out and the stored login couldn&#x27;t be restored.</p>
+<p class="empty">Nothing notable in this section today.</p>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
