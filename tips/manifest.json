@@ -8,7 +8,7 @@
       "section": "AI Development Practices",
       "summary": "Cloudflare released Clef (27B) and Clef-flash (9B), its first in-house-trained models: open-weight (Apache 2.0) \"decision models\" that return per-option probabilities instead of generating text, aimed at the hot path of agentic workflows \u2014 routing, triage, escalation. The HN thread (626 pts, 217 comments) was split between awe at the speed of commoditization and skepticism: \"open weights, not open source,\" and real-user tests showing Clef slower than Jev in production, contradicting vendor latency claims.",
       "page": "tips/2026-10-03-clef-decision-models.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
