@@ -19,6 +19,16 @@
       "summary": "A five-month-old open-source project with 33,700 GitHub stars turns technical books \u2014 or any structured prose \u2014 into \"agent skills\": structured, on-demand knowledge bundles any AI coding agent can load while you work. It extracts clean text locally, then has your agent distill it into chapter files, a glossary, patterns, and a cheatsheet \u2014 claiming 24\u201351\u00d7 fewer tokens per query than dumping the book into context. Despite the star count, public discussion is remarkably thin: one quiet HN post, no notable blog or YouTube coverage \u2014 the reception shows mainly in stars, awesome-list inclusion, and a growing family of derivative skills.",
       "page": "tips/2026-10-04-book-to-skill.html",
       "consumed": false
+    },
+    {
+      "slug": "2026-10-04-pi-harness",
+      "title": "Cloudflare's Pi harness: durable agents on the Agents SDK",
+      "date_added": "2026-10-04",
+      "article_url": "https://developers.cloudflare.com/changelog/post/2026-10-02-pi-harness/",
+      "section": "AI Development Practices",
+      "summary": "Cloudflare announced first-class support for Earendil's Pi agent harness in the Agents SDK via a new PiHarness \"Lifecycle capability,\" letting developers run long-lived, crash-resilient agents inside Durable Objects so work is durably persisted even when interrupted mid-turn. The integration combines Pi 1.0, the experimental Pi Durable framework, and the SDK's Lifecycle primitives \u2014 framed as the first step toward supporting third-party agent harnesses generally. Public discussion of the Cloudflare entry itself is thin; the buzz is concentrated on the Pi 1.0 / Pi Durable launch from the day before, which topped Hacker News.",
+      "page": "tips/2026-10-04-pi-harness.html",
+      "consumed": false
     }
   ]
 }
