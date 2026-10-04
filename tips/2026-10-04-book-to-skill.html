@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>book-to-skill: turn any technical book into a Claude Code skill — Morning Feed Tips</title>
+<style>
+body { margin: 0; background: #f4f1ea; color: #1a1a1a;
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { max-width: 680px; margin: 0 auto; background: #fdfcf8;
+        padding: 30px 28px 44px; }
+.kicker { font-variant: small-caps; letter-spacing: 2px; color: #8b0000;
+          font-size: 14px; margin-bottom: 6px; }
+h1 { margin: 0 0 8px; line-height: 1.25; font-size: 30px; }
+.meta { color: #6b6b6b; font-size: 13px; font-style: italic;
+        margin-bottom: 18px; }
+.meta a { color: #8b0000; }
+.dek { font-weight: bold; line-height: 1.5; font-size: 16px;
+       border-left: 3px solid #8b0000; padding-left: 12px; margin: 0 0 20px; }
+h2 { font-variant: small-caps; letter-spacing: 1px; font-size: 19px;
+     border-bottom: 2px solid #1a1a1a; padding-bottom: 6px; margin: 26px 0 12px; }
+p { line-height: 1.65; margin: 0 0 12px; font-size: 15px; }
+.links { margin-top: 24px; font-size: 14px; }
+.links .slabel { font-style: italic; color: #6b6b6b; }
+.links a { color: #8b0000; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+ul.tips { list-style: none; padding: 0; }
+ul.tips li { padding: 12px 0; border-bottom: 1px dotted #bbb; }
+ul.tips a.title { color: #1a1a1a; text-decoration: none; font-size: 18px; }
+ul.tips a.title:hover { color: #8b0000; text-decoration: underline; }
+ul.tips .d { color: #6b6b6b; font-size: 13px; font-style: italic; }
+ul.tips .sum { font-size: 14px; color: #4a4a4a; margin-top: 4px; line-height: 1.5; }
+.back { display: inline-block; margin-top: 24px; font-style: italic;
+        font-size: 14px; color: #8b0000; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+</style></head><body><div class="page">
+<div class="kicker">Morning Feed &middot; Research Tip</div>
+<h1>book-to-skill: turn any technical book into a Claude Code skill</h1>
+<div class="meta">Added Oct 4 &middot;
+<a href="https://github.com/virgiliojr94/book-to-skill">original article</a></div>
+<p class="dek">The breakout hit of the Agent Skills ecosystem: the tool that made every technical book you own addressable by your AI assistant.</p>
+<h2>What the project is</h2><p>book-to-skill (MIT, created May 2026) is a converter and an agent skill in one. Point it at a technical book — PDF, EPUB, DOCX, HTML, Markdown, RTF, MOBI/AZW — or a whole folder, and it produces a structured &quot;skill&quot; your coding agent loads on demand: a SKILL.md core (~4k tokens) with named frameworks, decision rules (&quot;Use X when Y&quot;), anti-patterns and worked examples, plus per-chapter files (~1k tokens each, loaded on demand), a glossary, a patterns file, and a cheatsheet. The design doctrine is &quot;structure, not a summary&quot;: the spec forbids raw passages (Quality Rule #7, partly to keep generated skills fair-use-safe), and the project ships no book content itself — extraction runs locally on your machine.</p><p>Two halves. (1) A deterministic Python extractor: Docling for technical PDFs (preserves tables/code blocks, ~1.5s/page), pdftotext → pypdf → pdfminer for prose, ebooklib for EPUBs, with stdlib fallbacks so the base install is dependency-free. (2) A spec-driven generator: your own agent follows the repo&#x27;s SKILL.md to analyze the book&#x27;s structure, write per-chapter summaries, and assemble the glossary/patterns/cheatsheet. The skill lands in the cross-agent ~/.agents/skills/ directory, and it works with any host implementing the open Agent Skills standard — Claude Code, GitHub Copilot CLI, Amp, OpenAI Codex, Hermes Agent, OpenCode, OpenClaw. Four modes: full conversion, analyze-only, generate-from-analysis, and update/fold-in (merge new sources into an existing skill).</p><h2>How it works and repo state</h2><p>Repo state (verified live 2026-10-04): 33,700 stars, 3,527 forks, 202 commits, 15 open issues (mostly extraction edge cases), 5 releases with v1.4.0 an extraction-reliability release, actively maintained (commits as recent as Sep 29). It ships a mkdocs docs site, pytest suite, evals, Security CI (CodeQL, Bandit, Zizmor), a prompt-injection scanner for generated skills, and a copyright/fair-use section.</p><p>The economics claim: 24–51× fewer tokens per query than dumping the book into context (methodology in docs/performance.md), at roughly $1 per book conversion — the argument is that a PDF-reading agent re-navigates the document every turn (&quot;the Discovery Loop Tax&quot;), while book-to-skill pays the structuring cost once. Intended users: developers who re-read technical books and internal docs, and teams wanting architecture decision records, runbooks, onboarding guides, or specs converted into agent-queryable form.</p><h2>What people are saying</h2><p>Remarkably thin for a 33k-star project. The only HN thread (posted by ethanpil, June 23, 2026) has 3 points and a single comment — &quot;Tooop&quot; from the repo author himself. No substantive blog posts, newsletter features, YouTube reviews, or viral X threads surfaced.</p><p>What does exist: awesome-list inclusion (awesome-claude-code, awesome-ai-engineering, scriptbyai&#x27;s Claude Code resource list); a third-party benchmark scoring it 88/100, calling it &quot;a batch workload where cost savings are directly measurable&quot;; rapid star velocity (~6.8k/month); and a derivative ecosystem — youtube-to-skill and video-to-skill explicitly follow its conventions, Londeren ships a differently-philosophied book-to-skill plugin, and bundles embed adaptations. The author also runs a sister project, x-to-skill, converting an X account&#x27;s posts into a skill. The honest gap: nobody found a launch narrative explaining why 33k stars accumulated with almost no press — likely skills-directory traffic or word-of-mouth in agent communities.</p><h2>What to take away</h2><p>This is the canonical example of the 2026 Agent Skills open-standard wave: a tool that turns a personal library into addressable agent memory, with measured token economics and a serious security posture (prompt-injection scanning of generated skills is unusual). For a tech lead building an AI foundation platform, the pattern matters more than the project: convert the books and docs your team re-reads into on-demand skills instead of re-dumping them into context every time. And for the SaaS: runbooks, onboarding guides, and ADRs are exactly the &quot;re-open often enough to wish you&#x27;d memorized it&quot; candidates the repo targets.</p><p>Caveats to carry: extraction quality varies with PDF source quality, generated-skill quality is model-tier sensitive, and the 24–51× figure is the project&#x27;s own measured claim — not independently reproduced.</p>
+<div class="links"><span class="slabel">Sources:</span><div><a href="https://github.com/virgiliojr94/book-to-skill">GitHub — virgiliojr94/book-to-skill</a></div><div><a href="https://github.com/virgiliojr94/book-to-skill/blob/master/docs/how-it-works.md">How it works (docs)</a></div><div><a href="https://github.com/virgiliojr94/book-to-skill/releases">Releases</a></div><div><a href="https://news.ycombinator.com/item?id=48649087">HN thread (3 pts, 1 comment)</a></div><div><a href="https://github.com/firekou/open-skill-distribution-flywheel/blob/HEAD/reports/TOP10_DEEP_REVIEW.md">Third-party review (88/100)</a></div><div><a href="https://github.com/eftikharazim/youtube-to-skill">Derivative — youtube-to-skill</a></div><div><a href="https://github.com/tsgking/video-to-skill">Derivative — video-to-skill</a></div><div><a href="https://github.com/virgiliojr94/x-to-skill">Sister project — x-to-skill</a></div></div>
+<a class="back" href="./">&larr; All tips</a>
+<a class="back" href="../">&larr; Latest edition</a>
+</div></body></html>
