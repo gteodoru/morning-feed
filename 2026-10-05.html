@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Monday, October 5, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Agent-tooling week continues: two durable-agent briefs from your tips queue, meeting-prep AI habits from Granola&#x27;s co-founder, and the X lists arguing about how to trust what agents produce.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://gteodoru.github.io/morning-feed/tips/2026-10-04-book-to-skill.html">book-to-skill: turn any technical book into a Claude Code skill</a></h3>
+<div class="byline">
+<span class="src">Gabriel&#x27;s tips</span> &middot; Oct 4
+</div>
+<p class="dek">A five-month-old open-source project with 33,700 GitHub stars turns technical books into &quot;agent skills&quot;: structured, on-demand knowledge bundles any AI coding agent can load while you work.</p>
+</article>
+<article class="">
+<h3><a href="https://gteodoru.github.io/morning-feed/tips/2026-10-04-pi-harness.html">Cloudflare&#x27;s Pi harness: durable agents on the Agents SDK</a></h3>
+<div class="byline">
+<span class="src">Gabriel&#x27;s tips</span> &middot; Oct 4
+</div>
+<p class="dek">Cloudflare announced first-class support for Earendil&#x27;s Pi agent harness in the Agents SDK via a new PiHarness &quot;Lifecycle capability&quot; — long-lived, crash-resilient agents inside Durable Objects, durably persisted even when interrupted mid-turn.</p>
+</article>
+<article class="">
+<h3><a href="https://peteryang.substack.com/p/how-to-use-ai-to-survive-meetings-sam-stephenson">How to use AI to survive (and even enjoy) meetings</a></h3>
+<div class="byline">
+<span class="src">Peter Yang</span> &middot; Oct 4
+</div>
+<p class="dek">Granola&#x27;s co-founder on the AI habits that get him to every meeting prepared — and how his $1.5B startup avoids AI slop and burnout.</p>
+<div class="body">
+<p>Peter Yang&#x27;s new 33-minute episode is with Sam Stephenson, co-founder of Granola — the AI meeting-notes app now valued at $1.5B. Practical, not promotional: the AI brief Sam relies on before every new meeting, Granola&#x27;s most-used recipe (&quot;What did I miss?&quot;), and why the company hides the transcript despite constant user complaints — summaries over raw text is a product philosophy, not a missing feature.</p>
+<p>Two threads matter most for you. First, avoiding AI slop: Sam&#x27;s Figma use has fallen to 20%, and Granola&#x27;s anti-slop discipline (taste as a system, not a hope) applies directly to any team shipping agent output to users. Second, the honest one: Sam feels &quot;a pang of sadness&quot; when agents skip your UI entirely — what design means when the agent, not the human, is the user. Plus a Granola recipe for getting feedback from founders, and how they build without the 996 grind. Watch on YouTube, Apple, or Spotify (33 mins).</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/addyosmani/status/2106995301802541481">The test stack that makes agent output trustworthy</a></h3>
+<div class="byline">
+<span class="src">X — @addyosmani</span> &middot; Oct 5
+</div>
+<p class="dek">Now on Claude Code at Anthropic, Osmani lays out the test stack that makes agent output trustworthy — E2E as ground truth, property-based tests, differential tests, fast deterministic suites.</p>
+<div class="body">
+<p>Addy Osmani — now on Claude Code at Anthropic — posted the test stack that makes agent output trustworthy, and it blew up (430+ bookmarks in 2 hours). His argument: agents write code fast, but the code is only as good as the agent&#x27;s feedback loop. If the agent can&#x27;t tell it broke something, it ships the breakage confidently. His stack: example tests say what should happen; property tests say what must never happen, with thousands of generated cases trying to break the rule; E2E flows are ground truth; old-vs-new differential testing for agent-driven refactors; fast and deterministic suites (flaky tests teach the agent to retry instead of fix).</p>
+<p>The replies are the real discussion. @asmirkn&#x27;s critique: if the agent also writes the properties, it picks ones its code already passes — Addy&#x27;s answer is that he manually reviews property tests in particular. On verifying UIs: give the agent a spec of expected states per view (empty, loading, error, long content, mobile width), assert on roles and text through the accessibility tree, and add multimodal screenshot checks. And @AbdullahAymanM&#x27;s pushback: Claude creates tests even in projects where that isn&#x27;t the convention — overkill is a real failure mode too.</p>
+<p>The builder takeaway, straight from the thread: humans should own the spec (properties, expected UI states, E2E flows); agents can own the implementation. Review the tests the agent writes harder than the code. Kill flakiness before you hand a loop to an agent.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/luciascarlet/status/2106808030708776967">An agent reverse-engineered macOS&#x27;s Liquid Glass effects from compiled binaries</a></h3>
+<div class="byline">
+<span class="src">X — @luciascarlet</span> &middot; Oct 5
+</div>
+<p class="dek">&#x27;Astra&#x27; recovered the exact formulas behind 27 Liquid Glass effects and reimplemented them in GPUI — agents reading compiled code, not just writing CRUD.</p>
+<div class="body">
+<p>A genuine data point on what agents can do beyond writing CRUD apps. An AI agent called &quot;Astra&quot; went through macOS binaries, reverse-engineered the exact formulas behind 27 Liquid Glass effects — highlights, shadows, reflections, signed-distance-field generation — and reimplemented them in GPUI, the UI framework behind the Zed editor. The post (1,993 likes, 104K views, reposted by @steipete) is a real demonstration of agents reading compiled code and recovering rendering math.</p>
+<p>Why it matters for you: this is the direction agent capability is heading — not just generating code from specs, but extracting precise behavior from opaque artifacts. If you&#x27;re designing evals or sandboxes for the Riot platform, assume agents will soon read binaries, protocols, and undocumented systems as fluently as they read docs.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/mitchellh/status/2106914023283568950">Can you trust an LLM-built benchmark?</a></h3>
+<div class="byline">
+<span class="src">X — @_can1357; X — @mitchellh</span> &middot; Oct 5
+</div>
+<p class="dek">Tern&#x27;s author claims 1.6x Ghostty&#x27;s styled throughput — and Ghostty&#x27;s own author replies that LLMs &#x27;almost always deliver results you want to see.&#x27;</p>
+<div class="body">
+<p>Can Boluk posted a chart claiming his terminal, Tern, is 1.6x faster than Ghostty on styled/OSC throughput, with 23x lower stdio latency and 40-47% less CPU — crediting xutf, his permissive UTF-8/16/32 transcoding library with SIMD fast paths for ASCII (github.com/can1357/xutf), and aggressive glyph-atlas caching. The SIMD trick works because most terminal bytes are ASCII, so you skip per-codepoint decoding for the common case — a real bottleneck when agents stream styled output.</p>
+<p>Then Ghostty&#x27;s own author, Mitchell Hashimoto, weighed in: it&#x27;s fine to use LLMs to write benchmark harnesses, but you can&#x27;t trust them blindly because LLMs &quot;almost always deliver results you want to see.&quot; His second point is the generous one: even if the numbers are 100% right, the best outcome is to understand them and improve libghostty — &quot;no need to withhold innovation at a base layer&quot; — which helps hundreds of downstream projects. Others pressed on reproducibility: Ghostty stable or tip? (Commit 27e8b3fa8, built with native-CPU flags, says Can.)</p>
+<p>The builder rule from this thread: if an agent wrote your benchmark harness, publish the harness, the exact commits, and the build flags — or expect exactly this reply.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/can1357/xutf">GitHub — can1357/xutf</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Open weights are having a week: Reflection&#x27;s model, the $150M-a-month compute bill, and why renting intelligence costs you twice.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.axios.com/2026/10/04/reflection-open-weight-ai">Open-weights season: Reflection&#x27;s model, LeCun&#x27;s economics, Nadella&#x27;s &#x27;pay twice&#x27;</a></h3>
+<div class="byline">
+<span class="src">Axios (via X — @AndrewCurran_); X — @ylecun; X — @socialcapital</span> &middot; Oct 4
+</div>
+<p class="dek">Reflection&#x27;s first open-weight model may land this week on a $150M/month compute bill — while LeCun argues distillation economics will make frontier models free and open anyway.</p>
+<div class="body">
+<p>Axios reports Reflection&#x27;s first open-weight model is expected to trail the top U.S. frontier models but compete with the best Chinese open models — and other Western open-weight releases are expected this month. The numbers behind it are the story: Reflection pays SpaceXAI ~$150M/month for GB300s in Colossus 2, a deal running through 2029 (~$6.3B total), and Nvidia has invested $800M. The pitch is an &quot;AI factory&quot;: institutions running their own localized model stacks on their own data. No benchmarks or date are public, but @AndrewCurran_ (1,180 likes, 114K views) says it could land as soon as this week. The replies nailed it: the compute bill is the bombshell more than the model — the cost structure of the open-weights era is changing.</p>
+<p>Chorus from the lists: Yann LeCun argues the economics point the same way — training frontier models is expensive, distilling them is cheap, and that market force alone means frontier foundation models will end up free and open (he links the AI Alliance&#x27;s &quot;Tapestry&quot;). He also amplified Jensen Huang calling Musk and Hinton&#x27;s doom talk irresponsible: &quot;That 10% chance is not grounded in science.&quot; And Chamath amplified Nadella&#x27;s sharper framing: when a company rents a model, it &quot;pays for intelligence twice&quot; — once in money, and again in the proprietary knowledge it reveals to make the model useful, which feeds the provider&#x27;s learning loop. Hugging Face is already using the line as an argument for owning open models.</p>
+<p>The takeaway: the own-vs-rent decision is becoming the strategic one for every enterprise AI platform — including yours. Watch this week&#x27;s releases; the &quot;AI factory&quot; pitch is aimed squarely at institutions like Riot.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/ylecun/status/2106783662117151003">X — @ylecun on open models</a> &middot; <a href="https://x.com/socialcapital/status/2106820902889660832">X — @socialcapital on Nadella: renting a model</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/illscience/status/2106823939553210446">Figment shuts down: the brutal unit economics of personal agents</a></h3>
+<div class="byline">
+<span class="src">X — @illscience</span> &middot; Oct 5
+</div>
+<p class="dek">An a16z voice says the personal-agent app died on cost-per-user — you can&#x27;t compete without a powerful patron or a lab partnership.</p>
+<div class="body">
+<p>Anish Acharya (a16z, @illscience) reports that Figment, a personal-agent app, is shutting down because cost per user was too high — and free alternatives (Muse, Instinct) already exist. His read: you can&#x27;t compete in personal agents without a powerful patron in venture dollars or a lab partnership. Reposted by @steipete, 31.7K views.</p>
+<p>Pair it with the thread&#x27;s other half: @jxnlco joking about Instinct screening every product for &quot;bird imagery&quot; three weeks after a user told it a bird story. Memory-heavy agents are expensive and still weird. The venture lesson: in consumer agents, distribution and subsidy beat product — for now.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2106958444196413670">OpenAI sunsets custom GPTs in December</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Oct 5
+</div>
+<p class="dek">Mollick: companies and educators invested years in GPTs — and leaders were still training staff to build them months ago. OpenAI has to bring them along.</p>
+<div class="body">
+<p>Ethan Mollick was the most active voice on the business list overnight, and his biggest item is a platform-risk warning: custom GPTs go away in December. He can move his own GPT to a private &quot;plugin,&quot; but GPTs were built for other people to use — and companies and educators invested years in them. In a self-reply he notes leaders were still training staff to build GPTs in recent months, so OpenAI has to bring them along.</p>
+<p>Also from his overnight run: ChatGPT&#x27;s banked-usage reset mechanic only makes sense to a narrow slice of Twitter — normal users just want to plan their usage; and despite the complaints, there&#x27;s still no equal to GPT-6 Pro for really hard one-shot tasks — it &quot;communicates results well.&quot;</p>
+<p>The takeaway for anyone building on someone else&#x27;s agent platform (your SaaS included): rented platform features are rented. Have an exit plan for every capability you don&#x27;t own.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/">Google froze its open-source bug bounty after an AI-slop flood</a></h3>
+<div class="byline">
+<span class="src">TechCrunch (via X)</span> &middot; Oct 4
+</div>
+<p class="dek">Paused October 1 until at least Q1 2027: &#x27;a significant rise in automated submissions, the vast majority of which are not valid.&#x27;</p>
+<div class="body">
+<p>Blaming a &quot;significant rise&quot; in AI submissions, Google has paused its Open Source Software Vulnerability Rewards Program as of October 1 — promising an update in Q1 2027. &quot;This pause is due to a significant rise in automated submissions, the vast majority of which are not valid,&quot; the company said; engineers and maintainers were overwhelmed by invalid reports and hallucinations. Outstanding reports aren&#x27;t affected, supply-chain reports can still be submitted, and researchers are pointed at Google&#x27;s other programs.</p>
+<p>This is the flip side of the agent-testing debate (see the Osmani story): unverified agent output doesn&#x27;t disappear — it becomes someone else&#x27;s triage cost. Bugcrowd has already changed policies over &quot;AI slop&quot; submissions; a Bitdefender piece describes Apple&#x27;s program drowning in similar reports. When your agents file reports into someone else&#x27;s queue, their precision is your reputation.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">Brazil&#x27;s right is one runoff away from power — and the polls missed it badly.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/americas/flavio-bolsonaro-surges-past-lula-setting-up-a-bitter-brazil-election-runoff-0432b9c5">Flavio Bolsonaro deals Lula a bruising first-round defeat</a></h3>
+<div class="byline">
+<span class="src">WSJ; Bloomberg</span> &middot; Oct 5
+</div>
+<p class="dek">47.3% to 44.8%, with the polls showing Lula ahead — Brazil heads to an Oct 25 runoff with the right within reach of power.</p>
+<div class="body">
+<p>Flavio Bolsonaro — 45-year-old senator, eldest son of imprisoned former president Jair Bolsonaro — dealt President Luiz Inacio Lula da Silva a bruising first-round defeat Sunday: 47.3% to 44.8% with 98% counted, short of the 50% needed for an outright win. The Oct 25 runoff now has Brazil&#x27;s right within reach of taking back Latin America&#x27;s largest nation.</p>
+<p>The polls missed it: on the eve of the vote, Datafolha had Bolsonaro at 42% against 45% for da Silva. Conservatives also swept the concurrent congressional and state elections. &quot;Brazil has had enough... this is the end of the era of the Workers&#x27; Party,&quot; Flavio said. The Bolsonaro family scored across the board — Michelle and Carlos Bolsonaro to the Senate, Jair Renan and Renato to the lower house. Da Silva, 80, called it &quot;a lesson in democracy&quot; and vowed to fight for the runoff. Fuel for the right: violent street crime, evangelical political clout, and business/middle-class frustration over taxes, spending, and the economy. (Yesterday&#x27;s edition: &quot;Brazil votes today.&quot; This is the result.)</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Apple&#x27;s design era under its engineer-CEO, and the truckers crushed by record diesel.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.gadgets360.com/mobiles/news/apple-ceo-john-ternus-takes-hands-on-role-in-design-teams-mark-gurman-12139844">John Ternus has effectively become Apple&#x27;s design chief</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Mark Gurman</span> &middot; Oct 4
+</div>
+<p class="dek">Ternus visits the design studio several times a week — and the touch-screen OLED MacBook Pro is getting lighter, with one more big change.</p>
+<div class="body">
+<p>Mark Gurman&#x27;s Power On: John Ternus — CEO since September 1 — is spending much of his time overseeing Apple&#x27;s hardware and software design work, visiting the design studio several times a week and sometimes more than once a day. No outside chief design officer search is underway: Molly Anderson (industrial design) and Steve Lemay (human interface) run their teams, with Ternus bridging them. The contrast with Tim Cook is stark — Cook reportedly spent about an hour a month with the design team. Ternus is leaving finance and supply chain to other executives to focus on engineering, products, and design, as Apple rebuilds teams depleted by departures (Alan Dye to Meta; several veterans to OpenAI).</p>
+<p>Hardware: the revamped MacBook Pro gets a touch screen and OLED — plus one other major change — and will be much lighter. And Apple is about to unveil its new smart home hub: a square display on a speaker base (or wall-mountable), running a new OS with video calls and facial recognition. (Note: Bloomberg is paywalled; the link below is a verified same-day report of Gurman&#x27;s newsletter.)</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/articles/the-economics-of-trucking-have-broken-down-21c22a22">Record diesel prices are squeezing truckers</a></h3>
+<div class="byline">
+<span class="src">WSJ — Natasha Dangoor</span> &middot; Oct 4
+</div>
+<p class="dek">The economics of trucking have broken down — truckers are using every trick they can to survive soaring diesel prices.</p>
+<div class="body">
+<p>The WSJ&#x27;s What&#x27;s News: the economics of trucking have broken down under record diesel prices, and truckers are using every trick they can to survive the soaring costs. Plus: Byron Donalds walks a tightrope of Trump loyalty, and Levi&#x27;s tries to ride the back-to-the-future shift in style tastes.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Four things worth your study time this week — each with the &#x27;so what&#x27; for a tech lead building agent platforms.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://x.com/addyosmani/status/2106995301802541481">The agent test stack: property tests, E2E, and differential testing</a></h3>
+<div class="byline">
+<span class="src">X — @addyosmani</span> &middot; Oct 5
+</div>
+<p class="dek">Property-based testing, E2E as ground truth, differential tests — the stack that makes agent-written code trustworthy, and who should own each layer.</p>
+<div class="body">
+<p>What it is: Osmani&#x27;s thread (with the test-stack diagram) — example tests vs. property tests, E2E flows as ground truth, old-vs-new differential testing, fast deterministic suites — plus the reply-thread debate on who writes the properties and how to verify UIs through the accessibility tree.</p>
+<p>Why it matters: agents ship breakage confidently when their feedback loop can&#x27;t catch it. The test loop IS the product when agents write the code.</p>
+<p>Takeaway for you: at Riot, own the spec — properties, expected UI states, E2E flows — and let agents own implementation. Review agent-written tests harder than the code. Kill flakiness before you hand any loop to an agent.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/can1357/xutf">SIMD text transcoding: how xutf makes terminals fast</a></h3>
+<div class="byline">
+<span class="src">GitHub — can1357/xutf</span> &middot; Oct 5
+</div>
+<p class="dek">SIMD fast paths for ASCII text transcoding — the real perf trick behind the Tern-vs-Ghostty benchmark fight.</p>
+<div class="body">
+<p>What it is: can1357/xutf — a permissive UTF-8/16/32 transcoding, comparison, and BOM-detection library with SIMD fast paths for ASCII. The trick: most terminal bytes are ASCII, so you skip per-codepoint decoding for the common case.</p>
+<p>Why it matters: agents stream enormous amounts of styled terminal output; text transcoding is a genuine bottleneck in agent-heavy developer tooling. Glyph-atlas caching is the other half of the Tern story.</p>
+<p>Takeaway for you: a concrete perf technique to steal for anything that renders agent output — and Hashimoto&#x27;s meta-lesson alongside it: if an agent wrote your benchmark harness, publish the harness, the exact commits, and the build flags, or expect exactly the reply Can got.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/mitchellh/status/2106914023283568950">X — @mitchellh on LLM-built benchmarks</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/lennysan/status/2106772428861149683">OpenAI&#x27;s agent roadmap: no model picker, actions over chat</a></h3>
+<div class="byline">
+<span class="src">X — @lennysan</span> &middot; Oct 5
+</div>
+<p class="dek">OpenAI&#x27;s head of ChatGPT and Codex: the model picker is going away, loops-and-graphs are a passing phase, agents will take most web actions.</p>
+<div class="body">
+<p>What it is: Lenny Rachitsky&#x27;s podcast with Tibo Sottiaux, head of ChatGPT and Codex. His claims: the model picker is likely going away, today&#x27;s &quot;loops and graphs&quot; agent architectures are a passing phase, most internet actions will soon be taken by agents — plus a walkthrough of OpenAI&#x27;s safety approach. (Video; not yet transcribed — worth the watch.)</p>
+<p>Why it matters: the people building the dominant agent platform are telling you the abstraction layers will move. &quot;Loops and graphs&quot; — the current agent-framework orthodoxy — is, in their view, transitional.</p>
+<p>Takeaway for you: design the Riot foundation platform for a picker-less world where agents take actions, not chats. Don&#x27;t over-invest in framework ceremony that the labs consider scaffolding.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2106936117421601110">Designing for the &#x27;awkward intermediate era&#x27; of AI permissions</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Oct 5
+</div>
+<p class="dek">Fine-grained security, live visibility into what the AI is doing, independent audit agents — the missing OS layer, framed as product features.</p>
+<div class="body">
+<p>What it is: Mollick amplifying @sriramk on the discomfort of watching &quot;Claude has started debugging your browser&quot; while granting full-disk and accessibility access — and wanting fine-grained security, live visibility into what the AI is doing, and independent secondary audit agents. Sriram calls it an &quot;awkward intermediate era.&quot; Mollick adds his own product idea: a real team inbox with folders and annotations where agents comment to each other and surface items to you — &quot;like Superhuman, but looping in AIs,&quot; not Slack.</p>
+<p>Why it matters: permissioning and observability are the missing OS layer for agents. Whoever solves &quot;what is it doing right now, and can I stop it&quot; wins enterprise trust.</p>
+<p>Takeaway for you: treat permissions, live visibility, and audit agents as product features of the Riot platform — not security afterthoughts. The inbox idea is also worth stealing for your SaaS team&#x27;s human+agent workflows.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
