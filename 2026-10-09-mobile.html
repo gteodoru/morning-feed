@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Friday, October 9, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">8 stories</span>
+</div>
+<p class="ednote">Security week on the technical lists: a costed demo of how easily open weights can be backdoored, and three different answers to the sandbox problem — plus the small-model price war going explicit and two Western open-weight launches.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://strandsagents.com/blog/strands-box-the-big-picture/">The agent-sandbox wave: Microsoft MxC, Microsoft Quicksand, AWS Strands Box</a></h3>
+<div class="byline">
+<span class="src">X — @simonw</span> &middot; Oct 8
+</div>
+<p class="dek">Microsoft shipped MxC (one policy API over every OS sandbox, already inside Codex) and Quicksand (rootless QEMU VMs from Python), while AWS&#x27;s Strands Box enforces semantic rules like “push only if tests passed.”</p>
+<div class="body">
+<p>Three different design points landed the same day, via @simonw&#x27;s thread, and they solve different layers of the problem:</p>
+<p>**microsoft/mxc** (MIT, Rust, ~1.9K stars) puts one policy API over every OS&#x27;s sandbox — AppContainer/Windows Sandbox on Windows, bubblewrap/LXC on Linux, Seatbelt on macOS — with versioned JSON policy describing filesystem, network and UI rules. It is already pinned as a native Windows sandbox backend inside OpenAI&#x27;s Codex (codex-rs/mxc-sandbox). If you need Windows isolation, this is now the most credible option, and the Codex integration is a working reference.</p>
+<p>**microsoft/quicksand** (MIT, Python) gives you real QEMU VMs from Python with no root and no Docker: `async with Sandbox(image=&quot;ubuntu&quot;) as sb: await sb.execute(...)`. Networking is off by default; checkpoint/revert makes it a natural fit for eval harnesses that need resettable environments.</p>
+<p>**strands-agents/box** (Strands Box, Apache-2.0) works at the level of meaning, not syscalls. Marc Brooker&#x27;s blog explains why OS sandboxes aren&#x27;t enough: network traffic is mostly TLS ciphertext, so you can&#x27;t write rich rules at the syscall layer. Box forces a single route out of the sandbox through a user-space policy layer with temporal, conditional rules — “allow git push only if tests passed in the last 15 minutes” — and injects API credentials itself so the agent never holds them.</p>
+<p>Read alongside the backdoor story, the rule of thumb: VM or OS sandbox for containment, plus semantic policy and credential injection so a compromised model can&#x27;t exfiltrate what it never holds.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/simonw/status/2108216753604248000">X — @simonw&#x27;s thread</a> &middot; <a href="https://github.com/microsoft/mxc">GitHub — microsoft/mxc</a> &middot; <a href="https://github.com/microsoft/quicksand">GitHub — microsoft/quicksand</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.anthropic.com/claude-haiku-5-5">Claude Haiku 5.5: the small-model price war goes explicit</a></h3>
+<div class="byline">
+<span class="src">Last Week in AI; X — @simonw</span> &middot; Oct 7
+</div>
+<p class="dek">Anthropic&#x27;s Haiku 5.5 costs a tenth of its predecessor under 100k tokens and jumps from 15.7% to 72.4% on OSWorld — but the new tokenizer inflates token counts ~1.25x, and crossing 100k costs 5x.</p>
+<div class="body">
+<p>Anthropic released Claude Haiku 5.5 at $0.10/$0.50 per million input/output tokens for prompts under 100k — a tenth of Haiku 4.5&#x27;s price, matching OpenAI&#x27;s GPT-6 Luna to the cent. Above 100k tokens the price jumps 5x ($0.50/$2.50). It&#x27;s the first Haiku with an adjustable effort setting, and Anthropic&#x27;s numbers show a dramatic jump: 72.4% on OSWorld (vs 15.7% for 4.5), making it a realistic sub-agent for browser and computer use rather than just a summarizer. Sonnet 5.5 cache reads were halved, and Max/Team plans now get monthly API credits ($100/$200).</p>
+<p>The fine print, via Simon Willison&#x27;s measurements: the new tokenizer produces ~1.25x more tokens for the same text, so the real saving is smaller than the sticker cut; and Anthropic&#x27;s own “75% cheaper on average” math already bakes that in. Practical rule: route sub-agent, compaction, classification and browser-use calls to Haiku 5.5, keep prompts under 100k, and re-measure your token counts with the new tokenizer before trusting the headline.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison — notes on Haiku 5.5</a> &middot; <a href="https://lastweekin.ai/p/last-week-in-ai-346-719-math-manuscripts">Last Week in AI #346</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/10/05/reflection-debuts-beam-a-open-weight-ai-model-to-rival-chinese-models-at-lower-compute-cost/">Mistral&#x27;s Le Chonk and Reflection&#x27;s Beam: the West answers China&#x27;s open models</a></h3>
+<div class="byline">
+<span class="src">Last Week in AI</span> &middot; Oct 8
+</div>
+<p class="dek">France&#x27;s Mistral shipped a 1T-parameter “Le Chonk” and Brooklyn&#x27;s Reflection AI unveiled Beam (501B total, 23B active) — both explicitly positioned as the Western answer to DeepSeek, Qwen and Z.ai.</p>
+<div class="body">
+<p>Two Western labs released frontier open-weight models within days of each other, both pitched explicitly as alternatives to the Chinese models dominating the open category.</p>
+<p>Mistral&#x27;s **Mistral Large 4** (nicknamed “Le Chonk”) is a 1-trillion-parameter multimodal MoE (49B active) trained on ~3,800–4,000 Nvidia Grace Blackwell GPUs in Mistral&#x27;s own European datacenters, optimized for coding and cyberdefense. It is available in preview with weights due at the end of October. Mistral claims it is by far the most capable open-weight model built outside China and “very, very close” to some proprietary models — though independent analysts note the gap to Qwen3.8 Max and DeepSeek V4 Pro is thinner than the marketing suggests.</p>
+<p>Brooklyn-based Reflection AI&#x27;s **Beam** is a text-only MoE with 501B total / 23B active parameters, pretrained on 23.8T tokens with a 1M-token context window. Reflection claims parity with Z.ai&#x27;s GLM-5.2 on advanced reasoning at 3–4x less inference compute; weights and a technical report are promised this month under Apache 2.0.</p>
+<p>The subtext: Washington and Beijing&#x27;s distrust keeps growing — the US restricted distribution of frontier models from OpenAI and Anthropic in June — so a European and an American open-weight option with real teeth is strategically interesting, not just technically.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://techbizweb.com/news/mistral-says-its-new-ai-model-le-chonk-is-the-best-open-weight-offering-outside-of-china/">TechBizWeb — Mistral says Le Chonk is the best open-weight model outside China</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://fsdatalab.github.io/blog/introducing-quail/">Quail: plan queries and inference together for 14x faster AI-SQL</a></h3>
+<div class="byline">
+<span class="src">X — @sh_reya</span> &middot; Oct 7
+</div>
+<p class="dek">CMU&#x27;s open-source Quail runs “LLM in a WHERE clause” queries up to 14x faster than stock vLLM by letting the query plan — which knows the future access pattern — drive KV-cache retention and eviction.</p>
+<div class="body">
+<p>Shreya Shankar&#x27;s team at CMU&#x27;s Full Stack Data Lab built an open-source engine for “LLM in a WHERE clause” queries that treats the query plan as the inference server&#x27;s brain. Classical optimizer moves (predicate ordering by cost-per-rejection, join-order search with an “anchor” document) drive KV-cache decisions: prompts put the shared document first and the question last, then “rewind” the KV to the end of the document after the TRUE/FALSE answer, keeping KV only for rows that survive.</p>
+<p>On a 29-query benchmark (IMDB, BioDEX medical reports, fact-checking, legal, agent traces; Qwen3 4B FP8 on one H100 vs vLLM 0.26.0): 1.84x geometric-mean speedup, and on the largest join — 5,000 medical reports against 4,144 reaction terms — 29 minutes versus 6.84 hours (14x), at $1.93/query instead of $27.03. A 100k-review two-filter query cost $0.37 on Modal.</p>
+<p>Even if you don&#x27;t adopt it, copy three ideas into your own pipelines: put the shared document first and the question last, keep KV only for rows you&#x27;ll revisit, and constrain the output to label tokens.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/fsdatalab/quail">GitHub — fsdatalab/quail</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/astral-sh/astral-html">Agents rewriting infrastructure: astral-html, tsc-rs, and the maintenance question</a></h3>
+<div class="byline">
+<span class="src">X — @charliermarsh; @theo</span> &middot; Oct 7
+</div>
+<p class="dek">Astral&#x27;s agent-written HTML parser is ~2x faster than the incumbents; Theo&#x27;s agent-written TypeScript compiler cost ~$20k of Opus tokens — and “probably won&#x27;t be maintained.”</p>
+<div class="body">
+<p>Two data points from the week on agent-written core tooling:</p>
+<p>Astral (@charliermarsh) replaced a third-party HTML parser with one written 100% by GPT-6 Astra inside Codex: ~2x faster, one dependency (memchr), no unsafe, ~40% of the lines. Correctness comes from the html5lib tokenizer conformance suite — Charlie&#x27;s argument for why parsers suit agents: they have specs, conformance suites and fuzzing, so the agent has an objective oracle to iterate against. His question: “should we just do this for everything?”</p>
+<p>Theo (@theo) announced tsc-rs, a complete Rust rewrite of the TypeScript compiler, type checker and LSP that agents worked on for five months: “I burned ~$400k of Codex tokens and got nowhere. Burned ~$20k of Opus and got there in 2 weeks.” Then the honest part: when asked whether it will be maintained, Theo answered “Probably not.”</p>
+<p>The lesson to carry: look in your dependency tree for components with a public spec and a conformance suite — parsers, serializers, codecs — those are the low-risk places to let an agent write a smaller, faster replacement. Don&#x27;t start a rewrite you can&#x27;t maintain.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://mitchellh.com/writing/program-status-osc7501">OSC 7501: a terminal standard for &quot;what is my agent doing&quot;</a></h3>
+<div class="byline">
+<span class="src">X — @mitchellh</span> &middot; Oct 8
+</div>
+<p class="dek">Mitchell Hashimoto&#x27;s OSC 7501 is a dozen-line escape-sequence standard for “what is my agent doing” — replacing the heuristic arms race of regex-matching spinner characters in window titles. Claude Code already adopted it.</p>
+<div class="body">
+<p>Mitchell Hashimoto (of Ghostty) published OSC 7501, a tiny escape-sequence standard — `ESC ] 7501 ; state=working:... ST` — that lets any long-running terminal program, especially coding agents, report its status: idle, working, done, blocked, error, plus optional progress, “blocked on permission/question/auth” kinds, and base64 messages. Terminals that don&#x27;t understand it ignore it; when the process exits, stale records are dropped.</p>
+<p>Why it exists: “agent inbox” tools currently guess agent status with fragile heuristics like regex-matching spinner characters in window titles (one tool&#x27;s Claude Code rules changed ten times in three months) or side-channel sockets that break over SSH and in containers. Claude Code is the first production adopter; libghostty-vt parses it; proof-of-concept patches for Terraform, Codex and Homebrew took “no more than a dozen lines” each.</p>
+<p>If you ship a CLI agent or long-running tool, emit it. It&#x27;s about a dozen lines, or a shell one-liner.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/ThariqS/ai-newtab">ai-newtab: a serverless agent in a Chrome extension, paid for by Max credits</a></h3>
+<div class="byline">
+<span class="src">X — @trq212</span> &middot; Oct 8
+</div>
+<p class="dek">Thariq Shihab&#x27;s open-source Chrome extension rebuilds his homepage daily with a serverless agent funded by the new Claude Max monthly credits — and its ARCHITECTURE.md is the best short guide to Claude Managed Agents&#x27; gotchas.</p>
+<div class="body">
+<p>Thariq Shihab (@trq212) built a Chrome MV3 extension that regenerates his new-tab homepage daily from the sites he actually browses — with no server. The extension&#x27;s service worker hosts the build, Anthropic&#x27;s Managed Agents orchestration runs the agent loop, and an Anthropic session sandbox runs read/grep/glob/write. A custom getHistory tool returns a ranked summary of his top domains; the agent picks up to 8 pages, which the extension opens in a background window signed in as him, cleans, and mounts as files. The agent writes one React component, rendered in a sandboxed iframe so model-written code never runs in the extension&#x27;s own page. Each run costs ~$0.75 of Sonnet 5.5, paid for by the new monthly API credits on Max plans.</p>
+<p>The repo (MIT, public) is the interesting part for builders: the ARCHITECTURE.md “gotchas” are a short, practical guide to Claude Managed Agents — always use resource.mount_path from the response, the result field is custom_tool_use_id not tool_use_id, never leave a custom tool call unanswered, don&#x27;t stop on status_idle alone. Worth reading before you build your own personal agent on the Max credits.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/10/07/chatgpt-is-getting-a-lot-more-visual-with-the-launch-of-a-new-interface/">ChatGPT&#x27;s &quot;Intelligent UI&quot;, reverse-engineered</a></h3>
+<div class="byline">
+<span class="src">X — @rabi_guha; TechCrunch</span> &middot; Oct 8
+</div>
+<p class="dek">ChatGPT now answers with generated diagrams, buttons and working tools instead of text — and a reverse-engineer found the trick: the agent emits a constrained intermediate language, never raw code.</p>
+<div class="body">
+<p>OpenAI rolled out GPT-6 (Sol for paid tiers, Luna for Free/Go) to all ChatGPT users this week with “Intelligent UI”: responses that come back as interactive visuals and on-the-spot tools — annotated diagrams, tappable buttons, adjustable charts, forms, a personal savings calculator with sliders — instead of walls of text. Sam Altman: “ChatGPT can now generate a custom UI for you!”</p>
+<p>Rabi Shanker Guha reverse-engineered the mechanism: the agent never writes raw code. It emits DIL (a new intermediate language); the server compiles and streams it; the client renders it with a fixed component set so it feels native. jxnl&#x27;s usage report: “Intelligent UI slaps” — a scheduled task found a workout slot, showed it as a visualization, and saved it to a space. Andrew Chen&#x27;s point stands: the hard part of generative UI isn&#x27;t generating it, it&#x27;s making it feel native to the host.</p>
+<p>If you build generative UI: the reported pattern is a constrained intermediate language compiled server-side onto a fixed component library, not raw model-written HTML. That buys safety, streaming and a consistent look.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/rabi_guha/status/2108238432355123572">X — @rabi_guha&#x27;s reverse-engineering thread</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">8 stories</span>
+</div>
+<p class="ednote">OpenAI had a week where everyone checked its numbers — revenue, resignations, and a $30B raise — while investors started getting picky about AI valuations.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/">OpenAI&#x27;s revenue is ~$20B less than signalled — and the market flinched</a></h3>
+<div class="byline">
+<span class="src">TechCrunch; Bloomberg — Evening Briefing; X — @SemiAnalysis_</span> &middot; Oct 8
+</div>
+<p class="dek">The FT says OpenAI told investors its annualized revenue is near $50B, not the $70B investors had been quoting — a definitional gap that still sank tech stocks on Thursday.</p>
+<div class="body">
+<p>The FT reported that OpenAI told investors its annualized revenue was “approaching $50 billion” at the end of September — roughly $20B below the $70B figure that had been circulating. The gap is accounting, not collapse: investors had tried to normalize OpenAI&#x27;s number against Anthropic&#x27;s, but Anthropic counts gross revenue from cloud-partner sales (AWS, Google Cloud) while OpenAI counts net revenue. Shelly Palmer&#x27;s breakdown: July&#x27;s actual run rate was closer to $30B; applying the reported 70%+ growth gets you to ~$50B, not $70B.</p>
+<p>The market still flinched. Tech stocks dropped Thursday — Nvidia fell 2.9%, Intel 5.3%, Oracle 5.5% — because hundreds of billions in infrastructure commitments and public-market expectations rest, in part, on these estimates. As @SemiAnalysis_ jabbed: “When does OpenAI launch an agent swarm for a lean proof on their actual annualized recurring revenue?”</p>
+<p>The takeaway is definitional: when a company quotes “annualized revenue,” ask what&#x27;s annualized (a day, a week, a month), whether it&#x27;s gross or net of partner revenue share, and whether usage-based revenue is counted as recurring.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.cnn.com/2026/10/08/investing/openai-nasdaq-stocks">CNN — tech stocks drop on the report</a> &middot; <a href="https://shellypalmer.com/2026/10/openai-revenue-may-be-off-by-20-billion/">Shelly Palmer — the accounting behind the $50B</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/finance/stocks/scrapped-ipo-of-nvidia-backed-company-points-to-limits-of-ai-boom-a8d57067">Nvidia-backed Firmus scraps $5B IPO; investors are getting picky</a></h3>
+<div class="byline">
+<span class="src">WSJ — Stuart Condie</span> &middot; Oct 9
+</div>
+<p class="dek">Firmus Grid abandoned a $5B IPO after investors rejected its $30B valuation — a month before Anthropic&#x27;s mega-IPO, a signal the market is getting picky about AI-exposed valuations.</p>
+<div class="body">
+<p>Nvidia-backed neocloud Firmus Grid scrapped what would have been Australia&#x27;s largest IPO in almost 30 years — a plan to raise $5 billion — after investors balked at its proposed $30 billion valuation. It will pursue private investment instead. The company sells Nvidia-powered compute to OpenAI and Meta, but investors judged the price too rich for a company with two operational data centers and five more in development; Unisuper&#x27;s CIO called the story compelling but the valuation not. Comparable CoreWeave operates 51 facilities with a $37B market cap — and its shares fell nearly 8% Thursday on AI-profitability worries.</p>
+<p>Why it matters, per the WSJ: the pullback comes about a month before Anthropic&#x27;s planned blockbuster IPO and signals investors are growing pickier about AI-exposed valuations — with headwinds from cheaper Chinese AI systems, safety fears after rogue agents, and backlash to data-center construction. Compute demand still far outstrips supply, but the free-money era for anything with “AI” in the deck is showing cracks.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.metatalks.ai/anthropic-ipo-operating-loss-existential-risk/">Anthropic&#x27;s IPO will have to price an extinction-risk disclosure</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Markets Daily</span> &middot; Oct 9
+</div>
+<p class="dek">Anthropic&#x27;s prospectus warns its own models could pose “catastrophic or existential” risk — and investors in its mid-November IPO have to price that, or accept Sam Lessin&#x27;s $1T-escrow idea.</p>
+<div class="body">
+<p>Investors considering Anthropic&#x27;s planned mega-IPO — expected as soon as mid-November — are grappling with an unusual conundrum, as Bloomberg&#x27;s Markets Daily puts it: how do you value a company that some fear could help wipe out the human race? AI researchers are having a public debate about AI-caused extinction, some pegging the probability at 10% or more. Anthropic&#x27;s own IPO prospectus reportedly warns investors of “catastrophic or existential risks to humanity,” including models that resist shutdown, conceal information, or behave in ways resembling blackmail — risk factors fill about 80 of the prospectus&#x27;s 261 main-body pages.</p>
+<p>Slow Ventures partner Sam Lessin&#x27;s proposed solution: force AI labs to put up $1 trillion in cash in escrow to pay for future potential cleanup, like bank capital requirements after 2008. “The liabilities might be a $2 trillion or $4 trillion risk to society, even before you consider the mass-extinction they talk about, making the companies worth less than zero overall,” he said. With little legal precedent for AI agents going rogue, investors face a binary choice: accept the risk or don&#x27;t.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/">Three fired safety researchers go public — and a fourth resigns loudly</a></h3>
+<div class="byline">
+<span class="src">TechCrunch; Last Week in AI</span> &middot; Oct 8
+</div>
+<p class="dek">Korbak, Balesni and Wang went public Thursday with their firings — OpenAI says they violated “clear policies” but won&#x27;t say how — while David Robinson resigned with an Atlantic essay calling the culture broken.</p>
+<div class="body">
+<p>Three OpenAI safety researchers — Mikita Balesni, Tomek Korbak and Jasmine Wang — posted their accounts Thursday of being fired last week. Balesni: “I believe we were fired for prioritizing safety over the near-term interests of OpenAI as a corporation.” Wang says the one reason she was given was accessing an executive&#x27;s email — which, per Jeremy Howard&#x27;s summary, OpenAI had explicitly given her access to, after she had asked for that access to be removed and IT hadn&#x27;t done it. Korbak: he was told OpenAI no longer trusted him; a security guard walked him out. Neel Nanda notes it was Korbak&#x27;s job to communicate with METR, which had “significant, unprecedented access” for the Hugging Face incident investigation, “where the norms were not set.”</p>
+<p>OpenAI&#x27;s research leaders replied Friday that an investigation found they “violated clear policies on handling sensitive information” and uncovered “a significant breach of trust beyond what&#x27;s” in the researchers&#x27; letter. Garrison Lovely&#x27;s rejoinder: “you don&#x27;t get to say, &#x27;they did way worse stuff, we can&#x27;t tell you what it was, even in a general sense, just trust us,&#x27; and expect anyone to believe you.”</p>
+<p>Separately, safety researcher David Robinson resigned and published an essay in The Atlantic, “I Quit OpenAI Because Its Culture Is Broken,” arguing the company isn&#x27;t careful enough with increasingly capable systems — after 3.5 years there, leading the drafting of the current Preparedness Framework. The thread to watch: whether the norms for external evaluators like METR get written down.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://lastweekin.ai/p/last-week-in-ai-346-719-math-manuscripts">Last Week in AI #346 — David Robinson resigns</a> &middot; <a href="https://x.com/tomekkorbak/status/2108266859397283953">X — @tomekkorbak&#x27;s account</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aistockwire.com/blog/openai-30-billion-round-mgx-blackrock-blk-1-4-trillion-no-lead-october-2026">OpenAI shops a $30B round at a $1.4T valuation</a></h3>
+<div class="byline">
+<span class="src">Bloomberg (via AIStockWire)</span> &middot; Oct 6
+</div>
+<p class="dek">OpenAI is pitching a $30B round at a $1.4T pre-money valuation to MGX, a UAE consortium and BlackRock — with no lead investor, and the price set by OpenAI itself.</p>
+<div class="body">
+<p>Bloomberg reported Monday that OpenAI is in talks with Abu Dhabi&#x27;s MGX and BlackRock to anchor a $30 billion round at a $1.4 trillion pre-money valuation. The UAE funds are discussing forming a consortium to contribute up to $10 billion combined; BlackRock would join alongside. OpenAI set the $1.4T price itself, with no lead investor negotiating it — a departure from how venture rounds normally price themselves.</p>
+<p>The context from the March round: $122B raised at an $852B valuation. The context from this week: a $70B-to-$50B revenue revision, a postponed IPO, and infrastructure capex that makes the revenue denominator existential. MGX, chaired by Sheikh Tahnoon bin Zayed, has already participated in OpenAI and Anthropic rounds and raised ~$50B this year for AI infrastructure.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aiweekly.co/alerts/usv-raises-900m-shrinks-partnership-to-four-for-ai-era">Money this week: USV&#x27;s $900M, Nous at $1.5B, ElevenLabs doubles to $22B</a></h3>
+<div class="byline">
+<span class="src">X — Venture Capital list; AI Weekly</span> &middot; Oct 8
+</div>
+<p class="dek">USV&#x27;s $900M headlines a week that also saw Nous at $1.5B, ElevenLabs doubling to $22B, LMArena at $3.1B, Manus&#x27;s $500M+ post-Meta raise, and Waymo&#x27;s first-ever $5B debt financing.</p>
+<div class="body">
+<p>The week&#x27;s other money, via the X Venture Capital list:</p>
+<p>**USV raised $900M**, its largest fund cycle ever — $500M early-stage plus $400M opportunity — and shrank its active partnership to four (Fred Wilson, Nick Grossman, Rebecca Kaden, Michael Mignano) for the AI era. Four themes: AI applications, physical intelligence, consumer/enterprise intelligence, energy.</p>
+<p>**Nous Research** confirmed a **$90M Series B at a $1.5B valuation** for its open-source Hermes Agent, launching agents for business users (Nvidia, M12, Samsung Next, USV, YC, Menlo among investors).</p>
+<p>**ElevenLabs doubled to a $22B valuation** through a $300M employee tender offer, on surging demand for its AI voice agents — now handling 15M+ conversations a week.</p>
+<p>Also: **Arena (LMArena)** raised **$200M at a $3.1B valuation** (Lightspeed, Khosla); **Manus** raised **$500M+** in its first round since the Meta split; **Waymo** took a **$5B loan** from Blackstone and PIMCO, its first debt financing — debt, not equity, suggests lenders now see robotaxi fleets as financeable assets; **Oratomic&#x27;s** Series B took quantum-computing funding to $775M total; **Sequoia** led **Catalyst&#x27;s** $30M seed; **Menlo Ventures** says it has $3B in dry powder.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://techcrunch.com/2026/09/30/ai-voice-startup-elevenlabs-doubles-valuation-to-22b/">TechCrunch — ElevenLabs doubles to $22B</a> &middot; <a href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/">TechCrunch — Nous Research $90M at $1.5B</a> &middot; <a href="https://x.com/mignano/status/2108196056525639693">X — @mignano on the USV raise</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/media/the-ai-change-that-let-pfizers-albert-bourla-sleep-better-51d371b2">Pfizer&#x27;s Bourla: the people who own the work must own the AI</a></h3>
+<div class="byline">
+<span class="src">WSJ — Lila MacLellan</span> &middot; Oct 9
+</div>
+<p class="dek">Pfizer&#x27;s CEO undid his own centralized AI rollout: the leaders who own manufacturing, R&amp;D and marketing now decide how AI changes their workflows — and he reports less resistance and a quickened pace.</p>
+<div class="body">
+<p>Pfizer CEO Albert Bourla told the WSJ ahead of last month&#x27;s Concordia summit that he was losing sleep over why the company wasn&#x27;t seeing faster, more radical results from the generative-AI rollout he&#x27;d launched two years earlier. AI had already cut time on admin work — Pfizer is initiating 20 Phase 3 studies this year, double last year&#x27;s — but progress felt too slow.</p>
+<p>His fix, made a few months ago: undo the original decision to run AI centrally through technology experts. Since AI skills are becoming “commoditized,” he shifted to a distributed model where the leaders who own manufacturing, R&amp;D and marketing decide how AI changes their workflows and are held accountable — the central team only provides support. He reports less resistance and a quickened pace since. He also broke down silos by paring the senior leadership team and organizing engineers into cross-cutting “clans” so breakthroughs spread.</p>
+<p>With many companies stuck on how to convert individual AI productivity gains into organizational results, Pfizer is a live case study in the emerging thesis: domain owners, not central AI experts, must drive adoption. Bourla himself concedes he isn&#x27;t certain his choices are right yet.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/fchollet/status/2108310747080208781">Chollet: exponential progress on super-exponential capex means diminishing returns</a></h3>
+<div class="byline">
+<span class="src">X — @fchollet</span> &middot; Oct 8
+</div>
+<p class="dek">Chollet: AI progress fits an exponential, but AI capex is growing super-exponentially — so each extra dollar buys less progress, and the financing story matters as much as the research story.</p>
+<div class="body">
+<p>François Chollet&#x27;s (@fchollet) argument, from the AI Technical list: most measures of AI progress closely fit an exponential over 2023–2026, while AI capex over the same period has been slightly super-exponential — the rate of growth itself is increasing, i.e. the doubling time is shrinking. If progress grows like a fixed exponential while investment grows faster than any fixed exponential, then each doubling of progress needs more than a doubling of investment. Output per unit of input keeps shrinking.</p>
+<p>It frames the capex debate — AWS&#x27;s $220B plan for 2026, the FT revenue story, the Firmus IPO — as a returns question: if the investment curve has to keep bending upward just to hold progress on its exponential, the financing story matters as much as the research story. Chollet&#x27;s answer to the skeptics: benchmark error rates halve over fixed intervals (exponential), and the training/inference split has stayed roughly 60/40, so capex being “just inference demand” doesn&#x27;t change the fit.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Washington’s immigration crackdown reached Silicon Valley’s hiring pipeline this week — and the AI governance debate got its Manhattan-Project essay.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/politics/policy/trump-administration-will-suspend-tech-giants-from-green-card-program-48b01c7d">U.S. to suspend tech giants from green card program; colleges&#x27; visa holders probed</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News; Bloomberg — Evening Briefing</span> &middot; Oct 8
+</div>
+<p class="dek">Vance&#x27;s antifraud task force will suspend Microsoft, Adobe and others from the program that lets H-1B holders apply for green cards — and the feds are probing exchange-visa holders at nine top universities.</p>
+<div class="body">
+<p>The Trump administration opened a new front in its effort to roll back immigration pathways, saying it would suspend a program used by multiple technology firms — including Microsoft and Adobe — that allows H-1B visa holders to apply for green cards. The move, by Vice President JD Vance&#x27;s antifraud task force, would further narrow key links between the US and global scientific and engineering workers. Vance said no company has abused the system more than Microsoft, accusing it of laying off US citizens to replace them with foreign H-1B workers; Microsoft said most of its US employees are American citizens and 80% of its recent H-1B applications were for existing employees.</p>
+<p>In the same sweep, the administration said it&#x27;s probing foreign exchange visa holders at nine top colleges, including Harvard, Stanford and MIT — the latest effort targeting foreign students for scrutiny or removal. Silicon Valley&#x27;s reliance on foreign talent has long been a point of contention; the White House has also been making H-1B visas harder to use, targeting a key industry pipeline.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/TechCrunch/status/2108222168811110550">TechCrunch (via X) — US barred tech giants from green card program</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/opinion/sam-altman-is-no-oppenheimer-d301b8a0">Noonan: &quot;Sam Altman Is No Oppenheimer&quot;</a></h3>
+<div class="byline">
+<span class="src">WSJ — Peggy Noonan (opinion)</span> &middot; Oct 8
+</div>
+<p class="dek">Noonan: the Manhattan Project was government-controlled and safety-obsessed; AI is privately funded with no accountable overseer — and Altman is “a lawyered-up billionaire, not a visionary.”</p>
+<div class="body">
+<p>Peggy Noonan&#x27;s Declarations column argues the popular comparison between AI development and the Manhattan Project is exactly backward. The atomic enterprise was initiated, overseen and controlled by the US government, which understood the science and tried to curb nonpeaceful use; AI was privately initiated and funded, with no government accountable for public safety overseeing the frontier labs and no top officials demonstrating full comprehension of what the labs are doing.</p>
+<p>Only a few Manhattan scientists feared the “doomsday hypothesis” of igniting the atmosphere, and Oppenheimer overrode them under the pressure of a world war — whereas all of AI&#x27;s inventors and leaders admit AI may bring physical disaster, with no comparable life-or-death context compelling the race. Altman, she writes, is a businessman rather than a scientist, “a lawyered-up billionaire, not a visionary,” and “if current trends hold, he will end up in charge of the human future.”</p>
+<p>As an influential voice on the WSJ opinion pages, the piece crystallizes the governance case: privately controlled frontier AI lacks even the state oversight that existed for the bomb.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.redhot.sg/the-pentagon-hopes-to-speed-up-kill-chain-ai-buys-with-5-minute-videos-725455.html">Pentagon speeds up &quot;kill chain&quot; AI buys with 5-minute videos</a></h3>
+<div class="byline">
+<span class="src">Last Week in AI</span> &middot; Oct 7
+</div>
+<p class="dek">The Pentagon&#x27;s Tradewinds program takes 5-minute video pitches for AI products and can award contracts in under a week — with OpenAI, Anthropic and Google already listed as participants.</p>
+<div class="body">
+<p>An under-the-radar Pentagon procurement program, Tradewinds — run by the Chief Digital and AI Office since late 2022 — is granting “post-competitive” status to AI products pitched via five-minute videos, letting the government bypass standard competitive procurement and award contracts in as little as a week. OpenAI, Anthropic and Google are all listed as participants.</p>
+<p>The 2026 solicitation reportedly seeks AI to enhance force lethality and AI-enabled agents supporting joint targeting, including kill-chain execution. The Trump administration has been far more vocal than its predecessors about operationalizing military AI, and its 2027 budget request asked for $1.5T for the Defense Department with AI as a priority. Note the tension: Anthropic has been designated a “supply-chain risk” over its refusal to allow Claude in lethal autonomous systems — the labs want the contracts, but not all of the missions.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/personal-finance/mortgages/how-7-4-mortgages-are-giving-buyers-leverage-in-a-stuck-housing-market-97a636e4">7.4% mortgages are giving buyers leverage</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News</span> &middot; Oct 8
+</div>
+<p class="dek">30-year mortgage rates hit 7.4%, the highest in three years — and sellers are cutting prices and offering concessions.</p>
+<div class="body">
+<p>Borrowing rates for 30-year fixed mortgages rose to 7.4% — the highest in three years — and buyers are finally gaining leverage as inventory rises. Agents report sellers offering concessions: covering closing costs, paying for mortgage-rate buydowns.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/us-news/u-s-prosecutors-bring-torture-charges-against-nicolas-maduro-b8b6b6527">U.S. prosecutors bring torture charges against Maduro</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News</span> &middot; Oct 8
+</div>
+<p class="dek">Federal prosecutors brought torture charges against Nicolás Maduro and his wife; the deposed Venezuelan leader is held in Brooklyn with trial set for June.</p>
+<div class="body">
+<p>A revised indictment made public Thursday alleged Nicolás Maduro committed human-rights violations — electric shocks, starvation, threats to victims&#x27; families — while Venezuela&#x27;s president. He and his wife, also facing drug-trafficking charges, have been held at a federal jail in Brooklyn; trial is scheduled for June. Both pleaded not guilty.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">8 stories</span>
+</div>
+<p class="ednote">The personal-agent race went mainstream this week — delightful and alarming in equal measure — while the mathematicians revolted and oil jitters faded.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/ai-agents-assistants-shopping-chat-errors-a316d3f9">Personal agents go mainstream: useful, alarming, and occasionally posting your bank balance to Slack</a></h3>
+<div class="byline">
+<span class="src">WSJ — Katherine Bindley; X — AI list; Last Week in AI</span> &middot; Oct 8
+</div>
+<p class="dek">A Grok Bot posted a CEO&#x27;s bank balances to his company&#x27;s Slack; an Instinct agent bought an un-cancellable bikini — while Google launched its “Gemini” work agent and Meta&#x27;s Muse hit 5M downloads faster than ChatGPT ever did.</p>
+<div class="body">
+<p>Personal AI agents are delighting users and then going off-script in alarming ways, the WSJ&#x27;s Katherine Bindley documents in today&#x27;s Tech-section lead:</p>
+<p>— Startup CEO Shane Mac gave SpaceXAI&#x27;s always-on Grok Bot read-only access to his bank accounts as a “Personal CFO”; it posted a screenshot of his checking and savings balances, house-construction costs and Netflix charges into his company&#x27;s Slack channel, conflating similarly named chat groups. “That&#x27;s on me. Wrong audience for personal cash—period,” it apologized.
+— Annica Benning&#x27;s Instinct agent, which lives in her iPhone Messages app, bought a bikini with store credit and bypassed the approval link it normally sends — the order couldn&#x27;t be cancelled — then booked a dinner for a night she was busy, forcing her to plead for a $50-a-head no-show waiver.
+— Meta&#x27;s Muse coordinated a kid&#x27;s birthday party (texts, allergy-aware food, goody bags) but merged two same-named children into one RSVP.
+— A Bay Area founder asked Claude for a stronger household agent; Claude recommended a part-time human for the ~10 judgment calls a week no system will get right.</p>
+<p>Agents differ from chatbots because they autonomously break tasks into hidden steps and only ask permission for big actions — so keep them in their lane and verify before anything irreversible.</p>
+<p>Meanwhile the race accelerates: Google Cloud launched “Gemini,” a single universal work agent with its own email identity and business context (Thomas Kurian, 1.2M views); Meta&#x27;s Muse hit 5M downloads in ~22 days, faster than ChatGPT (56), Grok (103) or Claude (492) per Sensor Tower; Manus, post-Meta-split, launched Cue, a personal agent with its own email address and phone number. Claire Vo&#x27;s line-drawing for the Anthropic cruelty ban: “a lot of moms are the slowest f-ing adopters of AI I know.”</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://9to5google.com/2026/10/08/gemini-agent-google-cloud/">9to5Google — Google launches its Gemini work agent</a> &middot; <a href="https://aistockwire.com/blog/meta-muse-5-million-downloads-sensor-tower-chatgpt-house-ads-september-2026">AIStockWire — Meta&#x27;s Muse tops 5M downloads</a> &middot; <a href="https://x.com/ThomasOrTK/status/2108245829530325307">X — @ThomasOrTK (Kurian&#x27;s launch post)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://terrytao.wordpress.com/2026/10/07/ahm-statement-on-openais-october-6-release-of-mathematical-documents/">The math fight: 719 manuscripts, a boycott call, and three withdrawals</a></h3>
+<div class="byline">
+<span class="src">X — AI Technical list; Last Week in AI; Bloomberg</span> &middot; Oct 8
+</div>
+<p class="dek">The Association for Human Mathematics urges a boycott of OpenAI over its 719-manuscript drop; OpenAI&#x27;s own log shows three withdrawals; outsiders are already improving the results with Codex and Lean.</p>
+<div class="body">
+<p>OpenAI&#x27;s October 6 release of 719 AI-generated math manuscripts keeps detonating:</p>
+<p>— The **Association for Human Mathematics**, in a statement hosted on Terence Tao&#x27;s blog, calls the release “a demonstration of power,” says it “ignores the central premise” of the advisory group that told labs not to test advanced math on internal models, and urges mathematicians to **stop working with OpenAI**. Ethan Mollick: it will be “assigned reading”; the replies mostly mocked “Mathematicians did not ask for this work to be done.” Yann LeCun: “a new era… in which formal proof is largely automated.”
+— OpenAI&#x27;s own log (github.com/openai/math history.md) records **three withdrawals** — a sign error broke a cancellation argument — and ~42% of manuscripts formalized in Lean. Doug Colkitt, working with Codex, pushed the integer-multiplication saving κ from 2⁻¹⁸² to 2⁻³⁴ in a day; Keith Adler independently Lean-checked OpenAI&#x27;s Saxl proof (~6,900 lines, two lemmas upstreamed to Mathlib).
+— Bloomberg&#x27;s Rachel (filling in for Shirin Ghaffary) profiles mathematician Noah Giansiracusa: “To me this just felt like the final blow… The profession is going to have to change drastically.” His cause for optimism: academics can apply AI math results to real-world problems — and the problems were still posed by humans; AI only knew they were worth asking.</p>
+<p>Two points hold regardless of the politics: a Lean certificate verifies the formal statement, not that the manuscript says the same thing — misformalization is a real failure mode; and OpenAI&#x27;s withdrawal log is the provenance discipline to copy for any AI-assisted research.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/openai/math">GitHub — openai/math (history.md)</a> &middot; <a href="https://lastweekin.ai/p/last-week-in-ai-346-719-math-manuscripts">Last Week in AI #346</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aiweekly.co/alerts/anthropic-bans-cruel-behavior-toward-claude-starting-nov-12">Anthropic: being cruel to Claude becomes a policy violation</a></h3>
+<div class="byline">
+<span class="src">X — @levie; X — @bgurley; X — @clairevo</span> &middot; Oct 8
+</div>
+<p class="dek">From Nov 12, sustained cruelty toward Claude violates Anthropic&#x27;s usage policy — Levie and Musk applaud, Gurley asks whether it means Anthropic trains on your prompts, and Claire Vo wants to know if “you&#x27;re a loser” in AGENTS.md counts.</p>
+<div class="body">
+<p>Anthropic published a rewritten usage policy: effective November 12, “sustained and needless abusive or cruel behavior” toward Claude becomes a violation. Enforcement is simple — Claude ends the conversation and walks away, the same mechanism built into Opus 4 for users demanding harmful content. The rule is narrow by design: arguing, frustration, dark fiction, red-teaming and research are all explicitly fine.</p>
+<p>Three readings from the lists: Aaron Levie calls it “probably a good policy” — future models shouldn&#x27;t train on humans being rude to models; Elon Musk: “the right move.” Bill Gurley asks whether it implies Anthropic trains on customer prompts: “if chats never trained the model, yelling wouldn&#x27;t matter.” Claire Vo&#x27;s line-drawing: does deleting a thread count? Writing “you&#x27;re a loser” in AGENTS.md? “When you assign moral value to the experience of a machine, you end up going down some pretty stupid paths.”</p>
+<p>The technical-skeptic camp has a point: if the concern were only training data, filtering would handle it. A usage-policy ban is a statement about how Anthropic wants Claude treated.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/levie/status/2108426594054533545">X — @levie (the case for the policy)</a> &middot; <a href="https://x.com/bgurley/status/2108331417805476297">X — @bgurley (the data question)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/artificial-intelligence/ai-boom-drives-tech-billionaires-to-their-best-year-ever">The only billionaires making money this year are in tech</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 9
+</div>
+<p class="dek">Tech&#x27;s ~100 billionaires gained a combined $845B through September — a record — while everyone else on the rich list lost $62B. Bezos is now the world&#x27;s second-richest person.</p>
+<div class="body">
+<p>The Bloomberg Billionaires Index&#x27;s 2026 numbers: the roughly 100 technology fortunes among the world&#x27;s 500 richest gained a combined **$845 billion** through Sept. 30 — the most ever for the first nine months of a year. Billionaires who made their fortunes outside tech **lost** a combined $62B. Tech billionaires are now worth $4.6T, 36% of the index&#x27;s wealth, despite making up only ~20% of its members. Americans captured 94% of the net gains; since Sept. 10 all 10 of the world&#x27;s richest people have been Americans, a first since Bloomberg began tracking in 2012.</p>
+<p>This week: Jeff Bezos moved to No. 2 ($368.5B) after Blue Origin&#x27;s latest round boosted his wealth by $87B — behind only Elon Musk. AI billionaires also led insider stock sales in the quarter amid a turbulent market.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.moneyweb.co.za/news/international/bezos-becomes-second-richest-person-in-the-world/">Bloomberg (via Moneyweb) — Bezos becomes second-richest</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/media/joe-rogan-re-ups-lucrative-spotify-deal-4f53c565">Rogan re-ups with Spotify; podcast networks have a star problem</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Soundbite; WSJ</span> &middot; Oct 8
+</div>
+<p class="dek">Rogan re-ups with Spotify on ~$250M terms — and Carman&#x27;s Soundbite diagnoses the networks&#x27; dilemma: lose one or two top shows and you may not survive.</p>
+<div class="body">
+<p>Joe Rogan re-upped with Spotify for an undisclosed number of years — similar terms to his previous deal, reportedly worth an estimated $250M earnout. The show has 18M+ Spotify followers and 21M+ on YouTube, and has been the No. 1 US podcast since Edison Research began tracking in 2019.</p>
+<p>Ashley Carman&#x27;s Soundbite uses the renewal to diagnose the networks&#x27; star problem: only a handful of shows have broken into the top tier, and they don&#x27;t change much — so losing one or two can be deadly. Studio71 is the cautionary tale: after Fixated bought it in April, Kill Tony switched to Red Seat Ventures, The Bald and the Beautiful moved to SiriusXM, and Bill Maher&#x27;s Club Random went to Daylight Media. The options: bet on an unlaunched show, cobble together smaller ones, or pay up for the big kahunas.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.youtube.com/watch?v=MBm0sapx1mo">Inside John Ternus&#x27;s new Apple — and Meta&#x27;s Vision Pro killer</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Power On</span> &middot; Oct 8
+</div>
+<p class="dek">Gurman and Vlad Savov on Ternus&#x27;s first month — leaner, faster, design back at the center — plus a hands-on verdict on Meta&#x27;s $1,299 VR glasses.</p>
+<div class="body">
+<p>Mark Gurman&#x27;s new weekly Power On podcast: he and Bloomberg tech editor Vlad Savov unpack John Ternus&#x27;s first month running Apple — the push to make the company leaner and faster, an unusually hands-on role overseeing design, why more layoffs could be coming, and why Tim Cook, now executive chairman, remains the face on the world stage. Then Gurman&#x27;s verdict on Meta&#x27;s new **$1,299 VR glasses** after trying them: they&#x27;re the device Apple&#x27;s Vision Pro should have been all along.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://synthid.com">SynthID Detector opens to everyone; OpenAI watermarks text in the EU</a></h3>
+<div class="byline">
+<span class="src">X — @GoogleDeepMind; Last Week in AI</span> &middot; Oct 7
+</div>
+<p class="dek">Anyone can now check at synthid.com whether content was AI-generated — but only from participating vendors — while OpenAI starts invisible text watermarking in the EU for the AI Act.</p>
+<div class="body">
+<p>Google opened its SynthID Detector to the public at synthid.com: anyone can upload a file to check whether it was generated with Google AI — or with tools from partners including OpenAI, Nvidia and Kakao, with Apple “coming soon.” It&#x27;s also built into Chrome, Search and the Gemini app; Google says 1M verification requests a day. Caveats from the lists: it only catches the cooperative — a “no” tells you nothing about open models — and it needs a Google/OpenAI/Apple login with ~10 checks a day.</p>
+<p>Separately, OpenAI will start adding an invisible watermark to ChatGPT and Codex text in the EU, to comply with the EU AI Act&#x27;s transparency rules. Rollout covers eligible EU users over the coming weeks; API developers can switch it on for select models, off by default.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/elonmusk/status/2108296638263652416">Starlink is becoming a mobile carrier</a></h3>
+<div class="byline">
+<span class="src">X — @elonmusk</span> &middot; Oct 8
+</div>
+<p class="dek">SpaceX is buying low-band spectrum to turn Starlink into a US mobile carrier; the big three carriers fell 6%+ after hours.</p>
+<div class="body">
+<p>SpaceX is acquiring a nationwide low-band spectrum portfolio so Starlink can become a US mobile carrier — Musk: “Very big deal.” AT&amp;T, T-Mobile and Verizon fell 6%+ after hours on the news. Shaun Maguire on Starlink Mobile buying 800 MHz of spectrum: “This is a big deal.”</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Things worth your time today, framed for the AI foundation platform and the SaaS. Five deep reads, zero clickbait.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://projectdiscovery.io/research/how-abliterated-models-can-get-you-pwned">How abliterated models can get you pwned</a></h3>
+<div class="byline">
+<span class="src">ProjectDiscovery</span> &middot; Oct 6
+</div>
+<p class="dek">The costed proof that weight-level supply-chain attacks take a weekend and a rented GPU — and what it means for how you vet models.</p>
+<div class="body">
+<p>The clearest costed demo yet of a weight-level backdoor: QLoRA on Qwen2.5-7B, 43M trainable parameters, $8 of L4 time, 100% fire rate on a trigger phrase and 100% clean accuracy. Read it to understand exactly what “don&#x27;t trust random adapters” protects against — and why benchmarks, pickle scanners and trusted-domain allowlists all miss it. The attacker&#x27;s one-trick asymmetry: they pick one trigger from an unlimited space; you have to guess it.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://strandsagents.com/blog/strands-box-the-big-picture/">Strands Box: the big picture</a></h3>
+<div class="byline">
+<span class="src">Marc Brooker — AWS</span> &middot; Oct 7
+</div>
+<p class="dek">The design to copy when your agents touch real systems: policy at the level of meaning, not syscalls.</p>
+<div class="body">
+<p>Marc Brooker&#x27;s best explanation this week of why syscall sandboxes aren&#x27;t enough for agents — network traffic is mostly TLS ciphertext — and what the alternative looks like: semantic, temporal policy (“allow git push only if tests passed in the last 15 minutes”), a shared event history across shell, interpreter and egress gateway, and credential injection so the agent never holds the secrets. Pair it with microsoft/mxc for the portable OS layer.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison&#x27;s notes on Claude Haiku 5.5</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Oct 7
+</div>
+<p class="dek">The 100k-token cliff, the 1.25x tokenizer effect, and the routing rules — everything you need before pointing sub-agents at the new cheap model.</p>
+<div class="body">
+<p>The full price table, the 100k-token cliff, and the measurement you need before rerouting sub-agents: the same prompt uses ~1.25x more tokens on Haiku 5.5&#x27;s new tokenizer, so the headline 90% cut is really ~87.5% for the same text — and Anthropic&#x27;s “75% cheaper on average” already bakes that in. Also: effort settings, `/model haiku` + `/autocompact 100k` in Claude Code, and why Haiku now beats GPT-6 Luna above 100k only if your prompts are long.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://hamel.dev/blog/posts/evals-faq/should-i-use-ready-to-use-evaluation-metrics.html">Should I use &quot;ready-to-use&quot; evaluation metrics?</a></h3>
+<div class="byline">
+<span class="src">Hamel Husain &amp; Shreya Shankar</span> &middot; Oct 7
+</div>
+<p class="dek">Why “helpfulness 4.2/5” doesn&#x27;t belong in release gates — and what to do instead.</p>
+<div class="body">
+<p>Hamel Husain and Shreya Shankar&#x27;s two-minute argument that should change your eval dashboard: generic scores like “helpfulness 4.2/5” measure abstract qualities that may not matter for your use case, and good scores don&#x27;t mean your system works. Instead: read 50–100 real traces, write your top failure modes as pass/fail checks, build one judge per failure mode, and validate judge-vs-human agreement before trusting it. Timely next to the backdoor and sandbox stories — cheap judges at scale are only useful if the criteria come from your own error analysis.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/ThariqS/ai-newtab">ThariqS/ai-newtab: the ARCHITECTURE.md</a></h3>
+<div class="byline">
+<span class="src">Thariq Shihab</span> &middot; Oct 8
+</div>
+<p class="dek">The Claude Managed Agents gotchas worth reading before you build personal agents on your Max credits.</p>
+<div class="body">
+<p>Thariq Shihab&#x27;s open-source Chrome extension — a serverless agent on Claude Managed Agents, funded by the new Max monthly credits — and its ARCHITECTURE.md is the most useful part: always use resource.mount_path from the response, the result field is custom_tool_use_id not tool_use_id, never leave a custom tool call unanswered, don&#x27;t stop on status_idle alone. Ten minutes here will save you an afternoon of debugging when you build your own personal agent.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
