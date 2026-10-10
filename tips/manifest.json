@@ -39,6 +39,16 @@
       "summary": "Beyond the hype on Opus 5.5 + Jev, Codex Sol + Jev, and Sol + OpenAI's Decisions API: the evidence says the winning pattern is one big model to think, one cheap model to decide, and plain code to enforce \u2014 with Jev matching Opus 5.5 at ~400x the cost on 216 real emails, question atomization worth 32 points of accuracy on the phishing bench (62.6% \u2192 95%), and early tests showing Jev faster, cheaper, and more accurate on judgment calls than OpenAI's new Luna-based Decisions API. The catch: confidence numbers must be calibrated on your own labels, and the decision model never grants permissions.",
       "page": "tips/2026-10-07-big-model-cheap-decider.html",
       "consumed": true
+    },
+    {
+      "slug": "2026-10-10-microsoft-decision-1",
+      "title": "Nadella announces Microsoft-Decision-1: Microsoft enters the decision-model race",
+      "date_added": "2026-10-10",
+      "article_url": "https://x.com/satyanadella/status/2108627923888754862",
+      "section": "AI Development Practices",
+      "summary": "Satya Nadella announced Microsoft-Decision-1: a purpose-built model that scores fixed choices (yes/no, multiple-choice, ratings, rubric grading) via a structured API instead of generating text \u2014 aimed at routing, classification, verification, and agent workflow control. Microsoft claims top accuracy across 36 benchmarks, 4.5\u00d7 faster than its closest rival and 35\u00d7 faster than GPT-6 Sol on structured decisions, at $0.042 per million input tokens. Early developer reaction is cautiously positive, with independent testers confirming it's competitive with TypeSafe's Jev \u2014 while skeptics note all the benchmarks are Microsoft's own.",
+      "page": "tips/2026-10-10-microsoft-decision-1.html",
+      "consumed": false
     }
   ]
 }
