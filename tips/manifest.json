@@ -59,6 +59,16 @@
       "summary": "Flue is an open-source TypeScript framework for building durable, autonomous AI agents, launched May 1, 2026 by Astro co-creator Fred Schott's team. Agents are functions marked with a 'use agent' directive, composed with a React-like hooks API; it's built on the Pi harness, supports any Pi model provider, and deploys to Node, Cloudflare Workers, CI, and edge runtimes \u2014 with durability from an append-only event log. The repo (withastro/flue, Apache-2.0) has 8,443 stars and is actively maintained. Reception: a lively but skeptical HN launch thread, and Firecrawl calling it a 'framework moment' alongside Vercel's Eve \u2014 though public discussion beyond the launch is thin.",
       "page": "tips/2026-10-10-flue-framework.html",
       "consumed": false
+    },
+    {
+      "slug": "2026-10-10-vercel-eve",
+      "title": "Vercel's Eve: the 'Next.js for agents'",
+      "date_added": "2026-10-10",
+      "article_url": "https://eve.dev",
+      "section": "AI Development Practices",
+      "summary": "Vercel's Eve is an open-source (Apache-2.0), TypeScript-first agent framework launched June 17, 2026 at Vercel Ship, pitched as \"Next.js for agents.\" An agent is a directory \u2014 agent.ts, instructions.md, tools/, skills/, subagents/, channels/, schedules/, connections/ \u2014 with durability, sandboxing, human-in-the-loop approvals, tracing, and evals built in. The repo (github.com/vercel/eve) has 5,513 stars and is still in public beta. Vs Flue: near-identical shape, but deployment is the fundamental difference \u2014 Eve is Vercel-first, Flue is multi-cloud. Discussion is warm but thin: bloggers validate the design, builders flag lock-in, and hands-on adoption is still early.",
+      "page": "tips/2026-10-10-vercel-eve.html",
+      "consumed": false
     }
   ]
 }
