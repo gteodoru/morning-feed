@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flue: the TypeScript framework for durable AI agents — Morning Feed Tips</title>
+<style>
+body { margin: 0; background: #f4f1ea; color: #1a1a1a;
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { max-width: 680px; margin: 0 auto; background: #fdfcf8;
+        padding: 30px 28px 44px; }
+.kicker { font-variant: small-caps; letter-spacing: 2px; color: #8b0000;
+          font-size: 14px; margin-bottom: 6px; }
+h1 { margin: 0 0 8px; line-height: 1.25; font-size: 30px; }
+.meta { color: #6b6b6b; font-size: 13px; font-style: italic;
+        margin-bottom: 18px; }
+.meta a { color: #8b0000; }
+.dek { font-weight: bold; line-height: 1.5; font-size: 16px;
+       border-left: 3px solid #8b0000; padding-left: 12px; margin: 0 0 20px; }
+h2 { font-variant: small-caps; letter-spacing: 1px; font-size: 19px;
+     border-bottom: 2px solid #1a1a1a; padding-bottom: 6px; margin: 26px 0 12px; }
+p { line-height: 1.65; margin: 0 0 12px; font-size: 15px; }
+.links { margin-top: 24px; font-size: 14px; }
+.links .slabel { font-style: italic; color: #6b6b6b; }
+.links a { color: #8b0000; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+ul.tips { list-style: none; padding: 0; }
+ul.tips li { padding: 12px 0; border-bottom: 1px dotted #bbb; }
+ul.tips a.title { color: #1a1a1a; text-decoration: none; font-size: 18px; }
+ul.tips a.title:hover { color: #8b0000; text-decoration: underline; }
+ul.tips .d { color: #6b6b6b; font-size: 13px; font-style: italic; }
+ul.tips .sum { font-size: 14px; color: #4a4a4a; margin-top: 4px; line-height: 1.5; }
+.back { display: inline-block; margin-top: 24px; font-style: italic;
+        font-size: 14px; color: #8b0000; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+</style></head><body><div class="page">
+<div class="kicker">Morning Feed &middot; Research Tip</div>
+<h1>Flue: the TypeScript framework for durable AI agents</h1>
+<div class="meta">Added Oct 10 &middot;
+<a href="https://flueframework.com/docs/guide/getting-started/">original article</a></div>
+<p class="dek">Like Claude Code, but 100% headless and programmable — an early &#x27;Next.js for agents&#x27; bet from the Astro team.</p>
+<h2>What it is</h2><p>Flue (flueframework.com) is an open-source TypeScript framework for building durable, autonomous AI agents, launched May 1, 2026 by Astro co-creator Fred Schott&#x27;s team. The pitch: an agent is a model pointed at a harness — sessions, tools, skills, sandbox, durable execution — and Flue supplies that harness as a programmable, headless framework: &quot;like Claude Code, but 100% headless and programmable. No TUI. No GUI. Just TypeScript.&quot;</p><p>From the getting-started guide: agents are plain functions marked with a &#x27;use agent&#x27; directive, composed with a React-like hooks API — useModel, useTool, useSkill, useSandbox, useSubagent, usePersistentState, useMcpConnection (16 built-ins in Flue 2.0, the &quot;first stable release&quot; announced July 31, 2026). It is built on the Pi harness (pi-agent-core), supports any Pi model provider, and deploys to Node.js, Cloudflare Workers, GitHub Actions/GitLab CI, Daytona, and Render. Durability comes from Durable Streams — an append-only event log where &quot;accepted work is never lost.&quot;</p><p>The repo (github.com/withastro/flue, Apache-2.0, created Feb 7, 2026): 8,443 stars, 508 forks, 1,134 commits, 65 open issues with activity this week (Oct 1–7, 2026), 2.x line current. Docs are deep — full guides, API reference, migration guide, blog, offline CLI docs — though pages carry no visible publication dates. It&#x27;s aimed at TypeScript teams that want to own their agent stack and embed agents in real systems.</p><h2>What people are saying</h2><p>Fred Schott&#x27;s X launch thread drew big attention (reported ~291K views; like counts disagree across sources — treat engagement numbers as unverified). Matt Pocock retweeted it; Addy Osmani replied &quot;This is super well done, Fred!&quot;</p><p>The HN launch thread (104 points, 56 comments, May 2) was lively but skeptical: &quot;pretty immature... why use this?&quot; (egonschiele), &quot;Mastra has tests and this project doesn&#x27;t&quot; (esprehn) — countered by builders like steve_adams_86 framing harnesses as &quot;a state machine with very explicit directives,&quot; and the_mitsuhiko&#x27;s key clarification that &quot;Flue is built on top of pi.&quot; Additional HN items (47979985, 48563881, 49127458) tracked follow-ups.</p><p>Press/community: Firecrawl&#x27;s &quot;framework moment&quot; analysis pits Flue against Vercel&#x27;s Eve (launched June 2026) — both converging on the same durable, model-agnostic, deploy-anywhere design; Better Stack has a YouTube walkthrough; Flavio Copes wrote a guide; Redline published an open-source agent framework comparison; and a Python port, PyFlue, already exists. Beyond the launch, public discussion is thin: no verified Reddit threads, no mentions in TLDR/Bytes/Latent Space/The Neuron, no mainstream tech-press coverage found.</p><h2>What to take away</h2><p>Flue matters as an early &quot;Next.js for agents&quot; entrant: the bet is that agents need a real framework — durable execution primitives, model-agnostic providers, deploy-anywhere posture — rather than another chat wrapper. The design convergence with Vercel&#x27;s Eve is the signal: the durable-execution primitive and the model-agnostic stance are where the ecosystem is heading.</p><p>For a tech lead building an AI foundation platform, this is directly relevant to the harness-vs-runtime question — and worth knowing that Flue sits on the Pi harness lineage (pi-agent-core), the same family as the Cloudflare PiHarness integration from the Oct 5 Morning Feed. Caveats: it&#x27;s still young (2.0 is the first stable), community traction is real but narrow (8.4K stars, thin discussion beyond launch), and there&#x27;s no funding angle — this is a craft story, not a venture one.</p>
+<div class="links"><span class="slabel">Sources:</span><div><a href="https://flueframework.com/docs/guide/getting-started/">Flue docs — getting started</a></div><div><a href="https://flueframework.com/">Flue homepage</a></div><div><a href="https://github.com/withastro/flue">GitHub — withastro/flue</a></div><div><a href="https://news.ycombinator.com/item?id=47988501">HN launch thread (104 pts, 56 comments)</a></div><div><a href="https://x.com/FredKSchott/status/2050274923852210397">Fred Schott&#x27;s X launch thread</a></div><div><a href="https://www.firecrawl.dev/blog/flue-vs-eve-agent-frameworks">Firecrawl — &#x27;framework moment&#x27; analysis</a></div><div><a href="https://www.youtube.com/watch?v=n5cYS6KuyK8">Better Stack YouTube walkthrough</a></div><div><a href="http://flaviocopes.com/flue-framework/">Flavio Copes guide</a></div><div><a href="https://blog.redlinesoft.net/posts/compare-opensource-agent-frameworks/">Redline — open-source agent framework comparison</a></div><div><a href="https://medium.com/superagentic-ai/introducing-pyflue-the-python-native-agent-harness-framework-inspired-by-flue-f1377b171976">PyFlue — Python port</a></div></div>
+<a class="back" href="./">&larr; All tips</a>
+<a class="back" href="../">&larr; Latest edition</a>
+</div></body></html>
