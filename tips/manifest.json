@@ -49,6 +49,16 @@
       "summary": "Satya Nadella announced Microsoft-Decision-1: a purpose-built model that scores fixed choices (yes/no, multiple-choice, ratings, rubric grading) via a structured API instead of generating text \u2014 aimed at routing, classification, verification, and agent workflow control. Microsoft claims top accuracy across 36 benchmarks, 4.5\u00d7 faster than its closest rival and 35\u00d7 faster than GPT-6 Sol on structured decisions, at $0.042 per million input tokens. Early developer reaction is cautiously positive, with independent testers confirming it's competitive with TypeSafe's Jev \u2014 while skeptics note all the benchmarks are Microsoft's own.",
       "page": "tips/2026-10-10-microsoft-decision-1.html",
       "consumed": false
+    },
+    {
+      "slug": "2026-10-10-flue-framework",
+      "title": "Flue: the TypeScript framework for durable AI agents",
+      "date_added": "2026-10-10",
+      "article_url": "https://flueframework.com/docs/guide/getting-started/",
+      "section": "AI Development Practices",
+      "summary": "Flue is an open-source TypeScript framework for building durable, autonomous AI agents, launched May 1, 2026 by Astro co-creator Fred Schott's team. Agents are functions marked with a 'use agent' directive, composed with a React-like hooks API; it's built on the Pi harness, supports any Pi model provider, and deploys to Node, Cloudflare Workers, CI, and edge runtimes \u2014 with durability from an append-only event log. The repo (withastro/flue, Apache-2.0) has 8,443 stars and is actively maintained. Reception: a lively but skeptical HN launch thread, and Firecrawl calling it a 'framework moment' alongside Vercel's Eve \u2014 though public discussion beyond the launch is thin.",
+      "page": "tips/2026-10-10-flue-framework.html",
+      "consumed": false
     }
   ]
 }
