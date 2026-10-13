@@ -69,6 +69,16 @@
       "summary": "Vercel's Eve is an open-source (Apache-2.0), TypeScript-first agent framework launched June 17, 2026 at Vercel Ship, pitched as \"Next.js for agents.\" An agent is a directory \u2014 agent.ts, instructions.md, tools/, skills/, subagents/, channels/, schedules/, connections/ \u2014 with durability, sandboxing, human-in-the-loop approvals, tracing, and evals built in. The repo (github.com/vercel/eve) has 5,513 stars and is still in public beta. Vs Flue: near-identical shape, but deployment is the fundamental difference \u2014 Eve is Vercel-first, Flue is multi-cloud. Discussion is warm but thin: bloggers validate the design, builders flag lock-in, and hands-on adoption is still early.",
       "page": "tips/2026-10-10-vercel-eve.html",
       "consumed": true
+    },
+    {
+      "slug": "2026-10-13-antigravity-gemini-4-argon",
+      "title": "Gemini 4 Argon goes global \u2014 in Antigravity for Ultra subscribers only",
+      "date_added": "2026-10-13",
+      "article_url": "https://x.com/antigravity/status/2110040034489381228",
+      "section": "AI Development Practices",
+      "summary": "Google's Antigravity account posted on launch day for Gemini 4 Argon, now globally available \u2014 inside Antigravity (desktop, CLI, Android Studio Canary) for Google AI Ultra subscribers only. Google also opened applications for 10,000 scientists to get six months free at Antigravity's highest usage tier. API pricing is $2/$10 per million tokens intro, rising to $4/$20 after November 30, 2026, with a 1M unified token limit. Early reaction centers on access: a gradual rollout, Pro-vs-Ultra as the fault line, and independent benchmarks cooler than Google's claims (Artificial Analysis 53, tied with Astra, behind Opus 5.5 at 58).",
+      "page": "tips/2026-10-13-antigravity-gemini-4-argon.html",
+      "consumed": false
     }
   ]
 }
