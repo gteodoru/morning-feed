@@ -88,7 +88,7 @@
       "section": "Other",
       "summary": "The All-In account's Oct 12 post almost certainly announces the new ~25-minute interview episode with Martin Shkreli \u2014 \"Big Pharma's Blind Spot, Betting Against Quantum & What Prison Taught Him.\" Shkreli on why quantum computing is \"a one-trick business\" and why he's shorting it; drugs big pharma prices too cheap; AI in drug discovery; and what prison taught him. Secondary summaries add: his quantum short has lost millions, photonic matrix multiplication could make current GPUs \"scrap metal within two decades,\" he calls Dario Amodei a \"fear-monger,\" and predicts no AI-relevant drug in 10 years. Coverage is thin \u2014 no HN, Reddit, or major press.",
       "page": "tips/2026-10-13-allin-shkreli-episode.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
