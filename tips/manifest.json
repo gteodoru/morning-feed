@@ -78,7 +78,7 @@
       "section": "AI Development Practices",
       "summary": "Google's Antigravity account posted on launch day for Gemini 4 Argon, now globally available \u2014 inside Antigravity (desktop, CLI, Android Studio Canary) for Google AI Ultra subscribers only. Google also opened applications for 10,000 scientists to get six months free at Antigravity's highest usage tier. API pricing is $2/$10 per million tokens intro, rising to $4/$20 after November 30, 2026, with a 1M unified token limit. Early reaction centers on access: a gradual rollout, Pro-vs-Ultra as the fault line, and independent benchmarks cooler than Google's claims (Artificial Analysis 53, tied with Astra, behind Opus 5.5 at 58).",
       "page": "tips/2026-10-13-antigravity-gemini-4-argon.html",
-      "consumed": false
+      "consumed": true
     },
     {
       "slug": "2026-10-13-allin-shkreli-episode",
