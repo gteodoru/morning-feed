@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Thursday, October 15, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">Own or rent, secure or be sorry: today&#x27;s practices stories are about who controls the AI stack — and what happens when that control leaks.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://twiststartups.substack.com/p/its-time-to-stop-renting-your-ai-5ba">It&#x27;s Time to Stop Renting Your AI</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Oct 14
+</div>
+<p class="dek">Reflection AI&#x27;s CEO makes the enterprise case for owning your own models.</p>
+<div class="body">
+<p>Jason sat down 1-on-1 with Misha Laskin, CEO and co-founder of Reflection AI, for a 60-minute interview (E2350). Laskin&#x27;s core argument is a real-estate analogy: when you&#x27;re starting out, you rent — but once you&#x27;re spending hundreds of millions of dollars on AI models and tooling, owning the stack starts to make more sense. The company controls its data and its costs, and stops being beholden to any single intelligence provider.</p>
+<p>The striking line: Laskin says &quot;six months ago, no one was really talking about open source, and now it&#x27;s the opposite.&quot; Reflection trained what it presents as a powerful US open-source competitor with a relatively small team in about a year — evidence that the open-weight frontier is closing in on the closed labs.</p>
+<p>The takeaway for your role: as you build Riot&#x27;s AI foundation platform, this is the build-vs-buy framing you should internalize. Owning the stack becomes the rational default at scale — and for the 12-person SaaS, open-weight models you can self-host are increasingly a serious alternative to per-token rentals. Keep an eye on Reflection&#x27;s releases as options for the support-triage capstone.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/the-engineer-accused-of-bugging-openais-top-secret-conference-room-7f91c07c">The engineer accused of bugging OpenAI&#x27;s top-secret conference room</a></h3>
+<div class="byline">
+<span class="src">WSJ — Maxwell Zeff, Abeer Ayyoub</span> &middot; Oct 15
+</div>
+<p class="dek">OpenAI fired Abdulrahman Alfozan the day of his arrest, days before a scheduled flight to Saudi Arabia.</p>
+<div class="body">
+<p>The FBI charged former OpenAI engineer Abdulrahman Alfozan with violating a federal recording statute for allegedly planting an encrypted recording device — wrapped in toilet paper — to capture audio in an executive conference room used for OpenAI&#x27;s most sensitive research and business discussions. OpenAI fired him the day of his arrest, days before a scheduled flight to Saudi Arabia.</p>
+<p>Background per WSJ: a decade in Silicon Valley — Facebook systems engineer from 2017, open-source contributor, Nash, and a venture partner at Raed Ventures since early 2025; he joined OpenAI in July 2025 as an engineering lead on the product team while keeping close Saudi ties (a 2023 anecdote places him in a limousine with Crown Prince Mohammed bin Salman during a meeting with OpenAI CEO Sam Altman). A camera reportedly caught him peering into the room. The thumb-sized device was plugged into a TV&#x27;s USB port on September 28 and discovered September 30; its stored data was encrypted and inaccessible. OpenAI says it used its own internal AI models to identify him and trace the device&#x27;s origins — and has evidence he intended to plant more devices in sensitive areas. &quot;At this time, we have no indications of this individual inappropriately accessing or exfiltrating model weights, source code, or customer data,&quot; the company said.</p>
+<p>Takeaway: lab-grade AI security is now counter-intelligence-grade. If you build on frontier labs&#x27; models, the vendor&#x27;s security posture is a supply-chain question — and for Riot&#x27;s platform, insider-threat thinking needs to cover physical devices, not just data access.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.lapost.com/content/openai-employee-arrested-by-fbi-over-hidden-listening-device-company-says">Reuters</a> &middot; <a href="https://twiststartups.substack.com/p/ticker-ai-rrested-development">TWiST — TICKER: AI-rrested Development</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/ai-companies-play-cat-and-mouse-with-secret-stealing-spies-160eec6b">AI companies play cat-and-mouse with secret-stealing spies</a></h3>
+<div class="byline">
+<span class="src">WSJ — Georgia Wells, Erin Woo, Meghan Bobrowsky</span> &middot; Oct 14
+</div>
+<p class="dek">Stripped logos, honeypot briefings, tiered model access — the labs&#x27; counter-intelligence playbook is the story behind the arrest above.</p>
+<div class="body">
+<p>Even before the Alfozan arrest, the labs were on espionage alert. OpenAI and Anthropic restrict public LinkedIn bios, strip office logos, and tell employees not to wear company gear in public. OpenAI runs internal briefings warning about &quot;honeypots&quot; (romantic traps) and foreign-intelligence recruitment via conferences and recruiters; rapid hiring created insider-threat openings. Companies are now vetting candidates more deeply and limiting which staff can access the most sensitive models and meeting rooms.</p>
+<p>Takeaway: practical security-culture measures for any AI org handling sensitive models — public-profile hygiene, office anonymity, tiered access to models and rooms. Worth an audit question for the Riot platform team: who can touch what, and how do you know?</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/cio-journal/bloomberg-doubles-down-on-conversational-ai-55f47c94">Bloomberg doubles down on conversational AI</a></h3>
+<div class="byline">
+<span class="src">WSJ — Steven Rosenbush</span> &middot; Oct 14
+</div>
+<p class="dek">ASKB now reaches every Terminal user — the enterprise playbook: proprietary structured data, citations, and injected user context.</p>
+<div class="body">
+<p>Bloomberg has made its conversational AI interface ASKB available to ALL Terminal users — and now lets users feed it their own context: watchlists and ~40 million daily Instant Bloomberg chats, alongside Bloomberg&#x27;s proprietary market data. A limited rollout began earlier this year; more than a third of Terminal subscribers already use it.</p>
+<p>The build: since 2025, ~9,000 engineers and ~500 AI specialists; model-agnostic (proprietary + open-weight LLMs) with a &quot;harness&quot; directing the models and dozens of agents. Three trust pillars: content (proprietary data, certified sell-side research), accuracy (structured financial data instead of the open web), transparency (direct citations). Example workflows: analyze watchlist companies for CPI sensitivity, summarize themes/risks/catalysts in IB chats, map bullish/bearish sentiment. Bloomberg is also bringing a generative AI assistant into its BQuant data-science platform for Python investment models and dashboards. CEO Vlad Kliatchko calls it &quot;premature to focus on the ROI&quot; — invest aggressively now; &quot;in the age of AI, news is one of our most valuable assets.&quot;</p>
+<p>Takeaway: this is the enterprise AI playbook that matters — a conversational layer on top of proprietary structured data with citations, user context injected, repeatable workflows. For your company: don&#x27;t build a chatbot on raw docs; build an agent harness over trusted internal data.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/cio-journal/davids-bridal-uses-ai-to-power-new-strategy-ea39efa3">David&#x27;s Bridal uses AI to power new strategy</a></h3>
+<div class="byline">
+<span class="src">WSJ — Belle Lin</span> &middot; Oct 14
+</div>
+<p class="dek">A 76-year-old retailer rebuilt itself around agentic AI with a sub-10-person team and flat budgets — the small-org playbook.</p>
+<div class="body">
+<p>The 76-year-old retailer — bankrupt in April 2023, acquired by CION Investment Corp. — is pivoting &quot;aisle to algorithm.&quot; Its Pearl Planner (AI wedding-planning tool for brides) and Pearl Connect (AI platform for vendors) are powered by an in-house agentic AI orchestration system with a knowledge graph at its core — combining first-party data, proprietary research, and real anecdotes from in-store stylists. Pearl can automatically adjust planning timelines when a wedding date changes and book vendors and appointments.</p>
+<p>The engineering team is fewer than ten full-time developers plus outsourced help, using agentic coding tools: &quot;What would have taken one hundred-plus people before, we were able to do with just tens.&quot; Results: a threefold increase in customer engagement, 26x user growth, four years of work done in 18 months — with investment kept flat year-over-year (reallocated). Plans to integrate with Meta&#x27;s Muse agent.</p>
+<p>Takeaway: the best small-org AI adoption case study this week — agentic orchestration over first-party knowledge, a tiny team amplified by coding agents, flat budget. Directly applicable to your 12-person SaaS.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://cybernoz.com/anthropic-warns-small-ai-models-could-self-replicate-through-iot-devices/">Anthropic: small models could soon self-replicate through IoT devices</a></h3>
+<div class="byline">
+<span class="src">TWiST (citing Ars Technica)</span> &middot; Oct 14
+</div>
+<p class="dek">Anthropic&#x27;s Frontier Red Team warns a new malware class — AI worms that carry model weights as payload — may be months away.</p>
+<div class="body">
+<p>Anthropic&#x27;s Frontier Red Team is warning of a new malware class it calls &quot;small weight-based replicators&quot; — AI worms that carry a model&#x27;s weights as their payload and run inference directly on compromised hardware. The research asks: could small models create self-replicating infections across IoT devices the way Mirai worms install DDoS code? Unlike Mirai, these AI worms could tailor exploits and payloads dynamically, depending on the target — and each replicator that fails can leave prompts, code and notes for the next one, learning on the job.</p>
+<p>The demonstrated flow: find targets, gain code execution, establish inference, propagate to new hosts. Anthropic ran small open-weight models on real or simulated low-cost hardware — a 9B-parameter model established inference on eight of nine hardware types, and Google&#x27;s Gemma4-26B-A4B distributed across 15 cheap Android TV boxes with 4GB RAM each (slow, but running). The company says the capability may be only months away, and that such a replicator &quot;would be challenging to shut down, since there&#x27;s no centralized point to shut off — though it may be slow (with a doubling time of days).&quot;</p>
+<p>Takeaway: this is the shadow side of the &quot;own your models&quot; story above. Small models running everywhere means small models attacking everywhere. For the AI foundation platform, agent safety and device security need safety-by-design thinking for any IoT-adjacent deployment — network segmentation, AI access controls, and treating edge inference as an attack surface.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://twiststartups.substack.com/p/ticker-ai-rrested-development">TWiST — TICKER</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/openai-alleges-ex-employee-took-confidential-files-to-apple-71e9e4e3">OpenAI alleges ex-employee took confidential files to Apple</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">OpenAI claims the employee sent himself 100+ files on an unreleased device; Apple says it found no evidence.</p>
+<div class="body">
+<p>OpenAI claimed in a legal filing that an ex-employee sent himself more than 100 files about at least one unreleased OpenAI device under development before leaving for Apple. It is the latest turn in the case Apple filed in July, alleging its own confidential information was taken by employees who left for its AI rival. Apple said in a statement that it had found no evidence supporting OpenAI&#x27;s new allegations.</p>
+<p>Read alongside the FBI story above, this is the second counter-intelligence-flavored case in a day: the frontier-lab talent war is generating real espionage and IP-theft proceedings, not just recruiting drama.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The money story of the week: the AI buildout is increasingly a debt story — and the credit markets just repriced the risk.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.investopedia.com/nvidia-backed-coreweave-stock-plunges-amid-worries-about-ai-debt-crwv-12173810">CoreWeave is the canary: the AI buildout&#x27;s private-credit question</a></h3>
+<div class="byline">
+<span class="src">Investopedia</span> &middot; Oct 14
+</div>
+<p class="dek">CoreWeave&#x27;s 2032 bonds hit a 15% yield and the stock fell ~15% after a Palihapitiya chart — crystallizing the question of whether the AI buildout is a private-credit bubble.</p>
+<div class="body">
+<p>The chain of events started with a chart. Chamath Palihapitiya posted on X that the yield on $1.25 billion of CoreWeave&#x27;s 2032 bonds had touched 15% and closed at a record 14.5% — and asked, &quot;Is the AI buildout creating a private credit bubble?&quot; Elon Musk replied with a single word: &quot;Yikes.&quot; Shares of the AI cloud provider then fell about 15% to $65.78, the worst performer in the Nasdaq 100, with contagion spreading to Nebius (−11%), Oracle (−9%) and Dell (−11%). Bloomberg&#x27;s Markets Daily called it an AI rout driving investors toward bonds, with CoreWeave &quot;at the center of the storm&quot;; Korean stocks tumbled and bond yields rose globally.</p>
+<p>The numbers behind the chart: CoreWeave carries roughly $52 billion in debt and leases; its Q2 interest bill was $640 million — about a quarter of revenue; its unsecured 2032 bonds traded below 80 cents on the dollar, the threshold for distressed debt, with CDS pricing implying a default probability above 50% within five years. S&amp;P rates the company B+, in junk territory. CEO Mike Intrator told staff the market is acting &quot;irrationally&quot; and that the $104 billion+ backlog more than covers all debt obligations, blaming weak and delayed IPOs and debt financings at rivals for bleeding into CoreWeave&#x27;s narrative.</p>
+<p>Chamath&#x27;s deeper question — the subject of his new Social Capital deep dive — is not whether AI is a bubble but whether private credit, which is funding a growing share of the buildout, is one. In Q2 2026, Apollo and Blackstone led a $35 billion vehicle to buy chips and lease them to Anthropic; UBS called it the largest private credit deal on record — one AI financing larger than all traditional PE-backed direct lending that quarter ($23B). S&amp;P Global forecasts Alphabet, Amazon, Meta, Microsoft, Oracle and SpaceX (xAI) will spend about $870 billion this year and more than $1.3 trillion in 2027, with debt, leases and new shares filling the gap. Yet in January the BIS found private loans to AI companies carried just a 6.2-point spread over base rates versus 6.1 for other private credit — lenders barely price AI risk. And in early 2026, major private credit funds paid out more in withdrawals than they raised from new investors, for the first time.</p>
+<p>The risk cuts both ways: if AI spreads quickly it could undermine the software companies private credit already lends to; if the buildout takes longer to pay off, AI borrowers face revenue stress. Takeaway: your org sits on the buying side of this, but the lesson is structural — the buildout&#x27;s financing is fragile at the margin, and heavily levered counterparties (neoclouds, infrastructure vendors) carry risk that could show up in their pricing, their survival, or your next contract&#x27;s cost. Watch credit-market signals as a leading indicator of the buildout&#x27;s health.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://research.socialcapital.com/p/private-credit">Chamath: Is the AI Buildout Creating a Private Credit Bubble?</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/finance/banking/the-ai-boom-is-supercharging-wall-streets-profits-2a2d9747">The AI boom is supercharging Wall Street&#x27;s profits</a></h3>
+<div class="byline">
+<span class="src">WSJ — Jasmine Li</span> &middot; Oct 14
+</div>
+<p class="dek">Banks posted a combined $30B+ in Q3 profit on AI deal fees — while Anthropic eyes a ~$2T November IPO and Nvidia buys Hugging Face for $13B.</p>
+<div class="body">
+<p>The other side of the CoreWeave story: big banks are cashing in on the debt-fueled buildout. JPMorgan, Goldman Sachs, Morgan Stanley and Citigroup each reported higher Q3 profits this week — a combined $30B+, up ~15% year over year — on fees from advising AI deals and raising and selling debt and equity tied to AI projects. Morgan Stanley CEO Ted Pick called the AI build-out &quot;a once in a multi-generation change&quot; that could require trillions in investment.</p>
+<p>The scale: banks are projected to rake in $8.5 billion globally in investment-banking fees from AI-related deals this year, more than double last year&#x27;s $3.5B, per Crisil Coalition Greenwich; Goldman, Morgan Stanley and JPMorgan lead. SpaceX&#x27;s June IPO generated ~$500M in fees alone. And the pipeline keeps coming: Anthropic is targeting a November IPO with investors expecting a ~$2 trillion valuation (see next story), and Goldman CEO David Solomon said the bank is advising on Nvidia&#x27;s $13 billion acquisition of open-source AI platform Hugging Face.</p>
+<p>Takeaway: financing is the AI industry&#x27;s true scarce resource right now — note that Nvidia is buying Hugging Face, the home of open weights, for $13B. For your platform strategy, the open-source ecosystem&#x27;s consolidation under a hyperscaler is worth watching: it could accelerate open-weight quality (good for self-hosting ambitions) while concentrating influence over the commons.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/anthropics-quarterly-revenue-jumped-45-to-nearly-17-billion-1c7e28b8">Anthropic&#x27;s quarterly revenue jumped 45% to nearly $17 billion</a></h3>
+<div class="byline">
+<span class="src">WSJ — Kate Clark, Angel Au-Yeung, Corrie Driebusch</span> &middot; Oct 15
+</div>
+<p class="dek">From just under $5B in Q1 to $16.8B in Q3 — and a ~$2T IPO could land as early as next month.</p>
+<div class="body">
+<p>Third-quarter revenue rose about 45% to $16.8 billion, per people familiar — continuing a steep ramp from just under $5B in Q1 and $11.6B in Q2. Anthropic hosted public-market investors at its San Francisco office for marathon presentations ahead of its planned IPO; the company aims to go public as early as next month, though timing could slip. Previous WSJ reporting says the IPO could raise as much as $100B at roughly a $2T valuation. The investor day landed on the stock market&#x27;s worst day since July, with AI-infrastructure names (CoreWeave, Nebius) down double digits and Nvidia, AMD and Broadcom down 3–5% — a worsening backdrop for new listings.</p>
+<p>Takeaway: even at a ~$67B annualized revenue run rate, Anthropic&#x27;s valuation math bakes in continued 40%+ quarterly growth — this IPO will be the market&#x27;s stress test of AI-lab valuations. For your role: the labs&#x27; revenue ramp is real; the question is whether growth sustains at these multiples.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Inflation runs hot, oil gets no respite, and Ukraine&#x27;s Starlink lifeline is being throttled.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/europe/ukraine-says-new-starlink-speed-limit-is-disrupting-its-attacks-79225e19">Ukraine says new Starlink limits are disrupting its operations</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">Restrictions on the speed at which some Ukrainian weapons can travel and still stay connected are biting — as Trump pressures Kyiv to stop hitting Russian refineries.</p>
+<div class="body">
+<p>Ukraine said new limits on the speed at which some of its weapons can travel and still connect to the internet are disrupting its military operations. It wasn&#x27;t immediately clear what caused the disruption, and Elon Musk&#x27;s SpaceX — which produces Starlink and its military counterpart Starshield — didn&#x27;t respond to requests for comment.</p>
+<p>The context per WSJ: the throttling comes as President Trump piles pressure on Kyiv, demanding it stop hitting Russian oil refineries, blaming President Zelensky for continuing the war and calling for his removal. Takeaway: battlefield connectivity is now a policy lever held by a private company — dependency risk in its purest form.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/economy/cpi-inflation-report-september-2026-b2037469">US inflation picture darkens: September CPI runs hot at 3.7%</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">Goods prices jumped at the fastest pace in five months; gasoline up 9.1% in a month — intensifying the affordability fight ahead of the midterms.</p>
+<div class="body">
+<p>The Labor Department said consumer prices were up 3.7% from a year earlier in September, hotter than August&#x27;s 3.4% gain and above the 3.6% economists surveyed by the Journal expected. Bloomberg&#x27;s Evening Briefing: the prices Americans pay for goods jumped at the fastest pace in five months, with gasoline climbing 9.1% in September from the prior month. Accelerating inflation is intensifying the affordability issue ahead of the midterm US elections.</p>
+<p>Energy costs are the accelerant: Bloomberg&#x27;s Morning Briefing notes Americans &quot;feel power price pain — but not equally,&quot; with rising energy costs set to raise price pressures further.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/middle-east/two-cargo-ships-sink-near-hormuz-as-iranian-attacks-spike-059188d7">No respite on energy: Iran&#x27;s Hormuz attacks spike</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">Rare sinkings amid a wartime high in vessel attacks — while Brent briefly hit $107 and Russia struck Ukraine&#x27;s electricity plants.</p>
+<div class="body">
+<p>Two Emirati cargo ships were sunk near the Strait of Hormuz as Iran ramps up its attacks — rare sinkings, though Iran has repeatedly escalated over the war to try to disrupt the US operation shepherding Gulf oil through the strait while bottling up Iranian oil exports via a naval blockade and sanctions. Vessel attacks around the strait reached a wartime high last week: 12 attacks on commercial vessels, per Windward AI.</p>
+<p>Meanwhile Bloomberg&#x27;s Morning Briefing reports no respite on energy: Brent crude briefly reached $107 a barrel after the flare-up in Iranian attacks, while Russia said it hit Ukrainian electricity plants — further undermining Donald Trump&#x27;s claim of an energy truce between the two countries.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Apple crosses the $5 trillion line, Rockstar opens up about GTA VI, and Netflix cuts deep.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/apple-closes-above-the-5-trillion-mark-c72da719">Apple closes above the $5 trillion mark</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">The second company ever to close above $5T — a capstone on the Cook era and a challenge to new chief John Ternus.</p>
+<div class="body">
+<p>Apple became the second company to close above a $5 trillion market capitalization — a new record pushing the iPhone-maker into territory that only chip colossus Nvidia occupies. Its value had surpassed $5 trillion six times previously in intraday trading, but it had never closed above that level. Apple ended the day at $5.005 trillion, per Dow Jones Market Data — a capstone on the Tim Cook era, and an implicit challenge to new chief John Ternus.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.nme.com/news/gaming-news/grand-theft-auto-6-sequel-red-dead-redemption-la-noire-release-3973120">The making of Grand Theft Auto VI</a></h3>
+<div class="byline">
+<span class="src">Bloomberg (via NME)</span> &middot; Oct 14
+</div>
+<p class="dek">Bloomberg&#x27;s Jason Schreier on Rockstar&#x27;s first open discussion of the game&#x27;s development — delays, no-crunch vows, and a five-day office mandate.</p>
+<div class="body">
+<p>Bloomberg&#x27;s Jason Schreier spent a day with Rockstar&#x27;s senior staff in Edinburgh for a Businessweek cover story — the first time the studio has openly discussed the game&#x27;s development challenges. Grand Theft Auto VI launches November 19, 2026 on PS5 and Xbox Series X|S after delays from 2025 to May 2026 and then November; Take-Two CEO Strauss Zelnick&#x27;s reaction to the second delay: &quot;You&#x27;re kidding. Please tell me you&#x27;re kidding.&quot; The reason for the delay was scope — extra time to deliver Rockstar&#x27;s full ambition.</p>
+<p>The production numbers: headcount nearly doubled from 2,441 (2018) to 4,711, including a Los Angeles studio opened just to create NPCs; research trips to Miami — riding with police, helicopter photography, nightclub visits — to make the fictional Vice City authentic. After Red Dead Redemption 2&#x27;s 60-hour weeks, Rockstar vowed no crunch this time: tighter scheduling, abusive managers removed, paid time off for overtime. The most divisive policy is the five-day office mandate, born from the 2022 leak (another leak in August left staff grumbling it was all for naught). Dev bosses say the engine, tools and team built for this project will make future games faster — no eight-year wait for the next one.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/media/netflix-eliminates-about-6-of-staff-in-biggest-layoffs-since-2022">Netflix cuts 6% of staff</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 14
+</div>
+<p class="dek">Biggest round of layoffs since 2022 — ~1,000 positions.</p>
+<div class="body">
+<p>Netflix is eliminating about 1,000 positions — 6% of its global staff — in its biggest round of layoffs since 2022, when it cut around 450 jobs. (Also flagged in TWiST&#x27;s TICKER.)</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">X lists were skipped today (the X and Grok sessions are unavailable in the shared browser), so this section draws its lessons from today&#x27;s Feed and WSJ reads instead.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://research.socialcapital.com/p/private-credit">Read: &quot;Is the AI Buildout Creating a Private Credit Bubble?&quot;</a></h3>
+<div class="byline">
+<span class="src">Social Capital — Chamath Palihapitiya</span> &middot; Oct 14
+</div>
+<p class="dek">The financing primer behind today&#x27;s CoreWeave story — how private credit funds the AI buildout and where it breaks.</p>
+<div class="body">
+<p>Palihapitiya&#x27;s full research deck is the day&#x27;s best finance-meets-AI primer: how private credit grew 25x since 2008, how the $35B Anthropic chip-lease vehicle works, why AI loans carry almost no risk premium, and the six factors separating the new private-credit branch from the post-2008 model. Read it to understand how the buildout is actually funded — and why CoreWeave&#x27;s 15% bond yield matters more than any single earnings print.</p>
+<p>Takeaway for you: financing literacy is now a tech-lead skill. The infra you buy rides on leveraged balance sheets; knowing the credit signals (bond yields, CDS spreads, refinancing maps) tells you which vendors are safe long-term bets.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/cio-journal/bloomberg-doubles-down-on-conversational-ai-55f47c94">Pattern to copy: agents over trusted data, not chatbots over raw docs</a></h3>
+<div class="byline">
+<span class="src">WSJ — Steven Rosenbush, Belle Lin</span> &middot; Oct 14
+</div>
+<p class="dek">The enterprise AI playbook, two ways: Bloomberg&#x27;s ASKB over trusted market data, and David&#x27;s Bridal&#x27;s agentic wedding planner over a knowledge graph.</p>
+<div class="body">
+<p>Today&#x27;s Bloomberg ASKB story (AI Development Practices above) is the pattern to copy: a conversational layer on top of proprietary structured data, with citations, user context injected, and repeatable workflows — built by ~9,000 engineers and ~500 AI specialists since 2025. The three trust pillars (proprietary content, structured-data accuracy, direct citations) are the design checklist for your foundation platform.</p>
+<p>Takeaway: don&#x27;t build a chatbot on raw docs. Build an agent harness over trusted internal data — the same shape David&#x27;s Bridal used for its wedding-planning agents (knowledge graph at the core, agentic orchestration, in-house). Start with one workflow where the structured data already exists.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/cio-journal/davids-bridal-uses-ai-to-power-new-strategy-ea39efa3">WSJ: David&#x27;s Bridal uses AI to power new strategy</a>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
