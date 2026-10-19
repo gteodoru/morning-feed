@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Monday, October 19, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">The developer conversation this weekend moved past model scores into the unglamorous work that decides whether AI actually ships: data pipelines, verification, and what happens when the AI you&#x27;re defending with starts refusing to defend you.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://x.com/AndrewCurran_/status/2111837963214794940">When the defender&#x27;s AI says no: OpenCode&#x27;s 48-hour siege</a></h3>
+<div class="byline">
+<span class="src">X — @AndrewCurran_</span> &middot; Oct 18
+</div>
+<p class="dek">Attackers hammered OpenCode non-stop for 48 hours — and mid-incident, the frontier models defending it started refusing to help.</p>
+<div class="body">
+<p>After the Console provider-key breach, OpenCode&#x27;s Dax Raad says attackers kept trying to break in for 48 hours straight; the team&#x27;s response was to harden everything and run defense agents around the clock — because that&#x27;s what the attackers have. Mid-investigation, the frontier models they were using &quot;did quite a bit and then started refusing&quot;: analyzing the attack traffic tripped the models&#x27; own cyber guardrails. Andrew Curran framed it as the same wall Hugging Face hit.</p>
+<p>The fix was OpenAI&#x27;s Daybreak Blue — reduced-refusal access for vetted defenders, which OpenCode had applied for a few days earlier and was granted on Oct 17. The argument now: Dean Ball calls it &quot;a fairly modest hindrance that was quickly resolved,&quot; fine against the cost of enabling autonomous attacks; Stella Biderman, sarcastically, notes &quot;OpenAI has graciously decided OpenCode may defend itself&quot; — access to defense depends on a lab&#x27;s approval, and a small, unknown company may not get it. Paul Graham&#x27;s summary: &quot;This is how things will be for the foreseeable future.&quot;</p>
+<p>The practical takeaway, from the replies: defenders need a trusted fast lane set up before the incident, not an application filed during it — and a way to inspect a blocked request and escalate it without starting over, with an audit trail.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/paulg">X — @paulg</a> &middot; <a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview">OpenAI Daybreak — Trusted Access for Cyber</a> &middot; <a href="https://ctxsec.com/items/opencode-console-provider-key-breach-2026-10">ctxsec — OpenCode incident timeline</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.theinformation.com/articles/leading-edge-ai-models-losing-allure-developers">The 10-point lead that stopped mattering</a></h3>
+<div class="byline">
+<span class="src">The Information — Eric Bellomo</span> &middot; Oct 18
+</div>
+<p class="dek">A 10-point intelligence lead now buys ~20% more developer traffic — down from ~69% in late 2025. Developers choose &#x27;good enough&#x27; and cheap.</p>
+<div class="body">
+<p>The Information, building on OpenRouter usage data, finds that developers are no longer chasing the smartest model for routine work — a 10-point intelligence advantage now earns just 20% more developer traffic, down from nearly 69% in late 2025. The cheap, fast, &#x27;good enough&#x27; models are winning the day-to-day.</p>
+<p>Ethan Mollick&#x27;s reframe is the one to sit with: developers &quot;are going to be a small part of total token usage over time, as the internal stats on usage at OpenAI and Anthropic both show,&quot; and smarter models pay off most on long-running, high-value tasks where verification is hardest — which, he notes, is precisely where coding, the domain where cheap models are easiest to check, is the worst place to measure the value of intelligence. The replies push back on the obvious catch: if the highest-value tasks are also the hardest to verify, buyers can&#x27;t tell quality apart and default to the cheaper model anyway.</p>
+<p>For a platform builder: price intelligence where errors are expensive, not where demos are easy. The emerging rule in the replies — &quot;cheap tasks, cheap models&quot; — is a model-routing policy, not just an observation.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/emollick/status/2111884340955062274">X — @emollick</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/swyx/status/2112073533794971941">swyx: &#x27;Data engineers &gt; AI engineers&#x27;</a></h3>
+<div class="byline">
+<span class="src">X — @swyx</span> &middot; Oct 19
+</div>
+<p class="dek">&#x27;RAG guy&#x27; was a 2024 job title; &#x27;can make the pipeline stop lying about yesterday&#x27;s numbers&#x27; is a forever job title.</p>
+<div class="body">
+<p>swyx calls it the starkest demand gap of his career: the difference between a &quot;RAG guy&quot; and a &quot;Data Intensive Applications&quot; person, with data engineers now decisively more in demand than AI engineers. He pointed at a blog full of war stories as the reference — Grok identified it as Wilson Lin&#x27;s, where every title has a number you can check: &#x27;3 TB RAM to 96 GB,&#x27; &#x27;1 billion embeddings, one machine.&#x27;</p>
+<p>The lesson, from the replies: retrieval quality is mostly a data-systems problem — freshness, deduplication, schema drift, backfills, indexing — not an embedding-model problem. &quot;The rag demo takes an afternoon, the data pipeline takes a career.&quot; Most RAG bugs turn out to be data bugs: stale rows, duplicates, a missing index. &quot;EXPLAIN ANALYZE fixed more of them than any embedding model.&quot;</p>
+<p>Portfolio advice for the hiring market: show failure drills (dedup of repeated events, how fast permission changes take effect, zero-downtime index rebuilds) and end-to-end traces that separate retrieval errors from generation errors.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://blog.wilsonl.in/">Wilson Lin&#x27;s blog</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/KentonVarda/status/2110792747460510152">The presentation layer is now fluid</a></h3>
+<div class="byline">
+<span class="src">X — @KentonVarda</span> &middot; Oct 15
+</div>
+<p class="dek">Kenton Varda predicts most people stop using docs, slides, and spreadsheets within a year — and prompt agents for custom code instead.</p>
+<div class="body">
+<p>Varda (who leads Cloudflare Workers) argues each office app is an &quot;easy mode&quot; of something harder: docs are easy-mode websites, slides are easy-mode video/animation, spreadsheets are easy-mode custom app plus database. Agents now build the &quot;hard mode&quot; version on request — &quot;and are damned good at it.&quot; He&#x27;s explicit that humans should still write: write the text, then have an agent turn it into a site with diagrams, animations and hierarchy. &quot;The presentation layer of your thoughts and work is now fluid.&quot;</p>
+<p>The counterweight arrived the same weekend: Peter Steinberger&#x27;s &quot;AI;DR&quot; quotes Trung Phan saying Amazon&#x27;s six-page memo &quot;has been nuked by AI-generated text&quot; — employees suspect it&#x27;s AI and tune out. If the presentation layer is free, attention shifts to whether a human actually thought it through. The scarcest thing in the loop is no longer formatting; it&#x27;s a mind that made a decision.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/steipete/status/2111918049116987476">X — @steipete</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/bentlegen/status/2111850577584144449">Software factories, running on Pi Durable</a></h3>
+<div class="byline">
+<span class="src">X — @bentlegen</span> &middot; Oct 18
+</div>
+<p class="dek">Multi-agent teams with their own VMs, an IRC server, and daily standups — Mario Zechner&#x27;s durable agent runtime is turning into a testbed for agent teams.</p>
+<div class="body">
+<p>Pi Durable is becoming the playground for multi-agent experiments. Ben Vinegar&#x27;s &quot;software factory&quot;: several Pi Durable agents, each with its own Linux desktop VM (8GB RAM) and a role/persona, a private IRC server to coordinate, and engineering rituals like daily standups and &quot;review my PR.&quot; David Nilsson reports a subagent built a feature so it could report to its parent, deployed it, and then reported success using the feature that didn&#x27;t exist when it started.</p>
+<p>Zechner himself sketched the messaging model he wants next: sessions with a main agent and subagents, where every agent can list the others in its session, message them and read their last message — and main agents can do the same across sessions. Coming this week: hibernation on serverless (Cloudflare Durable Objects, Vercel) and telemetry. He also asked, to 92 likes: &quot;are we really doing OTel GenAI? it&#x27;s not very great&quot; — the OpenTelemetry conventions for tracing LLM calls are getting their first real stress test.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/badlogicgames/status/2111871414714183808">X — @badlogicgames</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">One weekend, two moods in the money: the labs acting like it&#x27;s 1995 — planting public-benefit flags and fighting corporate spies — and the markets asking whether the whole build-out is a bubble.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.anthropic.com/news/public-benefit-fund">Anthropic commits 5% of itself to the public benefit — and Musk answers with SpaceX shares for every kid</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Oct 18
+</div>
+<p class="dek">Anthropic put 5% of its shares — rising with its valuation — into a new Public Benefit Fund that can pay people directly. Musk replied on X: one SpaceX share for every kid in America.</p>
+<div class="body">
+<p>The weekend&#x27;s big structural announcement: a new Anthropic Public Benefit Fund, set up as a wholly owned LLC rather than a 501(c)(3) — deliberately, so it can switch between &quot;different forms of giving,&quot; including &quot;large donations to traditional nonprofits or direct distributions to specific populations.&quot; None of its Anthropic equity can be used for lobbying or political giving, in the US or abroad. The first named use: labor-market impacts — &quot;AI may generate enormous economic value, but it could also cause instability for many workers.&quot; Anthropic has already committed $200M to studying this and says &quot;bolder approaches may be needed.&quot;</p>
+<p>The terms: 5% of shares go in now (subject to stockholder approval), and the board can add another 2% for every 50% increase in the company&#x27;s value above a &quot;set baseline&quot; — equity escalators redirected from executive pay to the public good. With the co-founders&#x27; founding pledge to donate 80% of their equity and about half of employees using an equity-donation match, &quot;roughly 20% of Anthropic shares will be dedicated to the public good.&quot; Kevin Roose&#x27;s math: &quot;$200 billion if Anthropic goes public at $1 trillion, which is probably conservative&quot; — possibly the largest philanthropic commitment ever. Still unknown: who controls the money, the valuation baseline, and the governance, all promised &quot;in the coming months.&quot;</p>
+<p>Musk&#x27;s reply, posted Monday morning on X: &quot;Next year, I will give one of my SpaceX shares to every kid in America. This will be the first of many.&quot; It followed an exchange in which he urged Anthropic to distribute shares directly to the public. The math: ~72 million Americans under 18, SpaceX at ~$146 a share (it went public in June in the biggest IPO in history) — a ~$10.5 billion giveaway, thin on detail about how it would work. Context: Gwynne Shotwell and her husband already pledged SpaceX shares to Trump Accounts for 2M+ kids. The one substantive question on the Anthropic post, from the noise: who oversees the fund, and how does Anthropic ensure the assets actually benefit the public?</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/kevinroose/status/2111998289927454944">X — @kevinroose</a> &middot; <a href="https://www.cnn.com/2026/10/19/business/elon-musk-children-spacex-shares-x-post-intl">CNN — Musk&#x27;s SpaceX giveaway</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/finance/stocks/the-ai-stock-market-wobble-is-a-reminder-this-time-isnt-different-d3ea7207">The AI trade wobbles; the bulls answer back</a></h3>
+<div class="byline">
+<span class="src">WSJ — James Mackintosh</span> &middot; Oct 18
+</div>
+<p class="dek">Nasdaq −4.5% last week, CoreWeave −25% on debt fears — and the bulls counter with +50GW of datacenters and $1T of binding leases.</p>
+<div class="body">
+<p>The bear case landed hard last week: the S&amp;P 500 fell ~2% (worst week since June), the Nasdaq 4.5%, and CoreWeave dropped ~25% with its bonds yielding above 15% and credit default swaps at distress levels. CNBC reports investors read Anthropic&#x27;s Q3 revenue — $16.8B, up from $11.6B — as a flag about the pace of growth, and Reuters says some investors are weighing a lower Anthropic IPO valuation. One wire reported Microsoft pulled out of a planned Nscale data center in the UK over power delays; Bloomberg reports Nvidia-backed Nscale faces investor pushback on its $30B IPO valuation target, with some suggesting $16–19B is realistic. Goldman traders: &quot;AI Capex has likely peaked and financing, sustainability, and returns on capital have become the debate.&quot; Bloomberg&#x27;s Morning Briefing notes references to the &quot;dot-com bubble&quot; in news articles are spiking every time the Nasdaq 100 hits fresh highs — and Michael Dell, a dot-com survivor, is out giving investors his tips to beat an AI bust.</p>
+<p>The bull case answered in two parts. SemiAnalysis, in &quot;Datacenters 2027: The Year of Acceleration&quot;: more than 24GW of datacenters already in advanced construction for 2027 delivery, +50GW total in 2027 — &quot;essentially the global cumulative datacenter market up through 2024 being built in one year.&quot; The leading indicator is leasing: developers spend only 5–10% of project capital before signing 15–20-year pre-leases worth $30–50B per GW, and &quot;slightly under $1T of binding / non-cancellable datacenter leases&quot; were signed this year. Build times are collapsing (AWS data halls under 10 months, DayOne ~9 months vs &gt;18 typical), behind-the-meter power is &quot;broadly solved&quot; — and the next shortage may be memory and logic chips, not power. Part two: Silicon Data&#x27;s GPU residuals — an H100 resells at 61% of purchase price four years after mass availability, a B200 at 164% at 1.6 years; B200/B300 rental prices &quot;continue to rise sharply.&quot; The data behind &quot;there are no dark GPUs.&quot;</p>
+<p>The sharper skeptic inside the industry: Vercel&#x27;s Guillermo Rauch says model companies have &quot;zero loyalty&quot; and parts of the boom look like crypto — &quot;people inventing token volumes… a lot of free promos… a lot of fake ZDR.&quot; His question for the labs: &quot;What percentage of my users are here just because I gave them free subsidies on a plan?&quot; Monday morning, futures rebounded ~1% on dip-buying. The week ahead: Tesla and Meta report.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://newsletter.semianalysis.com/p/datacenters-2027-the-year-of-acceleration">SemiAnalysis — Datacenters 2027</a> &middot; <a href="https://www.cnbc.com/2026/10/18/stock-market-today-live-updates.html">CNBC — markets live</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/spy-games-in-silicon-valley-0f5eb1a3">Spy games in Silicon Valley</a></h3>
+<div class="byline">
+<span class="src">WSJ — Erin Woo</span> &middot; Oct 18
+</div>
+<p class="dek">A tiny mic wrapped in toilet paper, hidden in a conference room — the alleged bugging of OpenAI&#x27;s office has Silicon Valley confronting the value of its secrets.</p>
+<div class="body">
+<p>The allegation this week: an OpenAI engineer from Saudi Arabia wrapped a tiny mic in toilet paper and hid it in a company conference room. Inside the AI labs, though, this was a long-coming paranoia. In training sessions, OpenAI has told employees that espionage could take the form of people listening in cafes, contacts offering money, or &quot;honey pots&quot; who use sex to get close to a target — and instructs employees to avoid wearing anything bearing OpenAI&#x27;s logo outside the office. &quot;The resources and money required to train foundation models makes them even more valuable,&quot; said Phil Venables, former Google Cloud CISO — the concentration of value in a few top AI companies makes them bigger spy targets than other firms.</p>
+<p>The other shoe: the WSJ reports OpenAI alleges a former employee took confidential files to Apple — including detailed images of an unreleased device — turning the tables on Apple in an ongoing trade-secret theft case. Two directions of paranoia: labs defending against foreign spies while litigating their own people&#x27;s exits. When the crown jewels are weights and training recipes, the security perimeter is the employee base.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/the-engineer-accused-of-bugging-openais-top-secret-conference-room-7f91c07c">WSJ — the engineer accused of bugging OpenAI&#x27;s conference room</a> &middot; <a href="https://www.wsj.com/tech/openai-alleges-ex-employee-took-confidential-files-to-apple-71e9e4e3">WSJ — OpenAI alleges ex-employee took files to Apple</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/meta-says-new-ai-model-is-state-of-the-art-will-make-muse-agent-smarter-1304cdf4">Meta&#x27;s play for the AI frontier</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 18
+</div>
+<p class="dek">Meta says its new &#x27;Muse Wonder&#x27; model vaults it to the AI frontier — and it teamed up with longtime foe Apple to put an open-weight model on Macs.</p>
+<div class="body">
+<p>Two Meta moves in the WSJ&#x27;s tech ticker. First: Meta says its new AI model, &quot;Muse Wonder,&quot; is state of the art and will make its Muse agent smarter — the company&#x27;s claim to have vaulted itself back to the AI frontier after a long stretch of catch-up. Second, the more surprising one: longtime foes Meta and Apple teamed up to put a new open-weight AI model on Macs, giving developers a new way to run sophisticated AI locally.</p>
+<p>The strategy logic is legible: in a weekend where The Information reports smarter models no longer win developers on intelligence alone, distribution and local execution become the differentiators. An open-weight model running natively on Apple&#x27;s silicon is a developer-play — and a hedge against the closed labs&#x27; pricing power.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/meta-and-apple-longtime-foes-team-up-to-put-open-weight-ai-on-macs-a28fde11">WSJ — Meta and Apple team up on open weights</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://peteryang.substack.com/p/we-built-an-ai-cfo-to-help-you-grow-net-worth-anthony-pompliano">Pompliano&#x27;s AI CFO: can a team of under 10 beat the AI labs at personal finance?</a></h3>
+<div class="byline">
+<span class="src">Peter Yang</span> &middot; Oct 18
+</div>
+<p class="dek">Anthony Pompliano is building &#x27;Silvia,&#x27; an AI CFO for independent investors — betting a tiny team with distribution beats the labs at personal finance.</p>
+<div class="body">
+<p>In a 42-minute conversation with Peter Yang (they worked together at Facebook a decade ago), Pompliano lays out his bet: that a team of under 10 can compete with the AI labs at personal finance — not by training bigger models, but by owning the distribution and the trust relationship with investors. He&#x27;s a best-selling author, public company CEO, and has an audience of 3.3M; his argument is that an audience is the best way to win.</p>
+<p>The episode covers: why Pomp never had a career plan, paid work trials instead of job interviews, hiring for revenue not margins, how AI found a great tax strategy (his proof point for Silvia, the AI CFO), and his latest take on Bitcoin. The venture thesis worth noting: the personal-finance AI game will be won by whoever owns the trusted relationship and the distribution channel — the labs sell intelligence; the winners sell judgment wrapped in a brand people already follow. A small-team case study in competing without frontier compute.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">A weekend of ruptures: Ukraine&#x27;s president breaks publicly with Washington, France&#x27;s streets burn over the cost of living, and Alberta votes today on leaving Canada.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/how-zelensky-decided-to-take-the-risk-and-publicly-confront-trump-570046ac">Zelenskyy breaks with Trump: &#x27;he&#x27;s pushing Ukraine to surrender&#x27;</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 18
+</div>
+<p class="dek">After 18 months of trying to win Trump over, Zelenskyy changed course — and offered to stop hitting Russian refineries in exchange for Patriots.</p>
+<div class="body">
+<p>Ukrainian President Volodymyr Zelenskyy accused Donald Trump of trying to pressure Kyiv into surrendering to Russia, escalating a week-long row. The breaking point, per the WSJ: Trump struck a diesel deal with Putin and waived most of the sanctions set to be imposed on Russia under a bipartisan law — while pressing Ukraine to stop attacking Russian refineries, a core part of Kyiv&#x27;s strategy to pressure Moscow.</p>
+<p>Zelenskyy&#x27;s counteroffer: accede to Trump&#x27;s request to halt refinery strikes in exchange for deliveries of more Patriot air-defense missiles — trading leverage for air cover. Meanwhile, Bloomberg&#x27;s Morning Briefing notes the WSJ reported that Putin has proposed a meeting with Trump and China&#x27;s Xi Jinping next month to discuss ending the war. A public confrontation with the US president is Zelenskyy&#x27;s riskiest move of the war so far; the coming days will show whether it wins him leverage or costs him.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/europe/violent-protests-rip-through-cities-across-france-b617c585">France reels after a weekend of protests and looting</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 18
+</div>
+<p class="dek">Cost-of-living protests descended into looting and fires nationwide; Macron promised a &#x27;hard line&#x27; as tensions flared again Sunday night.</p>
+<div class="body">
+<p>France is reeling after a weekend of cost-of-living protests descended into looting and fires across the country. President Emmanuel Macron promised a &quot;hard line&quot; in a televised address Sunday night, but Bloomberg reports tensions were still flaring in Paris during the broadcast — fueling concerns that such violence could become a recurring feature.</p>
+<p>The stakes extend beyond France: authorities across Europe are on alert ahead of elections in at least half a dozen countries next year, with France&#x27;s own presidential election coming. The WSJ&#x27;s columnists frame it as the &quot;liberté, égalité, misery&quot; moment — a political class watching its streets burn while the cost of living keeps rising.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/americas/alberta-independence-vote-canada-22b8208b">Alberta votes on separation today</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 19
+</div>
+<p class="dek">Polls say the referendum will be defeated — 68% plan to stay — but separatist leaders vow to fight on regardless.</p>
+<div class="body">
+<p>Alberta holds a separation referendum today that polls suggest will be defeated, though separatist leaders say the movement continues either way. Premier Danielle Smith called the vote in hopes of putting the issue to rest; a weekend poll showed 68% planned to stay in Canada. Some Canadian leaders worry the vote could instead entrench separatism as a permanent political force in the oil-rich western province — &quot;much as it has been in Quebec since the 1970s.&quot; Pro-Canada politicians stepped up campaigning in the final days, with Prime Minister Mark Carney visiting Alberta&#x27;s three largest cities: &quot;This is not poker,&quot; he told thousands in Calgary. The movement gained momentum amid anger over the environmental policies and Covid restrictions of Justin Trudeau&#x27;s government.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.thetimes.com/world/canada-world/article/canada-military-base-fire-dead-alberta-3q0zxdgfd">Four Canadian soldiers killed as fire sweeps Alberta training base</a></h3>
+<div class="byline">
+<span class="src">The Times</span> &middot; Oct 18
+</div>
+<p class="dek">A grass fire moved a kilometre in 36 seconds through a live-fire exercise at CFB Wainwright — four dead, 39 hospitalized, 19 in critical condition.</p>
+<div class="body">
+<p>Four Canadian soldiers were killed and dozens wounded — 39 hospitalized, 19 in critical condition — after a fast-moving grass fire tore through a live-fire combat exercise at Canadian Forces Base Wainwright in Alberta on Saturday. The troops were conducting &quot;high-intensity combat training with live munitions&quot; (Exercise APOLLO SHOOTER) as part of preparations for deployment to Latvia on NATO&#x27;s Russia-deterrence mission when winds suddenly shifted. &quot;The fire was a kilometre away when the wind shifted. That is not normal for a fire to move a kilometre in 36 seconds,&quot; said Maj. Gen. Wade Rutland; range control had been aware of the fire for hours but judged it contained.</p>
+<p>The four dead: Sgt. Morgan Wong of the Loyal Edmonton Regiment and Pvts. Shaun Farrell, Aidan Goulding and Hayden Lykkemark of the 3rd Battalion, Princess Patricia&#x27;s Canadian Light Infantry. Prime Minister Mark Carney called it &quot;one of the worst tragedies for the forces on Canadian soil in peacetime&quot; and ordered flags at half-mast. The cause is under investigation; no indication of terrorism.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/africa/wagner-mercenary-prigozhin-guns-b1f4cdf3">Meet Wagner&#x27;s new mercenary kingpin</a></h3>
+<div class="byline">
+<span class="src">WSJ — Nicholas Bariyo</span> &middot; Oct 18
+</div>
+<p class="dek">Pavel Prigozhin, 25 when his father died in a plane explosion, took over Wagner — and turned out to be a natural.</p>
+<div class="body">
+<p>When Yevgeny Prigozhin died in a plane explosion after his public falling-out with Vladimir Putin, his then-25-year-old son Pavel inherited the Wagner Group: an empire of gunfighters, gold smugglers and drug dealers. Once seen as a pampered playboy posing on superyachts, Pavel turned out to be a natural, expanding operations in Wagner&#x27;s African stronghold in the Central African Republic. Nicholas Bariyo tracks how the family business generates more than $400 million a year — controlling gold mines, distributing illicit opioids, and selling arms to rebel groups. The succession that Moscow couldn&#x27;t prevent.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Apple&#x27;s smart-home bet finally ships after a two-year delay, the labor market&#x27;s deep freeze lands on a Princeton PhD&#x27;s résumé, and computers made of actual brain tissue learn braille.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/john-ternus-takes-next-big-swing-as-apple-ceo-with-homeview-tablet-3920e9e">Apple&#x27;s HomeView: the new CEO&#x27;s first big swing</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 18
+</div>
+<p class="dek">A $299 seven-inch tablet with a revamped Siri, two years late — and a tantalizing preview of a robotic-arm version that swivels to the speaker.</p>
+<div class="body">
+<p>Apple&#x27;s new HomeView — a $299, seven-inch tablet-and-speaker powered by the revamped Siri AI assistant — is new CEO John Ternus&#x27;s first big swing: expand the product line, reinvigorate a stalled smart-home category, and draw consumers deeper into the ecosystem. WSJ columnist Nicole Nguyen&#x27;s first impressions: its major edge over Amazon and Google devices is access to the data on your iPhone.</p>
+<p>Mark Gurman&#x27;s account of the saga is the real story: he first reported on the device in January 2023, when Apple aimed to ship by end of 2024. What followed was a nearly two-year delay driven by Apple&#x27;s AI crisis — the company lacked the one thing the HomeView absolutely needed, a working revamped Siri. Finished units sat boxed up in warehouses for the better part of a year; former Apple employees who left years ago are still taking credit for it. The hardware betrays its age: thick bezels, an A18 processor, 8GB of memory.</p>
+<p>Two things to note. First, the HomeView is a preview of something far more ambitious: Apple is already developing a higher-end version with a robotic limb that automatically swivels the screen toward whoever is speaking — and the company&#x27;s own advertising for the $299 version makes the case for the motorized one. Second, some baffling hardware decisions: the wall-mounted version doesn&#x27;t include a power supply, and the magnetic mounting system developed with Schneider Electric is a separate purchase. Also in Gurman&#x27;s briefing: preorders of the iPhone Duo turned into &quot;a disaster&quot; that could fuel iPhone 18 Pro sales, and retail store changes indicate new Macs coming in early November. The bigger strategic challenge: Apple is simply too late — homes full of Alexa and Nest gear aren&#x27;t getting ripped out.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/personal-tech/apple-homeview-first-impressions-615ac94c">WSJ — Nicole Nguyen&#x27;s first impressions</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/lifestyle/careers/labor-market-freeze-phd-graduate-f8e17d7c">A Princeton PhD applied to 2,300 jobs. He still can&#x27;t get one.</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 18
+</div>
+<p class="dek">Jack Weis graduated from Princeton in 2024 with a doctorate in chemical engineering. His story embodies the low-hire, low-fire freeze — and the debate about what&#x27;s really broken.</p>
+<div class="body">
+<p>Jack Weis jokes he&#x27;s just another unemployed guy living in his parents&#x27; basement — leaving out that the Salt Lake City native has applied to thousands of jobs since graduating from Princeton in 2024 with his doctorate in chemical engineering. His story embodies what economists call the low-hire, low-fire environment that has paralyzed the labor market.</p>
+<p>The debate followed immediately on the lists: Mark Suster pushed back on the WSJ story (&quot;the problem is him&quot;), then landed on &quot;networking &gt; online applications&quot; — a reminder that the credential market and the hiring market are two different machines now. Read it next to the Anthropic Public Benefit Fund, which named labor-market disruption as its first use: the people who build the models and the people who can&#x27;t get hired are living in the same economy, and the gap is the story of the decade.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.404media.co/computers-made-of-human-brain-tissue-identify-braille-letters-in-breakthrough/">Computers made of human brain tissue identified braille letters</a></h3>
+<div class="byline">
+<span class="src">404 Media</span> &middot; Oct 18
+</div>
+<p class="dek">A breakthrough in biological computing — flagged in the WSJ&#x27;s tech ticker, too strange and too important to leave out.</p>
+<div class="body">
+<p>Buried in the WSJ tech newsletter&#x27;s &quot;Other Smart Stuff&quot;: researchers have built computers out of human brain tissue that can identify braille letters — a genuine breakthrough in biological computing. While the AI industry argues about whether the build-out is a bubble and whether intelligence is exploding, a different thread of the future is quietly advancing in wetware. Worth keeping an eye on: the next compute paradigm may not be built at all — it may be grown.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Six resources worth real study time this week — each the single best authoritative take on a topic the lists argued about, framed for a tech lead building AI platforms and driving AI adoption.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.noahpinion.blog/p/wheres-the-intelligence-explosion">Where&#x27;s the intelligence explosion?</a></h3>
+<div class="byline">
+<span class="src">Ramez Naam — Noahpinion</span> &middot; Sep 27
+</div>
+<p class="dek">The clearest skeptical model of recursive self-improvement, with actual numbers — and the essay the best minds on the lists kept citing.</p>
+<div class="body">
+<p>Naam&#x27;s essay is the number the swarm debate needed. Step by step: five types of self-improvement — AI boosting human researchers and strong AI improving weaker AI are here; the runaway loop needs accelerating returns nobody has shown. OpenAI&#x27;s own research-task data puts its models&#x27; 80%-success horizon at ~15 minutes of human work, against ~4 hours implied by benchmark extrapolation. Inside OpenAI, researchers used 124x more tokens per person and shipped ~7x more lines of code — but experiments per researcher rose only 1.6x. Anthropic&#x27;s Mythos Preview estimates staff productivity uplift at ~4x, and says doubling overall progress would need uplift &quot;roughly an order of magnitude larger.&quot;</p>
+<p>The loop math: per Toby Ord, speedup scales roughly with the square root of agent count — 100 agents buy ~10x speed at ~10x the cost, and agents think alike (after the first ten AI responses, about two extra AI responses add as much creative variety as one extra human). Tom Cunningham&#x27;s self-sustaining threshold is ~15% more research productivity per ECI point; Naam estimates today&#x27;s loop at 2–3% per point — a 5–10x gap. Narrow superintelligence in verifiable domains (formal math, chess, parts of coding and cyber) is real; a fast takeoff isn&#x27;t supported by current data.</p>
+<p>Takeaway for your role: calibrate agent ambitions to verifiable domains, and budget verification as the scarce resource. When Levie&#x27;s swarms meet Naam&#x27;s math, the question isn&#x27;t &#x27;how many agents&#x27; — it&#x27;s &#x27;what can be checked automatically.&#x27;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2607.15495">Verbalizable Representations Form a Global Workspace in Language Models</a></h3>
+<div class="byline">
+<span class="src">Anthropic — arXiv 2607.15495</span> &middot; Oct 2026
+</div>
+<p class="dek">The J-space paper: a small set of &#x27;verbalizable&#x27; directions that behave like a global workspace — and reveal hidden deliberation in safety audits.</p>
+<div class="body">
+<p>The Jacobian lens asks, for each vocabulary word and each layer, which direction in the activations raises the chance the model will say that word now or later, averaged over a large corpus — a refinement of the logit lens that corrects for representations changing across layers. The set of those directions is the J-space, and the paper argues it works like a global workspace: its contents can be reported, deliberately summoned and held, used for silent reasoning steps, and passed into other computations. It only carries coherent content in a middle band of layers and holds on the order of tens of concepts at once.</p>
+<p>Why safety people care: in alignment audits, the J-space revealed &quot;strategic deliberation, evaluation awareness, and trained-in misaligned dispositions that never appear in the model&#x27;s outputs.&quot; Post-training installs the Assistant&#x27;s point of view there. The paper also introduces &quot;counterfactual reflection training,&quot; which improves behavior by training only what the model would say if interrupted and asked to reflect.</p>
+<p>Takeaway: if you&#x27;re deploying agents at Riot scale, interpretability is moving from research curiosity to audit surface. You don&#x27;t need to run the Jacobian lens yourself — but knowing that hidden deliberation is now legible changes how you think about agent oversight, red-teaming, and what &#x27;reviewed&#x27; means.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.lennysnewsletter.com/p/a-mind-expanding-conversation-on">A mind-expanding conversation on AI with Emmanuel Ameisen</a></h3>
+<div class="byline">
+<span class="src">Lenny&#x27;s Newsletter</span> &middot; Oct 2026
+</div>
+<p class="dek">&#x27;Grown, not built&#x27;: Anthropic&#x27;s interpretability researcher on how models plan ahead — and why that&#x27;s like biology, not engineering.</p>
+<div class="body">
+<p>Ameisen&#x27;s framing, from the episode page and chapter list: nobody writes a model&#x27;s behavior; training produces it, so the only way to know what a model does is to look inside — &quot;so much closer to biology than to engineering.&quot; The episode&#x27;s best-known example (from Anthropic&#x27;s earlier circuit-tracing work): a model choosing &quot;rabbit&quot; as the rhyme before writing the line that ends in it. Next-token prediction doesn&#x27;t mean token-by-token thinking — models plan ahead.</p>
+<p>One quote for skeptics of interpretability&#x27;s usefulness: &quot;It took me years to master SQL. I got Claude to learn it, and it was immediately better.&quot;</p>
+<p>Takeaway: for a tech lead, the mental model matters more than the paper. If you&#x27;re building an AI foundation platform, &#x27;grown, not built&#x27; is the frame that explains why evals, red-teaming, and behavioral audits are first-class work — not a QA afterthought. Eval-driven development isn&#x27;t a fashion; it&#x27;s what the substrate demands.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://newsletter.semianalysis.com/p/datacenters-2027-the-year-of-acceleration">Datacenters 2027: The Year of Acceleration</a></h3>
+<div class="byline">
+<span class="src">SemiAnalysis</span> &middot; Oct 18
+</div>
+<p class="dek">Leasing is the leading indicator of the build-out — and roughly $1T of binding leases were signed this year.</p>
+<div class="body">
+<p>The bulls&#x27; bible for the AI-trade debate. More than 24GW of datacenters already in advanced construction for 2027 delivery (most past halfway, cooling and electrical gear installed), +50GW total in 2027 — &quot;essentially the global cumulative datacenter market up through 2024 being built in one year.&quot; The key analytical move: developers spend only 5–10% of project capital before signing 15–20-year pre-leases worth $30–50B per GW, so &quot;slightly under $1T of binding / non-cancellable datacenter leases&quot; signed this year is a leading indicator, not a forecast.</p>
+<p>Build times are collapsing (AWS data halls under 10 months, DayOne ~9 months vs &gt;18 typical), prefab designs are accelerating everything, and behind-the-meter power has &quot;broadly been solved.&quot; The warning at the end: the next shortage may be memory and logic chips, not power.</p>
+<p>Takeaway: whatever you believe about valuations, the physical build-out is contractual, not speculative — leases are binding. For capacity planning and vendor negotiations at Riot, this is the piece that explains why GPU supply, power, and pricing will look the way they do for the next two years.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.wilsonl.in/">Wilson Lin&#x27;s notes on data-intensive applications</a></h3>
+<div class="byline">
+<span class="src">blog.wilsonl.in</span> &middot; Oct 2026
+</div>
+<p class="dek">The reading list behind swyx&#x27;s &#x27;data engineers &gt; AI engineers&#x27;: war stories where every title has a number you can check.</p>
+<div class="body">
+<p>The blog swyx held up as the reference for the data-engineering demand gap. The style, as one reply put it: every title has a number you can check — &#x27;3 TB RAM to 96 GB,&#x27; &#x27;1 billion embeddings, one machine.&#x27; These are notes on data-intensive applications: the unglamorous systems work (freshness, deduplication, schema drift, backfills, indexing) that decides whether retrieval-augmented systems actually work in production.</p>
+<p>Takeaway: if your SaaS team is building AI features, this is the skill gap to close before buying a bigger model. And a hiring heuristic from the thread: ask candidates to show failure drills — dedup of repeated events, how fast permission changes take effect, zero-downtime index rebuilds — and end-to-end traces that separate retrieval errors from generation errors. That&#x27;s the interview for the bottleneck role of the next two years.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://help.openai.com/en/articles/20001258-openai-daybreak-trusted-access-for-cyber-overview">OpenAI Daybreak: Trusted Access for Cyber</a></h3>
+<div class="byline">
+<span class="src">OpenAI Help Center</span> &middot; Oct 2026
+</div>
+<p class="dek">The vetted, reduced-refusal model access for defenders — apply before you need it, not during the incident.</p>
+<div class="body">
+<p>The program that unblocked OpenCode: &quot;Trusted Access for Cyber,&quot; for authorized defensive work on systems you own or are authorized to test — secure SDLC/AppSec, blue teaming and incident response, and authorized pen-testing. Individual access needs a paid plan, Advanced Account Security, and a FIDO2 hardware key. Blue is the reduced-refusal tier of the general models; Red is a separately approved tier.</p>
+<p>Takeaway for your platform work: this is now part of the incident-response playbook. If your teams will ever need frontier models to analyze attack traffic — and after this weekend, the answer is clearly yes — Daybreak Blue (or its equivalent) belongs in the preparedness checklist, alongside the runbooks. The lesson the lists converged on: defenders need a trusted fast lane set up before the incident, not an application filed during it.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
