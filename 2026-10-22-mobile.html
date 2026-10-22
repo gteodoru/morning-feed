@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Thursday, October 22, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The day AI stopped just writing code and started breaking — and fixing — the internet&#x27;s plumbing. Patch your PHP, read the disclosure playbook, and study how one researcher plus agents pretrained a 100B+ model.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wiz.io/blog/php2shell-php-rce">AI found a decade-old hole in the engine under 70% of the web: php2shell</a></h3>
+<div class="byline">
+<span class="src">X — @OpenAI, @eastdakota, @NSACyber; WSJ — Robert McMillan; LinkedIn Editors</span> &middot; Oct 21
+</div>
+<p class="dek">Two critical flaws (CVSS 9.2) in the PHP engine itself let unauthenticated attackers run code or read server memory on versions back to PHP 5.4 — found with frontier AI, disclosed after a two-month coordinated fix. Cloudflare saw exploit attempts go from thousands to millions within hours.</p>
+<div class="body">
+<p>Two CVEs (CVE-2026-109618 and CVE-2026-109619, both CVSS 9.2) in core PHP, not in any app on top of it. Wiz demonstrated unauthenticated remote code execution on stock WordPress, Drupal and Joomla containers, plus an app-agnostic leak of worker memory that can contain other users&#x27; passwords, tokens, API keys and certificates. Every PHP version of the past decade, back to 5.4, has at least one of the bugs.</p>
+<p>The root cause pattern: when an out-of-memory error kills a request mid-startup, PHP frees the request&#x27;s memory but forgets to clear global pointers to it; the next request in the same worker trusts the stale pointer, and the attacker has refilled that memory. Wiz describes four instances of this — an upload-progress unserializer use-after-free, remote memory disclosure via a dangling session-ID pointer, a fatal-error backtrace use-after-free, and an OPcache type confusion.</p>
+<p>Who found it is disputed in public: OpenAI&#x27;s post says Calif identified a flaw using GPT-5.6 Sol inside its Patch the Planet program, with Wiz also independently discovering both; Wiz says it found them Aug 19 with Wiz Atlas, Gemini 4 Argon and GPT-5.6 Sol, and Google&#x27;s Raluca Ada Popa is quoted crediting Gemini. OpenAI&#x27;s post drew a community note, and replies cite Fortune saying Calif told OpenAI about an Aug 1 finding first. OpenAI proposed a five-stage AI-era disclosure playbook and committed $1B in subsidized Daybreak access for &#x27;Frontline Defenders.&#x27;</p>
+<p>The reaction is the lesson. Cloudflare&#x27;s Matthew Prince: thousands of exploit attempts in the 10 hours before the announcement, tens of thousands in the 45 minutes after, &#x27;millions now.&#x27; The NSA: if you can&#x27;t patch, take the system offline. Ethan Mollick: &#x27;Acceleration of attack and defense, at inhuman speeds, interacting with the very human systems that need to react to them.&#x27; One camp put the asymmetry plainly: &#x27;AI found the flaw in hours. Patching 70% of the web&#x27;s servers will take humans months. Discovery scales; maintenance doesn&#x27;t.&#x27;</p>
+<p>What to do this week: patch to 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 (distros backport without changing the version string — check the package changelog), confirm your WAF has the stopgap rules, and look for the pattern in logs: crafted multipart POSTs with many empty file fields or a PHP_SESSION_UPLOAD_PROGRESS field, followed by memory-limit errors or 500s.</p>
+<p>The Journal&#x27;s own exclusive frames it as &#x27;one of the most severe online vulnerabilities ever,&#x27; with experts now racing to patch systems before attackers use AI to discover and exploit the flaw themselves — the double-edged moment in one sentence: the same tools that found the bug are lowering the bar for exploiting it.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI — Patch the Planet</a> &middot; <a href="https://research.jfrog.com/post/php2shell-all-you-need-to-know-about-cve-2026-109618-and-cve-2026-109619/">JFrog — PHP2Shell explainer</a> &middot; <a href="https://securitylabs.datadoghq.com/articles/php2shell-critical-vulnerabilities-in-php/">Datadog Security Labs</a> &middot; <a href="https://x.com/OpenAI/status/2112907856018309586">X — @OpenAI</a> &middot; <a href="https://x.com/eastdakota/status/2113079352682570051">X — @eastdakota (Cloudflare)</a> &middot; <a href="https://www.linkedin.com/posts/national-security-agency_effective-immediately-all-organizations-activity-7518668910431289344-qVAk">LinkedIn Editors — NSA guidance</a> &middot; <a href="https://www.wsj.com/tech/cybersecurity/ai-just-found-a-bug-that-puts-up-to-70-of-the-worlds-websites-at-risk-fd0902ea">WSJ — Robert McMillan (exclusive)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.com/resources/articles/claude-duet">Anthropic opens the waitlist for Claude Duet, its always-on proactive agent</a></h3>
+<div class="byline">
+<span class="src">X — @claudeai</span> &middot; Oct 21
+</div>
+<p class="dek">A separate Claude app that acts first: a morning brief from email and calendar, its own cloud computer, and approval gates before it sends, pays, signs, or deletes. US Pro/Max via waitlist — the agent wars now have three fronts.</p>
+<div class="body">
+<p>It carries over your Claude memory, skills and connectors; runs on its own cloud VM with a browser, so it keeps working when your devices are off; sends a morning brief from email and calendar; checks connected accounts every few hours (not continuously, to save usage); and takes bigger jobs — a financial model, a deck, a dashboard — that land in a &#x27;Make&#x27; tab.</p>
+<p>The guardrail design is the interesting part. Before it sends a message, makes a payment, signs a document or deletes anything, it shows the exact action and waits for approval. Some actions — trading securities, moving money between accounts — are blocked even with approval. X&#x27;s trust-and-control camp: &#x27;An agent that acts before being asked is only useful if you can see why it acted and undo it in one step.&#x27; Limits: Opus 5.5 only, you can&#x27;t watch or take over its browser, urgent things can arrive between checks, and Anthropic admits personal errands like booking tickets &#x27;aren&#x27;t quite as strong.&#x27; US Pro and Max only, via waitlist.</p>
+<p>The framing on the timeline: Anthropic&#x27;s answer to Meta&#x27;s Muse (Zuckerberg said 10M+ people in the US and Canada set up Muse agents in about six weeks) and OpenAI&#x27;s Dots. The proactive-agent wars now have three named fronts.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/claudeai/status/2112984664256241837">X — @claudeai</a> &middot; <a href="https://www.cnbc.com/2026/10/21/anthropic-preview-of-claude-duet-personal-ai-agent-take-on-muse-dots.html">CNBC</a> &middot; <a href="https://support.claude.com/en/articles/17631495-get-started-with-claude-duet">Anthropic help center</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.cloudflare.com/typescript-rust-port/">tsrs: an agent-written Rust port of the TypeScript compiler joins Oxc</a></h3>
+<div class="byline">
+<span class="src">X — @voidzerodev</span> &middot; Oct 21
+</div>
+<p class="dek">Up to 8x faster than TS 7.0 with ~70% less memory — and the learning bit is how it was built: one engineer asked Claude Opus 5.5 for a faithful port and says he &#x27;wrote zero code.&#x27;</p>
+<div class="body">
+<p>It&#x27;s a drop-in replacement for the TypeScript 7 compiler and language server written in Rust, aiming for 100% conformance with TS 7.1. Cloudflare and VoidZero now maintain it inside Oxc (the Rust JS toolchain) &#x27;in close collaboration with the TypeScript team&#x27; — &#x27;we are not forking TypeScript.&#x27; Up to 8x faster than TS 7.0 with ~70% less memory, and TS 7.1 beta is itself up to 2.5x faster than 7.0, partly from optimizations upstreamed from tsrs.</p>
+<p>Why Rust when TypeScript already went to Go? WebAssembly. Go&#x27;s garbage collector comes along when compiled to Wasm; Rust&#x27;s memory model makes a small Wasm build practical, so a full type-checker can run in a browser or on Cloudflare Workers sandboxes.</p>
+<p>The origin story is the learning bit: Owner&#x27;s Max Schwenk asked Claude Opus 5.5 for a faithful port of the Go compiler and says he &#x27;wrote zero code.&#x27; It was tested against TypeScript&#x27;s 15,197 conformance cases; after adding a type printer, 99.97% of error baselines matched (all but 4 of 13,462). Owner&#x27;s 37,000-file monolith went from 80 seconds and 19 GiB to typecheck on TS 7.0 to 7 seconds in CI and ~12 on a MacBook — which lets several coding agents run checks in parallel on one laptop. Try it: pnpm add -D tsrs, then pnpm exec tsrs --noEmit. Pull requests are closed for now.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://building.owner.com/tsrs">Owner Engineering — tsrs</a> &middot; <a href="https://github.com/oxc-project/tsrs">GitHub — oxc-project/tsrs</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://mirendil.com/news/pretraining-at-scale-without-a-pretraining-team/">Mirendil: one researcher and a fleet of agents pretrained a 100B+ coding model</a></h3>
+<div class="byline">
+<span class="src">X — @bneyshabur</span> &middot; Oct 21
+</div>
+<p class="dek">3.5 months, under $10M all-in, from an empty repo — agents wrote over 99% of the code. The thesis: the bottleneck moves from headcount to compute, data, and the judgment of whoever directs the agents. (Caveat: self-reported, no evals yet.)</p>
+<div class="body">
+<p>Mirendil-Base is a coding-specialized base model in the 100B–500B parameter range, built by one researcher in 3.5 months with under $10M of compute all-in (research, small-scale experiments, the final run, the agents&#x27; token spend, data processing). They started from an empty repo on top of PyTorch and JAX, used only public data — GitHub, web, public datasets — no purchased data, no distillation, no synthetic data. Agents wrote over 99% of the code, ran experiments and diagnosed failures; the researcher &#x27;decided what to try and what to trust.&#x27; Efficiency came from architecture changes, data-mixture tuning and kernel work — three jobs normally split across specialist teams. Larger versions (Base-Large at 500B–2T and Base-XL at 2T–10T) are training.</p>
+<p>The thesis is the org-change one: the bottleneck moves from headcount to compute, data and the judgment of whoever directs the agents. The camps were impressed (&#x27;way more impressive than a bunch of benchmarks&#x27;), asked method questions (how the automated loop scored proposals, whether small-scale wins hold after post-training), and asked the labor question: &#x27;how many hours that researcher spent reading agent output versus writing prompts… that&#x27;s the part that doesn&#x27;t parallelize.&#x27; One important caveat: it&#x27;s all self-reported — no benchmarks or evaluations are out yet, promised &#x27;sooner than you think.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/bneyshabur/status/2112941025862008949">X — @bneyshabur</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/ConwayResearch/Underdog-Bark-3.0">Bark 3.0: a 163 MB open speech model that ties NVIDIA&#x27;s Parakeet</a></h3>
+<div class="byline">
+<span class="src">X — @UnderdogAI</span> &middot; Oct 21
+</div>
+<p class="dek">CC-BY 4.0, 0.6B params, compressed from NVIDIA&#x27;s Parakeet — ties it on the Open ASR average and beats it on meetings. Tiny models beating giants is the trend that matters; English-only for now.</p>
+<div class="body">
+<p>A 0.6B-parameter English speech-recognition model packed into a 163 MB file, CC-BY 4.0, built on NVIDIA&#x27;s Parakeet TDT 0.6B v3 (via Moondream&#x27;s parakeet-ultra) and compressed. The &#x27;15x smaller&#x27; claim compares download sizes (163 MB vs 2.5 GB) of essentially the same architecture. Open ASR average word error: 4.937% vs Parakeet&#x27;s 4.941% — a tie; it&#x27;s clearly better on meetings (AMI 7.82% vs 9.42%) and parliamentary speech, worse on earnings calls. Whisper large-v3 averages 6.04%. On an M2 laptop it does a minute of audio in ~1.5 seconds with stock mlx-audio, and it keeps fillers (&#x27;um,&#x27; &#x27;uh&#x27;) verbatim. Runs via Python/Transformers, MLX, Core ML (GPU or Neural Engine) and Windows CUDA/CPU.</p>
+<p>Camps: &#x27;tiny models beating the giants is the trend that actually matters&#x27;; skeptics asked whether the comparisons are to irrelevant or outdated tools, and one tester found it faster but with a much higher error rate than his Whisper setup. English only for now. Note: the numbers are the company&#x27;s own runs of the leaderboard scoring code — the Bark rows aren&#x27;t on the Open ASR Leaderboard yet.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/UnderdogAI/status/2112733007484518470">X — @UnderdogAI</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/thorstenball/status/2112833031358869589">Practice notes: agents keep eating the workflow</a></h3>
+<div class="byline">
+<span class="src">X — @thorstenball, @rauchg</span> &middot; Oct 21
+</div>
+<p class="dek">Code review as we&#x27;ve known it is over; attention spans are worse than ever; Rex&#x27;s macOS beta invited 7,500 people this week — and Hamel Husain&#x27;s &#x27;Evals for AI Engineers&#x27; book lands Nov 12.</p>
+<div class="body">
+<p>Thorsten Ball, quoting Brian Scanlan: &#x27;Mandatory code review as we&#x27;ve known it is over&#x27; — teams keep asking for more automatic approvals. Ball also announced self-hostable orbs, free for individuals and teams. Charlie Marsh, on the human side: &#x27;My attention span is worse than ever, agents have made it much harder for me to focus on any given thing.&#x27;</p>
+<p>Elsewhere: Mitchell Hashimoto&#x27;s Rex macOS beta invited ~7,500 people this week (~15% of the waitlist) plus a 100-person Linux server test. Guillermo Rauch called Pi &#x27;one of the coolest projects in the AI world today&#x27; and announced Vercel support for it. Hamel Husain and Shreya Shankar launch their book &#x27;Evals for AI Engineers&#x27; Nov 12. Jediah Katz&#x27;s AI Engineer NYC talk hit 100K views in 24 hours (per swyx). And Ethan Mollick, answering which normal software improved most from AI-heavy development: the answer &#x27;is not obvious,&#x27; because &#x27;the bottlenecks to product improvements are often elsewhere&#x27; — worth sitting with before your next &#x27;just add agents&#x27; roadmap.</p>
+<p>Also for the toolbelt: Baseten released two open &#x27;decision models,&#x27; elephant-1 (9B) and mammoth-1 (27B), free on its API until Oct 27 — right in the big-model-plus-cheap-decider pattern.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/thorstenball/status/2113140757410521159">X — @thorstenball on self-host orbs</a> &middot; <a href="https://x.com/rauchg/status/2112934299288912085">X — @rauchg on Pi + Vercel</a> &middot; <a href="https://x.com/emollick/status/2112968222538686592">X — @emollick on what AI-heavy dev actually improves</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">The money keeps moving at startup speed while the public markets flinch: a $1B Series A with no product, Meta inventing new ways to fund its AI capex, and Salesforce&#x27;s $5.7B bet on AI marketing.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/articles/metaplatforms-meta-3q-earnings-report-2026-stock-f28d64c2">Meta gets creative to fund its massive AI investments</a></h3>
+<div class="byline">
+<span class="src">WSJ — Meghan Bobrowsky, Amira McKee</span> &middot; Oct 21
+</div>
+<p class="dek">A new class of nonvoting stock, effective January 2027, to raise AI capital without touching Zuckerberg&#x27;s control — announced alongside record Q3 revenue of $64.6B and hours after a $25B New Mexico privacy verdict.</p>
+<div class="body">
+<p>The new shares will be issued as a dividend to holders of common and supervoting shares with an effective date of January 19, 2027 — amounting to an effective 2-for-1 stock split — and won&#x27;t affect Mark Zuckerberg&#x27;s voting control or other shareholders&#x27; voting power. Meta shares rose 0.47% on the news. The announcement came with third-quarter results: record revenue of $64.6 billion, up 26% year over year. And it came hours after a New Mexico judge ordered Meta to pay the state $25 billion for misleading users about its data-privacy practices — the state called it one of the largest verdicts in US history, in a consumer-deception case spurred by the Cambridge Analytica scandal.</p>
+<p>Why it leads the venture section: this is what funding the AI buildout looks like at hyperscaler scale — inventing new equity structures to keep the capex machine fed. Investors are noticing: Meta shares slipped ~1.9% in premarket trading on the non-voting share news, &#x27;reviving investor scrutiny of the substantial capital required to stay competitive in the race.&#x27; Watch whether other hyperscalers follow with their own creative financing.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/meta-ordered-to-pay-25-billion-to-new-mexico-in-data-privacy-case-dea99fdd">WSJ — Meta ordered to pay $25B to New Mexico</a> &middot; <a href="https://www.wsj.com/tech/meta-is-getting-creative-to-fund-its-massive-ai-investments-c6fa41b7">WSJ — What&#x27;s News (Amira McKee)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.indexventures.com/perspectives/toward-more-efficient-ai-leading-flapping-airplanes-1b-series-a/">Flapping Airplanes: $1B Series A at a reported $6B — with no product</a></h3>
+<div class="byline">
+<span class="src">X — @flappyairplanes; Index Ventures</span> &middot; Oct 21
+</div>
+<p class="dek">Index and Lux co-lead a billion-dollar round for &#x27;megakernels&#x27; — one long-running GPU kernel for a whole program — nine months after a $180M seed, with a couple dozen people and nothing public to test.</p>
+<div class="body">
+<p>Co-led by Index and Lux, nine months after a $180M seed, for a company with &#x27;a couple dozen&#x27; people and no public product. The idea: &#x27;megakernels&#x27; — run a whole program (training, inference, even a video game at once) inside one long-running GPU kernel, so the chip never idles between steps and memory-bound inference overlaps compute-bound training.</p>
+<p>The sentiment read is the story here. AlphaSignal flagged the costs (register pressure, debugging, preemption, checkpointing) and that nothing is public to test. X&#x27;s replies: &#x27;$180M seed to $1B Series A in nine months. The airplanes aren&#x27;t flapping, the investors are&#x27; — plus practical asks, like p95 latency when training and serving share a GPU and whether the demo&#x27;s 116-SM training / 24-SM inference split rebalances live. A billion dollars on an unproven architecture thesis: this is the AI trade at maximum confidence — or maximum froth. File it next to the markets section&#x27;s jitters.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/flappyairplanes/status/2112955212612919318">X — @flappyairplanes</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/deals/salesforce-to-buy-customer-engagement-platform-for-nearly-5-7-billion-aba17cfe">Salesforce buys Braze for $5.7B to fix its &#x27;outdated&#x27; marketing cloud</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Tech In Depth</span> &middot; Oct 21
+</div>
+<p class="dek">$47.50/share in cash, a 58% premium — Braze&#x27;s AI-powered real-time engagement plugs the hole in Salesforce&#x27;s marketing business after Informatica ($8B) and Fin ($3.6B).</p>
+<div class="body">
+<p>$47.50 per share in cash, a ~58% premium to Braze&#x27;s $30.04 close on Monday, enterprise value about $5.66B. Braze&#x27;s platform is built for high-volume, real-time B2C engagement — and has recently added AI to optimize content, offers, channels and timing for marketers. The deal &#x27;should improve an area of the company&#x27;s business that is seen as outdated,&#x27; per Bloomberg: Salesforce&#x27;s Marketing &amp; Commerce cloud revenue has declined for three straight quarters. Braze&#x27;s ~2,800 customers include Canva, Dairy Queen and Equinox; it will keep building on Salesforce&#x27;s platform, said CEO Bill Magnuson. Expected to close in fiscal 2028; no change to Salesforce&#x27;s fiscal 2027 outlook.</p>
+<p>The pattern: Salesforce agreed to buy Informatica for ~$8B in May 2025 and AI customer-service provider Fin for $3.6B in June — its 15th acquisition since May 2025 as it remakes itself around AI (and its new Anthropic partnership). Braze surged 51% to $45.31 on the news; Salesforce fell ~1%; rival Klaviyo jumped ~9%. The market&#x27;s read: paying full cash for a growth asset while guidance stays unchanged looks like capital-allocation risk, not transformation — for now.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.barrons.com/articles/braze-stock-salesforce-acquisition-ai-fc8ab807">Barron&#x27;s</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/10/21/while-amazon-blocks-ai-agents-walmart-rolls-out-the-welcome-mat/">Agent commerce: Walmart rolls out the welcome mat while Amazon blocks the agents</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Oct 21
+</div>
+<p class="dek">Walmart&#x27;s new Agent Gateway — an MCP server for approved AI agents — plus per-agent profiles with spending limits. Amazon is fighting Perplexity&#x27;s Comet in court instead. Coinbase and Mastercard are wiring agent payments via x402 and Base.</p>
+<div class="body">
+<p>Walmart is embracing agentic commerce with the launch of its own Agent Gateway — a Model Context Protocol (MCP) server for approved agents — plus new features for customers using AI agents, announced by CEO John Furner at the Masters of Scale Summit. The gateway lets an AI agent search Walmart&#x27;s online inventory and make purchases on the user&#x27;s behalf; Agent Profiles give each agent its own account space, with per-purchase approvals or spending limits the shopper sets, no purchase history handed to the agent, and normal returns if the agent buys the wrong thing. It covers Walmart.com and Sam&#x27;s Club; no Walmart+ needed.</p>
+<p>The contrast is the story: Amazon recently began blocking AI agents from making purchases on behalf of shoppers — it blocked Meta&#x27;s Muse in September, saying the agent never identified itself and captured customer logins, and it&#x27;s fighting Perplexity&#x27;s Comet in court. Walmart, meanwhile, had already partnered with Meta&#x27;s Muse and integrated ChatGPT and Gemini. Also in the mix: Coinbase is working with Mastercard on agent payments via x402 and Base.</p>
+<p>The takeaway for anyone building with agents: blocking agents is a choice, and admitting them is a design problem — identity, delegated authority, spending caps, reversibility. Anthropic&#x27;s Claude Duet asking before it pays is the same instinct. The fight over AI shopping agents is really a fight over who owns the customer.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/SemiAnalysis_/status/2112950867301159252">DeepInfer, the follow-up: SemiAnalysis on what the release actually is</a></h3>
+<div class="byline">
+<span class="src">X — @SemiAnalysis_</span> &middot; Oct 21
+</div>
+<p class="dek">Not on InferenceX: the release is offline, single-turn only, &#x27;key load-bearing components still missing&#x27; — and vLLM matches DeepInfer&#x27;s published numbers anyway. Plus the $38/GPU-hour number that traveled to $100B/GW.</p>
+<div class="body">
+<p>SemiAnalysis says DeepInfer isn&#x27;t on its InferenceX benchmark because the release only does offline, single-turn inference and &#x27;the key load bearing components are still missing&#x27; — KV-cache management and load balancing — and building them would add too many assumptions. It says vLLM matches DeepInfer&#x27;s published results on the same benchmark anyway. The camp&#x27;s line: &#x27;They open-sourced the engine and kept the transmission&#x27;; &#x27;code that leaves out kv cache management and load balancing is a model release, not a serving release.&#x27;</p>
+<p>The number that traveled: SemiAnalysis estimates a GB300 at 60% utilization earns ~$50/GPU-hour profit at 125 tokens/sec at OpenRouter prices, vs DeepSeek&#x27;s ~$39 off-peak — and Gavin Baker turned DeepSeek&#x27;s $38/GPU-hour into &#x27;$100b per gigawatt. 2x this at peak.&#x27; One numbers check from the replies: is 125 TPS per user or per GPU? If per GPU, $50/hour would imply ~$185 per million tokens — so the replier assumes per user and asks what batch size. SemiAnalysis hadn&#x27;t answered in what was captured. Treat the economics as directional, not gospel.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/GavinSBaker/status/2112901769517003073">X — @GavinSBaker</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/MaxJunestrand/status/2112901689648783543">The rest of the money: Legora, Pigment, Blacksmith, Whop, Watchtower</a></h3>
+<div class="byline">
+<span class="src">X — @MaxJunestrand, @adijayaprakash, @dougleone</span> &middot; Oct 21
+</div>
+<p class="dek">Legora&#x27;s $550M Series E at $8.8B and Pigment&#x27;s $250M at $2.3B extend legal/finance AI&#x27;s hot streak; Blacksmith&#x27;s CI bet hits $1B; Doug Leone&#x27;s first deal back at Sequoia is Whop.</p>
+<div class="body">
+<p>Legal AI&#x27;s hot streak continues: Legora raised a $550M Series E at $8.8B led by Atreides, with Fidelity, Capital Group, Baron and J.P. Morgan joining; 140,000+ legal professionals on the platform, and YC says it went from $1M to $100M ARR. And French AI company Pigment — Excel and PowerPoint competition — raised $250M at $2.3B, having passed $100M ARR, doubling year over year.</p>
+<p>Elsewhere: Blacksmith&#x27;s Series C at $1B led by Sequoia — CI jobs from 5M a week in January to over 90M. Doug Leone&#x27;s first investment since returning to active investing at Sequoia: Whop. Watchtower Labs (Akhil Iyer): $35M led by Shield Capital and Conviction, with Founders Fund and IQT. AgentMail passed 1B emails processed, up from under 20M a year ago; YC launches include Orgo (cloud desktops for agents, 1,000+ companies), Spacesheep (a shared space for agents&#x27; output) and Simulithic (agents that test your app like users). And Dennis Crowley&#x27;s long post on Foursquare&#x27;s &#x27;disappointing&#x27; sale last month drew a wall of thanks from NYC tech — one reply: &#x27;VC backed exits ain&#x27;t always pretty.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/adijayaprakash/status/2112891655997284512">X — @adijayaprakash (Blacksmith)</a> &middot; <a href="https://x.com/dougleone/status/2112939094917660694">X — @dougleone (Whop)</a> &middot; <a href="https://x.com/dens/status/2112571984328437871">X — @dens (Foursquare)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/cio-journal/ai-drives-record-growth-in-information-technology-afd1c03c">Gartner: IT spending to jump 15% to $7.3T in 2027 on AI infrastructure</a></h3>
+<div class="byline">
+<span class="src">WSJ — Tom Loftus</span> &middot; Oct 21
+</div>
+<p class="dek">Data center systems spending alone is projected to rise from $879B to $1,366B, AI-optimized server demand is &#x27;going crazy&#x27; while supply lags — and Gartner&#x27;s 2027 tech trends signal an &#x27;age of caution&#x27; for enterprise AI.</p>
+<div class="body">
+<p>Gartner forecasts worldwide IT spending will jump a record 15% to $7.3 trillion in 2027 (up from a forecast $6.39 trillion in 2026), powered by insatiable demand for AI infrastructure. Demand for AI-optimized servers is &#x27;going crazy&#x27; while supply can&#x27;t keep up, and rising memory prices — the &#x27;memflation&#x27; effect — are expected to persist through 2027, per Gartner&#x27;s John-David Lovelock.</p>
+<p>The counterweight in the same CIO Journal edition: Gartner&#x27;s 2027 strategic tech trends signal &#x27;an age of caution&#x27; for enterprise AI, urging guardrails for autonomous agents — context platforms, coding harnesses, and agent identity. Read the two halves together: the buildout keeps accelerating while the governance conversation finally gets specific.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Twelve days to the midterms, and the fights are about who controls the machinery — satellites over Ukraine, data centers in Virginia, and who buys America&#x27;s debt.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/elon-musks-starlink-speed-cap-has-scrambled-ukraines-defenses-fdfd936e">Starlink slowdown hurt Ukraine&#x27;s ability to stop Russian attacks</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News</span> &middot; Oct 21
+</div>
+<p class="dek">Ukrainian units say the Starshield disruption is having a &#x27;significant impact&#x27; on defenses; Musk says access is controlled by the US government, officials deny the White House ordered it, and Congress wants an investigation.</p>
+<div class="body">
+<p>Ukrainian military units and analysts say the disruption to Starshield — the military version of Starlink — is having a &#x27;significant impact&#x27; on Kyiv&#x27;s defenses against Russia&#x27;s invasion. Musk said last week that Starshield access was controlled by the US government; US officials have denied the White House ordered the restrictions; SpaceX hasn&#x27;t responded to the Journal&#x27;s reporting that Musk ordered the slowdown. Members of Congress from both parties are calling for an investigation into the SpaceX CEO.</p>
+<p>This is the impact angle — yesterday&#x27;s edition covered the order itself. A private citizen&#x27;s power over a battlefield communications layer is now a bipartisan oversight question, twelve days before the midterms.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/politics/policy/lawmakers-call-for-musk-probe-over-starlink-slowdown-in-ukraine-3ad73a22">WSJ — Lawmakers call for Musk probe</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/russia/witkofffs-praise-of-putin-as-humanitarian-tracks-with-u-s-approach-to-russia-2e5da6a3">Witkoff praised Putin as a &#x27;humanitarian&#x27;</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News; Bloomberg</span> &middot; Oct 21
+</div>
+<p class="dek">The special envoy&#x27;s praise — after arriving in Moscow to free 74-year-old American Stephen Hubbard — tracks the White House&#x27;s warming approach; some Republican senators were quick to condemn it.</p>
+<div class="body">
+<p>Witkoff arrived in Russia to secure the release of Stephen Hubbard, a 74-year-old American citizen, and praised Putin as a &#x27;humanitarian&#x27; for the release. It wasn&#x27;t a departure: Trump has sought warmer relations with Putin to defuse the conflict and develop economic ties with Russia, and Bloomberg notes it&#x27;s the latest White House move in a campaign to loosen restrictions on Russian energy flows. Some Republican senators were quick to condemn the praise of a leader long seen as one of the West&#x27;s most persistent adversaries.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloombergtax.com/financial-accounting/data-centers-play-delicate-game-to-weather-political-backlash">Data center politics: the industry the midterms love to hate</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Tech In Depth (Michael Shepard)</span> &middot; Oct 21
+</div>
+<p class="dek">Rep. Suhas Subramanyam&#x27;s district holds 300+ data centers handling ~half the world&#x27;s internet traffic — and he says the industry has been &#x27;tone-deaf&#x27; as utility bills make the AI backlash visceral, bipartisan, and twelve days out from the midterms.</p>
+<div class="body">
+<p>Subramanyam&#x27;s district in northern Virginia holds one of the highest concentrations of data centers on earth — more than 300 facilities handling roughly half of the world&#x27;s internet traffic each day. All that infrastructure has strained local power grids and driven up residents&#x27; electricity costs, and at a roundtable with Bloomberg reporters he said the industry has been &#x27;tone-deaf&#x27;: &#x27;Now it&#x27;s more visceral. People are seeing their utility bills go up and starting to ask questions.&#x27; The backlash is bipartisan and national — AI looms as a source of concern ahead of the Nov. 3 elections — and a Bloomberg poll found AI safety measures widely backed by most Americans.</p>
+<p>The industry, for its part, is playing political defense while demand for compute keeps growing: developers told Bloomberg Government they&#x27;re catering to communities rather than halting the buildout. Same newsletter, notable departure: Joel Kaplan, Meta&#x27;s chief global affairs officer and its top connection to Republican politicians, is leaving after 15 years.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://news.bgov.com/bloomberg-government-news/data-centers-play-delicate-game-to-weather-political-backlash">Bloomberg Government — the industry&#x27;s political defense</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/elections/ohio-governors-race-roiled-by-ad-with-democrats-estranged-mother-attacking-her-dacf59c1">Ohio governor race roiled by attack ad featuring candidate&#x27;s estranged mother</a></h3>
+<div class="byline">
+<span class="src">WSJ — What&#x27;s News</span> &middot; Oct 21
+</div>
+<p class="dek">Vivek Ramaswamy&#x27;s campaign released video of Democrat Amy Acton&#x27;s mother calling her a liar and unfit for office; backlash across the political spectrum two weeks before Election Day.</p>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Security plumbing, market jitters, and the consumer AI land grab — plus the $2 trillion question of who buys America&#x27;s debt.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://x.com/mitsuhiko/status/2112895942320168988">eMudhra&#x27;s revoked keys were 4, 56, 66, 115…</a></h3>
+<div class="byline">
+<span class="src">X — @mitsuhiko, @AnzalAbidi</span> &middot; Oct 21
+</div>
+<p class="dek">The eight revoked CA intermediates had single-byte private keys — an HSM test-script bug, wrong labels, signed into real certificates in April 2025. Browsers block them; curl, certifi, Go and Docker images still need updates.</p>
+<div class="body">
+<p>The new detail since Tuesday: the eight revoked CA intermediates&#x27; private keys were the numbers 4, 56, 66, 115, 155, 156, 230 and 237 — single-byte values instead of random 384-bit numbers, recoverable by trying all 256 possibilities. Per Abidi&#x27;s recap (not independently checked), a bug in eMudhra&#x27;s HSM key-wrapping test script generated a second set of weak keys, operators picked the wrong key labels and signed them into real certificates in April 2025, and when revocation-list signatures started failing in May 2025 someone switched the signer to the weak keys &#x27;and closed the ticket.&#x27; Ronacher says he now holds a certificate for hosts he doesn&#x27;t control that &#x27;actually works for so much software.&#x27;</p>
+<p>What still needs doing: browsers already block these, but curl, Python&#x27;s certifi, Go binaries and Docker base images don&#x27;t check revocation lists — update ca-certificates, certifi and Go (Abidi lists 1.27.3 / 1.26.10). The thread&#x27;s substantive hypotheses: a script that took one byte of a real key, a test-mode 8-bit key path run in production, and &#x27;a pre-signing check that rejects implausibly small private scalars would have caught all eight.&#x27; (Abidi&#x27;s recap also covers a 10.6 TB PingCAP/TiDB Cloud breach — cloud credentials committed in PingCAP&#x27;s own repos, 22 days of exports with no alerts — which the digest author did not verify.)</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/AnzalAbidi/status/2112802425052754183">X — @AnzalAbidi&#x27;s 72-hour security recap</a> &middot; <a href="https://x.com/mitsuhiko/status/2112969696069005567">X — @mitsuhiko on the patch</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wealthprofessional.ca/news/industry-news/hedge-funds-nearly-triple-their-us-treasury-holdings-to-us2-trillion/393666">America&#x27;s new debt buyers</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — David E. Rovella</span> &middot; Oct 21
+</div>
+<p class="dek">Foreign central banks aren&#x27;t the eager buyers they were. Private investors now own ~70% of US debt — a 35-year high — with hedge funds at a record share, and they&#x27;re far less tolerant of chaotic policymaking.</p>
+<div class="body">
+<p>Not so much the central banks of other countries that have regularly scooped up American debt. Private investors now own about 70% of America&#x27;s debt — the most in about 35 years — and nearly 10% of the Treasury market belongs to hedge funds, who have plenty of other assets to pick from. These are yield-driven, price-sensitive buyers, investing for income and trading gains, on a country teetering under $40 trillion in debt with no clear path out.</p>
+<p>The data: hedge funds&#x27; cash Treasury holdings reached $2T at end-2025, nearly 3x their level five years earlier — a record 7% of marketable debt per the Treasury&#x27;s Office of Financial Research — and they stayed net buyers through H1 2026 (+$87B). The IMF&#x27;s October warning: hedge funds now account for ~9% of the Treasury market including synthetic exposure, up from 4% in 2022, &#x27;inherently opaque,&#x27; with leverage that can amplify stress.</p>
+<p>The worry, per Rovella: for Treasury Secretary Scott Bessent and Fed Chair Kevin Warsh — both facing Wall Street doubts about their independence — price-sensitive buyers with more power than ever may be less tolerant of the administration&#x27;s tendency toward chaotic policymaking.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://alpha-maven.com/story/hedge-fund/imf-hedge-funds-triple-in-13-years-to-13-trillion-us-treasury-share-hits-9-raising-financial-risk-concerns-biggo-finance">IMF warning on hedge-fund Treasury footprint</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://wncy.com/2026/10/22/nasdaq-futures-drop-over-1-as-ai-worries-resurface-oil-climbs/">Markets: no patience for tech</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Markets Daily</span> &middot; Oct 22
+</div>
+<p class="dek">Nasdaq futures −1.8% on disappointing Tesla and Lam Research results, oil +3% past $112 after more Houthi attacks on Saudi Arabia, and Chinese stocks entering a bear market.</p>
+<div class="body">
+<p>Nasdaq 100 futures −1.8%, S&amp;P 500 futures −1.0% as of 6:34 AM ET, in a broad retreat from riskier assets. The drivers: disappointing results from Tesla and Lam Research, plus AI-spending anxiety. Tesla beat top and bottom lines (48c adj. EPS, $28.05B revenue) and posted surprise positive free cash flow — but cut its annual capex forecast and fell ~5.3%. Meta beat revenue expectations and raised AI spending plans, but slipped ~1.9% after announcing the new non-voting shares. Lam Research dropped ~7% on weak guidance; Intel −5.1%, Nvidia −2.4%, the whole chip complex red.</p>
+<p>Oil rallied: Brent +2.7–3% past $111–112 (up ~80% this year) after more Houthi attacks in Saudi Arabia and the US ordering some diplomats to leave. Flight to safety pushed the 10-year yield down to ~5.07–5.085%. Chinese stocks entered a bear market (CSI 300 −1.7%); Korea&#x27;s Kospi −2.2%. Bitcoin gave back its run at $85K, back under $82.8K. And the Bloomberg original: the race to hedge El Niño.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/gdb/status/2112950297404608595">GPT-Rosalind surfaced a drug-discovery lead</a></h3>
+<div class="byline">
+<span class="src">X — @gdb</span> &middot; Oct 21
+</div>
+<p class="dek">A DCTN1–cholesterol transport link in neurons, via OpenAI&#x27;s science model — shared by Brockman. One line, but the &#x27;AI for science&#x27; pipeline keeps producing.</p>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/demis-hassabis-ai-deepmind-google-isomorphic-2b4e3153">Demis Hassabis: AGI within two to three years</a></h3>
+<div class="byline">
+<span class="src">WSJ — Ben Cohen</span> &middot; Oct 21
+</div>
+<p class="dek">WSJ. Magazine names the DeepMind co-founder and Alphabet chief scientist its technology innovator of the year — and he has pulled his AGI estimate forward from three-to-five years to two-to-three.</p>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The day&#x27;s discussions distilled into things worth learning — one authoritative resource per topic, framed for the tech lead building Riot&#x27;s AI foundation platform and dragging a 12-person SaaS into the agent era.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wiz.io/blog/php2shell-php-rce">PHP2Shell — Wiz Research&#x27;s full write-up</a></h3>
+<div class="byline">
+<span class="src">Wiz Research</span> &middot; Oct 21
+</div>
+<p class="dek">The four-bug walk-through plus detection signals: how stale pointers in PHP globals become unauthenticated RCE, and what the multipart/out-of-memory pattern looks like in your logs.</p>
+<div class="body">
+<p>Why it matters for you: your SaaS runs web infrastructure, and this is the memory-safety class of bugs your team has to recognize. Takeaway: check your PHP versions (and distro backports — the version string won&#x27;t change), make sure your WAF has the stopgap rules, and learn the log pattern so you can grep for it. The meta-lesson: AI is now the vuln-finder, and discovery speed will only rise — defense has to assume that.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">Patch the Planet — OpenAI&#x27;s AI-era disclosure playbook</a></h3>
+<div class="byline">
+<span class="src">OpenAI</span> &middot; Oct 21
+</div>
+<p class="dek">OpenAI&#x27;s five-stage playbook for AI-era disclosure — validate upstream, adversarial-test the patch with frontier models, give providers time, bring in government, publish guidance — plus $1B in subsidized Daybreak access.</p>
+<div class="body">
+<p>Why it matters: every disclosure process you touch at Riot will need an AI-shaped loop — validate upstream, adversarial-test the patch with frontier models, sequence the comms, loop in government. Takeaway: read the five stages as policy design material, and sit with the open questions — including whether governments should ever use a vulnerability to patch systems they&#x27;ve lost control of.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://mirendil.com/news/pretraining-at-scale-without-a-pretraining-team/">Pretraining at scale without a pretraining team — Mirendil</a></h3>
+<div class="byline">
+<span class="src">Mirendil</span> &middot; Oct 21
+</div>
+<p class="dek">How one researcher plus agents built a 100B+ coding model in 3.5 months: architecture changes, data-mixture tuning, kernel work — three specialist-team jobs, directed by one person&#x27;s judgment.</p>
+<div class="body">
+<p>Why it matters: the org lesson is the point, and it&#x27;s directly relevant to the SaaS&#x27;s lagging AI org change. The bottleneck moves from headcount to compute, data and the judgment of whoever directs the agents — small teams get a real shot if they can do the directing. Takeaway: read it for the three-job consolidation (architecture, data mixture, kernels) and ask which of your teams&#x27; specialist handoffs could collapse the same way. Caveat: self-reported, no evals yet — treat as a recipe to test, not a result to quote.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://building.owner.com/tsrs">tsrs — Owner engineering on the agent-built compiler</a></h3>
+<div class="byline">
+<span class="src">Owner Engineering</span> &middot; Oct 21
+</div>
+<p class="dek">Max Schwenk asked Claude Opus 5.5 for a faithful port of the TypeScript compiler and &#x27;wrote zero code&#x27; — the case study in directing agents on a hard, verifiable task.</p>
+<div class="body">
+<p>Why it matters: it&#x27;s the template for agent-driven engineering work at both Riot and the SaaS. Pick tasks with ground truth — 15,197 conformance cases as the contract — and let agents grind. Takeaway: the anti-slop bar (&#x27;a bar to prevent agents from optimizing endlessly&#x27;) is a design pattern worth stealing for your own agent workflows.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://support.claude.com/en/articles/17631495-get-started-with-claude-duet">Get started with Claude Duet — Anthropic help center</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Oct 21
+</div>
+<p class="dek">What Anthropic&#x27;s proactive agent will and won&#x27;t do on its own: approvals before send/pay/sign/delete, and the hard blocks — no securities trading, no moving money — even with approval.</p>
+<div class="body">
+<p>Why it matters: the guardrail design is a reference for any agent product — including your support-triage capstone. Approval UX before send/pay/sign/delete, and the categories that are never allowed even with approval (securities trading, moving money between accounts). Takeaway: steal the pattern — an agent that acts before being asked is only useful if you can see why it acted and undo it in one step.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/ConwayResearch/Underdog-Bark-3.0">Bark 3.0 model card — a 163 MB speech model</a></h3>
+<div class="byline">
+<span class="src">Hugging Face — Underdog AI</span> &middot; Oct 21
+</div>
+<p class="dek">A 0.6B ASR model in 163 MB that ties NVIDIA&#x27;s Parakeet on the Open ASR average — the compression recipe and the honest benchmark table.</p>
+<div class="body">
+<p>Why it matters: small-model engineering is a live skill, and this is right in your big-model-plus-cheap-decider pattern. Takeaway: read the benchmark table honestly (the company&#x27;s own runs) and the compression lineage via Moondream&#x27;s parakeet-ultra — the recipe for getting giant-class results out of a 163 MB file.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
