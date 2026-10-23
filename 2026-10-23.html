@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Friday, October 23, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">Security owned the builder conversation this week — and the lesson is that finding the bug was never the hard part. Below: the php2shell post-mortem, Agent Skills becoming a real standard, how to turn agent failures into regression tests, and the usage-limit fight.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/">php2shell, the morning after: attackers got there first — and the fight over what it proves</a></h3>
+<div class="byline">
+<span class="src">X — the AI lists · WSJ</span> &middot; Oct 22
+</div>
+<p class="dek">The critical PHP flaw was spotted in 2024, the fix stalled for months, the CVE leaked early — and Amazon&#x27;s honeypots saw an exploit attempt four days before disclosure.</p>
+<div class="body">
+<p>Two first-hand accounts changed the story this week. Amazon says its MadPot honeypot network caught an exploit attempt against php2shell on Oct 17, four days before public disclosure — and it doesn&#x27;t know how the actor got the bug. The PHP Foundation&#x27;s own post-mortem is strikingly candid: a core developer saw the first signs of the out-of-memory flaw in 2024 while fixing a Quarkslab audit finding, but competing fixes each had costs (compatibility breaks, new DoS risk), and the consensus-driven security team stalled and restarted work for months. Their words: &quot;the delay was a structural failure.&quot;</p>
+<p>The disclosure then broke messily: the CVE IDs leaked Tuesday around 11 AM ET with a wrong CVSS of 10.0 (real: 9.2), Calif accidentally published a PoC video, mitigation advice sent to critical-infrastructure providers may have leaked, and Chainguard broke the embargo six hours early by shipping patched images attackers could diff.</p>
+<p>The lists split into camps. Nate Soares (MIRI): &quot;a heavy strike against the &#x27;defense will run ahead of offense&#x27; theory.&quot; Stella Biderman (EleutherAI): &quot;THIS IS DISINFORMATION. The PHP exploit was found by AI-enabled defensive operations&quot; — defenders found it with tools like Anthropic&#x27;s Mythos and OpenAI&#x27;s Daybreak, so &quot;defense running ahead&quot; is exactly what happened. roon (OpenAI): it&#x27;s evidence Glasswing &quot;didn&#x27;t go far enough.&quot; Ethan Mollick and Daniel Rock land in the middle: academic models suggest AI initially helps attackers more (low marginal cost of attacks), and &quot;defense will win but it&#x27;s gonna be rough sledding for a little.&quot;</p>
+<p>What to do this week: if you run PHP, confirm 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 or your distro&#x27;s backport. Hunt logs for odd multipart uploads and PHP_SESSION_UPLOAD_PROGRESS from *before* Oct 21, not just after. And per OpenAI&#x27;s Tibo Sottiaux: get Daybreak Blue access now — &quot;you don&#x27;t want to have to do it in the middle of an incident.&quot;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/">Amazon Threat Intelligence — pre-disclosure exploitation</a> &middot; <a href="https://www.wsj.com/tech/cybersecurity/ai-just-found-a-bug-that-puts-up-to-70-of-the-worlds-websites-at-risk-fd0902ea">WSJ — AI found a bug that puts up to 70% of websites at risk</a> &middot; <a href="https://x.com/So8res/status/2112959457001119766">X — @So8res</a> &middot; <a href="https://x.com/BlancheMinerva/status/2113263852582486465">X — @BlancheMinerva</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic donates Agent Skills to the Agentic AI Foundation</a></h3>
+<div class="byline">
+<span class="src">X — @ClaudeDevs</span> &middot; Oct 22
+</div>
+<p class="dek">The SKILL.md format joins MCP under the Linux Foundation — 70+ platforms, ~1M skills, ~280M installs — and the agent stack keeps consolidating into vendor-neutral standards.</p>
+<div class="body">
+<p>A skill is a folder with a SKILL.md file (YAML front matter with name and description, then instructions) plus optional scripts, references and assets. Agents load it in stages to save context: at startup they read only each skill&#x27;s name and description; when a task matches, they load the full SKILL.md; only then do they open extra files or run scripts. It&#x27;s how you package &quot;how we do X here&quot; once and reuse it across agents. Boris Cherny: it &quot;started as an experiment in Claude Code.&quot;</p>
+<p>Anthropic transferred the name, logo, GitHub org and agentskills.io to the Agentic AI Foundation — the Linux Foundation project that already hosts MCP. The lead maintainers stay (David Soria Parra and Mahesh Murag), licenses stay Apache 2.0 / CC BY 4.0, so existing skills keep working. The roadmap: versioned spec releases, a formal proposal process, and security guidance for skill authors. Two spec details matter now: a `compatibility` field declaring what a skill needs, and an `allowed-tools` field (which tools a skill may call) that&#x27;s still experimental and behaves differently across products.</p>
+<p>AAIF announced four projects at AGNTCon+MCPCon: Agent Skills, OpenAI&#x27;s Open Responses, Hugging Face&#x27;s OpenEnv and Alibaba&#x27;s OpenSandbox — 10 projects total. The agent stack is consolidating the way the web did.</p>
+<p>The camps: governance (&quot;MCP showed an open registry without curation becomes a graveyard of half-broken servers&quot;; &quot;prompts are the asset — govern them like code&quot;), permissions (&quot;a reusable skill shouldn&#x27;t automatically inherit access to every tool&quot;), and craft advice — the sharpest reply: don&#x27;t ask the agent to draft skills (it &quot;restates what the model already knows&quot;); instead write down &quot;the decisions and edge cases only you know,&quot; then let the agent format it.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://aaif.io/news/agentic-ai-foundation-announces-four-new-projects">AAIF — four new projects</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/SemiAnalysis_/status/2113383965784502444">Claude users say usage is draining 5x faster; SemiAnalysis claims an A/B test</a></h3>
+<div class="byline">
+<span class="src">X — @SemiAnalysis_</span> &middot; Oct 22
+</div>
+<p class="dek">One Max 20x account gets a 19% bigger 5-hour window but a 20% smaller weekly budget. Anthropic&#x27;s Boris Cherny: &quot;We&#x27;re digging into this.&quot;</p>
+<div class="body">
+<p>Users report Claude Code and Fable usage draining roughly &quot;5x faster&quot; than before, weekly limits gone in 1–4 days. Earlier Thursday, Anthropic&#x27;s Cherny said &quot;no changes on our end&quot;; by evening he was DMing affected users a command to list local session files under ~/.claude/projects and wrote &quot;We&#x27;re digging into this and will report back very soon.&quot;</p>
+<p>SemiAnalysis compared two Max 20x accounts on Opus 5.5: account B gets +19% in the 5-hour window but −20% in weekly budget — about $9.4K vs $11.7K a month in API-equivalent value. So B can burst more in five hours but gets less per week. Caveats: two accounts, Anthropic hasn&#x27;t confirmed, and confounders include an &quot;Oct 22 limit reset promotion&quot; and a &quot;banked reset.&quot;</p>
+<p>Technical theories in the replies are worth your time regardless of the A/B-test question: parallel agents finish at different times and &quot;the orchestrator delegates follow-ups on previous agents with cold caches&quot;; context &quot;drops to 200K mid-session even if the session spun up with explicit 1m context&quot;; and in long sessions &quot;almost all of the usage is re-reading cached context.&quot; The product ask: &quot;A visible allowance meter would help more than users reverse-engineering limits.&quot;</p>
+<p>Related builder signal: Mario Zechner — &quot;been a gpt shill for almost a year, but opus 5.5 is just so nice to work with&quot; — and Sawyer Hood: pi with Opus 5.5 feels no different from Claude Code &quot;except for burning 50% less tokens on first prompt.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gteodoru.github.io/morning-feed/tips/2026-10-22-1password-for-agents.html">1Password for Agents: AI agents that sign in without ever seeing your password</a></h3>
+<div class="byline">
+<span class="src">Gabriel&#x27;s tips</span> &middot; Oct 22
+</div>
+<p class="dek">1Password launched 1Password for Agents (Oct 22, 2026): personal AI agents can sign into your accounts without ever seeing your passwords.</p>
+<div class="body">
+<p>The agent identifies itself with a unique digital key, you approve the specific login on your device, and 1Password fills the credential directly into the site; MFA codes go through the same channel, and access is per-session with no carryover. Included free in Individual/Family plans. Muse (Meta) and Grok Bot roll out first; Claude Duet, ChatGPT Work/dots, and Townie are coming soon, with Browserbase, Perplexity, Ramp, and others building. Reaction is split: partners (Muse team, KERNEL) are enthusiastic, while security analysts note the guarantee ends at sign-in — the signed-in session, not the password, becomes the risk. Full research brief at the link above.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gteodoru.github.io/morning-feed/tips/2026-10-22-cloudflare-security-audit-skill.html">Cloudflare&#x27;s Security Audit Skill: the agent auditor where the checker is never the finder</a></h3>
+<div class="byline">
+<span class="src">Gabriel&#x27;s tips</span> &middot; Oct 22
+</div>
+<p class="dek">Daniel San (@dani_avila7) recommends Cloudflare&#x27;s open-source Security Audit Skill in the wake of the week&#x27;s PHP/Node vulnerabilities.</p>
+<div class="body">
+<p>The MIT-licensed skill (~39K GitHub stars) turns a coding agent into a security auditor running six phases — reconnaissance with a coverage ledger, isolated hunter agents, adversarial validation (a fresh agent tries to disprove every finding), structured findings.json with confirmed/needs_validation/rejected verdicts, independent record verification, and reporting. It seeded Cloudflare&#x27;s fleet-wide Vulnerability Discovery Harness (128 repos). The stat everyone is quoting: a single run found only ~half the vulnerabilities repeated runs found. HN (~213 pts) and dev.to frame it as the moment &#x27;who audits the agent?&#x27; became a product category; cost reports conflict (one overnight run surprisingly cheap, one HN report of heavy token use). Full research brief at the link above.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/decodingai-magazine/building-a-coding-agent-from-scratch-course">Replay your agent&#x27;s bug, fix it, add it to your AI evals</a></h3>
+<div class="byline">
+<span class="src">Decoding AI Magazine</span> &middot; Oct 23
+</div>
+<p class="dek">Paul Iusztin&#x27;s free course lesson: sample production traces, cluster failures, replay them with identical tool outputs — and grow regression tests via error analysis.</p>
+<div class="body">
+<p>You tweak one line in your agent&#x27;s system prompt. Did you just break something that worked last week? Even with observability and AI evals, reproducing the exact context of a failure is extremely hard. The fix: replays coupled with evals — sample production traces, group the failures, replay them with the exact same tool outputs.</p>
+<p>The lesson walks through the error-analysis framework (popularized by Hamel Husain and Andrew Ng): record real runs, hand-label a sample pass/fail with a short critique, fix the obvious, cluster the rest by failure type, rank by frequency × severity, and write one cheap evaluator per cluster. Regression tests — not benchmarks or monitoring — are &quot;the most important part of AI evals for a custom AI app.&quot;</p>
+<p>The tooling: Kitaru (by ZenML Labs) captures agent runs and replays them with the same context by caching tool outputs — same input returns the same output; changed tools run from scratch. Sessions flow into a control plane; your coding agent does the analysis through Kitaru&#x27;s MCP server and skills; every cohort becomes an experiment that gates later changes. Anthropic&#x27;s field guide sets the entry bar low: &quot;20-50 simple tasks drawn from real failures is a great start.&quot; And: always prioritize code checks over LLM judges — &quot;a judge is always the last resort.&quot;</p>
+<p>The repo is the full free course: 8 articles, 6 videos, 1 codebase building a Claude Code clone from scratch — this lesson is &quot;AI Evals on Steroids via Replays.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://swesweep.com/">SWE-sweep: the best agents still fix fewer than 10% of real bugs</a></h3>
+<div class="byline">
+<span class="src">X — @KLieret</span> &middot; Oct 22
+</div>
+<p class="dek">A new benchmark from Meta Superintelligence Labs with Harvard, UW and Stanford: find and fix as many real bugs as you can, no hints — Astra 6 leads at 9.5%.</p>
+<div class="body">
+<p>The agent gets a real repo at a commit where many known bugs coexist (100 repos, ~4.1K bugs) and one instruction: &quot;find and fix as many bugs as you can.&quot; Each fix is checked against hidden tests from the real upstream PR, and breaking the existing suite scores the repo zero. Leaderboard (minimal mini-SWE-agent scaffold): Astra 6 9.5% at $35/repo; Sol 5.6 xhigh 4.7% ($72); Opus 5.5 xhigh 3.6% ($22); Fable 5.1 2.9%; Kimi K3 0.6%. Kilian Lieret: new models &quot;double the number of bugs found, while halving costs,&quot; but the best &quot;still finds less than 10%.&quot; Their FAQ: Claude Code and Codex scaffolds didn&#x27;t beat mini-SWE-agent, and longer runs can undo earlier fixes.</p>
+<p>Other builder notes from the lists: swyx calls Opus 5.5 &quot;the best work estimator model i&#x27;ve ever used&quot; — tip: /loop it and ask it to base estimates on recent past work. Warp&#x27;s Zach Lloyd: for &quot;software factory&quot; metrics, bad = lines of code and tokens; good = &quot;cost-per-PR, cycle time from conversation start → merge.&quot; Charlie Marsh had Astra cut uv&#x27;s peak memory ~15–20% via &quot;an arena checkpointing trick in our resolver.&quot; Letta&#x27;s FrontierMemory is a new benchmark scoring how agents learn from experience on downstream tasks. And Raindrop watches every PR and DMs you in Slack how your agent change actually performed in production.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">The money story this week is the bill: three-quarters of a trillion dollars in compute commitments, a market that flinched, and a $30B round that isn&#x27;t even final — alongside the industry&#x27;s new habit of giving away equity to win trust.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/finance/stocks/metas-hunt-for-ai-capital-strikes-a-raw-nerve-on-wall-street-e2de1601">The AI capex bill comes due: Meta&#x27;s hunt for capital rattles Wall Street</a></h3>
+<div class="byline">
+<span class="src">WSJ · Bloomberg</span> &middot; Oct 22
+</div>
+<p class="dek">Meta created a new class of nonvoting stock to fund its AI build-out; the stock fell 7%, erasing $124B, and the Nasdaq had its worst day since June.</p>
+<div class="body">
+<p>Meta&#x27;s announcement of a new nonvoting share class — plus an effective 2-for-1 split — to raise AI capital triggered a broad selloff. Meta disclosed future spending commitments of roughly $825B (up from ~$700B), and free cash flow went negative for the first time since it went public. Investors rotated out of AI-exposed names across the stack — Nvidia, Micron, Alphabet, Amazon, Vertiv — while bonds rallied (10-year yield fell from 5.145% to 4.952%). A Meta filing acknowledged an &quot;increasingly challenging fundraising environment&quot; as Alphabet, SpaceX and OpenAI all raise aggressively.</p>
+<p>The WSJ&#x27;s draft-prospectus reporting adds the Anthropic side of the bill: up to $750B in compute commitments — about $450B already noncancelable over 7–10 years ($111B Google Cloud, $110B AWS, $31B Microsoft, up to $86B renting Nvidia chips from neoclouds Nscale and Lambda, plus $160B+ leasing Google TPUs via Broadcom). Anthropic says it sought more capacity than its cloud partners would provide — and that those partners increasingly see it as a competitor. Net loss was $80.7B in H1 2026, mostly accounting charges; the company told investors it reached adjusted profitability in Q3 and could begin IPO marketing the week of November 9.</p>
+<p>And the revenue side of Meta&#x27;s bet: Muse hit 10M downloads in the US and Canada in just over a month — ~3x faster than ChatGPT&#x27;s app — but the math doesn&#x27;t cover the bills. Even 100M users at $20/month is ~$24B/year; one analyst estimates ~$10B. Meta&#x27;s long-term debt has surged from $28.8B (end of 2024) to $80.9B, and it just took a $10B charge from a 48-state teen-harms settlement. Bloomberg&#x27;s morning briefing summed up the mood: the stock market is making more demands on AI.</p>
+<p>The takeaway for your seat: the market is repricing the build-out, not the technology. Compute commitments are now balance-sheet events — and &quot;investors want more from AI&quot; is the sentence to watch into earnings season.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/anthropic-revenue-growth-ipo-accaf0f1">WSJ — Anthropic&#x27;s $750B compute bill</a> &middot; <a href="https://www.wsj.com/finance/stocks/metas-muse-is-going-gangbusters-but-where-is-the-payoff-648d310d">WSJ — Meta&#x27;s Muse: where is the payoff?</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html">OpenAI nears up to $30B at $1.25T pre-money in &quot;opportunistic&quot; pre-IPO bridge</a></h3>
+<div class="byline">
+<span class="src">X — @Kr00ney (CNBC)</span> &middot; Oct 22
+</div>
+<p class="dek">Led by UAE investors and Coatue; signatures wanted by end of next week — and a separate deal for more UAE compute.</p>
+<div class="body">
+<p>CNBC&#x27;s Kate Rooney scooped the round: led by UAE investors and Coatue, positioned as an &quot;opportunistic&quot; bridge before an IPO, with OpenAI pushing for signatures by the end of next week and the size not final. A separate deal would get more compute from the UAE — OpenAI has told investors it targets ~$600B of compute spend by 2030.</p>
+<p>Context: OpenAI filed its IPO prospectus confidentially in June; CFO Sarah Friar told staff it &quot;will be a public company in 2027,&quot; while Altman later said now would be &quot;an ill-advised moment to go public.&quot; Anthropic also filed confidentially in June, closed $65B at $965B in May, and reportedly seeks $1.5–2T in its IPO. The replies are mostly cynical (&quot;for a company worth $1.25T, they do quite a bit of begging for money&quot;); one notes the valuation reportedly slipped &quot;from 1.40 to 1.25T.&quot;</p>
+<p>Read it next to the capex story above: the two best-funded labs on earth are both raising at trillion-plus valuations *and* warning that compute is the binding constraint. The money is going to whoever can turn megawatts into revenue fastest.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.reuters.com/commentary/breakingviews/unbridled-optimism-cynicism-drive-ai-charity-2026-10-19/">The great AI giveaway: Anthropic commits 5% of itself; Musk answers with SpaceX shares for every kid</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 22
+</div>
+<p class="dek">Anthropic&#x27;s Public Benefit Fund could be worth ~$100B at IPO; Musk pledged one SpaceX share to every American child. Trust-building, IPO theater, or both?</p>
+<div class="body">
+<p>Anthropic said it will commit 5% of its shares to a new Public Benefit Fund — a wholly owned LLC, not a charity — with the board able to add 2% more for every 50% rise in valuation above an undisclosed baseline. With co-founder pledges (80% of their equity) and an employee donation match, roughly 20% of the company is now earmarked for public causes. At a ~$2T IPO, the fund&#x27;s 5% would be worth about $100B on paper. It can&#x27;t be used for lobbying or political donations; stated uses range from nonprofit donations to direct distributions and AI labor-market research (Anthropic already committed $200M there).</p>
+<p>Musk answered within a day: give the shares directly to the public instead — he&#x27;ll give one SpaceX share to every American child next year, ~$10.5B at ~$147/share, likely via Trump Accounts, &quot;the first of many.&quot; SpaceX president Gwynne Shotwell added her own gift of shares to Trump Accounts for 2M+ kids in lower-income areas.</p>
+<p>Reuters Breakingviews frames it as &quot;unbridled optimism and cynicism&quot; colliding. The context: an AP-NORC poll found 64% of US adults say AI is developing too fast, and Dario Amodei himself calls it &quot;fundamentally a crisis of trust.&quot; Two days before the fund, Anthropic quietly pitched lawmakers its own draft AI safety bill. The honest read: this is pre-IPO trust infrastructure — and the structure (an LLC with no disclosure obligations of a charity, no governance details yet) is exactly what to watch.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.anthropic.com/news/public-benefit-fund">Anthropic — the Public Benefit Fund</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://cxotoday.com/ai/feeding-the-european-ducks-jensen-huang-thinks-europe-could-lead-physical-ai/">Jensen in Berlin: Europe must produce AI, not just consume it — and an agent built live on stage</a></h3>
+<div class="byline">
+<span class="src">Bloomberg · X — @NousResearch</span> &middot; Oct 22
+</div>
+<p class="dek">&quot;For Europe to benefit from AI, you need all of the end markets, the end industries to adopt AI&quot; — plus robot ducks, a Greenpeace protest, and a one-prompt agent demo.</p>
+<div class="body">
+<p>At GTC Berlin, Jensen Huang&#x27;s message was equal parts pitch and warning: &quot;Every company in Europe will become an AI company,&quot; and Europe&#x27;s precision engineering puts it in position to lead in *physical* AI — robotics and humanoids. His &quot;two factories&quot; idea: modern companies need a physical factory producing goods and a digital one producing intelligence. Nvidia has committed nearly $10B to Europe&#x27;s tech ecosystem (on top of $8B invested over the past year), showcased a factory-built DSX POD data-center module deployable in two weeks, and he shared the stage with duck-shaped robots from France&#x27;s Pollen Robotics — three of which promptly keeled over on command, in what might be the most honest robotics demo of the year. Greenpeace protesters briefly interrupted over reports of Nvidia chips in Russian drones.</p>
+<p>The GTC Berlin finale belonged to agents: Jensen said &quot;the way to build an agent is to ask an agent to build it for you,&quot; set up a customized Hermes agent in one prompt, and ran it on NVIDIA hardware to build a Microduck training sim. Clem Delangue says the keynote pushed Microduck pre-orders toward 20,000. The sharpest replies ask the right questions: &quot;Does the agent write the evals too, or do you still need a human to check if it actually built what it asked for?&quot; and &quot;trust depends on showing what changed, which permissions were granted and how the user can reverse them.&quot;</p>
+<p>Your takeaway: the physical-AI + sovereign-AI pitch is Nvidia&#x27;s demand-creation engine for the next cycle — and the agent-building-agent demo is a preview of how your platform&#x27;s users will expect to work.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/NousResearch/status/2113010017645244623">X — @NousResearch, the Hermes demo</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://lsvp.com/stories/why-were-backing-warp/">Warp Sciences: $215M for an AI-and-robotics preclinical lab</a></h3>
+<div class="byline">
+<span class="src">X — @kevinweil</span> &middot; Oct 22
+</div>
+<p class="dek">Kevin Weil (ex-OpenAI) is building an American CRO run on AI and robotics — Lightspeed-led Series A at an $865M post-money.</p>
+<div class="body">
+<p>Warp Sciences raised a $215M Series A led by Lightspeed (TechCrunch puts post-money at $865M; IVP, Mayfield, Lux, Premji Invest and Conviction joined). Weil&#x27;s thesis: &quot;The models are data poor in the physical sciences.&quot; The company starts with lead optimization — synthesizing many analogs of a drug candidate — with chemists running the lab first while robots learn from them via cameras and sensor gloves; failed runs are kept as training data. Co-founders include DJ Patil, Sol Reisberg and FAIR co-founder Manohar Paluri.</p>
+<p>The camps: the closed-loop data thesis (&quot;robotic labs generate the clean, structured data AI needs to design the next ones&quot;; &quot;the throughput of the physical loop usually sets the ceiling, not the model&quot;) versus the skeptic (&quot;why focus on drug discovery, which accounts for 5% of total drug development cost, instead of clinical translation?&quot;). Sarah Guo: a robotics-first CRO &quot;will become a pattern for other industrial reshoring.&quot; Worth watching as the template for AI in any physical science your org touches.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://a16zfrontier.com/posts/article/a16z-frontier">a16z Crypto becomes a16z Frontier</a></h3>
+<div class="byline">
+<span class="src">X — @cdixon</span> &middot; Oct 22
+</div>
+<p class="dek">Chris Dixon&#x27;s fund expands beyond crypto to AI-native products, autonomous machines, biology — with blockchains as &quot;the money rails for machine-to-machine transactions.&quot;</p>
+<div class="body">
+<p>It&#x27;s &quot;an expansion,&quot; not a retreat: the new a16z Frontier covers &quot;frontier startups&quot; building technologies &quot;that may take years to develop&quot; — AI-native products (&quot;native use cases&quot; that look like toys at first), autonomous machines and new devices, biology, full-stack companies, and &quot;networks connecting people and intelligent agents.&quot; Crypto&#x27;s new role: blockchains as the money rails for machine-to-machine transactions. Led by Dixon with Marc Andreessen, Ben Horowitz, Eddy Lazzarin and Guy Wuollet.</p>
+<p>The same evening, Ali Yahya said he&#x27;s leaving a16z to start a company in SF. Replies split between &quot;crypto has become a tech layer!&quot; and &quot;crypto is dead&quot; — but the strategy reads clearly: the fund is repositioning around the agent economy, where the transaction layer matters more than the token narrative.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/stephzhan/status/2113303172894867859">Funding notes: Zhan&#x27;s new fund, DeepSeek&#x27;s $15B</a></h3>
+<div class="byline">
+<span class="src">X — the VC list</span> &middot; Oct 22
+</div>
+<p class="dek">Sequoia&#x27;s Stephanie Zhan launches an early-stage AI fund; DeepSeek reportedly raised one of China&#x27;s largest rounds days after a US federal purge of its tech.</p>
+<div class="body">
+<p>Stephanie Zhan is starting her own early-stage AI fund, backing founders &quot;from company formation on bold bets, long before consensus.&quot; LPs include Sequoia, Jeff Dean, Sachin Katti and Philip Wong (her Stanford professor, TSMC&#x27;s chief scientist adviser). She stays a Sequoia partner on her boards. No fund name or size yet.</p>
+<p>And DeepSeek reportedly raised $15B — one of China&#x27;s largest rounds — just days after the US ordered federal agencies to remove its technology. The juxtaposition is the story: capital is decoupling from access, and the frontier-model race is now running on two increasingly separate tracks.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/TechCrunch/status/2113257831436587328">X — @TechCrunch on DeepSeek</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">A president, a billionaire, and the satellite network Ukraine&#x27;s drones depend on — plus what a wealth tax does to founder control.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/ukraine-says-starlink-isnt-working-despite-trumps-promise-to-restore-it-c3609d3d">Trump called Musk to lift Ukraine&#x27;s Starlink throttle — Kyiv says nothing changed</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 23
+</div>
+<p class="dek">The president asked Musk to restore full speeds; Ukrainian units report the 100-mph cap is still crippling drones and interceptors.</p>
+<div class="body">
+<p>President Trump called Elon Musk on Wednesday and asked him to lift restrictions on the military-grade Starshield service in Ukraine, frustrated that speeds remained capped around 100 miles an hour — a limit that renders some of Ukraine&#x27;s offensive drones and jet-powered interceptors powerless against Russian attacks. Thursday brought mixed tests: some units hit 200 km/h, raising hopes. But late Thursday and overnight, most of Ukraine&#x27;s military still reported failing connections at higher speeds. &quot;We see the same limit,&quot; wrote Zelensky spokesman Dmytro Lytvyn. &quot;So as for now — nothing has changed.&quot;</p>
+<p>The backstory, per the Journal&#x27;s reporting: Musk ordered the slowdown on Oct 14 after he and Trump expressed anger at Ukraine for striking Russian diesel refineries (which Trump blames for high energy prices), sparking panic in Kyiv and confusion inside the administration over who ordered it. Musk posted that &quot;any limits on speed or usage are decided by the US military and ultimately POTUS&quot;; Trump said Monday he didn&#x27;t know who was responsible, &quot;but I would like to find out&quot; — then called Musk on Wednesday. Bipartisan lawmakers (Tillis, Murkowski, Cornyn and Democratic colleagues) have asked the Pentagon&#x27;s inspector general to investigate whether the Pentagon or its contractors had a role. The episode is a stark reminder of single-point-of-failure risk: one man&#x27;s switch alters the course of a war.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/world/trump-called-musk-and-asked-him-to-lift-ukraine-starlink-restrictions-5aeebc6e">WSJ — Trump called Musk to lift restrictions</a> &middot; <a href="https://www.wsj.com/world/ukraine-starlink-elon-musk-trump-dbc49193">WSJ — Musk ordered the slowdown</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/daily-tax-report/zuckerberg-weighs-leaving-california-if-billionaire-tax-passes">Meta&#x27;s unusual bargain to keep Zuckerberg in California</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 22
+</div>
+<p class="dek">After Zuckerberg warned a proposed California wealth tax could push him out, Meta gave him nonvoting shares to cover the bill without losing control.</p>
+<div class="body">
+<p>Meta is giving Mark Zuckerberg nonvoting shares he can sell to cover a multibillion-dollar tax bill without relinquishing control of the company. In return, Zuckerberg committed to stay in California — or wherever Meta keeps its headquarters — for the next eight years while he remains its full-time leader. The arrangement sits inside the same financing story as the AI build-out: a filing disclosed he could immediately sell 20% of his new nonvoting shares, a provision tied to the possible wealth tax. One to watch as states test how far they can tax founder wealth before the founders — and the headquarters — leave.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/RaoulRuparel/status/2113236385326940184">UK data: information-sector jobs for under-25s down 30% in three years</a></h3>
+<div class="byline">
+<span class="src">X — @RaoulRuparel</span> &middot; Oct 22
+</div>
+<p class="dek">HMRC payroll data shows 18–24-year-olds in information &amp; communications down 30% vs 3% for 35–49s. Ruparel: he&#x27;d been skeptical AI was moving the labor market — &quot;something odd is going on.&quot;</p>
+<div class="body">
+<p>The age gradient is the striking part: it&#x27;s not a sector shrinking evenly, it&#x27;s entry-level jobs disappearing while mid-career employment barely moves. That pattern is exactly what you&#x27;d expect if AI is absorbing junior, routine-heavy work first — the bottom rung of the career ladder thinning before the middle feels it. One datapoint, one country, but it&#x27;s the cleanest labor-market signal in this week&#x27;s discussion, and it lands next to Anthropic&#x27;s $200M labor-impact research commitment and the Public Benefit Fund&#x27;s focus on workforce disruption. If you&#x27;re hiring or mentoring junior engineers, this is the chart to have in mind.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Science, creativity, and the uncomfortable question of who gets to be a reviewer when the reviewer is a model.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://gking.harvard.edu/peerless/">Claude Opus 4.8 beat the best human peer reviewers — and that&#x27;s the problem</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Oct 23
+</div>
+<p class="dek">In a Harvard study, AI reviews beat paid top-rated human reviews on 124 social-science papers: 132/132 by an AI judge, 87% by blinded former journal editors.</p>
+<div class="body">
+<p>The design is serious: every eligible submission to rapidPeer, Harvard&#x27;s double-blind pre-submission review service — 124 papers, 134 human reviews from 2019–2026, written by well-paid experts, rated high quality by 88% of authors. For each paper, Claude Opus 4.8 at max reasoning wrote a review in two conditions: &quot;matched&quot; (no tools) and &quot;tuned&quot; (agent prompt + web search, ~12.4 searches per review). A different model family, GPT-5.5, judged each pair three ways, in both presentation orders, counting only unanimous wins. Three former journal editors also judged 10 blinded pairs.</p>
+<p>Results: AI won 132 of 132 decided pairs by the AI judge and 87% by the human editors — 92% in theory, framing and communication; 99% in figures; 100% in sources, weaknesses and methods. The AI made no fabricated citations; 5.5% of its claims were judged incorrect vs 15.9% for humans. Weakness: without web access, &quot;matched&quot; AI won only 62% on sources.</p>
+<p>The authors&#x27; real argument is the danger: AI pushes everyone toward &quot;the conventional, orthodox, and majoritarian,&quot; making science &quot;more homogenous and ordinary&quot; — and reviewers&#x27; disagreements were partly a feature. Policy options range from requiring authors to iterate with a journal&#x27;s published AI review prompt before submitting, to an editor-led process (author dossier + private AI review + human review only for hard cases) cutting decisions &quot;within days rather than months.&quot; They also cite ICML 2026: 22.5% of reviewers told not to use AI reported using it anyway.</p>
+<p>The camps: accountability (&quot;a model with no reputation at stake has no reason to be the one who says no&quot;), what was actually measured (&quot;did it catch the broken stats, or just write nicer reviews?&quot; — the paper concedes it didn&#x27;t measure whether papers got better), and volume (&quot;peer review was never designed to scale with the volume AI will now produce&quot;). Jokes: &quot;Reviewer 2 has been automated.&quot;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://gking.harvard.edu/files/peerless.pdf">King &amp; Worthington — the paper (PDF)</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://open.substack.com/pub/on/p/model-behavior-rick-rubin">&quot;AI doesn&#x27;t have a point of view&quot;: Rick Rubin and Substack&#x27;s Chris Best on AI and creativity</a></h3>
+<div class="byline">
+<span class="src">Substack — Model Behavior</span> &middot; Oct 22
+</div>
+<p class="dek">A 31-minute conversation on Pangram&#x27;s AI-detection integration, the wah-wah pedal, Nine Inch Nails — and whether personalized-everything is utopia.</p>
+<div class="body">
+<p>In this special edition of Model Behavior, Substack founder Chris Best talks with Rick Rubin about Substack&#x27;s Pangram integration — a tool letting readers check whether text was likely written by hand or with AI assistance — and where Rubin lands on AI in his own creative life.</p>
+<p>Rubin&#x27;s core claim: &quot;The reason I like the artists I like is that I&#x27;m interested in their point of view... AI doesn&#x27;t have a point of view, so it can&#x27;t show me one. It can make something sound like something else, but it can&#x27;t give me a point of view.&quot; His fire analogy: &quot;With any new instrument, you can make bad sounds, and then someone figures out how to do it well.&quot; And the wah-wah pedal story: Vox gave the first pedals to studio pros — Johnny Echols threw his in the garbage; the other recipient was Jimmy James, Little Richard&#x27;s driver, who became Jimi Hendrix. &quot;We tend to think in terms of all or nothing, or substitution... it may have incredible uses, as it already does with code.&quot;</p>
+<p>On detection, Rubin lands on reader choice: a rating on every article would change how we interact with material; a reader-controlled filter (&quot;I only want to see non-AI material&quot;) is fine. Best&#x27;s framing: detectors only catch the last mile — &quot;did the final form of this text come out of the machine or not?&quot; — not whether it has a human perspective. Notably: after Substack shipped the feature, LinkedIn removed its &quot;Rewrite with AI&quot; button and added a &quot;Report as AI slop&quot; option, and Snapchat barred AI video from its main Discover feed. Platforms are navigating what people want before anyone knows the philosophical answers.</p>
+<p>Rubin on democratization: &quot;If you weren&#x27;t a great writer before, or you were afraid to pick up a pen, maybe getting comfortable with AI lets you express yourself&quot; — voices that would otherwise be silent. And on Best&#x27;s sci-fi scenario (a perfect personalized album and film, just for you, everyone on their own island): &quot;It&#x27;s like a dream. We all have our own dreams, and I don&#x27;t know that it would be better if we all shared the same ones.&quot;</p>
+<p>Embedded media: the full 31-minute video conversation is on the page — worth the watch for the Hendrix story alone.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/HuggingFaceBio/Carbon-X">AI for science week: an open model that reads DNA, and 5M new gene families</a></h3>
+<div class="byline">
+<span class="src">X — the AI lists</span> &middot; Oct 22
+</div>
+<p class="dek">Carbon-X (14.8B, Apache 2.0) nearly matches GPT-6.1 Sol on DNA benchmarks at ~1/1,800 the cost; Arc&#x27;s COMPASS clustered 376M stretches of bacterial &quot;dark matter&quot; DNA.</p>
+<div class="body">
+<p>Carbon-X, from Hugging Face (fine-tuned from Qwen3-14B), takes raw DNA inside a normal chat and answers in English: is this mutation benign or pathogenic, enhancer or promoter, what organism group, what comes next. DNA and text share one token stream (DNA cut into 6-letter &quot;words&quot;). Training: ~10B tokens with the body frozen to teach DNA embeddings, then 302B tokens mid-training, then fine-tuning and RL with verifiable rewards. Results: 66.7% average on five DNA benchmarks vs GPT-6.1 Sol&#x27;s 67.5% and Opus 5.5&#x27;s 60.9%. Their estimate: scoring all 2.4M uncertain variants in ClinVar would cost ~$300 vs $32K–$4M with frontier models. It runs on one 80GB GPU — sensitive sequences stay local — and ships with a Claude Code / Codex skill. Not clinically validated.</p>
+<p>The launch also surfaced a policy fight: Clem Delangue and Thom Wolf used it to complain that frontier labs&#x27; &quot;widespread but shallow&quot; bio guardrails block scientists while &quot;the bad guys are bypassing easily&quot; — Wolf&#x27;s assistant hit a bio safety filter summarizing his own team&#x27;s notes on the model.</p>
+<p>Meanwhile Arc Institute&#x27;s COMPASS (Patrick Hsu&#x27;s lab) fine-tuned the Evo 2 genome model on the DNA between bacterial genes, sorted 376M intergenic regions (1.3 terabases) into 5.14M clusters without alignment, and flagged 20,149 clusters of likely structured RNAs with candidate protein partners. Repeating patterns in token entropies recovered CRISPR, TIGR and VIPR arrays from sequence alone; teams of AI agents mined the database for new riboswitches and ribozymes. Patrick Collison&#x27;s take: interpretability used &quot;to productive ends&quot; and agents searching &quot;vast combinatoric spaces.&quot;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.biorxiv.org/content/10.64898/2026.10.21.760802v1">bioRxiv — Arc&#x27;s COMPASS preprint</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2113323645284344215">From 4 minutes to 17 weeks: Mollick on how fast the AI work curve is moving</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Oct 22
+</div>
+<p class="dek">When his first AI book came out (2024), the best AI could do 4 minutes of human work at 50% success. At his new book&#x27;s publication: 17 weeks.</p>
+<div class="body">
+<p>Mollick&#x27;s clarifications: it doesn&#x27;t take the AI 17 weeks — success rates are above 50% — and the underlying study spent &quot;something like $241 in tokens&quot; to replicate the measurement. The point isn&#x27;t the exact numbers; it&#x27;s the shape of the curve: task-duration capability is compounding on a timescale of months, not years. Read it next to the php2shell fight above — the same capability curve that found the bug is the one straining every assumption about what work looks like. For your planning: any roadmap that assumes today&#x27;s agent capabilities is already stale.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Five things worth your study time from this week&#x27;s discussions — one authoritative source each, framed for a tech lead building an AI agent platform.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Agent Skills: the new open standard for packaging agent know-how</a></h3>
+<div class="byline">
+<span class="src">Anthropic · Agentic AI Foundation</span> &middot; Oct 22
+</div>
+<p class="dek">Read the announcement, then the spec: this is the format your Riot agent platform should standardize on.</p>
+<div class="body">
+<p>Why it matters for you: a skill is how you package &quot;how we do X here&quot; once and reuse it across agents and tools — exactly the problem a foundation platform exists to solve. The staged loading (name/description at startup, full SKILL.md on match, scripts only when needed) is the context-efficiency pattern to copy.</p>
+<p>Takeaway: start writing skills for your own platform&#x27;s recurring workflows now — and write down &quot;the decisions and edge cases only you know,&quot; not what the model already knows. Watch the `allowed-tools` field: it&#x27;s experimental and behaves differently across products, which is precisely the kind of cross-platform sharp edge a foundation team should own.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/">The php2shell post-mortem: a masterclass in how disclosure breaks</a></h3>
+<div class="byline">
+<span class="src">PHP Foundation</span> &middot; Oct 22
+</div>
+<p class="dek">The most candid security post-mortem of the year — read it as a checklist for your own incident process.</p>
+<div class="body">
+<p>Why it matters: the failure wasn&#x27;t finding the bug (spotted in 2024) — it was the discovery-to-patch pipeline: consensus decision-making stalled the fix for months, the embargo leaked through three separate channels, and attackers could diff the fix six hours early. Every one of those failure modes exists in a 12-person SaaS too, at smaller scale.</p>
+<p>Takeaway: audit your own pipeline — who can approve a security fix, how fast can you ship it, and what happens when the embargo breaks early? Plus the operational bit: hunt historical logs (odd multipart uploads, PHP_SESSION_UPLOAD_PROGRESS) from *before* disclosure, not just after.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://swesweep.com/">SWE-sweep: a benchmark that makes agents find real bugs with no hints</a></h3>
+<div class="byline">
+<span class="src">Meta Superintelligence Labs et al.</span> &middot; Oct 22
+</div>
+<p class="dek">Study the benchmark design — it&#x27;s a template for evaluating your own support-triage agent.</p>
+<div class="body">
+<p>Why it matters: SWE-sweep&#x27;s design choices are directly reusable — real repos at real buggy commits, hidden tests from actual upstream PRs, zero score for breaking the existing suite, no hints. That&#x27;s a much better eval philosophy than pass/fail on synthetic tasks.</p>
+<p>Takeaway: the headline result (best agent: 9.5%) sets expectations for what autonomous bug-fixing can do today — useful calibration when anyone on your team proposes &quot;just let the agent fix it.&quot; And the FAQ finding that longer runs can *undo* earlier fixes is a design constraint for any agent loop you ship.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/HuggingFaceBio/Carbon-X">Carbon-X: a complete recipe for teaching an LLM a new &quot;language&quot;</a></h3>
+<div class="byline">
+<span class="src">Hugging Face</span> &middot; Oct 22
+</div>
+<p class="dek">The model card is a clear, complete recipe for domain adaptation — worth reading even if you never touch DNA.</p>
+<div class="body">
+<p>Why it matters: the training recipe generalizes — tokenize the domain into the model&#x27;s vocabulary (6-mers), teach embeddings with the body frozen, mid-train on a domain-heavy mix, then fine-tune and RL with verifiable rewards. That&#x27;s a playbook for any specialized domain, including the internal knowledge your Riot agents will need.</p>
+<p>Takeaway: the economics are the lesson — near-frontier quality at ~1/1,800 the cost by specializing a 14.8B model instead of renting the frontier. When someone proposes a bigger model for your platform, ask whether a smaller specialized one wins first.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gking.harvard.edu/files/peerless.pdf">Read section 4: what AI reviewers mean for expert processes</a></h3>
+<div class="byline">
+<span class="src">Harvard IQSS — King &amp; Worthington</span> &middot; Oct 22
+</div>
+<p class="dek">The paper&#x27;s policy section is the part that matters for anyone running expert review — code, design, or hiring.</p>
+<div class="body">
+<p>Why it matters: your org&#x27;s review processes (code review, design review, incident review) are about to face the same question journals face — if AI reviews are better and cheaper, what is the human review *for*? The paper&#x27;s answer is uncomfortable: disagreement was partly a feature, and AI pushes toward homogeneity.</p>
+<p>Takeaway: design review processes *assuming* AI assistance rather than banning it (ICML&#x27;s ban failed — 22.5% used AI anyway). The editor-led model — AI does the first pass, humans handle only hard cases, decisions in days not months — is the template to steal for engineering review queues.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
