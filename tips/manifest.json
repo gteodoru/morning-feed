@@ -98,7 +98,7 @@
       "section": "AI Development Practices",
       "summary": "1Password launched 1Password for Agents (Oct 22, 2026): personal AI agents can sign into your accounts without ever seeing your passwords. The agent identifies itself with a unique digital key, you approve the specific login on your device, and 1Password fills the credential directly into the site; MFA codes go through the same channel, and access is per-session with no carryover. Included free in Individual/Family plans. Muse (Meta) and Grok Bot roll out first; Claude Duet, ChatGPT Work/dots, and Townie are coming soon, with Browserbase, Perplexity, Ramp, and others building. Reaction is split: partners (Muse team, KERNEL) are enthusiastic, while security analysts note the guarantee ends at sign-in \u2014 the signed-in session, not the password, becomes the risk.",
       "page": "tips/2026-10-22-1password-for-agents.html",
-      "consumed": false
+      "consumed": true
     },
     {
       "slug": "2026-10-22-cloudflare-security-audit-skill",
@@ -108,7 +108,7 @@
       "section": "AI Development Practices",
       "summary": "Daniel San (@dani_avila7) recommends Cloudflare's open-source Security Audit Skill in the wake of the week's PHP/Node vulnerabilities. The MIT-licensed skill (~39K GitHub stars) turns a coding agent into a security auditor running six phases \u2014 reconnaissance with a coverage ledger, isolated hunter agents, adversarial validation (a fresh agent tries to disprove every finding), structured findings.json with confirmed/needs_validation/rejected verdicts, independent record verification, and reporting. It seeded Cloudflare's fleet-wide Vulnerability Discovery Harness (128 repos). The stat everyone is quoting: a single run found only ~half the vulnerabilities repeated runs found. HN (~213 pts) and dev.to frame it as the moment 'who audits the agent?' became a product category; cost reports conflict (one overnight run surprisingly cheap, one HN report of heavy token use).",
       "page": "tips/2026-10-22-cloudflare-security-audit-skill.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
