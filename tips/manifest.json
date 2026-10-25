@@ -118,7 +118,7 @@
       "section": "AI Development Practices",
       "summary": "Google open-sourced ARTEMIS (Apache 2.0, public Aug 13, 2026, ~14.5K stars): natural-language instructions become real taps on a real Android phone or emulator, reachable via web console, CLI, Python SDK, or MCP into Antigravity, Claude Code, Codex, and Cursor. Two profiles \u2014 Flash (3\u20135s/step, reactive) and Pro (15\u201340s/step, planner + safety net + read-only checker). Google reports 99%+ on AndroidWorld, its own benchmark. The OpenMob builder says he'd switch for most things; reviewers advise a hybrid (ARTEMIS for discovery, deterministic suites for stable checks) and flag a September attribution dispute with Minitap's mobile-use, since resolved with restored credit in third_party/mobile_use.",
       "page": "tips/2026-10-24-google-artemis.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
