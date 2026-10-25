@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Sunday, October 25, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Saturday&#x27;s builder conversation kept circling one question: how much machinery do agents actually need? Anthropic&#x27;s answer — less than you think — leads a day of fast, practical systems work.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic: fold your subagents back into one agent loop</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Oct 24
+</div>
+<p class="dek">Anthropic&#x27;s Applied AI team says the 2025-era multi-agent orthodoxy is backwards: one agent with skills usually beats an orchestrator of specialists.</p>
+<div class="body">
+<p>Across several enterprise deployments, Anthropic says a single agent with skills &#x27;frequently outperformed both the one-prompt-for-everything design and the subagent design on quality, and often at a lower cost and latency per task.&#x27; One customer that compared its multi-agent harness against a single loop saw roughly 2x faster runtime; another found a dozen specialist subagents made a consistent on-brand voice hard to keep.</p>
+<p>The diagnosis is Conway&#x27;s law at work: each team builds its own agent, a platform team bolts an orchestrator on top, and the architecture becomes a copy of the org chart. The failure modes are familiar — details lost in handoffs, hundreds of overlapping subagents with no owner, a &#x27;Frankenprompt&#x27; where every team added a sentence, local evals nobody trusts, and latency from every nested loop.</p>
+<p>The fix is progressive disclosure: the agent sees only short descriptions of its skills (written procedures) and tools, and loads the full text only when it needs it. Anthropic says it cut Claude Code&#x27;s system prompt for advanced models by over 80% this way, and that since Opus 4.5, models can manage far more in a single loop than most teams expected. Keep a subagent only for three cases: measurable context bloat, parallel work in throwaway context, or when one agent can&#x27;t pick tools or has conflicting instructions. If you split, split by context, not by problem type — splitting by problem type creates a &#x27;telephone game.&#x27;</p>
+<p>The migration path is disciplined: build an end-to-end eval first (&#x27;even a set of 10 golden examples is enough&#x27;), merge specialists that chain on each other, fold the rest one at a time, and compare on which tasks flipped, not just the score. In Anthropic&#x27;s own test, folding one subagent lowered latency but broke a process — and the break appeared in only one of two runs, so run each task more than once. The companion kit&#x27;s own disclaimer is the honest summary: it &#x27;does not assume a single loop always wins. It measures.&#x27;</p>
+<p>Builders mostly agreed, with a real minority warning about context bloat: &#x27;then watch the context bloat... the single agent start rewriting things it has already written.&#x27; The useful lesson isn&#x27;t &#x27;never use subagents.&#x27; It&#x27;s that the reason most teams split agents — context limits and prompt bloat — has mostly gone away, while the cost (lossy handoffs, latency, ownership sprawl) hasn&#x27;t.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/cherry_mx_reds/status/2113969070118666670">X — @cherry_mx_reds</a> &middot; <a href="https://github.com/anthropics/single-agent-loop-kit">Single-agent-loop kit</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gteodoru.github.io/morning-feed/tips/2026-10-24-google-artemis.html">Google&#x27;s ARTEMIS: give your coding agent hands on a real Android phone</a></h3>
+<div class="byline">
+<span class="src">Gabriel&#x27;s tips</span> &middot; Oct 24
+</div>
+<p class="dek">Google open-sourced ARTEMIS: natural-language instructions become real taps on a real Android phone or emulator, via web console, CLI, Python SDK, or MCP.</p>
+<div class="body">
+<p>Google&#x27;s ARTEMIS (Apache 2.0, public Aug 13, 2026, ~14.5K stars) turns natural-language instructions into real taps on a real Android phone or emulator, reachable via web console, CLI, Python SDK, or MCP into Antigravity, Claude Code, Codex, and Cursor. Two profiles: Flash (3–5s/step, reactive) and Pro (15–40s/step, planner + safety net + read-only checker). Google reports 99%+ on AndroidWorld, its own benchmark. The OpenMob builder says he&#x27;d switch for most things; reviewers advise a hybrid (ARTEMIS for discovery, deterministic suites for stable checks) and flag a September attribution dispute with Minitap&#x27;s mobile-use, since resolved with restored credit.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.xiangpeng.systems/posts/bbtree/">bbtree: an LLM-written B-tree, and what keeps it correct</a></h3>
+<div class="byline">
+<span class="src">Xiangpeng Hao</span> &middot; Oct 24
+</div>
+<p class="dek">A drop-in Rust replacement for BTreeMap that its author says is 5x faster — with every line written by LLMs and correctness resting on formal proofs.</p>
+<div class="body">
+<p>bbtree is a Rust ordered map: single-threaded it replaces the standard library&#x27;s BTreeMap/BTreeSet, and a concurrent version replaces skiplists, with zero dependencies. Author Xiangpeng Hao — who did his PhD on B-trees and co-wrote Bf-Tree, which runs in production at Microsoft — claims 5x faster than std&#x27;s BTreeMap on one thread, 12x faster than crossbeam-skiplist at 96 threads, 30% less memory, and 5x lower p99 latency. Swapping only the map speeds real systems: fjall 2.47x, SlateDB 1.71x, Tonbo 10M-row writes 6.83x, Lance&#x27;s MemWAL index 4.21x, Turso random-rowid INSERT 2.22x.</p>
+<p>The design rests on a three-line cost model — chained cache misses (~100 ns each), instructions (~0.5 ns), cache-coherence traffic — and reads like a masterclass in cache-aware engineering: 16–32 item nodes scanned linearly, fixed-size &#x27;inline keys&#x27; in the node so one cache line holds eight keys&#x27; prefixes, batched lookups with a custom allocation-free executor, hand-written AVX-512/NEON SIMD (&#x27;the compiler is not your friend&#x27;), and version locks so readers never write, hitting 180M ops/s at 96 threads.</p>
+<p>The more interesting half is the correctness story, because &#x27;all of the code is written by LLMs.&#x27; Three guards: Hao himself steering every design decision, cross-checking by LLMs from different providers, and machines — formal verification with Verus, model checking, deterministic simulation, differential fuzzing, Miri and sanitizers, all in CI. Skeptics on Hacker News called parts of the write-up &#x27;AI slop&#x27;; Hao replied that a trait lets you add your own key types. The optimistic read, from @sh_reya: you need smart humans, good metrics and cost models, and &#x27;super basic swarms of agents to write code and tests&#x27; — and systems PhD students should now &#x27;build extremely ambitious systems.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/XiangpengHao/bbtree">GitHub — bbtree</a> &middot; <a href="https://news.ycombinator.com/item?id=50223777">Hacker News discussion</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://vllm.ai/blog/2026-10-23-deepseek-v41-flash-pd-wide-ep">Open-source inference catches DeepSeek&#x27;s own engine</a></h3>
+<div class="byline">
+<span class="src">vLLM</span> &middot; Oct 23
+</div>
+<p class="dek">Days after DeepSeek open-sourced DeepInfer, vLLM and SGLang say they match it on DeepSeek-V4.1-Flash — with half the GPUs.</p>
+<div class="body">
+<p>DeepInfer, the engine DeepSeek open-sourced this week for DeepSeek-V4.1-Flash, is offline-only and supports one model. vLLM now says its decode throughput is within 6% of DeepInfer&#x27;s published numbers at batch sizes 8–256, using 32 GB200s against DeepInfer&#x27;s 64-way parallelism — half the GPUs. At rack scale, on one GB300 NVL72 with prefill and decode split, vLLM serves 954K tokens/s per GPU on SemiAnalysis&#x27;s AgentX benchmark at $38.96 per GPU-hour at DeepSeek&#x27;s off-peak prices. Three prefill changes stack for a 35.6–43.9% gain, and the model itself helps: its global KV cache is only 890 bytes per token.</p>
+<p>SGLang says it matches on both stages: up to 1.04x prefill and up to 7.4% more decode throughput. Read the footnote before the headline, though: vLLM&#x27;s own words are &#x27;we do not read the gap between the two curves as an engine-to-engine speedup&#x27; — these are similar curves, not a head-to-head. The lineage runs both ways: &#x27;DeepInfer was originally built on vLLM, and vLLM in turn has continuously integrated kernels from DeepSeek&#x27;s libraries.&#x27; When a lab open-sources its kernels, the general engines absorb them within days — which shrinks any serving edge a lab gets from its in-house stack, and is exactly what is pulling open-weight token volume to record levels (see AI Venture).</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/sgl_project/status/2114071115605877043">X — @sgl_project</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2610.29162">Why AI prose got harder to read, measured</a></h3>
+<div class="byline">
+<span class="src">arXiv</span> &middot; Oct 24
+</div>
+<p class="dek">Across nine frontier models, a new preprint measures the drift: more rare word pairs, inanimate subjects doing human things, stacked nouns — and shows a length penalty alone produces it.</p>
+<div class="body">
+<p>The paper opens with a sentence built to sound like a modern model: &#x27;Your instinct is right; the convoluted sentence you are currently reading is quietly eating its own reader-patience budget — footnote it.&#x27; Psycholinguistics has long linked each of its features to slower human reading, and the authors find all of them elevated in model output: all nine frontier and near-frontier models use more inanimate subjects with animate verbs and more low-frequency word pairs than humans, plus longer dependencies, more stacked nouns, and more object relatives with &#x27;that&#x27; dropped — especially in multi-turn chat and coding.</p>
+<p>The clever method: comparing model text not just with human text but with round-trip translations of the models&#x27; own sentences (English to Japanese and back), which keep meaning and normalize wording — so a feature that drops after translation is a stylistic choice the model made. Post-training drives it: within Olmo, the effects grow from base to instruct to reasoning model. And it can be trained back: Opus 5.5 is lower than Opus 5 on 19 of 21 difficulty measures.</p>
+<p>The mechanism the authors propose: human language is shaped by pressure to be understood, while models are now heavily post-trained with verifiable rewards on math, code and reasoning, which reward the right answer, not clarity, under context limits that reward brevity. Their RL experiment on Qwen2.5-1.5B found any length penalty above zero drove every seed to a near-categorical preference for the shorter variant — and it leaked into constructions it was never trained on. The takeaway for anyone building agents that write to humans: readability is a dimension labs can and do optimize, and it belongs in your evals.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/sh_reya/status/2114033199328461225">X — @sh_reya</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloombergtax.com/business-and-practice/ai-ushers-in-era-of-rapid-fire-software-vulnerabilities">A week into the AI vulnerability era, the question shifts: defenders or attackers?</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 23
+</div>
+<p class="dek">After AI agents found the PHP flaws that took government sites offline, Bloomberg asks whether defenders or attackers gain — and the labs&#x27; strangest claims start looking credible.</p>
+<div class="body">
+<p>This week researchers, with the help of advanced AI agents, found two critical vulnerabilities in PHP, the language powering a large share of the web. Banks, airlines and governments pulled sites down on a precautionary basis, and the race is on to patch millions of affected sites before criminal hackers exploit them. Anthropic&#x27;s deputy CISO Jason Clinton warned it will &#x27;get a lot worse before they get better&#x27; — and urged security leaders to use the crisis to get board help &#x27;not for AI, for the basics.&#x27; Palo Alto Networks&#x27; Unit 42 says hacking groups are still in the reconnaissance phase: &#x27;This is going to have a very long tail. We expect this to be a problem for months.&#x27;</p>
+<p>The deeper question Bloomberg revisits: before AI, offense held a structural advantage — attackers need one path in, defenders must secure everything — so defenders arguably have more work for AI to do. So far there is little evidence the rise in disclosed vulnerabilities has led to more cyberattacks. But the volume problem is real: Aaron Levie predicts &#x27;1,000X more tokens flowing through cyber agents soon,&#x27; and for the PHP flaws, &#x27;finding the bug wasn&#x27;t the hard part, knowing every place it&#x27;s bundled was.&#x27;</p>
+<p>Ethan Mollick&#x27;s contribution to the weekend debate: &#x27;Without being overly credulous, we should be taking seemingly out there ideas about AI cybersecurity from the Labs more seriously.&#x27; Anthropic was mocked for saying Mythos-level AI changed cyber; Noam Brown for saying models would find novel ways to coordinate — which the cache-timing channel just showed. The skeptical reply, worth keeping: &#x27;if labs published the evals behind claims like the Mythos one, people could check them.&#x27; And the cynical one: &#x27;our model is terrifying&#x27; is also the sales pitch. Small companies, one thread noted, &#x27;don&#x27;t have a single security person today, so who reads what the agents find?&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/emollick/status/2114001653879672877">X — @emollick</a> &middot; <a href="https://x.com/levie/status/2114187326406766604">X — @levie</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">The money conversation turned from how fast AI grows to what it earns per GPU — and from permits to politics as the buildout meets its backlash.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.a16z.news/p/charts-of-the-week-attention-is-all">GPU economics: why old chips cost more and who gets squeezed</a></h3>
+<div class="byline">
+<span class="src">a16z</span> &middot; Oct 24
+</div>
+<p class="dek">Rents are 9–143% above a 6-year depreciation line, open-weight tokens are 72% of OpenRouter volume — and the margin that matters is revenue per GPU minus rent.</p>
+<div class="body">
+<p>Against a straight-line 6-year depreciation schedule — the accounting life hyperscalers use — current GPU rents sit 9–143% above where they &#x27;should&#x27; be: H200 +143%, B200 +111%, RTX PRO 6000 +73%, H100 +54%, A100 +9%. April is when things &#x27;really took off.&#x27; On the demand side, OpenRouter token volume rose ~27x since last November (~6T to ~165T tokens a week), and open-weight models went from ~28% to ~72% of it. a16z cautions OpenRouter &#x27;captures only a small slice of the picture.&#x27;</p>
+<p>Gavin Baker&#x27;s correction to the &#x27;crunch&#x27; debate: the spread isn&#x27;t token price minus rent, it&#x27;s revenue per GPU minus rent. Throughput per GPU keeps rising for the same model — Kimi K3 throughput per GPU is improving at a 37% annualized rate from engine optimizations alone, which is the vLLM/SGLang story above — so volume can outrun price cuts. And the mix matters: &#x27;$10 in Claude revenue requires $1 of inference compute. $10 of open-weight revenue requires $3 to $7,&#x27; because inference providers compete away the margin. So open-weight share gains are bullish for infrastructure and bad for model-layer margins, and vice versa.</p>
+<p>Bloomberg Weekend&#x27;s prediction lands on the same fault line: &#x27;the era of buy everything AI is over,&#x27; with investors becoming &#x27;more selective and demanding&#x27; and the tide turning on neoclouds. YC&#x27;s Paper Club adds the structural fact underneath: &#x27;for every FLOP spent training a model, roughly six go to serving it each year&#x27; — and getting serving right has produced &#x27;over $220 billion in market cap in the last decade.&#x27; The skeptical camp, fairly: margins depend on billable tokens per GPU-hour offsetting both lower prices and higher rents, and &#x27;this chart alone can&#x27;t establish either outcome.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/GavinSBaker/status/2113954255581106532">X — @GavinSBaker</a> &middot; <a href="https://x.com/ycombinator/status/2114031815916912736">X — @ycombinator</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits">Texas froze datacenter permits — and now you can insure against the backlash</a></h3>
+<div class="byline">
+<span class="src">SemiAnalysis</span> &middot; Oct 24
+</div>
+<p class="dek">Abbott&#x27;s September directive extended the grid pause to air permits for on-site power; SemiAnalysis counts six campuses, 8.7GW, caught in it — and a new insurance product prices the risk.</p>
+<div class="body">
+<p>The workaround became the target. Abbott&#x27;s August pause covered only grid interconnections, so building your own generation &#x27;behind the meter&#x27; became the escape hatch. His September 21 directive told TCEQ, the state environmental regulator, to issue &#x27;no permits sought by data center projects&#x27; until ERCOT and the water board finish their audits. TCEQ confirmed on October 19 that it has paused all permits tied to datacenter infrastructure. SemiAnalysis found six campuses with on-site power plans, 8.7GW in total campus size, that need air permits during the pause — though that&#x27;s campus size, not delayed capacity: three already have a first tranche permitted, one has filed, two haven&#x27;t. Air permits gate only the power plant, so site work continues. The base case: TCEQ resumes after ERCOT&#x27;s December 10 report and near-term phases slip about a quarter. The governor also says he&#x27;ll work to eliminate financial incentives for datacenters next legislative session.</p>
+<p>The market is already pricing this risk as a product: Arbol, founded by a former Citadel strategist, launched a policy that pays a predetermined amount if a government-imposed moratorium halts or suspends construction past an agreed waiting period. At least 106 US datacenter projects — about $198 billion in investment — were blocked or delayed amid local opposition in the first half of this year, per Data Center Watch. And the bottleneck runs deeper than permits: a16z notes US factory capacity since 2019 is up for comms equipment (+110%) and semiconductors (+77%) but down 9% for electrical equipment, whose prices are up 69% — the &#x27;missing supply response&#x27; behind the power crunch. As one reply put it: &#x27;On-site power was the escape hatch from the grid queue, and now the hatch waits on ERCOT&#x27;s review anyway.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf">TCEQ&#x27;s Oct 19 response</a> &middot; <a href="https://x.com/SemiAnalysis_/status/2114130061028643066">X — @SemiAnalysis_</a> &middot; <a href="https://news.bloomberglaw.com/insurance/insurer-offers-new-data-centers-coverage-for-ai-backlash">Bloomberg — Arbol policy</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://venturebeat.com/technology/moonshots-kimi-k3-1-pro-flirts-with-open-weights-leadership-amid-paid-influencer-scandal-allegations">Kimi K3.1: lukewarm reception, and an influencer controversy nobody can authenticate</a></h3>
+<div class="byline">
+<span class="src">VentureBeat</span> &middot; Oct 24
+</div>
+<p class="dek">Benchmarks aside, Nathan Lambert&#x27;s verdict — &#x27;may be closer to the miss side&#x27; — plus unverified screenshots of a brief telling creators not to label paid posts.</p>
+<div class="body">
+<p>The benchmarks were covered in yesterday&#x27;s edition; what&#x27;s new is the reception. Nathan Lambert: &#x27;Not a lot of positive Kimi 3.1 reactions on the timeline,&#x27; and &#x27;at the top end of models, real-world usability matters a lot more than +/- 2 points&#x27; on the Artificial Analysis index — &#x27;some models hit and some miss (e.g. opus 5 vs 5.5).&#x27; Practical complaints: the 5-hour quota is &#x27;tiny... Can only finish 80% of task,&#x27; and &#x27;price per token is only half the story. If K3.1 spends noticeably more tokens per answer, the real bill barely moves.&#x27; VentureBeat&#x27;s context: agentic gains are real (Terminal-Bench 4.0 from 13% to 67%), but cost per task barely fell because output per task rose from ~48K to ~55K tokens.</p>
+<p>The controversy: an X user posted screenshots of a purported campaign brief telling creators to submit drafts for approval and &#x27;Please DO NOT put on the paid partnership label,&#x27; with talking points calling Kimi an open-source Opus 5.5 at a fraction of the price. Lambert called it &#x27;a mistake, but I suspect they will correct,&#x27; said Chinese labs are &#x27;VERY EAGER to influence the western ecosystem,&#x27; and disclosed that several Chinese labs have asked him for help understanding Western comms, adding &#x27;I do not take paid partnerships.&#x27; VentureBeat and Pekingnology both stress the brief is unauthenticated: unknown who wrote it, how many creators got it, or whether anyone posted under those terms. Weights are promised for November 4.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/natolambert/status/2113961148576063760">X — @natolambert</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/artificial-intelligence/what-it-really-takes-to-build-a-one-person-company-with-ai">What it really takes to build a one-person company with AI</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 23
+</div>
+<p class="dek">A Sydney recruiter spent months decanting 16 years of expertise into four AI agents — close to 200 documents of workflows, privacy rules and compliance standards.</p>
+<div class="body">
+<p>For 16 years, Alicia Keenan built a niche recruitment business the old-fashioned way: relationships, specialized knowledge, handpicked executives for animal health and pharmaceutical companies, at its peak about 11 people. Growth kept running into the same ceiling: herself. &#x27;Everything relied on me,&#x27; she says. Late last year she began replacing her firm&#x27;s human machinery with AI, reconstructing the entire business around four agents that are extensions of herself.</p>
+<p>The transformation was arduous, with few shortcuts. It took months to nail down operating rules: close to 200 documents covering workflows, privacy rules, legal standards and compliance across multiple jurisdictions, her living-room walls covered in paper and reminder notes as she tried to decant almost two decades of experience. One agent monitors regulatory filings and company announcements for business; one produces market intelligence on scarce skills; one nurtures candidates before vacancies arise; one handles executive search. Keenan steps in at designated checkpoints.</p>
+<p>The agents work faster and harder than a person — the first notices immediately if a European animal pharma company announces expansion in Indonesia or Vietnam, a signal it may soon hire. They make mistakes, and Keenan reckons it might be 18 months before she&#x27;s comfortable scaling back her interventions. &#x27;It&#x27;s really the first time that I&#x27;ve not had to carry the burden of everything all the time,&#x27; she says. &#x27;I&#x27;m working on the business rather than in it.&#x27; The lesson for anyone selling &#x27;replace your team with agents&#x27;: the technology is the easy part; the 200 documents are the job.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/eladgil/status/2114115897967460406">Exits are now 10x bigger than a decade ago</a></h3>
+<div class="byline">
+<span class="src">X — @eladgil</span> &middot; Oct 24
+</div>
+<p class="dek">Elad Gil&#x27;s one-liner from the weekend&#x27;s VC conversation — and a reminder of how much the bar for a &#x27;huge outcome&#x27; has moved.</p>
+<div class="body">
+<p>Elad Gil: &#x27;Companies &amp; outcomes 10x bigger then they were 10 years ago &amp; 100x bigger then 1990s. Cursor spiritual equivalent sold for $500m and was considered a huge deal.&#x27; Naveen Rao replied that when Nervana sold for $400m in 2016, &#x27;it seemed like a HUGE outcome.&#x27; An angel added that small checks keep drifting later &#x27;because $500m barely registers.&#x27; A useful calibration for the bubble debate: outcomes really are bigger — and so is everything they must justify.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">A crowded ballot box: Brazil votes today, Israel on Tuesday, America in nine days — and France&#x27;s crisis hanging over all of it.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.moneyweb.co.za/news-fast-news/bolsonaro-lula-in-tight-race-ahead-of-run-off-poll-shows/">Brazil votes today in its tightest runoff in decades; Israel and America follow</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 25
+</div>
+<p class="dek">Nearly 160 million Brazilians choose between Lula and Flávio Bolsonaro today; Israel votes Tuesday in a referendum on Netanyahu; US midterms land a week from Tuesday.</p>
+<div class="body">
+<p>Brazil holds the second round of its presidential election today. President Luiz Inácio Lula da Silva, 80, seeking a fourth term, faces Senator Flávio Bolsonaro, 45, son of former president Jair Bolsonaro — who unexpectedly led the first round on October 4 with 47.03% against Lula&#x27;s 45.16%. The latest polls have them level: Datafolha gives each 50% of valid votes. Bolsonaro has pledged to pardon his father, sentenced to 27 years for plotting a coup after losing the 2022 election, and to pursue spending cuts; Lula has countered with a 15% Bolsa Família increase and the 40-hour working week. Results come the same night.</p>
+<p>Israel votes Tuesday in an election that is effectively a referendum on Prime Minister Benjamin Netanyahu, whose chances of remaining PM stood at 31% as of Friday afternoon — though Bloomberg notes his agenda will live on either way. In the US, the midterms arrive a week from Tuesday: plunging Latino support threatens Republicans, some young men who backed Trump plan to stay home, and Kalshi puts Democrats&#x27; chance of winning the House at 91% and both chambers at 67%.</p>
+<p>And Europe&#x27;s electoral super-cycle is already casting its shadow: Spain votes November 29, France&#x27;s presidential election peaks next April, and far-right Marine Le Pen&#x27;s chance of winning has risen to 52% as France grapples with violent protests and a financial crisis. Bloomberg&#x27;s columnists split on whether France&#x27;s crisis spreads — Authers argues its roots in Brussels and Frankfurt mean &#x27;more will follow until Europe somehow resolves the contradictions&#x27; of the single currency, while Wooldridge expects populism to fade in the Anglo-Saxon world and &#x27;burn ever brighter in continental Europe.&#x27; Bloomberg Weekend also notes Milei&#x27;s Argentine model will be hard for other Latin American anti-establishment politicians to copy — in part because it hinged on Trump.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.reuters.com/business/aerospace-defense/uk-tells-public-keep-three-days-emergency-supplies-home-2026-10-23/">Britain tells citizens: keep three days of supplies</a></h3>
+<div class="byline">
+<span class="src">Reuters</span> &middot; Oct 23
+</div>
+<p class="dek">The &#x27;Be Ready&#x27; campaign — water, tinned food, cash, a radio — is a subtle shift toward more urgent messaging amid Russian hybrid threats and AI-driven cyberwarfare.</p>
+<div class="body">
+<p>The British government advised the public on Friday to keep three days of emergency supplies at home — nine litres of water per person, non-perishable food, cash, an FM radio, a power bank — under its newly launched &#x27;Be Ready&#x27; campaign. The message, officials said, was hammered home by this week&#x27;s PHP software glitch, a record summer of heat, drought and wildfires, and a threat level Defence Secretary Wes Streeting described as greater than &#x27;for most, if not all, of my lifetime.&#x27;</p>
+<p>Bloomberg Weekend calls it &#x27;a subtle shift toward more urgent messaging amid growing concern about threats from Russian hybrid attacks and AI-driven cyberwarfare to climate change.&#x27; The advice mirrors the European Commission&#x27;s 72-hour kit guidance from last year. It is an information campaign, not a funded program — but as a signal of how governments now talk about resilience, it is hard to miss.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Beyond the AI beat: a cancer vaccine that works better than the market wanted, a $3.5 trillion maybe-merger, and two countries betting big on rails and roads.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/health/pharma/modernas-cancer-vaccine-success-doesnt-live-up-to-early-hype-f56d4e1f">A personalized mRNA vaccine cuts melanoma recurrence 42% — and the market shrugged</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 24
+</div>
+<p class="dek">Leaked Phase 3 data: intismeran autogene + Keytruda cut recurrence or death 42% versus Keytruda alone. Oncologists cheered; shares fell 19%.</p>
+<div class="body">
+<p>New trial data leaked this week showed the results of a potential vaccine for skin cancer: Moderna and Merck&#x27;s personalized mRNA vaccine, intismeran autogene, tailored to each patient&#x27;s tumor mutations, combined with Keytruda, lowered the recurrence of deadly tumors among melanoma patients by 42% versus Keytruda alone, and cut distant metastasis or death by 38%. At two years, 82.2% of combination patients were alive without recurrence versus 70% on Keytruda alone. &#x27;The results clearly showed the vaccine worked,&#x27; write Bloomberg&#x27;s Langreth and Muller; UCSF&#x27;s Adil Daud called it &#x27;a massive conceptual breakthrough.&#x27;</p>
+<p>Both companies&#x27; shares fell anyway — Moderna&#x27;s down 19% in the days after the premature release — suggesting investors had anticipated spectacular results and questioned whether melanoma alone justifies a broader cancer franchise. The disconnect is the story: scientists celebrated a first-of-its-kind result; investors wanted differentiation that points to a commercial franchise across tumor types. The companies are now engaging regulators, implying an FDA filing may be imminent.</p>
+<p>Separately, Roche — &#x27;once known as the breast-cancer company&#x27; — is betting it can transform treatment again with a daily pill. And on the venture side, Mark Suster&#x27;s bull case for AI in cancer quoted Holon-S1, a platform predicting genes and biomarkers from routine pathology slides — the other end of the same bet: AI reading the tumor, then AI teaching the immune system to attack it.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.advisorperspectives.com/articles/2026/10/21/spacex-tesla-boards-possible-3-5-trillion-merger">Will SpaceX and Tesla merge?</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 21
+</div>
+<p class="dek">Both boards have formed special committees; Musk calls it a good idea but recused himself. Kalshi traders think it&#x27;s more likely than not by end of next year.</p>
+<div class="body">
+<p>Elon Musk said this week that SpaceX and Tesla have formed special committees of independent directors to explore a merger — what would be the largest corporate tie-up of all time, combining companies worth about $2 trillion and $1.5 trillion. &#x27;There&#x27;s a lot to be gained from cooperating on developing superintelligence software,&#x27; Musk said on SpaceX&#x27;s earnings call, pointing to shared work in AI software, chip design, robotics, and the jointly planned Terafab chip facility. SpaceX shares rose 4.6% after hours; Tesla climbed 1.2%.</p>
+<p>Musk, who leads both companies, says he can&#x27;t take part in the discussions and that no terms have been agreed — &#x27;I do not think we should necessarily assume that a SpaceX and Tesla merger is a certainty.&#x27; The harder hurdle is Tesla shareholders: approval needs a majority of all outstanding shares, not just votes cast, and Musk owns only about 20% of Tesla (versus 80%+ of SpaceX&#x27;s voting power). Bloomberg separately reports backers are racing to announce a deal by the first half of 2027 so it can close during the Trump administration — with the midterms and a possible AI-stock selloff as the two risks to the timeline. Traders on Kalshi think it&#x27;s more likely than not by end of next year — and thought so well before Musk&#x27;s announcement.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://scoopfeeds.com/article/210bf8b3-15dd-537e-b5bd-821cb424ed7a">Infrastructure week: Vietnam bets $65 billion on rail; India builds expressways truckers won&#x27;t use</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 22
+</div>
+<p class="dek">Two megaprojects, two lessons: Vietnam&#x27;s 1,541 km high-speed line could cut a 35-hour journey to six; India&#x27;s wider highways sit empty because truckers choose otherwise.</p>
+<div class="body">
+<p>In Vietnam, the government is betting $65 billion — roughly 13% of GDP — on a high-speed railway linking Hanoi and Ho Chi Minh City. Construction starts in late 2027 and takes at least a decade; the line could cut the roughly 35-hour journey to six hours. The engineering challenges are considerable, and they&#x27;re only the beginning: the project is a symbol of economic transformation, which makes it a flashpoint for opposition too.</p>
+<p>In India, the government is building better, wider expressways to speed trucking and boost the economy. The problem? Truckers still choose not to drive on them. Pair the two stories and the lesson is about the gap between building infrastructure and changing behavior: Vietnam is betting that speed transforms an economy; India is learning that a road nobody takes transforms nothing.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/citrini/status/2114202754239344687">AI versus biology: the flywheel runs backwards</a></h3>
+<div class="byline">
+<span class="src">X — @citrini</span> &middot; Oct 24
+</div>
+<p class="dek">From a small AI drug-design experiment: molecules at a stunning pace, binding predictions at 49% accuracy — and lab data that took 30x longer to get than the molecules took to design.</p>
+<div class="body">
+<p>Scaling-law believers think better AI means novel medical discoveries; biologists think a &#x27;bitter lesson in biology is kind of ridiculous&#x27; and that reliably simulating human toxicology is 5–10 years away. Citrini&#x27;s experience from running a small AI drug-design experiment: AI generated molecules &#x27;at a stunning pace,&#x27; but its in-silico binding predictions had only 49% accuracy, and improving that needs lab data that took ~30x longer to get than the molecules took to design. Software has a data flywheel; biology&#x27;s next training set &#x27;costs a trial.&#x27; AI can speed analysis, trial design and approval, &#x27;but it can&#x27;t make a 6 month trial complete in 3 months.&#x27;</p>
+<p>The camps split three ways: &#x27;We WILL simulate biology with compute, and very soon&#x27;; partial understanding is enough — if AI takes us from understanding 1% of biology to 3%, &#x27;that may be enough to make all disease heavily treatable&#x27;; and data is the bottleneck — &#x27;Biology runs that flywheel backwards.&#x27; A parallel economists&#x27; argument ran alongside: much of the new &#x27;economics of AI&#x27; is empirical, &#x27;modest and backward-looking,&#x27; and what&#x27;s needed is new theory — bottlenecks are &#x27;still not understood.&#x27; A useful corrective to any roadmap that assumes AI&#x27;s coding gains transfer to wet labs on the same timeline.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Five resources from the week&#x27;s discussions worth real study time — each one the authoritative version of its topic, not the thread about it.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://github.com/anthropics/single-agent-loop-kit">Anthropic&#x27;s single-agent-loop kit</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Oct 24
+</div>
+<p class="dek">The companion code to the fold-your-subagents essay: it doesn&#x27;t assume a single loop wins — it measures.</p>
+<div class="body">
+<p>If you&#x27;re running an agent platform — at Riot or at the SaaS — this is the first thing to open on Monday. The kit gives you the eval harness and the migration pattern from the essay: end-to-end evals first, then merge chained specialists, fold the rest one at a time, and compare on which tasks flipped. The honest framing matters: the kit measures whether folding helps your workload, rather than preaching it. Start with 10 golden examples and one workflow you already suspect is over-split.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.xiangpeng.systems/posts/bbtree/">bbtree: a cache-aware B-tree, written by LLMs, checked by machines</a></h3>
+<div class="byline">
+<span class="src">Xiangpeng Hao</span> &middot; Oct 24
+</div>
+<p class="dek">A beautifully illustrated lesson in cache-aware data structures — plus a concrete recipe for keeping LLM-written systems code correct.</p>
+<div class="body">
+<p>Read this for two things at once: the engineering (nodes sized to cache lines, inline keys, version locks, batched lookups) and the process (a systems PhD steering design, LLMs from different providers cross-checking, formal verification and deterministic simulation in CI). For a tech lead, the transferable part is the three-guard model: human accountability, cross-model review, and machine checking. If your team is letting agents write systems code, this is the closest thing to a worked example of how to trust it.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2610.29162">&#x27;Why is AI-generated language so hard to understand?&#x27;</a></h3>
+<div class="byline">
+<span class="src">arXiv</span> &middot; Oct 24
+</div>
+<p class="dek">A readable psycholinguistics preprint with a great example table of model sentences by feature — and an RL experiment that isolates the cause.</p>
+<div class="body">
+<p>Worth reading in full, not just for the finding but for the method: round-trip translation as a way to separate a model&#x27;s stylistic choices from its meaning. For anyone whose agents write to users — support triage, docs, customer messaging — the practical takeaway is direct: add readability to your evals, because post-training is actively pushing your models away from it, and the Opus 5.5 result shows it can be pushed back.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://vllm.ai/blog/2026-10-23-deepseek-v41-flash-pd-wide-ep">vLLM: serving DeepSeek-V4.1-Flash at scale</a></h3>
+<div class="byline">
+<span class="src">vLLM</span> &middot; Oct 23
+</div>
+<p class="dek">For anyone who wants to see what prefill/decode splitting and wide expert parallelism actually buy, in numbers.</p>
+<div class="body">
+<p>The post walks through the three prefill changes that stack to a 35–44% gain, the decode setup that matches DeepInfer with half the GPUs, and the rack-scale numbers on GB300 NVL72. Read it alongside the footnote — similar curves, not a head-to-head — and you&#x27;ll come away with a better mental model of where inference cost actually goes, which is the same question the GPU-economics story asks at market level.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.a16z.news/p/charts-of-the-week-attention-is-all">a16z: Charts of the Week — attention is all you need</a></h3>
+<div class="byline">
+<span class="src">a16z</span> &middot; Oct 24
+</div>
+<p class="dek">The GPU depreciation and OpenRouter charts behind the compute-margin argument, with the caveats attached.</p>
+<div class="body">
+<p>The charts themselves are the resource: rents versus a 6-year depreciation line by chip, and OpenRouter&#x27;s 27x token growth with the open-weight mix shift. Read them with a16z&#x27;s own caveat — OpenRouter is &#x27;only a small slice of the picture&#x27; — and Baker&#x27;s correction that the spread is revenue per GPU minus rent. Together they give you the frame for judging any infrastructure pitch that crosses your desk: who earns what per GPU, and what happens to that spread when rents rise and token prices fall.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
