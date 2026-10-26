@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Monday, October 26, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">A Sunday about how to actually work with agents: the most-bookmarked post of the day was a practitioner&#x27;s field guide, and the sharpest research thread was a reverse-engineering feat that cracked a closed lab&#x27;s RL loss function.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://x.com/i/article/2114385531811319808">Thorsten Ball&#x27;s 15 rules for working with agents: prompt the goal, demand proof, review only what can hurt you</a></h3>
+<div class="byline">
+<span class="src">X — @thorstenball</span> &middot; Oct 25
+</div>
+<p class="dek">The Amp builder&#x27;s field guide — 3.7K likes, 8,059 bookmarks — says the job has moved from babysitting models to tooling, evidence, and evals.</p>
+<div class="body">
+<p>Use the latest model, Ball argues — a model wrong 10% of the time in unknown places costs more in retries than it saves — and prompt the what, not the how: &#x27;Make the bytecode compiler and VM AS FAST AS YOU CAN. Do not stop until it&#x27;s 2x faster.&#x27; The agent should see everything you see: production logs, deploys, feature flags, bug reports, customer email, because &#x27;if the agent can&#x27;t see something, it makes it up.&#x27;</p>
+<p>Two ideas are immediately stealable. First, treat AGENTS.md like code that can regress: spawn five blind agents, control vs. treatment, and measure whether your instructions actually help. Second, end every task with &#x27;irrefutable proof&#x27; — end-to-end walkthroughs, demo videos, before/after numbers — and write &#x27;this is not evidence&#x27; into your AGENTS.md for anything weaker. Review only the fewer than five central files plus database migrations; for the rest, check that it works, that you understand it at the arrows-in-a-diagram level, and that you could change it in a month.</p>
+<p>The pushback is worth hearing. Mario Zechner, who called it &#x27;recommended reading,&#x27; rejects the claim that slop is solved: &#x27;the models are definitely not there yet.&#x27; Others warn against copying &#x27;latest model&#x27; into production, where a new flagship can quietly break passing prompts — pin the model for shipped work and let the newest earn its place in a side-by-side eval — and say compaction still quietly eats prompt instructions. For Gabriel&#x27;s platform work, the AGENTS.md experiment and the proof requirement are the two cheapest, highest-leverage habits to adopt this week.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/thorstenball/status/2114386050638336082">X — @thorstenball</a> &middot; <a href="https://x.com/badlogicgames/status/2114414124042219969">X — @badlogicgames</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2609.20807">StableReinforce, decoded: a closed lab&#x27;s secret RL loss turns out to be REINFORCE plus Score Centering</a></h3>
+<div class="byline">
+<span class="src">X — @mrtnm</span> &middot; Oct 25
+</div>
+<p class="dek">Martin Marek recovered Thinking Machines&#x27; undisclosed loss gradients exactly — and found his own paper inside.</p>
+<div class="body">
+<p>The problem is real for anyone running RL: sampling runs asynchronously and in lower precision than training, so sampled tokens come from slightly different weights than the learner&#x27;s, and that drift compounds step after step. The usual importance-sampling fix collapses when the probability ratio is e^-20 — &#x27;not a correction. It&#x27;s a zero.&#x27;</p>
+<p>Marek&#x27;s keyhole: train a rank-1 LoRA on the unembedding matrix so the gradient reveals the logits gradient, then run Adam with epsilon set to 10,000 so the update exposes the raw gradient. StableReinforce put a gradient on only 8 logits — the giveaway. Score Centering subtracts the expected score under the sampler, estimated here from 8 tokens drawn from the sampler; his reimplementation matched &#x27;within numeric precision across all layers.&#x27; Nathan Lambert&#x27;s read: &#x27;RL details used by closed labs slowly leaking out.&#x27; The method itself is a reusable trick for auditing any black-box training API, and the fix — additive, tuning-free, composable with importance sampling — matters to anyone doing post-training on a budget.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/mrtnm/status/2114145574987702525">X — @mrtnm</a> &middot; <a href="https://tinker-docs.thinkingmachines.ai/tinker/losses/stable-reinforce/">Tinker — StableReinforce docs</a> &middot; <a href="https://x.com/natolambert/status/2114315936953925952">X — @natolambert</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/Pomerado/pomerado">Pomerado: stop making agents click through websites — compile the task into code once, then call it like an API</a></h3>
+<div class="byline">
+<span class="src">X — @akshay_manglik</span> &middot; Oct 25
+</div>
+<p class="dek">The YC F26 launch turns a website into a deterministic MCP tool your agent owns — no model call per run, 3 cents vs. $41 for one onboarding task.</p>
+<div class="body">
+<p>Browser-use agents reason through every page on every run: slow, costly, flaky. Pomerado instead has a model explore the site once, complete your example task, generalize it, and save the result as source code you own, served as an MCP tool. Minting drives a real Chromium browser with a &#x27;Guardian&#x27; reviewing each action; running an integration makes no model request at all. The MIT-licensed core includes the minter, prompts, Guardian, and a local MCP host; the hosted Cloud adds logins, 2FA, bot-protection handling, and self-healing when a site changes.</p>
+<p>The claimed numbers are self-reported and thin — 30 tasks, one try each — and the open questions from replies are the right ones: how does self-healing prove a repaired step didn&#x27;t silently map to the wrong field on a claims portal, and does it recheck write permissions? Still, the shape is right for the legacy portals where browser agents are slowest — claims, payer, procurement — and it generalizes a pattern worth stealing: pay for reasoning once, then run deterministic code. Note the honesty in the README too: &#x27;a run doesn&#x27;t check authority or intent,&#x27; and edits you make to generated code aren&#x27;t reviewed.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/akshay_manglik/status/2114435444587065486">X — @akshay_manglik</a> &middot; <a href="https://pomerado.ai">Pomerado homepage</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2610.30884">Subliminal learning crosses models: a teacher&#x27;s hidden preference transfers even without a shared base</a></h3>
+<div class="byline">
+<span class="src">X — @Vishesh1301</span> &middot; Oct 25
+</div>
+<p class="dek">Distilling from a model you don&#x27;t fully trust? Its traits may ride along in the output distribution — and filtering trait words out doesn&#x27;t fully stop it.</p>
+<div class="body">
+<p>The classic demo: a teacher fine-tuned to love owls generates plain number sequences, and a student trained on those numbers starts preferring owls. Earlier work suggested this needed a shared base model. The new paper (EleutherAI&#x27;s SOAR program) finds transfer survives different initializations, data orders, corpora, sizes, and even architectures — Pythia to OLMo, Qwen2.5 to Qwen3 — and soft-label, on-policy distillation transferred in 26 of 30 cross-model pairs, sometimes more than the student&#x27;s own base.</p>
+<p>The practical sting: on-policy distillation is spreading because it&#x27;s cheaper than RL, and it transferred preferences &#x27;more consistently, with less training&#x27; than hard-label fine-tuning. Filtering animal names from text or loss cut transfer sharply but not completely. Chris Potts pushes back that cross-model effects look &#x27;weak at best&#x27; in some figures and may work by different mechanisms than same-model transfer. Either way, the takeaway for a teacher-to-small-model pipeline like Nanbeige&#x27;s is concrete: test distilled students for inherited traits, don&#x27;t assume filtering cleans the data.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/Vishesh1301/status/2114445425398931614">X — @Vishesh1301</a> &middot; <a href="https://www.lesswrong.com/posts/53XwjN2gAKzjKCp5s/tracing-subliminal-learning-through-pretraining">LessWrong summary</a> &middot; <a href="https://x.com/ChrisGPotts/status/2114535953117360201">X — @ChrisGPotts</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/cybersecurity/ai-just-found-a-bug-that-puts-up-to-70-of-the-worlds-websites-at-risk-fd0902ea">AI just found a bug that puts up to 70% of the world&#x27;s websites at risk</a></h3>
+<div class="byline">
+<span class="src">WSJ — Meghan Bobrowsky</span> &middot; Oct 25
+</div>
+<p class="dek">PHP&#x27;s creators disclosed a critical flaw an attacker could use to take over any system running its software — the latest in a run of AI-accelerated discoveries.</p>
+<div class="body">
+<p>PHP powers as much as 70% of the world&#x27;s websites, so a critical issue there is not a niche story: exploited, it lets an attacker steal information or launch attacks on anyone visiting a hacked site. The WSJ pairs it with the broader pattern Gabriel has been tracking for weeks — AI-accelerated vulnerability discovery outpacing patching — and the newsletter&#x27;s companion piece argues AI hacks are now arriving thick and fast and overwhelming the internet. For the SaaS team, the operational read is unchanged but more urgent: patch windows are the product now, and &#x27;we&#x27;ll get to it in the sprint&#x27; is a risk decision, not a scheduling one.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/ai-hacks-are-coming-thick-and-fast-and-overwhelming-the-internet-4529c26c">WSJ — AI hacks are coming thick and fast</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">The market&#x27;s mood this week is best summed up by one number — $825 billion — and the question hanging over every earnings call: when does hundreds of billions in AI spending turn into profit?</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/metas-unending-ai-spending-34e53011">Meta&#x27;s unending AI spending: $825 billion in future commitments, an 8% share drop, and earnings week asking the same question</a></h3>
+<div class="byline">
+<span class="src">WSJ — Meghan Bobrowsky</span> &middot; Oct 25
+</div>
+<p class="dek">Meta will keep spending &#x27;aggressively&#x27; on AI, funded by a new class of nonvoting stock — and investors, after an initial surge, sent shares down nearly 8%.</p>
+<div class="body">
+<p>The sequence matters. Meta reported record third-quarter revenue — but negative free cash flow — then said it would keep spending aggressively and create a new class of nonvoting stock to pay for it. The next morning it disclosed roughly $825 billion in future leases and noncancelable contracts, up $125 billion, and the stock reversed. The WSJ&#x27;s dry conclusion: revenue gains from Muse, Meta&#x27;s new AI agent, won&#x27;t be big enough near-term to offset the cost of staying in the race, leaving the ad business to fund the data-center build-out.</p>
+<p>Bloomberg&#x27;s Monday briefing frames the week ahead the same way: Alphabet, Microsoft, and Amazon — part of a group worth more than $10 trillion — are all expected to post double-digit revenue growth, but investors will be watching how much more they plan to spend on AI and what they&#x27;re getting in return. There is broad optimism that AI is a powerful long-term driver, and growing concern over when the spending converts to profit. One footnote with a human edge: Zuckerberg negotiated terms letting him sell some new shares to cover a potential wealth-tax bill without losing voting power — after threatening to list his Palo Alto home for sale.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/finance/stocks/metas-hunt-for-ai-capital-strikes-a-raw-nerve-on-wall-street-e2de1601">WSJ — Meta&#x27;s hunt for AI capital</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/SemiAnalysis_/status/2114496296455184834">AMD can earn up to $3 an hour per chip serving Kimi K3 — because memory, not flops, is the bottleneck</a></h3>
+<div class="byline">
+<span class="src">X — @SemiAnalysis_</span> &middot; Oct 25
+</div>
+<p class="dek">Kimi K3&#x27;s 2.8 trillion parameters fit in one AMD server&#x27;s 288GB; Nvidia&#x27;s B200 can&#x27;t fit it in a single server at all.</p>
+<div class="body">
+<p>SemiAnalysis argues AMD with vLLM can generate up to $3 per hour per chip in pure profit serving the open-source Kimi K3 model, even after the post-Claude-Code surge in chip rental prices. The mechanism is memory: Kimi K3 fits in one server on AMD&#x27;s 288GB per chip, while B200 must split across servers over InfiniBand/Ethernet at 18x slower bandwidth than inside an NVLink domain. Replies add the caveat that matters: if KV-cache fragmentation eats 30% of that 288GB under concurrent serving, the per-chip take-rate drops fast. Read with Saturday&#x27;s GPU-economics thread, this is a rare clean argument for AMD in inference — and a reminder that for giant open-weight models, the chip with the most HBM per server wins the profit math, a decision made years earlier at floorplan.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/saranormous/status/2114365108432544118">Sarah Guo: startups need inference vendors with capacity they can freely allocate — and the rent curve says scarcity is at the top</a></h3>
+<div class="byline">
+<span class="src">X — @saranormous</span> &middot; Oct 25
+</div>
+<p class="dek">Inference abundance beyond the frontier labs is &#x27;a prerequisite for a rich startup ecosystem&#x27; — but neocloud capacity was financed for someone else.</p>
+<div class="body">
+<p>Guo&#x27;s argument: the startup ecosystem needs inference vendors that are capable of getting capacity they can freely allocate, secure, reliable, and always driving cost and performance down. The CPU-era cloud worked because there was no capex and you could outsource ops; telling every small customer to own its own power, cooling, and chips ignores that &#x27;we had colo 20 years ago… public cloud won.&#x27; The sting is that closed frontier labs weigh every GPU served by API against internal training and first-party products, so inference abundance beyond them has to come from somewhere else.</p>
+<p>Silicon Data&#x27;s market data backs the scarcity story: last week&#x27;s rent increases were ordered by chip generation — B300 +8.6%, B200 +4.7%, H200 +4.2%, H100 +2.5%, A100 +2.0% — consistent with a shortage concentrated at the newest chips because long-context inference is memory-bound. The forward curve has flipped to contango: longer contracts no longer get discounts, implying the market expects prices to rise over the next 36 months. Replies add the structural catch: neocloud GPUs were financed on investment-grade offtake contracts, so inference allocations are usually part of the &#x27;fat/excess.&#x27; A startup tied to one inference vendor has no leverage when limits or prices change.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/silicondata/status/2114521271803203781">X — @silicondata</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/Nanbeige/Nanbeige4.3-33B">Nanbeige4.3-33B: an open 33B agent model built to be the teacher for a 3B model</a></h3>
+<div class="byline">
+<span class="src">X — @nanbeige</span> &middot; Oct 25
+</div>
+<p class="dek">Apache-2.0, 512K context, and self-reported wins over Qwen3.8-27B on most agentic benchmarks — with the usual footnotes.</p>
+<div class="body">
+<p>The 33B tier is where people run agents locally or cheaply, and Nanbeige&#x27;s strategy is explicit: build &#x27;a high-capacity teacher agent first,&#x27; then distill its skills into small models, starting with a 3B. On its own card it beats Qwen3.8-27B, Muse-Glimmer-30B, and Gemma4-31B on most agentic benchmarks — Terminal-Bench 2.1 80.9 vs 73.0, DeepSWE 65.5 vs 42.5 — but not SWE-Bench Pro (Qwen wins) or GDPval. One early hands-on report ran it at 13.7 tokens/s on a 48GB Mac mini with clean tool calls.</p>
+<p>Read the footnotes before the headlines: harnesses differ by benchmark, one benchmark is graded by GPT-6 Sol as judge, and the model runs with preserve_thinking=true. The replies ask the right next question: show a long task on consumer hardware, failures included, and whether distillation preserves recovery behavior after a failed tool call — not just successful trajectories. That is exactly the test to run before betting a product on a teacher-student pipeline.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/nanbeige/status/2114328933181333798">X — @nanbeige</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/a16z/status/2114387164226269519">The AI buildout&#x27;s supply side is import-heavy — and the labor market is tightening by hours, not headcount</a></h3>
+<div class="byline">
+<span class="src">X — @a16z</span> &middot; Oct 25
+</div>
+<p class="dek">Since 2019, US imports of computers grew 366% vs. 46% for domestic production; grid and electrical equipment production actually fell 7%.</p>
+<div class="body">
+<p>a16z&#x27;s charts cut against the &#x27;build it here&#x27; narrative: since 2019, US production vs. imports grew +46% vs. +366% for computers, +87% vs. +175% for comms equipment, +76% vs. +131% for semis, and −7% vs. +69% for grid and electrical equipment — the gear the data-center build-out needs most. On labor, hours per worker are outpacing headcount in 7 of 10 sectors, and job-switchers get roughly 10% raises vs. 5% for stayers. For anyone planning AI infrastructure hiring or procurement, the constraint is less &#x27;are we spending enough&#x27; than &#x27;can the domestic supply chain and workforce actually deliver it, and at what wage premium.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/a16z/status/2114416567639519557">X — @a16z on labor</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The weekend&#x27;s biggest political shock came from Brazil, where markets had priced in the opposite result — and the loser is refusing to accept it.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/world/americas/brazils-lula-reelected-president-runoff-vote-2026-10-26/">Lula stages a stunning comeback to win a fourth term — and markets that bet the other way are bracing for a rout</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Oct 26
+</div>
+<p class="dek">The 80-year-old won 51.8% in the runoff after trailing in round one; Flávio Bolsonaro is seeking annulment, and a Brazil ETF plunged 27% in premarket trading.</p>
+<div class="body">
+<p>Lula is the first candidate in Brazil&#x27;s modern democratic history to lose the first round and win the runoff, adding more than 10 million votes in three weeks while Bolsonaro gained 3.6 million. The surprise is the story: Bolsonaro finished first on Oct. 4, triggering a rally that drew billions in foreign money on bets he would deliver fiscal tightening and lower rates. Instead, Banco Bradesco fell 27% and Itaú Unibanco 28% in premarket trading, wealth manager XP fell 39%, and currency derivatives pointed to a more than 10% plunge in the real. &#x27;It&#x27;s going to be a tough day. The market will reprice everything,&#x27; said Bradesco Asset&#x27;s Bruno Funchal. &#x27;Everyone was caught by surprise.&#x27;</p>
+<p>Bolsonaro, echoing his father&#x27;s response to defeat in 2022, called the result impossible to recognize and vowed legal action to annul it, challenging a Supreme Court decision to extend voting by two hours. The WSJ notes the extension came a minute after voting was supposed to end, granted by Justice Cristiano Zanin — who once served as Lula&#x27;s personal defense lawyer — after reports that some local governments had cut buses serving poorer voters. Elsewhere in the region, Venezuelan opposition leader María Corina Machado arrived in Caracas on Sunday, raising expectations for a return to democracy there.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/world/americas/lula-clings-to-power-in-brazil-election-upset-dba88f6c">WSJ — Lula clings to power</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/articles/aocs-ambition-is-growingbut-her-tactics-have-softened-8c2c7296">AOC has tempered her combative style — but the left is skeptical</a></h3>
+<div class="byline">
+<span class="src">WSJ — Natasha Dangoor</span> &middot; Oct 25
+</div>
+<p class="dek">Weighing a run for higher office, Ocasio-Cortez has broadened her outreach in ways that would once have seemed unthinkable for the firebrand leftist.</p>
+<div class="body">
+<p>Days after becoming the youngest woman elected to Congress, Ocasio-Cortez was praising climate activists staging a sit-in at Nancy Pelosi&#x27;s office. The WSJ traces a political transformation since: a shift in tactics reflecting hard lessons about how to win in Washington, as ambition for higher office grows. The skepticism from the left is the tension to watch — whether broadening outreach reads as maturation or as drift, and whether a coalition built on confrontation can be carried by a politician learning to work inside the institution.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/europe/how-france-became-the-poster-child-for-debt-woes-08c64b3d">France is the poster child for debt woes — and its protests stayed mostly peaceful this time</a></h3>
+<div class="byline">
+<span class="src">WSJ — James Mackintosh</span> &middot; Oct 25
+</div>
+<p class="dek">Net debt is projected to top 111% of GDP this year, with 10-year yields breaching 5% for the first time since 2002.</p>
+<div class="body">
+<p>France has emerged as the biggest victim of rising global bond yields: little room to raise taxes, voters rejecting austerity, and a fiscal crunch that columnist James Mackintosh charts in detail. The weekend&#x27;s demonstrations — about 110,000 people on the edge of Paris on Saturday, another 300,000 across the country — stayed mostly peaceful after the government boosted police numbers, avoiding a repeat of the previous week&#x27;s large-scale violence and looting.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">From a touchscreen Mac to a TV that watches you back, the weekend&#x27;s other stories are about the hardware we live with — and who controls it.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.macrumors.com/2026/10/25/macbook-pro-with-touchscreen-on-wednesday/">The touch MacBook Pro arrives Wednesday — Apple&#x27;s latest major reversal</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Mark Gurman</span> &middot; Oct 25
+</div>
+<p class="dek">Four years in the making: 14- and 16-inch MacBook Pros with touch OLED displays, a Dynamic Island, and a significantly higher price.</p>
+<div class="body">
+<p>Steve Jobs called touch-screen laptops &#x27;ergonomically terrible&#x27;; Tim Cook compared combining tablets and PCs to merging a toaster and a fridge. On Wednesday, Apple introduces its first touch-screen Mac anyway — a higher-end MacBook Pro that looks similar to current models but weighs less, with a high-contrast OLED display (another Mac first) and the iPhone&#x27;s Dynamic Island replacing the notch. Gurman reports the machines will run M5 Pro and M5 Max chips, cost significantly more than the current $2,499-and-up models, and ship with a macOS &#x27;dynamic interface&#x27; that adapts controls to whether you&#x27;ve been touching the display or using the trackpad — touching a button can bring up a menu around your finger. Apple will position touch as an additional input, not a replacement, alongside keyboard and trackpad. It is, as Gurman frames it, the latest in a year of reversals that already included low-end laptops, foldable phones, and speakers with screens.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/AndrewCurran_/status/2114537575620980868">Your TV is watching you — and your AI assistant may refuse to help you stop it</a></h3>
+<div class="byline">
+<span class="src">X — @AndrewCurran_</span> &middot; Oct 25
+</div>
+<p class="dek">A researcher rooted his 2025 Samsung TV and found an always-on mic and screen fingerprinting; Curran says device reverse-engineering refusals are &#x27;pointless and counterproductive.&#x27;</p>
+<div class="body">
+<p>The weekend&#x27;s device story starts with a zero-day giving a root shell on a 2025 Samsung TV — firmware AES-encrypted, so the alternative was UART/JTAG hardware work. The researcher reports an &#x27;always on hot mic,&#x27; automatic content recognition, geolocation, network mapping, ad targeting, &#x27;4 distinct drm services,&#x27; and data shared with Samsung&#x27;s &#x27;400 partners,&#x27; and plans open-source firmware with &#x27;ZERO telemetry.&#x27; A privacy guide reposted by Karpathy adds the scale: Samsung&#x27;s ACR fingerprints the screen every 500ms, LG&#x27;s every 10ms, including content from HDMI-connected laptops — and Vizio lost $6.7M selling TVs in one 2024 quarter while making $115.8M gross profit from ads and viewing data.</p>
+<p>Curran&#x27;s argument is about the guardrail, not the exploit: &#x27;Reverse Engineer Anything and removing malware/spyware from your own devices sits so close to the cyber guardrails that phrasing or word choice can mean the difference between a refusal and smooth sailing.&#x27; OpenAI calls the Codex refusals accidental decision-boundary issues being fixed; Anthropic, he expects, will do the same. &#x27;Let people do what they want with their own property. They&#x27;ll do it anyway with less restrictive models.&#x27; The hard question in replies: how would a model reliably tell &#x27;my own device&#x27; from someone else&#x27;s?</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/log4j/status/2113014142600953868">X — @log4j on the Samsung root</a> &middot; <a href="https://x.com/Tristan0x/status/2114311011561812476">X — @Tristan0x privacy guide</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.linkedin.com/posts/orianna-rosa-royle_move-over-dinks-splits-are-the-new-financial-activity-7518261577645707265-0Tym">Move over, DINKs: SPLITs are the new financial power couple</a></h3>
+<div class="byline">
+<span class="src">LinkedIn — Orianna Rosa Royle</span> &middot; Oct 25
+</div>
+<p class="dek">Two incomes, no kids yet — and no joint bank account. The Fortune piece making the rounds asks what happens when the power couple keeps its finances separate.</p>
+<div class="body">
+<p>Dual-income-no-kids households have spent years as the aspirational consumer segment — Champagne breakfasts, last-minute luxury. The new variant keeps the two incomes and the child-free timeline but drops the joint account: separate finances, separate decisions, negotiated sharing. It is a small cultural data point with a real product implication: financial tools built for the household as a unit keep missing couples who organize as two adults with a contract, not a merged balance sheet.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openai.com/index/navier-stokes-solution/">OpenAI&#x27;s Navier–Stokes proof, the expert read: genuinely new, and now &#x27;more or less understood&#x27;</a></h3>
+<div class="byline">
+<span class="src">X — @gdb</span> &middot; Oct 25
+</div>
+<p class="dek">PDE researcher Scott Armstrong: the construction uses a fluid instability to make the flow generate its own oscillations — &#x27;no precedent&#x27; — and several expert groups now understand it.</p>
+<div class="body">
+<p>The two sides of &#x27;AI did math&#x27; are separating cleanly, as the digest puts it: the machine side (does the formal statement say what Clay says, and does the proof check?) and the human side (is the idea new, and can people understand it?). Armstrong is the first strong answer on the human side: closest to convex integration, but instead of building oscillations by hand, &#x27;a fluid instability is cleverly made so that the flow itself generates the oscillations: they grow by drawing energy from the background shear.&#x27; The combination is &#x27;definitely insane and definitely nowhere in the literature previously.&#x27; An independent audit found the Lean proof matches Clay&#x27;s statement on the three standard axioms, after a Sept. 10 commit closed a finite-energy gap. Armstrong&#x27;s verdict: &#x27;maybe beyond what a human could have come up with but not beyond human understanding&#x27; — and &#x27;anyone saying that this OAI result is unsurprising is bullshitting.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/gdb/status/2114483026608755082">X — @gdb</a> &middot; <a href="https://x.com/scottnarmstrong/status/2114412308185100522">X — @scottnarmstrong</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">This week&#x27;s learning list is unusually strong: a full reasoning-model course you can run on a small GPU, the paper behind a cracked RL loss, and a reality check on the benchmarks everyone quotes.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://magazine.sebastianraschka.com/p/building-reasoning-models">Build a reasoning model from scratch: Sebastian Raschka&#x27;s complete 11-hour video course</a></h3>
+<div class="byline">
+<span class="src">Sebastian Raschka</span> &middot; Oct 24
+</div>
+<p class="dek">Eight videos, from a math-answer verifier to GRPO to distillation, coded along in PyTorch on a small Qwen3 0.6B.</p>
+<div class="body">
+<p>Start from a small pre-trained Qwen3 0.6B and implement everything that turns an LLM into a reasoning model: a verifier used to evaluate on MATH-500 and later as the RL reward, inference-time scaling and self-consistency, scoring and self-refinement, a simplified GRPO, diagnosing RL (entropy, advantage tracking, reward hacking), and distillation on DeepSeek R1 answers. Early parts run on a CPU; training wants a GPU. For Gabriel, this is the single best way to build intuition for what his platform&#x27;s reasoning stack actually does — and it lines up directly with today&#x27;s StableReinforce and subliminal-learning stories, which are the same RL machinery at production scale.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2609.20807">Score Centering stabilizes off-policy RL — the paper inside Thinking Machines&#x27; StableReinforce</a></h3>
+<div class="byline">
+<span class="src">arXiv</span> &middot; Oct 25
+</div>
+<p class="dek">An additive correction that cancels training–inference drift, matching or beating importance sampling under quantization — no tuning required.</p>
+<div class="body">
+<p>If your team runs RL post-training with async sampling or low-precision inference, this is the paper to read before your next training run: the drift between training and inference engines accumulates with every step, and Score Centering subtracts the sampler&#x27;s average score so it can&#x27;t accumulate. It composes with importance sampling rather than replacing it, and the reverse-engineering write-up in the X thread is itself a masterclass in auditing a black-box training API.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/Pomerado/pomerado">Pomerado&#x27;s README: a clear design for compiling agent web tasks into code</a></h3>
+<div class="byline">
+<span class="src">Pomerado</span> &middot; Oct 25
+</div>
+<p class="dek">Mint an integration with your coding agent, then call it deterministically — with honest notes on what the system doesn&#x27;t check.</p>
+<div class="body">
+<p>The README is worth reading even if you never run it: four MCP tools (mint, get_job, provide_input, cancel_job), a Guardian that reviews browser actions and finished source, real authority controls (a write mint performs the action once while building, then reviews without repeating it), and candid limits — a run doesn&#x27;t check authority or intent, and your edits to generated code aren&#x27;t reviewed. For the SaaS team&#x27;s legacy-portal automations, this is the pattern to copy: reason once, run code forever.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://epoch.ai/benchmarks/">Epoch AI&#x27;s benchmarks hub: before you trust a benchmark, inspect what its grader failed</a></h3>
+<div class="byline">
+<span class="src">Epoch AI</span> &middot; Oct 25
+</div>
+<p class="dek">Hamel Husain is &#x27;astounded by the poor quality&#x27; of public benchmarks vs. how much the industry relies on them — Epoch is the independent place to check.</p>
+<div class="body">
+<p>Hamel Husain&#x27;s post — 487 likes, 91 replies — says the average benchmark he&#x27;s checked is surprisingly bad, and his advice is the takeaway: &#x27;Before trusting a benchmark its worth running them and inspecting examples the grader failed carefully.&#x27; Epoch&#x27;s hub (411 models, 94 benchmarks, public task definitions, per-question log viewers, and its own Inspect evaluations) is where to do that checking. Its own caveats apply to everything in this edition&#x27;s model stories: contamination, and &#x27;small changes in prompts or evaluation settings can sometimes lead to significant differences.&#x27; Treat public benchmarks like a résumé — fine for a shortlist, but you still run the interview, ideally on a messy Tuesday with real customer data.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://creatoreconomy.so/p/how-to-make-amazing-videos-with-claude-and-hyperframes-jake-moran">How to make amazing videos with Claude and HyperFrames — Jake Moran&#x27;s full tutorial</a></h3>
+<div class="byline">
+<span class="src">Peter Yang</span> &middot; Oct 25
+</div>
+<p class="dek">A 42-minute walkthrough: the editing words that get Claude to do what you want, from launch videos to shorts.</p>
+<div class="body">
+<p>Peter Yang&#x27;s go-to video expert Jake Moran demos prompting Claude and HyperFrames for product launches, long-form tutorials, and shorts — including a launch video built from three screenshots, a four-part structure (hook, context, payoff, brand), copying any video&#x27;s style with AI, and drawing feedback on the frame instead of typing it. Also covered: Parakeet, a free local model for accurate cuts. For Gabriel&#x27;s advisor-brand work, the transferable skill is the vocabulary: learn the editing terms, and the model stops guessing what &#x27;make it punchier&#x27; means.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
