@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Wednesday, October 28, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Simulation and verification owned Tuesday: a world model that talks back, a 15,000-page proof checked by machines, and proof on every commit. The thread running through all of it — and through the Anthropic study below — is the same: the harness, and the human using it, decides what counts as done.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Genie 4: a world model that sounds, talks, and is steered by Gemini</a></h3>
+<div class="byline">
+<span class="src">Google DeepMind</span> &middot; Oct 27
+</div>
+<p class="dek">DeepMind&#x27;s Genie 4 renders explorable worlds in real time, with speaking characters — and a Gemini model directing the scene as it goes.</p>
+<div class="body">
+<p>A world model takes a prompt — text, or a reference image used as the exact first frame — and generates a world you move through with keyboard and camera controls, rendering each next moment as you act rather than playing back a finished video. Genie 3 already did that. Genie 4 adds four things, in DeepMind&#x27;s words: real-time steering in natural language mid-simulation (&quot;change the weather,&quot; &quot;introduce a new person&quot;), physics and people that respond organically, native audio — ambient sound and characters that converse and react live — and, most importantly, Gemini in the loop.</p>
+<p>The architecture is the idea worth stealing: Gemini 3.8 Flash acts as a guiding agent, continuously observing the scene, breaking goals into steps, and reviewing incoming frames to verify each step succeeded, while Gemini Omni grounds how things look and behave. DeepMind pairs it with Gemini 4 Argon for robotics — Argon breaks a task into steps fed to Genie 4 as captions, so an Apptronik Apollo humanoid plays checkers step by step inside an imagined world. That is goal-directed simulation, and it is why DeepMind pitches Genie 4 as training environments for robots and agents, film pre-visualization, and game prototyping before a line of engine code.</p>
+<p>DeepMind&#x27;s own limits list is refreshingly blunt: visual details and object permanence can still drift, especially over longer runs and after multiple prompt edits, and complex physical interactions, legible text, and long-term consistency remain open research. It is a research preview for trusted testers now, with Google AI Ultra subscribers in Project Genie and API partners next. Ethan Mollick&#x27;s verdict after a day of demos: &quot;glitchy, but also impossibly advanced compared to a couple years ago.&quot; The test that matters, per the replies, is not how good one scene looks — it is whether the world remembers what you did after you leave the room and come back.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/GoogleDeepMind/status/2115114028338962672">X — @GoogleDeepMind</a> &middot; <a href="https://x.com/demishassabis/status/2115232001275924722">X — @demishassabis</a> &middot; <a href="https://x.com/emollick/status/2115120818116334084">X — @emollick</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom machine-checks the &quot;enormous theorem&quot; — 43 million lines of Lean</a></h3>
+<div class="byline">
+<span class="src">Axiom</span> &middot; Oct 27
+</div>
+<p class="dek">Agent swarms formalized the 15,000-page Classification of Finite Simple Groups in Lean in about 24 days — and found 34 deviations from the published proof along the way.</p>
+<div class="body">
+<p>The Classification of Finite Simple Groups says every finite simple group — the &quot;atoms&quot; of finite symmetry, per the Jordan–Hölder theorem — is cyclic of prime order, alternating, of Lie type, or one of 26 sporadic groups, the largest being the Monster. The human proof runs about 15,000 pages across 500+ articles by about 100 mathematicians over decades, and is widely called the longest proof ever written. Axiom says it has now produced a &quot;sorry-free&quot; Lean 4 proof: no unproved placeholders, built on Mathlib and the TauCeti statement of the theorem, using only the three standard axioms and no native_decide, so no step is trusted to compiled code. It comes to about 43.1 million lines, and a full build takes a little under 24 hours. It is Apache-2.0, with a proof map, errata list, and companion paper.</p>
+<p>The build story is the part to learn from — the most detailed public account yet of agent swarms on a giant formal project. On October 1 a Slack channel opened; a proof map split the job into 108 milestones and about 380 tasks, and agents claimed milestones through GitHub issues, with lead agents decomposing hard arguments and reviewing statements while others searched for existing results or wrote proofs. Two failure modes dominated. First, silent assumptions: some milestones &quot;concealed enormous prerequisites, which agents had assumed rather than proved,&quot; and Axiom deleted tens of thousands of lines built on them — a conditional proof is not the milestone. Second, the checker became the bottleneck: agents produced proofs faster than Lean could recheck them, fixed with distributed caching, parallel independent checks, and separately checkable certificates for expensive finite calculations.</p>
+<p>The machines also found things: 34 noteworthy deviations from the published record, including a lemma that fails for SL₂(5) and counterexamples to a closure assertion used in a published route to the Unbalanced Group Theorem, rerouted with Richard Lyons and Ronald Solomon via Solomon&#x27;s 1976 theory. As of Tuesday afternoon no outside group had completed a rebuild, and Stella Biderman disclosed that Axiom had emailed her asking her to promote the release. Treat the claim as strong but not yet independently verified — the rebuild, taking nearly a day, is the verification that matters.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://cfsg.axiommath.ai/">CFSG in Lean</a> &middot; <a href="https://github.com/AxiomMath/CFSG">GitHub — AxiomMath/CFSG</a> &middot; <a href="https://x.com/axiommathai/status/2115089794867040584">X — @axiommathai</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.anthropic.com/research/agents-judgment-calls">Agents steer experts: the deference study every agent builder should read</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Oct 27
+</div>
+<p class="dek">In Anthropic&#x27;s randomized trial, 50 analysts followed a secretly coin-flipped agent &quot;lean&quot; 86% of the time — and 77% then explained their choices in the agent&#x27;s words.</p>
+<div class="body">
+<p>Fifty professional analysts, all pre-screened for causal-inference skill, worked a fictional farming co-op decision in browser VS Code with Claude Code (Claude Opus 4.8, high effort). Four decisions were left open, each with two reasonable options — outcome metric, method, scope, weighting — plus a final recommendation on whether to roll out a paid advisory program. Hidden in the system prompt, a coin flip set the agent&#x27;s &quot;lean&quot; on each decision; the agent argued for it honestly and was told to change its mind if the evidence required. The result: analysts went with the lean 86% of the time across the four decisions, against 50% if there were no effect. When the agent disagreed with a choice an analyst had already voiced, they switched 60% of the time, versus 6% when it agreed.</p>
+<p>What makes the study land is what did not protect anyone. Experience, expertise, education, quiz score, and trust in AI did not predict deference. Followers were just as confident as everyone else (71 vs 73), 52% called the recommendation more their own than the agent&#x27;s, 77% repeated the agent&#x27;s arguments — sometimes word for word — and only 15% credited it. None of the analysts suspected the leans were rigged. And yet using the agent still helped quality: 6% of agent users made serious methodological errors versus 55% of the 11 who worked alone (groups that are not directly comparable), and agent users finished in 65 minutes versus 90.</p>
+<p>Anthropic&#x27;s own reading is the one to carry into any review process: experts often &quot;work out, or even discover, what they think while weighing the options,&quot; and the agents rarely made a strong case for the other side. &quot;A human reviewer is only an independent check if their judgment is their own.&quot; The fixes proposed in the replies are interface fixes, and they are directly usable: record your initial choice before seeing the agent&#x27;s recommendation, make the agent argue both sides, or show a decision-fork view of how the recommendation changes under each defensible metric before showing the agent&#x27;s preferred answer. If your independent judgment matters on a task, be deliberate about when in the process the agent enters.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/AlexTamkin/status/2115190541688398184">X — @AlexTamkin</a> &middot; <a href="https://x.com/emollick/status/2115209786157412397">X — @emollick</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.harmonic.fun/news/aristotle-software-hardware-verification/">Verification goes commercial: proofs on every commit</a></h3>
+<div class="byline">
+<span class="src">Harmonic</span> &middot; Oct 27
+</div>
+<p class="dek">Harmonic takes its Aristotle prover from math to C and Verilog, with proof-or-counterexample results on every commit in CI.</p>
+<div class="body">
+<p>Harmonic&#x27;s Aristotle started in mathematics; now it proves properties of code. For C it targets functional correctness and the absence of certain classes of undefined behavior; for Verilog it covers control-path liveness and safety plus data-path math — &quot;prove your RTL correct before tapeout.&quot; You state what must hold in plain English, or let Aristotle propose properties, and each comes back proved, refuted with a counterexample, or left open, with the assumptions behind every proof. In CI you commit an aristotle.toml listing properties — a natural-language sentence like &quot;The FIFO never accepts a write while it is full,&quot; a named SVA assertion, or a C function — and aristotle ci reports results like tests, with JUnit output and GitHub annotations across the usual CI systems.</p>
+<p>Harmonic&#x27;s claims are specific enough to check: at Tensordyne it found bugs &quot;up to 110,000 cycles deep&quot; in the block the team found hardest to verify; in LibTomMath, the library behind Tcl and Dropbear SSH, it fixed three bugs and made modular exponentiation 31–38% faster, &quot;proved against the same spec&quot;; at the DIII-D fusion facility it reproduced a plasma-control algorithm from one paper and a 254-word prompt in four hours, verified the C, and generated equivalent Verilog. Reuters notes Harmonic, co-founded by Vlad Tenev, was valued at $1.45B last November.</p>
+<p>The sharpest caveat came from a replier, and it generalizes to every AI verification pitch: &quot;the plain English spec becomes the thing that needs review, since a proof against the wrong spec still passes.&quot; A proof on every commit beats another confidence score — but only if someone owns the spec it is proved against. That is the same lesson as the Axiom proof above: verification moves the trust, it does not eliminate it.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/HarmonicMath/status/2115118879127351586">X — @HarmonicMath</a> &middot; <a href="https://www.harmonic.fun/aristotle/">Aristotle product page</a> &middot; <a href="https://pypi.org/project/aristotlelib/">aristotlelib on PyPI</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.decodingai.com/p/4-key-decisions-to-solidify-your">4 key decisions to solidify your harness</a></h3>
+<div class="byline">
+<span class="src">Decoding AI Magazine</span> &middot; Oct 27
+</div>
+<p class="dek">The model proposes; the harness decides. Four ownership decisions — done, keys, stop, blame — worked through two real bugs in a demo agent.</p>
+<div class="body">
+<p>Once your agent loop works, harness engineering keeps coming back to four decisions about who owns what: who decides the task is done, who holds the keys, who says stop, and who is to blame when a run goes wrong. Tejas Kumar&#x27;s answer to the first three is the harness, in code, with the model proposing and the harness deciding. He works through two real bugs in his own demo harness — a GPT-3.5 Turbo agent taught to upvote a Hacker News story — to show why.</p>
+<p>First, a model saying it is done is a claim, not a fact. A contributor&#x27;s fix exposed that a login redirect completed an upvote the harness then counted again, so two stories were upvoted for a task that asked for one. The fix: the harness decides done by reading the world before and after, from somewhere the agent cannot write to, with a verifier written from the task (&quot;exactly 1 new vote, on the right story, and nothing else&quot;) that can answer done, retry, stop, or unknown — never forced to round &quot;I can&#x27;t tell&quot; into yes or no. Second, keep secrets in the harness and pin where they may go: his login handler typed a password into any page whose URL merely contained &quot;login,&quot; so the model never saw the password and could still decide where it went. The fix is to log in before the run, parse URLs and compare origins, and give the model narrow tools (hn_open, not browser_navigate).</p>
+<p>Third, split guardrails into budgets, which end the run (iterations, tokens, money, wall clock), and policies, which refuse one action and hand the refusal back as a tool result the model can act on — and test every guardrail by driving it past its limit through the real loop. Fourth, when a run fails, find the first wrong step, not the last, and replay it with exactly what the model saw at that step: wrong context means a harness bug, right context that fails some of the time means you measure the model. The study he cites (Who&amp;When, ICML 2025) found automated blame attribution named the decisive step only 14.2% of the time — which is why the harness, not the post-mortem, has to carry the discipline.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Anthropic&#x27;s filing is now a Rorschach test for the whole AI economy: read the unit economics one way and it is a machine; read the commitments the other way and it is a bet that revenue keeps outrunning compute. Around it, money is moving into the unglamorous layer — credentials, factories, and the bottlenecks past the model.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.anthropic.com/news/s1-sec">Anthropic&#x27;s Big Tech frenemies — and the unit economics behind the IPO</a></h3>
+<div class="byline">
+<span class="src">Bloomberg · WSJ</span> &middot; Oct 27
+</div>
+<p class="dek">The S-1&#x27;s second day of reading: Big Tech owns stakes, supplies the compute, sells the models — and competes with them, while unit economics improve fast against $830B of commitments. Plus: Sen. Warren demands answers by November 3.</p>
+<div class="body">
+<p>Anthropic publicly filed its S-1 on Monday, aiming for a Nasdaq listing under the ticker ANT, with a valuation as high as $2 trillion previously reported by Bloomberg. The headline numbers are by now familiar: revenue of $16.3 billion in the first half of 2026, up roughly 1,300% year over year, with $11.6 billion in the second quarter alone and a $974 million operating profit that quarter. Tuesday&#x27;s analysis turned to what those numbers are made of — and what they are owed.</p>
+<p>Start with the circle. Bloomberg&#x27;s Tech In Depth reports that Amazon and Google are among Anthropic&#x27;s largest external shareholders — Amazon roughly 9% fully diluted plus notes convertible into about 11% more (ownership capped at 12%), Google 6.6% with rights to more (capped at 14.99%) — while each co-founder owns about 1.4%. At the same time Anthropic has committed to paying about $269 billion to Amazon, Google, and Microsoft for computing power in the coming years, whether or not it uses the capacity, and 48% of its first-half revenue arrived through the cloud providers&#x27; marketplaces, up from 11% in 2023. The filing itself names the problem, warning the providers are &quot;investors, customers, distribution partners and competitors all at once.&quot;</p>
+<p>Then the unit economics, as read on X by Gavin Baker, SemiAnalysis, Dhruv Thakker, and Peter Gostev. Baker flags the most surprising line in the filing: revenue from Fortune 500 customers paying $100K+ averaged under 0.1% of those customers&#x27; total expenses — over half the Fortune 500 is in that group, so the headroom argument writes itself. SemiAnalysis puts inference revenue per megawatt at &quot;sixty plus&quot; million dollars, up from about $16 million last year. Thakker calculates revenue per dollar of compute rising from $0.40 in early 2025 to $2.08 in mid-2026, with compute falling from 177% of revenue to 48% in a year — against roughly $830 billion of compute commitments running to 2036. Gostev&#x27;s back-of-envelope from the 85% gross margin — $0.60 to serve Opus 5.5 at its $3.00 price — drew immediate pushback: a blended margin is not a per-token cost, and cached input flatters it. The bull case and the bear case are now the same numbers, read in opposite directions. That is what makes this IPO the litmus test Bloomberg calls it.</p>
+<p>And on Wednesday morning, the political scrutiny arrived. Sen. Elizabeth Warren wrote to CEO Dario Amodei in a four-page letter, viewed by the Journal, saying she was deeply troubled by the risks Anthropic itself raised in its filing and demanding exhaustive answers by November 3: how it will ensure its technology does not pose an existential threat to humanity, details of its relationships with partners such as Amazon and Broadcom, and how it justifies a valuation that could approach $2 trillion. Anthropic did not immediately respond to a request for comment. The Journal reports the IPO could raise as much as $100 billion and go public as soon as the week before Thanksgiving, and notes the letter is unlikely to derail it given high investor demand. The deadline to watch is November 3 — the first formal test of whether the filing&#x27;s own risk disclosures become a regulatory problem before the shares do.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/GavinSBaker/status/2115073167756554522">X — @GavinSBaker</a> &middot; <a href="https://x.com/SemiAnalysis_/status/2115175550465507710">X — @SemiAnalysis_</a> &middot; <a href="https://x.com/Dthakker02/status/2115203505355153859">X — @Dthakker02</a> &middot; <a href="https://x.com/petergostev/status/2115085935285248010">X — @petergostev</a> &middot; <a href="https://www.wsj.com/finance/regulation/elizabeth-warren-demands-answers-from-anthropic-on-existential-risks-5362f009">WSJ — Corrie Driebusch</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://andrewchen.substack.com/p/new-founder-archetypes-in-the-ai-84e">New founder archetypes in the AI era</a></h3>
+<div class="byline">
+<span class="src">Andrew Chen</span> &middot; Oct 27
+</div>
+<p class="dek">Solo founders, non-technical founders, domain experts, teenagers, creators: a16z&#x27;s Andrew Chen makes both cases for each — and warns against swapping one pattern-match for another.</p>
+<div class="body">
+<p>Andrew Chen, who runs a16z&#x27;s Speedrun pre-seed program, argues the founder profiles that work are about to change — and that the interesting question is which old assumptions were fundamental and which were just consequences of the technology and distribution of their time. He makes the pro and con case for five new archetypes: solo founders (100x leverage, but a team of co-founders may still out-produce one person, and coding may never have been the main bottleneck); non-technical founders (elite finance, consulting, and creative talent can now build, but the gap between demo and reliable, scalable product remains, and technical judgment may matter more, not less); domain experts (a doctor or broker who lives the problem daily, but hoteliers did not create Airbnb, and insiders can miss the reinvention); kids and students (building earlier than ever, but hiring, fundraising, and monetization still require experience); and content creators (distribution from day one, but a spike of attention is not a growth engine).</p>
+<p>He sets this against the old pattern-matching: after Google it was Stanford PhDs, after Facebook dropouts building social apps, after Airbnb designery hipsters, after Uber gritty operators — and a &quot;no&quot; list just as long (no solo founders, no non-technical founders, no dentists or creators). Some of those rules will survive, he writes: coding gets easier while sales, recruiting, judgment, and persistence do not. The mistake would be to replace the old pattern-matching with a new version — &quot;solo founders are good now&quot; — instead of asking, for each founder, what advantage is real and what is just the current cycle&#x27;s distribution channel wearing a founder&#x27;s clothes. Applications for Speedrun&#x27;s San Francisco residency close Sunday, November 1.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://infisical.com/blog/series-b">Infisical raises $40M to lock down AI agents&#x27; credentials</a></h3>
+<div class="byline">
+<span class="src">Infisical</span> &middot; Oct 27
+</div>
+<p class="dek">A $40M Series B at $600M for the company that gives AI agents access without ever giving them the credential — the control layer around agents is where the money is going.</p>
+<div class="body">
+<p>Infisical, the secrets-management company, raised a $40 million Series B at a $600 million valuation, led by Elad Gil, who also led its $16 million Series A in June 2025, with Gradient Ventures and Y Combinator participating. The company says it has been cash-flow positive for a long time, serves more than 1,300 organizations and 300,000 developers, secures 10 billion secrets a day, and its open-source project has passed 30,000 GitHub stars. The pitch is the agent era&#x27;s version of least privilege: when an AI agent needs access to a sensitive system, Infisical&#x27;s Agent Vault hands it a placeholder credential, injecting the real secret at a proxy and logging every request, so the secret never reaches the agent&#x27;s environment — and cannot leak in a breach or be passed to a model provider.</p>
+<p>&quot;You wouldn&#x27;t give an employee unrestricted access to every system in your company, and AI agents shouldn&#x27;t be any different,&quot; says co-founder and CEO Vlad Matsiiako. The funding goes to product, engineering and go-to-market hiring, and agent-security infrastructure. Gil also led Lumaril&#x27;s Series A the same day — &quot;industrial autonomy&quot; for existing US factories, from ex-Palantir founders. Read the two together and the pattern is clear: the money this week is going to the control layer around agents and physical systems, not to another model. For anyone building an agent platform, Infisical&#x27;s design — credentials the agent never sees, access defined per agent, everything logged — is the reference architecture to compare your own harness against.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/matsiiako/status/2115114843183186126">X — @matsiiako</a> &middot; <a href="https://x.com/eladgil/status/2115133399048569211">X — @eladgil on Lumaril</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://ycombinator.com/rfs">YC: AI&#x27;s biggest bottlenecks are moving beyond the models</a></h3>
+<div class="byline">
+<span class="src">Y Combinator</span> &middot; Oct 27
+</div>
+<p class="dek">YC&#x27;s Winter 2027 requests look past the models: space access, and AI that turns uncredentialed workers into $15-an-hour experts. The bottleneck has moved.</p>
+<div class="body">
+<p>Y Combinator&#x27;s Winter 2027 Requests for Startups argues that &quot;the bottlenecks in AI are moving beyond the models&quot; — into hardware, infrastructure, financial systems, and specialized software. The first two requests set the tone. One calls for startups pursuing abundant space access on Starship economics, on the order of 10,000 Starship launches a year. The other, &quot;The $15-an-Hour Expert,&quot; imagines AI turning uncredentialed workers into specialists in benefits, taxes, claims, medical billing, and immigration paperwork — expertise as a service, priced at the level of the work it replaces rather than the credential it used to require.</p>
+<p>Read alongside the enterprise-automation discussion on X the same day, the RFS reads less like a wishlist and more like a diagnosis. Sarah Guo: &quot;we remain in the autocomplete / early Claude Code era of enterprise workflow automation, but not for long.&quot; Aaron Levie puts deployment of real automation at under 1% of the economy and blames capability itself — now changing with computer use, long-running agents, harnesses, and agent swarms — and argues the future &quot;won&#x27;t be about end users prompting agents... but instead the organization reengineering the underlying workflows.&quot; Databricks&#x27; Ali Ghodsi counters that AI &quot;does not have an intelligence problem. It has a context problem,&quot; and sketches a &quot;system of record for agents&quot;: what is true, what it means, what the agent may do, and whether it worked — with business-definition grounding lifting accuracy from about 50% to 84.5% in Databricks&#x27; testing. The RFS, in other words, is YC betting that the next valuable companies sell the missing context, infrastructure, and workflow redesign — not the next increment of intelligence.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/saranormous/status/2115193664981152000">X — @saranormous</a> &middot; <a href="https://x.com/levie/status/2115305369799110905">X — @levie</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/felixrieseberg/status/2115200995546566910">The coding interview is dead; multi-agent scaling is the $850K job</a></h3>
+<div class="byline">
+<span class="src">X — @felixrieseberg</span> &middot; Oct 27
+</div>
+<p class="dek">An Anthropic manager retires the coding interview, and the best-paid open role in AI is multi-agent scaling at $500K–$850K. The premium has moved from writing code to orchestrating agents.</p>
+<div class="body">
+<p>Two hiring signals landed the same day, and they point in the same direction. Felix Rieseberg, an engineering manager at Anthropic who led engineering for Claude.ai, Cowork, and Claude Code Desktop, writes that he has dropped the coding interview from his hiring loops: &quot;it no longer provides signal,&quot; he says, because &quot;Claude is now better at&quot; both the React challenge and the assembly quiz than the candidate is. What he screens for instead is &quot;little prototypes that exhibit taste, empathy, and principled thinking.&quot; His advice to juniors: pick business impact over backlog, pick one radical idea aimed at your manager&#x27;s manager&#x27;s goals, build it over a weekend instead of writing PRDs, and focus on a single good idea. His example is a graphical interface for Claude Code, prototyped over a weekend by two relatively new engineers and shipped about eight days later.</p>
+<p>The market is pricing the same shift. Lenny Rachitsky&#x27;s list of the top-paying open roles puts Anthropic&#x27;s Staff Research Engineer for Multi-Agent Scaling first, at $500K–$850K, ahead of OpenAI Search Integrity at $380K–$850K. The premium role is no longer the person who can write the code fastest; it is the person who can make many agents work together reliably — the harness problem, again, now with a salary attached. Rieseberg admits he has not found the replacement interview yet; one substantive reply suggests architecture interviews, because long-horizon judgment is where models &quot;fail in an exquisite fashion.&quot; For a team hiring into an agent platform, that is the interview to design.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://felixrieseberg.com/hunger-beats-tenure-advice-for-junior-engineers/">Felix Rieseberg — Hunger beats tenure</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Headlines, mostly: two elections&#x27; aftershocks and a region holding its breath. Both stories below were still moving on Tuesday night — treat the details as that evening&#x27;s picture, not the final one.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/americas/brazil-cancels-bolsonaros-passports-as-questions-swirl-about-his-location-9e8561fe">Brazil cancels Flávio Bolsonaro&#x27;s passport as questions swirl about his location</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 27
+</div>
+<p class="dek">Brazil canceled the defeated candidate&#x27;s passports after he defied a court order; the US plans to issue him visas as authorities probe reports he fled.</p>
+<div class="body">
+<p>Brazil canceled Flávio Bolsonaro&#x27;s passports on Tuesday after he defied a Supreme Court order to turn them over, a Brazilian official said, as authorities investigated reports that he had fled to Argentina en route to the United States. Bolsonaro, the eldest son of former President Jair Bolsonaro and the losing presidential candidate, faces two Supreme Court investigations into alleged financial crimes involving online betting and efforts to finance a film about his father. Justice Alexandre de Moraes ordered him late Sunday to surrender his passports and barred him from leaving the country; his spokesman did not respond to requests for comment.</p>
+<p>The Trump administration plans to issue visas to Bolsonaro and his family to allow them to enter the US, two State Department officials told the Journal on Tuesday, though US officials did not confirm his whereabouts that evening. His last public statement was a video late Monday thanking voters and denying wrongdoing, saying he would hand over his passports. Bloomberg&#x27;s evening newsletter adds that a Brazilian Supreme Court justice ordered police to open a probe into possible illegal foreign financing of Bolsonaro&#x27;s campaign, including by a group linked to Vice President JD Vance. The episode lands days after a shock election result — Lula&#x27;s re-election — and it is now a US–Brazil diplomatic problem as much as a Brazilian legal one.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.usatoday.com/story/news/world/2026/10/27/israel-election-takeaways-benjamin-netanyahu-gadi-eisenkot/92361598007/">Israel&#x27;s election ends in deadlock, exit polls show</a></h3>
+<div class="byline">
+<span class="src">USA Today · Bloomberg</span> &middot; Oct 27
+</div>
+<p class="dek">Exit polls give Eisenkot&#x27;s bloc a narrow lead but neither side a majority, with record turnout and Arab parties holding the balance — as oil traders wait on Iran.</p>
+<div class="body">
+<p>Israel&#x27;s first general election since the October 7, 2023 attacks ended Tuesday in apparent deadlock, according to exit polls from the major Israeli broadcasters. Three of the main polls give former military chief Gadi Eisenkot&#x27;s bloc 52 to 53 seats against 50 for Prime Minister Benjamin Netanyahu&#x27;s bloc; a majority in the 120-seat Knesset requires 61. Likud remains the single largest party, projected at 24 to 30 seats, while Eisenkot&#x27;s Yashar party is projected at 19 to 22. The Arab parties, projected at 17 to 18 seats — up from 10 in 2022 — hold the balance of power. Turnout hit 77.7%, the highest in more than two decades. Preliminary results were expected Wednesday, with about 600,000 votes, mostly from the military, not counted until Thursday.</p>
+<p>The uncertainty is already moving markets. Oil fell to around $114 a barrel on Tuesday, Bloomberg reports, as traders waited on the election, the US midterms next week, and the possibility of renewed attacks on Iran. Eisenkot says Iran&#x27;s nuclear program must be stopped but that regime change is &quot;not an achievable goal&quot;; Netanyahu has pledged to topple Tehran&#x27;s leaders and, according to the New York Times as reported by Bloomberg, sought to launch new strikes ahead of the vote. Iran&#x27;s Supreme Leader reiterated conditions for ending a war now eight months old, including an end to the US naval blockade of its Persian Gulf ports and the lifting of sanctions. Whatever coalition emerges, it inherits a &quot;neither war nor peace&quot; that traders, and the region, are pricing by the day.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Hardware, terminals, and payments: the physical and financial layer under the AI news — a $2,000 foldable with a crease problem, the terminal engine now inside every JetBrains IDE, and Stripe turning business profiles into a way to move money.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/personal-tech/iphone-duo-broken-hinge-screen-31b2b28a">Apple knows some iPhone Duos have a major issue</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Oct 27
+</div>
+<p class="dek">Apple acknowledged an inner-display issue on &quot;a small number&quot; of its $2,000 foldables and is replacing affected units — no recall. iFixit points at the hinge&#x27;s support bar.</p>
+<div class="body">
+<p>Some customers opened their new $2,000 iPhone Duo foldables to find bright lines across the folding screen after hours or days of use. Jesse Dalton&#x27;s hinge stuck at a 45-degree angle after four or five opens; he pried it, heard a loud pop, and bright lines appeared along the crease. Shane Basinski&#x27;s broke after about six hours, with a &quot;loud audible crack&quot; while showing it to a friend. Both got replacements at their local Apple Stores. An Apple spokesman told the Journal the company is aware of an issue impacting the inner display on &quot;a small number&quot; of units, encouraged affected customers to contact AppleCare for a replacement, did not say how many units are affected, and said Apple is not recalling the product.</p>
+<p>Reuters adds the engineering hypothesis: repair specialist iFixit, using teardown footage, patents, and CT scans to simulate the hinge, found the reported damage clustered just below where a display cable runs under the screen near a central support bar, which may fail to drop out of the way as the phone folds, &quot;creating a small stress hotspot near the reported break location.&quot; Apple did not comment on iFixit&#x27;s findings, which also concluded the Duo is the most repairable foldable it has tested. It is Apple&#x27;s second hardware headache of the season, after it offered to replace some iPhone 18 Pro Max models unable to connect to AT&amp;T&#x27;s network. For a first-generation foldable in tight supply, the question now is whether this is a small batch defect or a hinge-design problem that shows up at scale.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.reuters.com/business/media-telecom/apple-says-it-will-replace-iphone-duo-units-showing-screen-problems-2026-10-26/">Reuters</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.jetbrains.com/platform/2026/10/jetbrains-terminal-now-uses-ghostty/">Ghostty 1.4 ships; libghostty takes over JetBrains terminals</a></h3>
+<div class="byline">
+<span class="src">JetBrains</span> &middot; Oct 27
+</div>
+<p class="dek">Ghostty 1.4 lands with ~90% scrollback compression and a security-fix nudge; its libghostty engine now powers the terminal in every JetBrains IDE.</p>
+<div class="body">
+<p>Ghostty 1.4 shipped after seven months, 172 contributors, and 2,889 commits — and it fixes 10 security advisories, so Mitchell Hashimoto&#x27;s note is blunt: &quot;please update.&quot; The headline numbers: scrollback compresses about 90% on average, overall memory is down 50–90% depending on workload, Kitty graphics support is &quot;100% complete, including animation&quot; (the first terminal besides Kitty itself), plus the Kitty clipboard protocol with image preview, ghostty +ssh installing terminfo on remote hosts automatically, a new OpenGL renderer on Linux, and macOS 27 support.</p>
+<p>The bigger story is libghostty. JetBrains has replaced its own JediTerm with libghostty for parsing and terminal state in every IDE, keeping its own rendering — the practical win is the Kitty keyboard protocol, so Shift+Enter starts a new line in a Claude Code, Codex, or Pi prompt instead of sending a half-written message. Hashimoto&#x27;s six-month tally: builds and CI across Apple platforms, Windows, Linux, FreeBSD, Android, WebAssembly, and freestanding hardware; bindings in C, Zig, Go, Swift, Python, Rust, and .NET; an empty terminal using 90% less memory; and verbal agreement to replace Neovim&#x27;s terminal core. libghostty 1.0, with ABI stability, is due in the next few months. Hashimoto also posted a template for reading any &quot;10x faster&quot; benchmark claim: a rival terminal&#x27;s benchmark overwrote a 64 KiB ring and parsed about 1% of its input — fast, because it threw the work away. If your agents live in a terminal, the engine underneath them just became shared infrastructure.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/mitchellh/status/2115124583170974193">X — @mitchellh on Ghostty 1.4</a> &middot; <a href="https://x.com/mitchellh/status/2115292243443519571">X — @mitchellh, benchmark teardown</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.pymnts.com/news/b2b-payments/2026/stripe-pay-targets-instant-b2b-payments/">Stripe Pay: instant B2B transfers by handle</a></h3>
+<div class="byline">
+<span class="src">PYMNTS</span> &middot; Oct 27
+</div>
+<p class="dek">Free, instant B2B transfers by business handle, in the Dashboard and CLI. Collison: account-to-account payments will matter more than person-to-person.</p>
+<div class="body">
+<p>Stripe launched Stripe Pay: instant, free business-to-business transfers by Stripe handle, from the Dashboard and the CLI. Find a company by its Stripe profile handle, verify the intended business, and send funds — the sender needs a funded financial account, the recipient a financial account linked to an existing Stripe profile. Patrick Collison&#x27;s framing: &quot;A2A payments will be more important than P2P payments.&quot;</p>
+<p>The launch matters less as a consumer product than as infrastructure. Account-to-account rails cut card fees out of B2B flows, and a handle-based directory inside Stripe&#x27;s network turns the profile — which Stripe already has for millions of businesses — into a payment address. The constraint to watch is the one in Stripe&#x27;s own documentation: both sides must be inside the Stripe financial-account world, so adoption will tell whether network convenience becomes a regular payment workflow or stays a feature for Stripe-native businesses. For a SaaS company, the interesting question is the agent-shaped one: a CLI-first, handle-addressed transfer is exactly the kind of primitive an agent can call — which is why the credential and approval design around it will matter more than the transfer itself.</p>
+<p>In adjacent infrastructure news from the same X lists: Oracle said Google TPUs are coming to Oracle Cloud, the first cloud outside Google to offer them; and SemiAnalysis reported NVIDIA&#x27;s first Rubin NVL72 submission running Kimi K3 at over 850 tokens per second per user, even at 2.8 trillion parameters. The compute market is fragmenting in exactly the direction Anthropic&#x27;s filing describes — every cloud wants a piece of every other lab&#x27;s workload.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/patrickc/status/2115183046811156885">X — @patrickc</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Four things worth opening properly, not skimming: the proof-build story, the verification-in-CI announcement, a masterclass in tar parsing as a security problem, and the hiring essay from inside Anthropic. Each is the authoritative source for its topic today.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom: formalizing the enormous theorem</a></h3>
+<div class="byline">
+<span class="src">Axiom</span> &middot; Oct 27
+</div>
+<p class="dek">The inside account of agent swarms formalizing a 15,000-page proof — proof maps, silent assumptions, and a checker that became the bottleneck.</p>
+<div class="body">
+<p>Read the build story, not just the headline number. Axiom&#x27;s account of formalizing the Classification of Finite Simple Groups is a field manual for running agent swarms on a project no single person can hold in their head: the proof map as shared state, milestones claimed through GitHub issues, lead agents decomposing and reviewing, the silent-assumption failure mode that cost tens of thousands of lines, and the checker bottleneck that forced distributed caching and checkable certificates. The errata section — 34 deviations, including a rerouted route to the Unbalanced Group Theorem — shows what machine-checking a human proof actually buys: not certainty that the theorem is true, but a precise list of where the literature was wrong. For the Riot platform, the transferable lesson is organizational: shared proof maps, explicit prerequisites, and verification that cannot be gamed by the agent it checks.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://cfsg.axiommath.ai/">CFSG in Lean — proof map and errata</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.harmonic.fun/news/aristotle-software-hardware-verification/">Harmonic Aristotle for C and Verilog</a></h3>
+<div class="byline">
+<span class="src">Harmonic</span> &middot; Oct 27
+</div>
+<p class="dek">What proof-in-CI looks like in practice: properties, counterexamples, and the assumptions behind every proof, on every commit.</p>
+<div class="body">
+<p>Harmonic&#x27;s announcement is the clearest picture yet of what &quot;proof on every commit&quot; looks like as a developer workflow: properties in plain English or as assertions, aristotle.toml in the repo, aristotle ci reporting like tests. Start with the CI story and the three claims — Tensordyne&#x27;s 110,000-cycle-deep bugs, LibTomMath&#x27;s three fixes and proved speedup, the four-hour fusion reproduction — then read the product page for what C and Verilog properties are actually supported, and the PyPI page for aristotlelib 3.0.0 if you want to try the interface. The question to carry into your own platform: which properties of your agent harness would you state in plain English, and who reviews the statement?</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.harmonic.fun/aristotle/">Aristotle product page</a> &middot; <a href="https://pypi.org/project/aristotlelib/">aristotlelib on PyPI</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://astral.sh/blog/tar-codec">Astral&#x27;s tar-codec: tar parsing as a security problem</a></h3>
+<div class="byline">
+<span class="src">Astral</span> &middot; Oct 27
+</div>
+<p class="dek">Astral&#x27;s tar-codec is ~2x faster — but read it for the parser differentials: when tools see different files in the same tarball, that is a supply-chain risk.</p>
+<div class="body">
+<p>Since uv 0.13, Astral&#x27;s package manager parses source distributions with tar-codec, roughly twice as fast as its predecessor. The post is worth reading for the background, not the speed: tar comes in V7, UStar, pax, and GNU dialects, and ambiguity among them allows parser differentials, where uv, pip, and other tools can see different files in the same tarball. That is a supply-chain problem wearing a file-format costume, and Astral&#x27;s write-up explains the dialects, the ambiguities, and the design decisions with unusual clarity. If your agents install, unpack, or verify anything — and they do — the mental model here transfers directly: when two parsers can disagree about the same bytes, the disagreement is the vulnerability.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://felixrieseberg.com/hunger-beats-tenure-advice-for-junior-engineers/">&quot;Hunger beats tenure&quot;: advice for junior engineers</a></h3>
+<div class="byline">
+<span class="src">Felix Rieseberg</span> &middot; Oct 27
+</div>
+<p class="dek">Hiring and career advice for the post-coding-interview era, from an Anthropic engineering manager: prototypes over PRDs, one radical idea, business impact first.</p>
+<div class="body">
+<p>Felix Rieseberg&#x27;s essay is the most practical thing written this week about engineering careers after the coding interview. Five rules, each with a story: pick business impact over backlog; pick a radical idea aimed at your manager&#x27;s manager&#x27;s goals; build it over a weekend instead of writing PRDs; focus on one good idea; lean on fresh eyes. The Claude Code graphical interface — prototyped in a weekend by two new engineers, shipped in about eight days — is the worked example. Read it twice: once for what it says to juniors on your team, and once for what it implies about how you run hiring loops and weekend prototypes at the SaaS. The replacement interview does not exist yet; the essay is honest about that, and the architecture-interview suggestion in the replies is the best candidate so far.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
