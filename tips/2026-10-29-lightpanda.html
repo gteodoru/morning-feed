@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lightpanda: the headless browser built from scratch for machines, not humans — Morning Feed Tips</title>
+<style>
+body { margin: 0; background: #f4f1ea; color: #1a1a1a;
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { max-width: 680px; margin: 0 auto; background: #fdfcf8;
+        padding: 30px 28px 44px; }
+.kicker { font-variant: small-caps; letter-spacing: 2px; color: #8b0000;
+          font-size: 14px; margin-bottom: 6px; }
+h1 { margin: 0 0 8px; line-height: 1.25; font-size: 30px; }
+.meta { color: #6b6b6b; font-size: 13px; font-style: italic;
+        margin-bottom: 18px; }
+.meta a { color: #8b0000; }
+.dek { font-weight: bold; line-height: 1.5; font-size: 16px;
+       border-left: 3px solid #8b0000; padding-left: 12px; margin: 0 0 20px; }
+h2 { font-variant: small-caps; letter-spacing: 1px; font-size: 19px;
+     border-bottom: 2px solid #1a1a1a; padding-bottom: 6px; margin: 26px 0 12px; }
+p { line-height: 1.65; margin: 0 0 12px; font-size: 15px; }
+.links { margin-top: 24px; font-size: 14px; }
+.links .slabel { font-style: italic; color: #6b6b6b; }
+.links a { color: #8b0000; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+ul.tips { list-style: none; padding: 0; }
+ul.tips li { padding: 12px 0; border-bottom: 1px dotted #bbb; }
+ul.tips a.title { color: #1a1a1a; text-decoration: none; font-size: 18px; }
+ul.tips a.title:hover { color: #8b0000; text-decoration: underline; }
+ul.tips .d { color: #6b6b6b; font-size: 13px; font-style: italic; }
+ul.tips .sum { font-size: 14px; color: #4a4a4a; margin-top: 4px; line-height: 1.5; }
+.back { display: inline-block; margin-top: 24px; font-style: italic;
+        font-size: 14px; color: #8b0000; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+</style></head><body><div class="page">
+<div class="kicker">Morning Feed &middot; Research Tip</div>
+<h1>Lightpanda: the headless browser built from scratch for machines, not humans</h1>
+<div class="meta">Added Oct 29 &middot;
+<a href="https://lightpanda.io/">original article</a></div>
+<p class="dek">Lightpanda is a headless browser written from scratch in Zig — no Chromium, no rendering, no layout engine — built for machines, not humans. Version 1.0 landed October 2, 2026, and the independent tests say the vendor&#x27;s 9x/16x claims shrink to ~2x on real sites — which is still a real win, with a Chromium fallback as the honest setup.</p>
+<h2>What it is</h2><p>Lightpanda (lightpanda.io, repo lightpanda-io/browser, AGPL-3.0, ~37.7K stars, 1,835 forks, 11,326 commits) is a headless browser built from scratch in Zig over two years — not a Chromium fork, not a WebKit patch. It runs JavaScript with V8, parses HTML with html5ever, and skips graphical rendering entirely: no layout, no paint, no GPU, no screenshots. What it builds is the DOM and the JavaScript environment — exactly what automation, scraping, and AI agents actually consume.</p><p>Version 1.0 shipped October 2, 2026 (1.0.1 followed October 15), exiting beta after 10,000+ commits. At release the project reported 1,739,845 Web Platform Tests subtests passing — up from 2,645 in November 2024, roughly 80% of Chrome&#x27;s count — plus CORS enforcement by default and V8 15.5.35.13. The team says some companies already process over 30 million pages a day with it.</p><p>It speaks the protocols your existing tooling already uses: CDP (Puppeteer, Playwright, chromedp) and WebDriver BiDi (Selenium), so scripts connect to a Lightpanda endpoint instead of launching Chrome — one line changes. It also ships a native agent mode (plain-language driving that exports a deterministic, token-free PandaScript you can replay without a model at runtime), an MCP server with per-session isolation (each agent gets its own page, cookies, and memory), and a managed cloud offer where you pick the Lightpanda or Chrome engine per workload. Integrations already include Vercel&#x27;s agent-browser CLI, OpenClaw, Dust, Nous Research, and trigger.dev. The founders (Francis and Pierre, ex-scraping-at-scale) fund it with a managed cloud browser-as-a-service.</p><p>The vendor benchmark: requesting 933 real pages on an AWS EC2 m5.large, 5 seconds vs 46 for headless Chrome and 123MB peak memory vs 2GB — &#x27;9x faster, 16x lighter.&#x27; Note the benchmark page itself is a homemade demo site, with the team explaining it is used &#x27;because Lightpanda browser is not yet fully compliant.&#x27;</p><h2>What people are saying</h2><p>The Show HN thread (319 points, 137 comments) from the founders&#x27; launch post set the tone: genuine excitement that someone finally rebuilt the browser for machines, tempered by &#x27;most websites will fail or crash&#x27; honesty from the team itself in beta.</p><p>The most useful independent check is doccraft&#x27;s: 28 real JavaScript homepages, Lightpanda 1.0.1 vs headless Chromium on the same day. With the default wait setting Lightpanda built only 12 of 28; with one wait flag changed it built 21 in the first run and 22 in the second — and on the sites it built, its extracted text matched Chromium closely. The measured gap was far more modest than the vendor&#x27;s: about 1.8–2.4x faster and 2.8–4.5x less memory, with the memory advantage shrinking as Chromium shared one browser across pages. His conclusion is the practical one: Lightpanda-first with a completeness check, failed pages falling back to Chromium.</p><p>Decodo&#x27;s proxy tutorial (updated Oct 26, 2026) adds the anti-bot picture: on protected pages with identical residential proxies, Chrome with a desktop user agent loaded 7 of 9, Lightpanda 5, default headless Chrome 3 — and HTTP clients alone loaded 6, a reminder that the browser is not always the hard part. A webfuse comparison found a concrete coverage gap: Stripe&#x27;s docs SPA rendered no body text because indexedDB and Element.scrollTo were unimplemented in the tested nightly. And the AGPL-3.0 license matters if you embed rather than just run it — self-hosting over Docker is free, but the copyleft terms deserve a read before it goes inside a commercial product. Telemetry is also on by default (LIGHTPANDA_DISABLE_TELEMETRY=true turns it off).</p><h2>What to take away</h2><p>For the Riot platform work, this is the cost-and-scale side of the agent-infra story that has been running all month: agents that browse the web at fleet scale cannot each carry a full Chrome. Lightpanda is the most credible &#x27;browser for machines&#x27; bet yet — 1.0, real WPT coverage, CDP-compatible so existing Playwright/Puppeteer code just connects. The honest architecture from the independent tests is Lightpanda-first with a Chromium fallback, which is exactly how you would run it behind an agent fleet anyway: cheap and fast for the 75% of pages it handles, Chrome for the rest.</p><p>For the SaaS, the near-term use is narrower — scraping, monitoring, and agent-driven QA where screenshots don&#x27;t matter — but the agent mode plus PandaScript is the interesting pattern: prototype a web task in natural language, export a deterministic script, run it token-free in production. That is the same &#x27;record once, replay cheap&#x27; idea as the agent-skills work, applied to the browser. Watch Web API coverage (the Stripe indexedDB gap is the kind of thing that bites silently) and keep the AGPL terms in mind before embedding.</p>
+<div class="links"><span class="slabel">Sources:</span><div><a href="https://lightpanda.io/">Lightpanda — official site</a></div><div><a href="https://github.com/lightpanda-io/browser">GitHub — lightpanda-io/browser</a></div><div><a href="https://linuxiac.com/lightpanda-1-0-released-as-lightweight-headless-browser-exits-beta/">Linuxiac — Lightpanda 1.0 exits beta</a></div><div><a href="https://doccraft.dev/blog/lightpanda-real-sites">doccraft — Lightpanda 1.0 on 28 real JavaScript sites</a></div><div><a href="https://decodo.com/blog/lightpanda-browser">Decodo — Lightpanda tutorial and protected-site test</a></div></div>
+<a class="back" href="./">&larr; All tips</a>
+<a class="back" href="../">&larr; Latest edition</a>
+</div></body></html>
