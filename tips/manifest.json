@@ -128,7 +128,7 @@
       "section": "AI Development Practices",
       "summary": "Lightpanda is an open-source headless browser written from scratch in Zig \u2014 no Chromium, no rendering \u2014 built for AI agents and automation. Version 1.0 shipped October 2, 2026 (AGPL-3.0, ~37.7K stars), speaking CDP and WebDriver BiDi so Puppeteer/Playwright scripts connect unchanged, with a native agent mode that exports deterministic token-free PandaScripts and an MCP server with per-session isolation. The vendor claims 9x faster / 16x less memory than headless Chrome; the best independent test (28 real JS sites) found ~2x faster and ~3-4x less memory, building 21-22 of 28 pages with the right wait setting \u2014 Lightpanda-first with a Chromium fallback is the honest setup. Gaps: partial Web API coverage (indexedDB, scrollTo), no screenshots, telemetry on by default.",
       "page": "tips/2026-10-29-lightpanda.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
