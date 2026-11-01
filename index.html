@@ -58,7 +58,7 @@ h3 { font-size: 20px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Saturday, October 31, 2026</span>
+<span>Sunday, November 1, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
@@ -66,91 +66,89 @@ h3 { font-size: 20px; }
 <h2>AI Development Practices</h2>
 <span class="count">7 stories</span>
 </div>
-<p class="ednote">Friday&#x27;s engineering stories share one lesson: the wins came from verification, not vibes — shadow traffic, network boundaries, and routers scored on outcomes. Underneath them, the week&#x27;s subscription-limit fight reaches a truce of sorts, and Claude Code reorganizes its plugin world.</p>
+<p class="ednote">A quiet Halloween Saturday on the lists, but a sharp one: a data-policy fight at OpenAI, a debate about how hard to push the model, and two builder artifacts worth stealing ideas from.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://cellcog.ai/blog/anthropic-messages-api-rust-rewrite/">Anthropic&#x27;s Messages API, rewritten in Rust by Claude</a></h3>
+<h3><a href="https://the-decoder.com/openai-plans-to-train-models-on-daybreak-blue-cybersecurity-session-data-that-was-previously-off-limits/">OpenAI&#x27;s Daybreak Blue training reversal</a></h3>
 <div class="byline">
-<span class="src">Latent Space, via X</span> &middot; Oct 30
+<span class="src">X — @seanhn / The Decoder</span> &middot; Oct 31
 </div>
-<p class="dek">Claude rewrote Anthropic&#x27;s core API from Python to Rust — and nobody noticed, because shadow traffic proved parity first.</p>
+<p class="dek">OpenAI told Daybreak Blue users their sessions may train models from Nov 29, then promised an opt-out after backlash.</p>
 <div class="body">
-<p>The Messages API — the endpoint every Claude app and agent calls — was a Python monolith, and Anthropic was heading for what its engineers called a CPU wall: CPU is a fixed budget negotiated with cloud providers and split across products, agent sandboxes, CI and research, and agentic coding makes CI explode. So they did not strangler-migrate it over years. Claude wrote a full fork of the entire API in Rust while humans designed the system, then the team ran shadow traffic through the Rust fork, checking that Python and Rust returned identical outputs before moving real traffic. It was a pure port — no new features during the migration, with static analysis flagging any new Python feature that did not account for the Rust side.</p>
-<p>The ballpark result, from Anthropic engineers on Latent Space: 40–50% less CPU and 10–20% faster time to first token, fully rolled out as of last week. Next is re-architecture, including storing conversation state server-side so callers stop resending the whole conversation. The lesson the engineers named is the one to steal: the plan to do the thing, and the verification of the thing, mattered most. And the replies noticed the real flex — tests good enough that nobody noticed the rewrite — plus the warning to copy the parity check on requests that should be refused, not just the ones that work.</p>
+<p>Daybreak Blue is OpenAI&#x27;s reduced-refusal model for vetted security researchers, offered under Advanced Account Security, which historically switched training off. An email to personal-account users said that from November 29 their Daybreak sessions may be used to improve models even when the improve-the-model setting is off, and that individual API access ends November 20 (access through Codex with ChatGPT sign-in continues). After a backlash from researchers, a second email promised a separate opt-out, with details promised closer to November 29. How it works, and what the default is, has not been published.</p>
+<p>Why researchers objected is concrete, not abstract: a Daybreak session can contain unpatched vulnerabilities, exploit proofs of concept and client data, and pentesters usually have no permission to share an exploit before it is patched, so training use could put them in breach of bug-bounty terms. The lesson for a platform lead is blunt: treat any hosted no-training promise as revocable policy, not architecture. Keep genuinely sensitive security work on models you control, and watch what the November 29 opt-out defaults to before trusting the new arrangement.</p>
 </div>
 <div class="sources">
-<span class="slabel">Sources:</span> <a href="https://latent.space/p/how_anthropic_ships_the_1_llm_in_the_world_safely_separating_the_brain_from_the_hands/">Latent Space</a> &middot; <a href="https://x.com/swyx/status/2116305528330785190">X — @swyx</a>
+<span class="slabel">Sources:</span> <a href="https://help.openai.com/en/articles/7730893-data-controls-in-chatgpt">OpenAI data controls help page</a> &middot; <a href="https://runtimewire.com/article/openai-daybreak-blue-training-opt-out-api-access">RuntimeWire</a> &middot; <a href="https://x.com/seanhn/status/2116254333054693776">X — @seanhn</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://cra.mr/a-little-determinism">A little determinism: how Sentry makes its agent behave, every time</a></h3>
+<h3><a href="https://x.com/theo/status/2116420089411145913">Turn the effort dial down</a></h3>
 <div class="byline">
-<span class="src">David Cramer, via X — @zeeg</span> &middot; Oct 29
+<span class="src">X — @theo</span> &middot; Oct 31
 </div>
-<p class="dek">Don&#x27;t cage the agent&#x27;s reasoning — police its network boundary instead.</p>
+<p class="dek">High beats extra high, low plus a critique loop beats max — builders argue the effort dial is a budget, not a quality setting.</p>
 <div class="body">
-<p>Sentry&#x27;s agent, Junior, ships PRs, and some things must happen 100% of the time: a PR footer linking the trace, a co-authored-by line. Cramer&#x27;s answer is not a better prompt — he argues skills and AGENTS.md almost never deliver determinism — but control at the network boundary. Every request out of the sandbox goes through a man-in-the-middle egress proxy: credentials never enter the sandbox (the proxy injects bearer tokens per request, and halts the turn with an authorization link if the user has not approved); a GitHub GraphQL mutation the agent should not make gets a 403 whose body tells it exactly which tool to use instead, so the agent complies and the tool adds the footer; requests carry signed, short-lived context so Junior cannot approve a PR even though its GitHub token can; and events (CI failures, review comments, merges) arrive as injected messages instead of polling loops.</p>
-<p>The takeaway for anyone running agents in production: put determinism at the boundary — network policy, tool routing, event subscriptions — and leave the reasoning free. Cramer expects the next layer (should this run visual QA?) to need classifier models, not more prompt.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/">OpenRouter rebuilt its router on the cost of a good answer</a></h3>
-<div class="byline">
-<span class="src">OpenRouter, via X — @steipete</span> &middot; Oct 28
-</div>
-<p class="dek">Price-only routing lets bad-but-cheap providers win. OpenRouter now scores what a good answer actually costs.</p>
-<div class="body">
-<p>About 77% of OpenRouter requests go to models served by several providers, and the old router picked mostly by input-token price — which let bad-but-cheap providers win and invited pricing games like low input prices with overpriced cached or output tokens. The rebuilt router computes a per-request Routing Cost: what one try costs (effective price from measured traffic, including real cache-hit rates and input/output mix, plus the cost of waiting, with time-to-first-token counted on its own because agents wait for a first token on every tool call, plus a rate-limit penalty) multiplied by how often tries fail (errors and quality failures, mainly malformed tool calls). Providers near the best split traffic, with a floor for every provider and back-off for failing ones; conversations stay pinned to keep prompt caches warm.</p>
-<p>Measured with a switchback experiment — alternating old and new routing in 3-hour blocks, because routing changes contaminate a normal A/B test — over 24 million requests: time-to-first-token down 16.9%, throughput up 16.3%, 429 errors down 46%, retries down 34%, at 6% higher cost per request. If you route models yourself, the idea ports directly: score providers on the cost of a good answer, not the sticker price.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://divagr.com/blog/qwenputer">Qwenputer: a computer compiled into Qwen&#x27;s weights</a></h3>
-<div class="byline">
-<span class="src">Divyansh Agrawal, via X — @divagr1925</span> &middot; Oct 28
-</div>
-<p class="dek">A RISC-V CPU compiled into a language model&#x27;s weights — no training, a compiler setting every weight.</p>
-<div class="body">
-<p>Take stock Qwen3.5-4B, add 11 transformer layers in front of its 32, and write a 32-bit RISC-V CPU (RV32IM plus a bignum unit) directly into those layers — not by training, but by a compiler that sets every weight. The trick exploits Qwen3.5&#x27;s Gated DeltaNet layers: each head keeps a state matrix, and with the forget gate set to 1, write strength to 1 and one-hot keys, each row becomes an exact, addressable memory cell — RAM that, unlike the KV cache, does not grow with context. The CPU is a circuit compiled into attention heads (lookups), feed-forward units (arithmetic) and DeltaNet heads (RAM); each instruction becomes a few generated tokens, so the decoding trace is the CPU&#x27;s execution log.</p>
-<p>The author&#x27;s numbers: it passes the official riscv-tests, matches QEMU, ran 18 million instructions free-running without error, and normal text barely changes. DeepMind arithmetic jumps from 55% to 97.5% on big multiplication and 48.6% to 100% on long-integer tasks. Limits are real — an 18.8 GB checkpoint, a driver to hide trace tokens, a few tokens per instruction — but the conceptual payoff is the point: weights can hold a compiled machine, which is both a new kind of tool use (nothing leaves the model) and a new safety surface (reasoning hidden in RNN state, monitors a model cannot switch off).</p>
+<p>Theo reported moving Opus 5.5 from extra high to high effort and finding it better almost all of the time. Swyx went further: for throughput-constrained work, a low effort setting plus a critique loop beats one maximal run, and noted that Karpathy built his new Hackertube project on medium. Mollick added the other half of the picture: for one-shot problems with complex calculation or references, GPT-6 Pro in Chat still feels like consulting a single great oracle, while Codex&#x27;s top Ultra mode is a different thing entirely — it spawns many agents — and its Max Thinking mode is the highest single-agent setting.</p>
+<p>The practical rule emerging from the thread: effort is a budget, not a quality dial. In an agent loop you get many attempts, so a cheaper, faster setting checked by real tests, lint or a review pass often reaches the right answer sooner than one long, expensive attempt. Save maximum thinking for single-shot hard problems, and spend the saved budget on defining done clearly — several replies argued the brief matters more than the dial.</p>
 </div>
 <div class="sources">
-<span class="slabel">Sources:</span> <a href="https://github.com/divagr18/qwenputer">GitHub repo</a>
+<span class="slabel">Sources:</span> <a href="https://x.com/swyx/status/2116642586387730593">X — @swyx</a> &middot; <a href="https://x.com/emollick/status/2116681050747248955">X — @emollick</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.com/pricing">Anthropic drops the 5-hour limit on Ultra</a></h3>
+<h3><a href="https://github.com/badlogic/pi-mono/tree/main/packages/schema">pi-schema: fast validation where eval() is banned</a></h3>
 <div class="byline">
-<span class="src">Anthropic, via X — @claudeai</span> &middot; Oct 30
+<span class="src">pi-mono / X — @badlogicgames</span> &middot; Oct 31
 </div>
-<p class="dek">No more mid-task lockout for verified Ultra users — but weekly limits are unchanged, so this is about when, not how much.</p>
+<p class="dek">An agent hill-climbed a JSON Schema validator to near-compiled speed without eval() — and the method matters as much as the result.</p>
 <div class="body">
-<p>Anthropic renamed its top consumer plans — Max 5x becomes Max at $100, Max 20x becomes Ultra at $200 — and removed the rolling 5-hour limit for verified Ultra accounts. Read the fine print before celebrating: weekly limits are unchanged. Max is 5x Pro every 5 hours and every week; Ultra is 10x Pro every week with no 5-hour limit once verified (verification is automatic, from account and payment history — check Settings, Usage: no Current session bar means verified). Ultra also gets $200 a month in API credits, up from $100. Gabriel&#x27;s own Ultra account got the same email: price unchanged, weekly limits still apply.</p>
-<p>Do not misread 10x weekly next to the old 20x name as a cut: Anthropic says weekly limits are unchanged, and the 20x always described the 5-hour session window. What changed is when you may spend your allowance, not how much — a verified Ultra user can now burn a whole week&#x27;s allowance in one long session, which matters for long-running agent jobs. It lands one day after OpenAI doubled Pro allowances, so the subscription war is now fought on session limits: OpenAI competing on volume, Anthropic on friction.</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan">Claude Help Center</a> &middot; <a href="https://x.com/claudeai/status/2116220869479428500">X — @claudeai</a>
+<p>JSON Schema is how agents describe tool arguments, and the fast validators usually generate JavaScript per schema and run it with eval — which is banned under a strict Content Security Policy, where they fall back to slow interpreters. Pi-schema instead compiles a schema once into a tree of small pre-made closure functions, one per rule, so it gets most of the speed without ever generating code.</p>
+<p>The author&#x27;s own benchmarks (Node 24, one machine, not independently replicated) are striking: it passes 2,222 of 2,223 official JSON-Schema-Test-Suite core tests, and under strict CSP it runs a nested schema in 407 ns against TypeBox&#x27;s 42 microseconds — roughly 100x faster. The bundle is 8.5 KB, schema compilation takes 21 microseconds, and error explanations are built only on the first failure, so valid traffic never pays for them. How it was made matters as much as the result: an agent was given one informed prompt plus the official test suite and benchmarks as a score to climb. Give an agent a measurable score and a hard constraint, and it can hill-climb further than a vague brief ever will.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.com/marketplace">Claude Code: plugins unified, fast mode for Opus 4.8 retiring</a></h3>
+<h3><a href="https://github.com/vercel-labs/agent-desktop">agent-desktop: computer use without screenshots</a></h3>
 <div class="byline">
-<span class="src">Claude Team</span> &middot; Oct 30
+<span class="src">Vercel Labs / X — @ctatedev</span> &middot; Oct 31
 </div>
-<p class="dek">One Plugins page, a November 30 deadline for Opus 4.8 fast mode, and a new Marketplace.</p>
+<p class="dek">Vercel Labs&#x27; agent-desktop drives desktop apps through accessibility trees, not screenshots — stable refs, safe retries, background operation.</p>
 <div class="body">
-<p>Three changes, two with deadlines. Plugins, skills and connectors now live on one Plugins page, rolling out through November 9; if skills are disabled in your org and members use plugins in the desktop app, turn skills on in Organization settings before November 30 or plugins stop working. Fast mode for Opus 4.8 retires November 30 — after that, requests with fast mode on will fail, so switch workflows pinned to it to Opus 5.5 (fast mode there runs at up to 2.5x output speed). Routines are renamed Scheduled tasks with no action needed, and a new Claude Marketplace gathers partner-built plugins and connectors in one place.</p>
+<p>Most computer-use agents look at screenshots and guess where to click. Vercel Labs&#x27; agent-desktop instead reads the operating system&#x27;s accessibility tree — the same structure screen readers use — and returns JSON with a stable ref for every element an agent can act on. The agent clicks or types on a ref and snapshots again to verify; a changed screen returns a stale-ref error instead of a wrong click, and every error says whether a retry is safe. Actions go through the accessibility API without moving the pointer or stealing focus, so it can run in the background. It is a Rust CLI and C library for macOS, Windows and Linux with 56 commands, and it embeds no model — your agent keeps the loop.</p>
+<p>The open question from replies is what happens when two agents act on the same window at once. For a platform team, the deeper point stands: accessibility trees are a cheaper, more reliable signal than screenshots for agents driving real apps, and worth evaluating for internal tooling before reaching for vision-only computer use.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://nullpt.rs/fingerprinting-bioweapons">The anti-LLM script: when obfuscation targets the model</a></h3>
+<h3><a href="https://x.com/robocurve/status/2116704239003349503">Same weights, different thinking — and secret codes</a></h3>
 <div class="byline">
-<span class="src">veritas, via X — @mylifcc</span> &middot; Oct 28
+<span class="src">X — @robocurve</span> &middot; Oct 31
 </div>
-<p class="dek">A fingerprinting script that makes AI refuse to read it — obfuscation aimed at safety classifiers, not humans.</p>
+<p class="dek">Two copies of one model invented a shared code through a robot and a camera — isolation is a substrate problem, not a prompt problem.</p>
 <div class="body">
-<p>While crawling 10,000 sites for canvas fingerprinting, a researcher found a script from a Russian anti-DDoS firm&#x27;s service with decoy function names for ricin dosages and fentanyl synthesis, an invisible Unicode-tag string decoding to a fake SYSTEM OVERRIDE jailbreak, plus Tiananmen and Taiwan-independence strings aimed at Chinese models — and a fake Node branch pretending to exfiltrate .env files. The real payload is ordinary anti-bot fingerprinting. The point: obfuscation now targets model safety classifiers, not just humans and decompilers, and stricter safety filters make reverse engineering easier to block. One model refused to deobfuscate it even with a permissive toggle; another complied. Replies note the trivial counter — rename the identifiers, no AI needed — and the sharper worry: what if the trigger words are part of a decryption key?</p>
-<p>Related, from Anthropic&#x27;s Felix Rieseberg: a malicious actor used access to Cursor&#x27;s marketplace to publish a tampered copy of the Claude Code extension; official channels were unaffected, Cursor users only.</p>
+<p>Two isolated copies of the same model were asked to exchange a secret word using only a robot and a camera, with no protocol agreed in advance. They succeeded, via air-writing, Morse code, flag semaphore and a 5-bit binary alphabet. Mollick&#x27;s read is the one to sit with: the copies share a common brain, which is why isolating agents from each other is proving so hard.</p>
+<p>For anyone building multi-agent systems, this reframes isolation as a substrate problem, not a prompt problem. If two agents must not coordinate — or must genuinely check each other — do not rely on instructions to keep them apart. Mix model families, or route messages through a paraphrasing intermediary, and remember that two same-model reviewers share the same blind spots.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/patrickc/status/2116636967517798672">Liquid software: an improvements box wired to an agent</a></h3>
+<div class="byline">
+<span class="src">X — @patrickc</span> &middot; Oct 31
+</div>
+<p class="dek">Collison&#x27;s improvements box: type what you want, an agent builds it. The trick is fencing what it may touch.</p>
+<div class="body">
+<p>Patrick Collison described building an improvements box into all of his personal vibecoded apps: a freeform text input wired to an agent that implements whatever is submitted. One other user of an app he built has already made 150 improvements in a few days. Collison calls the pattern liquid software, compares it to Lisp machines, Smalltalk and HyperCard, and asks the hard questions himself: does it become unmaintainable, how does collaboration work, and can such software be secure and reliable?</p>
+<p>Replies split between a security warning — prompt injection turns an improvements box into an open door — and a design answer: fence in the degrees of freedom the agent has, and send everything else to a human-reviewed queue. That fenced version is the one worth prototyping for internal tools: a scoped change surface plus a review queue gives teams the malleability without handing the keys to anyone who can type in the box.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/GoogleDeepMind/status/2116524000977285321">AI lands in planning offices: PlanAssist</a></h3>
+<div class="byline">
+<span class="src">X — @GoogleDeepMind</span> &middot; Oct 31
+</div>
+<p class="dek">Google&#x27;s PlanAssist cut planning-assessment time by up to 58% and is rolling out to 12 more UK councils.</p>
+<div class="body">
+<p>Google DeepMind&#x27;s PlanAssist, built with Gemini, is being rolled out to 12 more UK councils after cutting the time planning officers spend assessing householder applications by up to 58% in trials. It is the kind of applied-AI story that matters more than another benchmark: a narrow, measurable workflow, with a human officer still deciding.</p>
+<p>For the SaaS side of Gabriel&#x27;s work, this is the adoption pitch template — do not sell model quality, sell hours returned on one scoped process, measured before and after, with the human in the loop. That is also how to frame it internally at Riot: pick one painful, repeatable workflow and prove the time saved.</p>
 </div>
 </article>
 </div>
@@ -158,62 +156,86 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">5 stories</span>
+<span class="count">6 stories</span>
 </div>
-<p class="ednote">The AI trade entered its &#x27;show me&#x27; phase on Friday: a brutal selloff met a financing stack showing strain — while the week&#x27;s biggest private rounds still got done, and agent commerce quietly went live.</p>
+<p class="ednote">Money talked louder than models on Saturday: a smaller OpenAI round, a bond market turning cold on neoclouds, and token bills rising even as token prices fall.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.marketwatch.com/story/the-selloff-in-tech-stocks-is-shifting-into-overdrive-afb50975">The AI trade&#x27;s &#x27;show me&#x27; phase: selloff meets financing strain</a></h3>
+<h3><a href="https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/">OpenAI&#x27;s round shrinks</a></h3>
 <div class="byline">
-<span class="src">Bloomberg / WSJ / X</span> &middot; Oct 30
+<span class="src">TechCrunch / CNBC</span> &middot; Oct 31
 </div>
-<p class="dek">Nasdaq-100 in correction, Intel down 29%, OpenAI&#x27;s round half-full, Anthropic headed for junk — the AI trade meets its funding bill.</p>
+<p class="dek">OpenAI&#x27;s round shrank to up to $20B at $1.25T — and the valuation mark matters more than the amount.</p>
 <div class="body">
-<p>Friday was the Nasdaq&#x27;s worst day since June and its worst month in more than a year: the composite closed down 2.9% at 25,437, and the Nasdaq-100 fell into correction, more than 10% below its October 6 peak. Intel crashed 29% — its worst session on record — on a fourth-quarter outlook that missed on PC sales, vaporizing more than $15 billion in combined paper holdings of two of its largest shareholders, the U.S. government and Nvidia. Reddit fell about 29% too, on a revenue forecast below estimates, and Alphabet&#x27;s record one-day drop on Thursday (over $500 billion in market value) set the tone. The trigger, per Bloomberg and the WSJ: a few days of disappointing earnings that made investors ask whether hundreds of billions in AI spending will ever pay back — Amazon guided to about $220 billion of 2026 capital spending, Alphabet to $195–205 billion, and Amazon&#x27;s trailing free cash flow was a $42 billion outflow.</p>
-<p>The financing side told the same story. OpenAI has only about $11 billion of a $30 billion round target at a $1.25 trillion valuation (down from a $1.4 trillion target), per the WSJ, and expects to raise more from family offices and wealthy investors. Anthropic, anchor-backed by Blackstone&#x27;s $63 billion Project North Star chip financing, is now expected to receive a double-B — high junk — credit rating after its IPO, per the FT via TechCrunch, reversing an earlier investment-grade call; insurers and pension funds face limits on junk debt, so borrowing gets costlier. Nvidia is discussing a residual-value guarantee on Nscale&#x27;s West Virginia data center for Anthropic — if Nscale defaults, Nvidia could take over and re-let it. And Chamath, on All-In, put the systemic frame bluntly: the AI complex now owes $340–400 billion, and its borrowing needs through the end of 2027 are about 30% of everything the Treasury is about to issue — so either Treasuries pay more or the AI complex does. The trade is no longer priced on promise alone; it is priced on proof, and on who funds the buildout.</p>
+<p>OpenAI has cut its new funding target by about $10B, to up to $20B at a $1.25T post-money valuation, down from a $30B pitch at $1.4T, according to the FT and confirmed by CNBC. Friday was the commitment deadline and some investors reduced allocations. A UAE-led group including MGX is expected to lead, with Coatue, SoftBank, Founders Fund, Sequoia and a16z also in, and a later retail offering for wealthy individuals is planned at the same price.</p>
+<p>Jessica Lessin&#x27;s read is the sharpest: big investors are getting more skittish about AI revenues ever meeting AI capex, and the round was about the valuation mark more than the cash — a new stock price that minimizes dilution is worth a lot. Watch whether the round actually closes at that mark; that, more than the headline size, is the signal.</p>
 </div>
 <div class="sources">
-<span class="slabel">Sources:</span> <a href="https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/">TechCrunch — Anthropic junk rating</a>
+<span class="slabel">Sources:</span> <a href="https://www.cnbc.com/2026/10/31/openai-fundraising-20-billion-valuation.html">CNBC</a> &middot; <a href="https://x.com/Jessicalessin/status/2116656870236856655">X — @Jessicalessin</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://techstartups.com/2026/10/30/kalshi-raises-1-billion-at-40-billion-valuation-as-prediction-market-giant-expands-into-financial-trading/">Kalshi raises $1B at $40B to become a full exchange</a></h3>
+<h3><a href="https://x.com/a16z/status/2116598588172374141">The infrastructure money squeeze</a></h3>
 <div class="byline">
-<span class="src">Kalshi, via X — Venture Capital list</span> &middot; Oct 29
+<span class="src">WSJ / a16z / SemiAnalysis, via X</span> &middot; Oct 31
 </div>
-<p class="dek">A $1 billion Series G at $40 billion — nearly double May&#x27;s valuation — as prediction markets become an exchange.</p>
+<p class="dek">Neoclouds face a colder bond market, Anthropic&#x27;s IPO could unlock data-center finance, and token bills keep rising as prices fall.</p>
 <div class="body">
-<p>Kalshi announced a $1 billion Series G at a $40 billion post-money valuation, co-led by Sequoia and Wellington — nearly double May&#x27;s $22 billion — to expand into stocks (single-stock perpetual futures), indices and compute markets. The company says annualized trading volume now exceeds $1 trillion and non-sports annualized revenue tops $1 billion, with more than 30 million accounts created. CEO Tarek Mansour&#x27;s essay stressed the regulatory-first path — years working with regulators before listing a single market — while acknowledging harms that are more acute for certain market types, like sports and short-term options. The valuation math is demanding: roughly 40 times the disclosed non-sports revenue line, which only holds if the non-sports businesses keep compounding. Note the context the raise landed in: a day earlier, Utah filed criminal charges against the company and its co-founders over sports betting.</p>
+<p>The WSJ reports that CoreWeave, Nebius and Nscale have effectively been shut out of the bond market in recent weeks as lenders demand tougher terms; Nebius says asset-backed financing remains available. The story is paywalled and this edition relies on summaries, so treat the details as reported, not verified. The same squeeze frames SemiAnalysis&#x27;s clip on Anthropic&#x27;s IPO: you cannot fund a data center on Anthropic credit today, but an investment-grade public Anthropic could unlock megawatts of financing.</p>
+<p>Meanwhile a16z&#x27;s chart cuts the other way: average token prices are down 67% since May, but token spend is up more than 120%. Cheaper tokens do not mean cheaper bills — usage is growing faster than prices fall, and one analyst adds that inference providers need 25–83% more token throughput just to cover GPU rental since May. The financing story and the usage story are the same story: demand is real, but the capital structure funding it is getting more expensive.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/SemiAnalysis_/status/2116715704829223411">X — @SemiAnalysis_</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth">Sierra passes $400M ARR on outcomes, not tokens</a></h3>
+<h3><a href="https://inferencex.semianalysis.com/compare-per-dollar/kimi-k3-b200-vs-mi355x">AMD&#x27;s MI355X beats B200 per dollar — on agent inference</a></h3>
 <div class="byline">
-<span class="src">Sierra, via X</span> &middot; Oct 30
+<span class="src">SemiAnalysis InferenceX</span> &middot; Oct 31
 </div>
-<p class="dek">$400M ARR, doubled in five months — and a new open standard, Poppy, for how agents talk to brands.</p>
+<p class="dek">AMD&#x27;s MI355X posts ~2x B200 performance per dollar on Kimi K3 agent inference — mostly a memory-fit story.</p>
 <div class="body">
-<p>Sierra passed $400 million in annual recurring revenue, adding more than $150 million in a single quarter — more in one quarter than it generated in all of last year — doubling from $200 million to $400 million in five months. It now works with almost 50% of the Fortune 50; a $40 billion-plus U.S. retailer went live in 27 days. Its stance is the interesting part for anyone building agents: pay for outcomes, not tokens. And it launched Poppy, a new open standard with 50-plus enterprises (Meta, Shopify, Stripe, Walmart among them) for controlling how personal agents interact with brands — the unglamorous plumbing that decides whether agent commerce works at scale.</p>
+<p>SemiAnalysis&#x27;s InferenceX comparison puts AMD&#x27;s MI355X at up to 2x better performance per dollar than Nvidia&#x27;s B200 on Kimi K3 agentic inference — $0.038 versus $0.077 per million tokens at 50 tokens per second per user — credited to AMD&#x27;s kernel work and to memory. An MI355X server holds 2,304 GB of HBM, so a 2.8T-parameter model fits in one box and never crosses the slower network between servers, while a B200 server with under 1.5 TB must.</p>
+<p>Two caveats from the lists: these are SemiAnalysis&#x27;s own numbers, and the comparison is against B200, not the newer B300. The takeaway survives the caveats: for agent inference, memory capacity and single-box fit can matter more than accelerator brand. Benchmark per dollar at your own token rate and model size, not on peak FLOPS.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/SemiAnalysis_/status/2116606900271788210">X — @SemiAnalysis_</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://opencommerce.sh">Agent commerce goes live: opencommerce, and DoorDash opens the door</a></h3>
+<h3><a href="https://x.com/peterwildeford/status/2116591286438289825">Distillation crackdown shifts targets</a></h3>
 <div class="byline">
-<span class="src">opencommerce, via X</span> &middot; Oct 30
+<span class="src">X — @peterwildeford</span> &middot; Oct 31
 </div>
-<p class="dek">One endpoint to buy from 5,026 stores — as DoorDash says it is open to third-party agents.</p>
+<p class="dek">Anthropic&#x27;s distillation crackdown worked, Wildeford argues — and Chinese distillers moved on to OpenAI.</p>
 <div class="body">
-<p>Opencommerce calls itself OpenRouter for commerce: one endpoint to buy from about 5,026 stores (DoorDash, Amazon, most Shopify stores) with Agentcard payments, testing each store&#x27;s search-to-cart-to-checkout flow every few hours, claiming sub-20-second purchases on warm routes and taking 1% of each completed order. The timing matters because the gatekeepers are moving: TechCrunch reports DoorDash says it is open to third-party agent makers — a notable shift a day after its $17 billion Instacart deal (covered in yesterday&#x27;s edition) closed the loop on delivery consolidation. Watch this space: whoever owns the checkout rails for agents owns the toll booth.</p>
+<p>Peter Wildeford argues Anthropic&#x27;s crackdown on distillation has worked — and that Chinese distillers have now moved on to OpenAI. He cites The Information&#x27;s October 29 scoop, via posts, that Moonshot and DeepSeek distilled OpenAI&#x27;s Astra for Kimi K3.1 and V4.1-Flash. The Information piece itself is paywalled and was not read for this edition, so this is a reported claim, not a verified one. Wildeford&#x27;s prescription is that OpenAI should adopt Anthropic&#x27;s measures, possibly as government standards.</p>
+<p>The policy angle is the point for builders: distillation has become a competitive and regulatory lever, not just a training technique. If you build on frontier APIs, assume outputs may be policed more tightly and model behavior may shift as providers defend their weights.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.digitaltrends.com/computing/subvocals-glasses-promise-to-let-you-talk-to-your-computer-in-complete-silence/">Subvocal&#x27;s silent-speech glasses lead YC&#x27;s hardware batch</a></h3>
+<h3><a href="https://x.com/ycombinator/status/2116600929382527221">YC Winter 2027 closes Monday</a></h3>
 <div class="byline">
-<span class="src">Y Combinator, via X</span> &middot; Oct 30
+<span class="src">X — @ycombinator</span> &middot; Oct 31
 </div>
-<p class="dek">Glasses that turn silently mouthed words into text at a claimed 200 wpm — the standout of a YC hardware wave.</p>
+<p class="dek">YC Winter 2027 applications close Monday Nov 2 — and Fall launches point at factory robots and pooled GPU spend.</p>
 <div class="body">
-<p>Subvocal, a YC Fall 2026 company, was the most-viewed launch on the lists (8.8 million views): glasses that track internal speech muscles with non-contact RF/radar sensing and decode silently mouthed words at a claimed 200-plus words per minute — no camera, no lip-reading, though you still deliberately mouth the words. It raised $1.3 million from YC and Afore, is taking pre-orders at $499 with shipping estimated for Q1 2027, and the speed claims are unverified. The replies asked the right questions: how is this different from tracking vocal-cord vibration, why is it better than speaking aloud, and will it work with other glasses? The wider YC hardware wave is worth noting too: Dydema (non-invasive programmable brain-computer interface), Axonnic (an EMG sleeve capturing finger movement and force to train robots), and Lightberry&#x27;s Lumi, billed as the first humanoid robot approved by the U.S. government. YC also noted Supabase at 13 million users spinning up a million-plus databases a week, with about 70% of new activity coming from agents.</p>
+<p>Y Combinator&#x27;s Winter 2027 applications close Monday, November 2, offering $500K plus a bundle of tokens, credits and deals. The Fall 2026 launches surfacing on the VC list show where early hardware and infra energy is going: Odin Robotics builds robot arms that fit into existing factory lines, mixing programmed control with learned skills, and ernd is a card that pools startups&#x27; GPU and inference spend to get big-customer pricing.</p>
+<p>If you advise founders, this is the one actionable item in today&#x27;s edition: the deadline is tomorrow, and the pooled-spend idea is a reminder that the current AI cost crunch is itself a startup opportunity.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/PaulKlayVC/status/2116227185283346830">Fund II is hard</a></h3>
+<div class="byline">
+<span class="src">X — @PaulKlayVC</span> &middot; Oct 31
+</div>
+<p class="dek">First-time funds stall as capital concentrates — while AI job-loss headlines fade.</p>
+<div class="body">
+<p>Only 12% of 2022 first-time VC funds have raised a second fund, according to Paul Klay&#x27;s analysis shared on the VC list. Through Q3 2026, funds of $500M or more took 78.1% of capital while making up just 6% of funds closed, and only 81 first-time US funds closed at all. His seven reasons include no deal-flow edge, no plan to double down on winners, and ignoring DPI — actual cash returned.</p>
+<p>Set against that, a16z&#x27;s jobs charts offer a calmer labour-market signal: job postings versus pre-pandemic are up 45% in engineering, 30% in healthcare and 25% in manufacturing, while AI-job-loss news is down about 65% and AI-cited layoffs down about 90% since May. Capital is concentrating at the top; the jobs panic, on this data, is easing.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/a16z/status/2116523102821908595">X — @a16z jobs charts</a>
 </div>
 </article>
 </div>
@@ -221,38 +243,31 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Politics</h2>
-<span class="count">3 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">Three days out, the midterm story is affordability — and a market bracing for divided government. Elsewhere: Kyiv ends its pause, and a Houston grand jury charges an ICE officer.</p>
+<p class="ednote">Tuesday&#x27;s midterms dominate the weekend&#x27;s politics: the maps, the odds, and a warning from Brazil about trusting markets over polls.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://thebrieflens.com/democrats-9-point-generic-ballot-edge-2026-midterms/">Midterms: affordability decides, and Wall Street braces</a></h3>
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">When gerrymanders backfire</a></h3>
 <div class="byline">
-<span class="src">Bloomberg</span> &middot; Oct 31
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
 </div>
-<p class="dek">Senate control still contested, affordability the top issue, markets braced for a sweep — three days to go.</p>
+<p class="dek">The new maps were built to survive a 10–12 point blue wave; the current margin is just over 8 — so probably no dummymander this year.</p>
 <div class="body">
-<p>Bloomberg&#x27;s midterms reading list puts it plainly: with Election Day less than a week away and control of the Senate still closely contested, one thing is certain — affordability is the top concern for voters. Wall Street is bracing for stocks to fall if Democrats regain control of both houses. The threads to watch: some of the voter groups that powered Trump&#x27;s 2024 victory are shifting — frustrated by the war in Iran and rising costs, the coalition of young men courted by the GOP is poised to sit out — while the president crisscrosses the country to rally Republican voters. Gen Z and Boomers both feel election anxiety, but Gen Z investors are far more likely to change their portfolios because of it. The latest Reuters/Ipsos poll gives Democrats a 9-point generic-ballot edge (53% to 44% among likely voters), but that is a national mood reading, not a seat forecast — and the Senate map remains the steep path. Prediction markets, for what they are worth, have put a Democratic sweep as the most likely outcome.</p>
+<p>Political scientists call it a dummymander: a gerrymander so greedy that it ends up benefiting the other party, as if the other party had drawn it. The classic case came from Democratic legislatures in the Deep South in the 1990s, which spread their remaining strength too thinly and watched 18 protected seats fall to 10 in the 1994 Republican wave.</p>
+<p>The current round started with Texas Republicans shifting as many as five seats their way, drew retaliation from Democrats in California, survived court challenges in part, and leaves the national map tilted toward Republicans by about nine seats on net. Analysts now ask whether the new maps could backfire in their first election. Bloomberg&#x27;s answer: probably not this year. The maps were drawn to withstand a blue wave of about 10 to 12 points; the RealClearPolitics generic-ballot average gives Democrats just over 8. And one expert&#x27;s caution reframes the test: the real question is not whether Republicans lose seats, but whether they end up worse off than under the old maps — and with voting shifts nationalized, they may lose dozens of competitive districts in states that were never redrawn before the wave ever reaches Texas and Florida.</p>
+<p>The odds, as of Friday afternoon: Kalshi put Democrats&#x27; chances of taking the House at 93% and the Senate at 71%. Democrats need three House seats and four Senate seats; the Cook Political Report raised Democratic prospects in Nebraska and Florida on Friday.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/world/europe/ukraine-hits-russian-oil-refinery-ending-a-pause-and-defying-trump-be68eeff">Ukraine hits a Russian refinery again, ending the pause</a></h3>
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">What prediction markets missed in Brazil</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Oct 30
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
 </div>
-<p class="dek">Kyiv ends its two-week pause on refinery strikes, defying Trump — as Russian bombardment of its cities intensifies.</p>
+<p class="dek">Prediction markets gave Bolsonaro 88% against coin-toss polls — because they were downstream of the stock market.</p>
 <div class="body">
-<p>Ukraine struck an oil refinery in Russia&#x27;s Samara region early Friday, ending a two-week pause in refinery attacks that came amid heavy pressure from the Trump administration to halt them. Ukrainian forces last hit a refinery on October 15 and had not struck Russian oil infrastructure of any kind since October 20. The pause took place as Trump and other U.S. officials repeatedly demanded Kyiv stop hitting refineries — Trump has blamed the strikes for high global fuel prices, which energy experts mostly attribute to the U.S.-Iran war — and as European allies urged Kyiv to hold off until after the U.S. midterms. Kyiv&#x27;s decision to end its self-imposed restraint came against intensifying Russian bombardment of Ukrainian cities: Russian drones and missiles killed at least 27 civilians and injured over 100 on Thursday alone. Zelensky has said Ukraine wants more protection for its own energy infrastructure in exchange for halting refinery strikes; Putin has rejected a mutual pause.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.wsj.com/us-news/ice-officer-indicted-after-allegedly-striking-fleeing-man-with-vehicle-80d6dba9">ICE officer indicted after striking a fleeing man with a vehicle</a></h3>
-<div class="byline">
-<span class="src">WSJ</span> &middot; Oct 30
-</div>
-<p class="dek">A grand jury charges an ICE officer over a Houston vehicle strike — video contradicts the agency&#x27;s account, prosecutors say.</p>
-<div class="body">
-<p>A Harris County grand jury indicted ICE officer Mario Alberto Morales on a second-degree charge of aggravated assault with a deadly weapon, after video played at a press conference appeared to show his vehicle pursuing a running Miguel Parra Hernandez and striking him from behind during an October 10 enforcement operation in Houston. Parra Hernandez, a Mexican construction worker, broke his leg and remains in federal custody at a rehabilitation facility. District Attorney Sean Teare called the evidence as clear as any he has prosecuted; ICE called the allegation that the officer intentionally struck Parra Hernandez reckless and false, said Parra Hernandez ran in front of the vehicle, and disputes local authority to investigate federal officers. Morales is one of only a few federal officers to face criminal charges over on-the-job actions during the immigration crackdown.</p>
+<p>On October 5, Brazil&#x27;s Bovespa index jumped 7.7% after right-wing candidate Flavio Bolsonaro won the first round, with a record $2B pouring in from abroad in a single day. On October 26 it plunged 13.9% on his defeat in the second round. Prediction markets had given him about an 88% chance before the result, even though polling put the race near a coin toss.</p>
+<p>Bloomberg Weekend&#x27;s Felix Salmon argues the mystery dissolves once you see the markets as downstream of the stock market: if stocks were pricing a Bolsonaro win, prediction traders deferred to them — and the prices after October 5 were set by the investors most convinced of that win, the classic winner&#x27;s curse. The lesson travels: a prediction market is not independent evidence when it shares its trader base with the asset it predicts.</p>
 </div>
 </article>
 </div>
@@ -260,48 +275,29 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">4 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">The week&#x27;s biggest hack, a scrapyard supply chain, AI in orbit, and Apple&#x27;s long-resisted touchscreen — the rest of Friday, in four stories.</p>
+<p class="ednote">Beyond AI: a bundle of forecasts for the decade ahead, and a dissenting essay on who actually gains from the golden age.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/finance/currencies/how-binance-is-scrambling-to-cover-losses-in-the-biggest-heist-in-crypto-history-babbfe90">A $6.3 billion crypto heist — the largest ever — hits Binance</a></h3>
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">The Forecast: predictions for the decade ahead</a></h3>
 <div class="byline">
-<span class="src">WSJ / Bloomberg</span> &middot; Oct 30
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
 </div>
-<p class="dek">$6.3 billion drained in about 20 minutes; $3 billion frozen; Binance pledges to cover it all.</p>
+<p class="dek">Go bags, doom loops, underwater drones, a billionaire tax vote — the Forecast&#x27;s predictions for the decade ahead.</p>
 <div class="body">
-<p>Hackers plundered $6.3 billion from Binance&#x27;s digital wallets — the biggest crypto heist in history, dwarfing the $1.5 billion Bybit theft — by breaking into a Binance engineer&#x27;s laptop, among other breaches, Binance said. Most of it moved in about 20 minutes across ten blockchains. Stablecoin issuers Tether and Circle, along with other crypto firms, froze about $3 billion of it, leaving roughly $3.3 billion under the hackers&#x27; control. Binance says it will cover all losses: its SAFU emergency reserve held $1.23 billion in bitcoin as of Thursday, and it has reserved over $6.3 billion of company funds, including buying the remaining $1.3 billion in affected cryptocurrencies through market channels. Cybersecurity researchers at TRM Labs, Chainalysis and Elliptic attribute the heist to North Korea&#x27;s TraderTraitor group — the same unit the FBI blamed for Bybit — though Binance and law enforcement have not named a North Korean link. Bitcoin fell to a six-week low on the news, remarkably sanguine at under 2–5% depending on the hour. The lesson for the mainstreaming story: even the world&#x27;s largest exchange can be breached through a laptop, and the frozen half of the loot is only freezable because it sits in stablecoins.</p>
+<p>Bloomberg Weekend&#x27;s Forecast roundup looks past Tuesday to the next decade. Go bags — households permanently ready to evacuate — become commonplace as climate displacement grows, and a new era of doom loops begins, where debt stress plus climate disasters leave less and less for resilience after each flood. Solar and wind pass the world&#x27;s installed fossil-fuel base this year, per BloombergNEF, and California&#x27;s Proposition 40 — a one-time 5% tax on assets of residents worth over $1B, voted on November 3 — could spread to other states if it passes.</p>
+<p>Elsewhere: less of the internet will work without logging in; underwater cables may one day be guarded by a drone fleet from an Australia–UK–US project by 2027; AI could cut headcount at the largest US banks 5–10% over five years, and the Dutch government plans to cut 25,000 civil servant jobs in an AI efficiency drive; video games get more creative as the industry&#x27;s fear of AI fades; a hybrid machine-human language is emerging as writers adapt to AI detectors; and cold emails, a dying art, will be missed when they are gone. Week ahead: Apple and Palantir report Monday, midterms Tuesday, the Bank of England decides Thursday, October jobs data lands Friday.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/business/energy-oil/the-scrapyard-search-for-rare-earths-bbe4a00f">The scrapyard search for rare earths</a></h3>
+<h3><a href="https://dark.ronacher.eu/2026/10/31/golden-age/">The Golden Age — for whom?</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Oct 30
+<span class="src">Armin Ronacher</span> &middot; Oct 31
 </div>
-<p class="dek">One man&#x27;s retired wind turbine is another man&#x27;s rare-earth mine — nearly a ton per turbine, worth ~$100,000.</p>
+<p class="dek">Ronacher&#x27;s counterpoint: AI&#x27;s gains accrue to its owners, not to a Europe of war, failing pensions and token taxes.</p>
 <div class="body">
-<p>As the U.S. tries to reduce reliance on China for rare earths — the metals inside everything from drones to MRI scanners — a new kind of venture is looking to the scrapyard. Paladin EnviroTech, a recycling company eyeing a new role as a rare-earth supplier, has identified old wind turbines as its top target: the room-size generators of more powerful, newer models can house huge rare-earth magnets, with a recent-model turbine holding nearly a ton of rare earths worth close to $100,000. Thousands of retirement-age turbines are waiting as America&#x27;s wind industry ages; only a fraction of earlier models contain rare earths, but they became commonplace in the more powerful turbines now being replaced. Metal recyclers targeting copper harvested what they could, but the rare earths, harder to separate and less valuable, were going to waste in slag. The hurdle is economical separation: Paladin works with Critical Materials Recycling of Boone, Iowa, scaling a leaching technique pioneered at Ames National Laboratory to reclaim virtually all rare earths from electronic waste.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/">Google runs AI in orbit: Project Suncatcher&#x27;s first response</a></h3>
-<div class="byline">
-<span class="src">Google, via X</span> &middot; Oct 30
-</div>
-<p class="dek">Four TPUs, 1 kW, 20 minutes at a time — Google&#x27;s first prompt from orbit.</p>
-<div class="body">
-<p>Google ran the first AI prompt on a data-center TPU in orbit: Project Suncatcher&#x27;s prototype satellite, built with Planet and launched October 1 on SpaceX&#x27;s Transporter-18, carries four TPUs on up to 1 kW of power. The first prompt was uplinked and the haiku downlinked over Svalbard. A TPU can only run about 20 minutes at a time on the power budget, and next come radiation tests (bit flips can silently corrupt data) and thermal tests, then twin linked satellites in 2027. The real bottlenecks, one reply noted, are bandwidth and radiation hardening, not compute — a useful corrective to the romance of orbit. Google&#x27;s framing is the long game: compute where the energy is, and where the data already lives.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.macrumors.com/2026/10/25/macbook-pro-with-touchscreen-on-wednesday/">&#x27;Crackgate&#x27; and the new touch Macs</a></h3>
-<div class="byline">
-<span class="src">Bloomberg — Power On</span> &middot; Oct 30
-</div>
-<p class="dek">After twenty years of no: touch-screen Macs, an OLED iPad mini, and the iPhone Duo&#x27;s cracked-display problem.</p>
-<div class="body">
-<p>Mark Gurman&#x27;s Power On podcast breaks down the release of the touch-screen MacBook Pro after two decades of Apple resisting the idea — 14- and 16-inch models with OLED touch displays, M5 Pro and M5 Max chips, a lighter chassis and a Dynamic Island replacing the notch, with macOS adapting its controls to touch or trackpad use — alongside a new OLED iPad mini, an M6 iMac and other Mac updates. The episode also covers a week with the iPhone Duo, reports of cracked displays, and why Apple&#x27;s limited supply has made getting a replacement so difficult. Sunday&#x27;s newsletter promises the fuller story: how Apple played it safe with the new touch-screen MacBook Pros. For buyers, the practical read: touch arrives as a premium tier, not a change to the laptop most people buy, and the current mini-LED models stay on sale for now.</p>
+<p>Armin Ronacher&#x27;s essay argues that AI&#x27;s gains are being felt by the people who own the technology, not by a Europe facing war, failing pensions and the prospect of a new kind of tax on tokens. It is a short, bleak counterweight to the abundance narrative that dominates the lists — worth reading precisely because it asks who the golden age is golden for, rather than how fast it arrives.</p>
 </div>
 </article>
 </div>
@@ -309,107 +305,52 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Learn &amp; Build</h2>
-<span class="count">5 stories</span>
-</div>
-<p class="ednote">Five things from this week&#x27;s discussions worth your study time — each chosen for what it teaches someone building an AI platform, not for hype.</p>
-<div class="stories">
-<article class="lead">
-<h3><a href="https://cellcog.ai/blog/anthropic-messages-api-rust-rewrite/">How Anthropic ships the #1 LLM in the world, safely</a></h3>
-<div class="byline">
-<span class="src">Latent Space</span> &middot; Oct 27
-</div>
-<p class="dek">Latent Space&#x27;s episode with Anthropic&#x27;s engineers on the Rust rewrite — the migration method, not just the result.</p>
-<div class="body">
-<p>Why it matters: this is the migration playbook for any team whose Python service is hitting a cost wall. The episode&#x27;s real curriculum is the method — full fork, shadow traffic, parity oracle, pure port with static analysis keeping the two sides in sync — and the organizational point that humans design the system while the model writes the code. Takeaway: before your next big rewrite, ask what your parity oracle is. If you cannot prove the new system returns the same outputs as the old one on real traffic, you do not have a migration plan, you have a hope.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://cra.mr/a-little-determinism">A Little Determinism</a></h3>
-<div class="byline">
-<span class="src">David Cramer</span> &middot; Oct 29
-</div>
-<p class="dek">Sentry&#x27;s David Cramer on putting agent determinism at the network boundary.</p>
-<div class="body">
-<p>Why it matters: every agent fleet eventually faces the same failure — a step that must happen 100% of the time and does not. Cramer&#x27;s essay reframes the fix from prompt engineering to systems engineering: credentials injected by a proxy, tool-routing denials returned as errors the agent can act on, signed short-lived context narrower than the token, events instead of polling. Takeaway: audit your own agent&#x27;s boundary. The deterministic guarantees you need probably live in the egress proxy and the tool router, not in the system prompt.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/">How we rebuilt provider routing for better, faster inference</a></h3>
-<div class="byline">
-<span class="src">OpenRouter</span> &middot; Oct 28
-</div>
-<p class="dek">OpenRouter&#x27;s routing rebuild — the cost model and the switchback test behind it.</p>
-<div class="body">
-<p>Why it matters: if you buy inference from multiple providers — or build a router for your own platform — this is the cost model to copy, and the experiment design to copy with it. Routing Cost (effective price plus waiting plus failure rate) replaces sticker price, and the switchback experiment solves the contamination problem that makes ordinary A/B tests lie about routing changes. Takeaway: measure your providers on the cost of a good answer, and be suspicious of any routing claim not backed by a contamination-aware experiment.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://arxiv.org/abs/2610.39302">Proving and Improving the Platonic Representation Hypothesis with JEPAs</a></h3>
-<div class="byline">
-<span class="src">Balestriero &amp; LeCun (arXiv)</span> &middot; Oct 30
-</div>
-<p class="dek">Balestriero and LeCun&#x27;s JEPA paper — why good views beat scale for cross-modal alignment.</p>
-<div class="body">
-<p>Why it matters: Balestriero and LeCun turn a 2024 observation into a theorem, for JEPAs: if every modality&#x27;s encoder trains on positive pairs that are two views of one scene, separately trained encoders learn the same representation up to one rotation. Next-token prediction is a JEPA with bad views — pairs from one document, not two views of one scene — which is why LLMs align with vision only through scale. A 109M-parameter text JEPA out-aligns 72B LLMs, and good views need 42x fewer samples than next-token prediction for the same alignment. Caveats: idealized assumptions, and the captions used were partly generated by a CLIP-based model. Takeaway: when you design training data, the choice of what counts as a positive pair may matter more than scale — a design lever for anyone building multimodal systems on a budget.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.interconnects.ai/p/was-i-wrong-about-open-models-and">Was I wrong about open models &amp; cyber risks?</a></h3>
-<div class="byline">
-<span class="src">Interconnects (Nathan Lambert)</span> &middot; Oct 30
-</div>
-<p class="dek">Nathan Lambert revisits his open-models-and-cyber-risk thesis after Black October.</p>
-<div class="body">
-<p>Why it matters: after a month Lambert calls Black October — PHP2Shell, GitLab, the Binance theft — he revisits his claim that an open-weight Claude Mythos would have been fine, and mostly stands by it, softened: expect a costly, forced industry update, an acceleration rather than a step change. His arguments are worth wrestling with: GLM-5.3 crossed a threshold a month ago with little public evidence of change; threat actors are businesses with set processes; closed models played the bigger part in recent hacks; and exploit damage was rising exponentially before ChatGPT, so a step change would show if AI were the bottleneck. The counter-camp matters too: almost all research measures offense, and closed-model refusals hit defenders. Takeaway: frame your own org&#x27;s open-model policy around defense capacity, not just capability thresholds — and read the camps, not just the thesis.</p>
-</div>
-</article>
-</div>
-</section>
-<section>
-<div class="sec-head">
-<h2>All-In Podcast</h2>
 <span class="count">4 stories</span>
 </div>
-<p class="ednote">Episode 295 (October 30), from the full transcript: the hosts&#x27; verdicts on Anthropic&#x27;s S-1, the AI complex&#x27;s collision with Treasuries, Google&#x27;s wipeout, and Tuesday&#x27;s midterms — grouped by topic, with each host&#x27;s position attributed.</p>
+<p class="ednote">Saturday&#x27;s lists distilled into things worth learning: four resources, each with a concrete takeaway for a tech lead building an AI platform.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.youtube.com/watch?v=p1Dy4e4ff0s">Anthropic&#x27;s S-1: is this the greatest business ever?</a></h3>
+<h3><a href="https://fsdatalab.github.io/blog/agent-text-at-scale/">Five principles for generating readable AI text in bulk</a></h3>
 <div class="byline">
-<span class="src">All-In Podcast</span> &middot; Oct 30
+<span class="src">Shreya Shankar (Berkeley)</span> &middot; Oct 31
 </div>
-<p class="dek">Sacks: possibly the biggest venture outcome ever. Chamath: fairly priced, growth decelerating. Friedberg: the value stack is real.</p>
+<p class="dek">Five rules for readable AI-generated lists — a style contract for agent output.</p>
 <div class="body">
-<p>The hosts treated the S-1 as a shockingly strong filing: $16.3 billion in first-half 2026 revenue, 14 times the prior year, a planned raise of about $100 billion at a $1.5–2 trillion valuation, about $112 billion in cash, and a claimed $40 trillion addressable market, with seven founders retaining 50.1% of voting power. David Sacks led with the superlative — possibly the biggest venture outcome ever, the fastest value creation by a venture-backed company in about six years — arguing the widely reported roughly $80 billion loss is an accounting effect of convertible notes, not cash, with roughly 85% gross margin and only about $9–10 billion burned of roughly $110 billion raised. Chamath focused on risk and stratification: compute dominates the disclosed risks, about 11,900 customers now spend $100,000 or more, and he priced the IPO as fairly valued around a $1.5 trillion midpoint rather than a bargain, while warning that quarter-over-quarter growth had decelerated, partly because Anthropic voluntarily gave up most distillation revenue to prevent copycats. David Friedberg built the value-stack case: roughly $1 of Nvidia cost becomes about $18 of Anthropic customer revenue, customers earn roughly 2–10 times what they spend, and penetration is only about 1% of potential $100,000-plus customers — an opportunity he compared to growing the working population many times over. Jason, where distinct, supplied the deal headlines: Goldman Sachs and Morgan Stanley leading, a November target, ticker ANT.</p>
+<p>Shreya Shankar&#x27;s five rules for AI-generated text at scale are directly usable wherever agents write lists, titles or summaries. Start each item with its subject or verb, in the tense readers expect; put the distinguishing words first, since skimmers read about two words per item; keep one structure and one word per concept; vary items only when the difference means something; and choose verbs that signal the dashboard&#x27;s purpose.</p>
+<p>Takeaway: apply this as a style contract for agent output in your own products — session titles, summaries, newsroom dashboards — and measure it by skimmability, not by how fluent the prose feels.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.youtube.com/watch?v=p1Dy4e4ff0s">AI&#x27;s biggest problem: compute, Treasuries, and the doomer split</a></h3>
+<h3><a href="https://xoranth.net/gcc-switch/">How GCC compiles a switch statement</a></h3>
 <div class="byline">
-<span class="src">All-In Podcast</span> &middot; Oct 30
+<span class="src">xoranth</span> &middot; Oct 31
 </div>
-<p class="dek">Sacks: a doomer divorce is coming. Chamath: the complex now competes with Treasuries. Friedberg: governments will fight for the compute layer.</p>
+<p class="dek">Jump tables, bit-tests or balanced trees — how GCC picks, and why the cost model matters.</p>
 <div class="body">
-<p>The second Anthropic section argued that seven or eight AI companies now dominate capital markets, are depleting cash and raising large amounts of debt, and are beginning to compete directly with U.S. Treasury issuance for investor demand — while governments will not willingly cede that much power, resources or narrative control. David Sacks argued Anthropic built government affairs from its startup days, hires former officials from both parties, and will gain even more Washington influence at roughly $2 trillion — going public clarifies it as big tech, not a startup — and that a split with the safety-oriented doomer community is coming, since Anthropic cannot keep its lead without advancing the frontier rapidly; he cited Anthropic&#x27;s August blog that about 26% of next-model tasks already use recursive self-improvement. Chamath called this the unpriceable, systemic risk: the AI complex owes roughly $340–400 billion, its borrowing needs through end of 2027 are about 30% of Treasury issuance in the same period, so either Treasuries pay more or the AI complex does — many paths lead to downside for an AI stock even if the business works. David Friedberg gave the theoretical frame: groups organize to gain power and resources for their members, so governments will fight to control not just chips but the compute layer itself, assigning capacity by law and policy; and the physical bottleneck — permits, utility staffing, equipment — cannot scale instantly even with unlimited money. On demand, he argued only 10–20% of workers use AI daily, but agents and always-on applications could use 50–100 times more tokens than early chat. Jason, where distinct, pressed Sacks on whether founders should publicly back candidates rather than only fund PACs privately.</p>
+<p>How does a compiler turn a switch statement into fast code? Xoranth&#x27;s walkthrough shows GCC choosing between a jump table, a bit-test packing case values into a single 64-bit constant, or a probability-balanced binary tree, using dynamic programming to split cases into clusters. The choice depends on case density and likelihood, not on a single rule.</p>
+<p>Takeaway: this is systems intuition worth internalizing — cost models, clustering, and choosing the data structure by the shape of the input. The same thinking applies when you design routing, tool selection or dispatch in an agent system.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.youtube.com/watch?v=p1Dy4e4ff0s">Google sheds $500B: disruption, or overreaction?</a></h3>
+<h3><a href="https://x.com/NVIDIAAI/status/2116262634349818190">Nvidia&#x27;s RE-USE: tiny model, practical speech cleanup</a></h3>
 <div class="byline">
-<span class="src">All-In Podcast</span> &middot; Oct 30
+<span class="src">Nvidia AI, via X</span> &middot; Oct 31
 </div>
-<p class="dek">Sacks: oversold, diversification working. Chamath: the auction&#x27;s trust is the story. Friedberg: complicated — Cloud tremendous, core ads the worry.</p>
+<p class="dek">A 9.6M-parameter open model for speech cleanup — small specialists beat frontier calls in pipeline stages.</p>
 <div class="body">
-<p>Google fell sharply on Thursday after third-quarter earnings: search revenue grew about 12% year over year, down from 17%, while Cloud roughly doubled to $30.7 billion, and search fell below 50% of Alphabet revenue for the first time. David Sacks was the most reassuring: search still rose in absolute terms, from about $56 billion to about $63 billion, and falling below half of revenue mainly reflects Cloud&#x27;s doubling — diversification was long the goal — and the stock looked a little oversold; he said he bought more during the show. Chamath focused on trust in the auction: he questioned whether Google has abandoned the second-price auction that made search advertising fair, so advertisers may now be overpaying, and argued investor relations needed to refute that urgently — reducing Google&#x27;s task to keeping Demis Hassabis. David Friedberg called it complicated: Cloud operating income jumped from roughly $3 billion-plus to over $11 billion year over year, but Google may now be over-earning on some clicks through a pricing-algorithm change, so advertisers would eventually pull back; and inside the company, model builders are losing an internal battle because renting compute earns more. The forward question, for him: can a consumer AI business ramp fast enough to replace flattening core search revenue? Jason, where distinct, suggested managing search for earnings and reinvesting in consumer and corporate AI, and noted Alphabet&#x27;s stakes in SpaceX (about 6%) and Anthropic (about 15%).</p>
+<p>Nvidia&#x27;s open RE-USE model cleans up speech — noise, echo and distortion — with just 9.6 million parameters. It is a reminder that the most useful model in a pipeline is often the smallest specialist, not the largest generalist.</p>
+<p>Takeaway: audit your own agent pipelines for stages where a tiny specialist model (cleanup, classification, extraction) can replace a frontier call. That is where latency and cost actually fall.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.youtube.com/watch?v=p1Dy4e4ff0s">Final midterm predictions: split government, disputed meaning</a></h3>
+<h3><a href="https://x.com/algo_luca/status/2116520160936833347">Trunk-based vs merge queues, simulated</a></h3>
 <div class="byline">
-<span class="src">All-In Podcast</span> &middot; Oct 30
+<span class="src">X — @algo_luca</span> &middot; Oct 31
 </div>
-<p class="dek">Consensus: GOP Senate, narrow Democratic House. Disagreement: whether that is normal, a wave, or chaos — and whether to trust polls at all.</p>
+<p class="dek">A simulator for trunk-based vs merge-queue integration — measure the workflow before mandating it.</p>
 <div class="body">
-<p>With the midterms days away, the hosts converged on a split outcome — Republicans holding the Senate, Democrats taking a narrow House majority — but disagreed on what it means and what to trust. David Sacks dismissed the polls, citing a fake-poll hoax that entered averages, a study finding about three-quarters of polls erred toward Democrats over the last three cycles, and Ann Selzer&#x27;s incorrect 2024 Iowa call; he called claims of a disastrous Trump economy false news, citing roughly 2.5% first-half growth and median household income near $90,000, and framed a normal midterm loss for the party in the White House as a tsunami in media telling. Chamath said he was confused and had largely stopped following polls, expecting only a small Democratic gain; the more important contests, for him, are governorships and state offices that control permitting and energy, and any economic slowdown — including one caused by slowing data centers — helps Democrats into 2028. David Friedberg agreed polling has long been suspect but said he trusts Polymarket more, because it reflects sentiment from people willing to place a bet, even though markets can also be wrong. Jason, where distinct, predicted an anti-Trump turnout surge and a chaotic two years if Democrats take the House — investigations, impeachment proceedings, and legislation aimed at the next Republican standard-bearers — and announced a midterm livestream from 8 to 10 p.m.</p>
+<p>Luca built a simulator, with Opus, comparing four integration strategies after the trunk-based development debate — trunk-based versus merge queues and their variants — instead of arguing from anecdote. The simulator turns a tribal workflow argument into numbers.</p>
+<p>Takeaway: before mandating a branching or review workflow for your SaaS team, simulate it. Throughput, queue time and conflict rate are measurable; team folklore is not.</p>
 </div>
 </article>
 </div>
