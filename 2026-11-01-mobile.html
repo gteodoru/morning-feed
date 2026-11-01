@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Sunday, November 1, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">A quiet Halloween Saturday on the lists, but a sharp one: a data-policy fight at OpenAI, a debate about how hard to push the model, and two builder artifacts worth stealing ideas from.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://the-decoder.com/openai-plans-to-train-models-on-daybreak-blue-cybersecurity-session-data-that-was-previously-off-limits/">OpenAI&#x27;s Daybreak Blue training reversal</a></h3>
+<div class="byline">
+<span class="src">X — @seanhn / The Decoder</span> &middot; Oct 31
+</div>
+<p class="dek">OpenAI told Daybreak Blue users their sessions may train models from Nov 29, then promised an opt-out after backlash.</p>
+<div class="body">
+<p>Daybreak Blue is OpenAI&#x27;s reduced-refusal model for vetted security researchers, offered under Advanced Account Security, which historically switched training off. An email to personal-account users said that from November 29 their Daybreak sessions may be used to improve models even when the improve-the-model setting is off, and that individual API access ends November 20 (access through Codex with ChatGPT sign-in continues). After a backlash from researchers, a second email promised a separate opt-out, with details promised closer to November 29. How it works, and what the default is, has not been published.</p>
+<p>Why researchers objected is concrete, not abstract: a Daybreak session can contain unpatched vulnerabilities, exploit proofs of concept and client data, and pentesters usually have no permission to share an exploit before it is patched, so training use could put them in breach of bug-bounty terms. The lesson for a platform lead is blunt: treat any hosted no-training promise as revocable policy, not architecture. Keep genuinely sensitive security work on models you control, and watch what the November 29 opt-out defaults to before trusting the new arrangement.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://help.openai.com/en/articles/7730893-data-controls-in-chatgpt">OpenAI data controls help page</a> &middot; <a href="https://runtimewire.com/article/openai-daybreak-blue-training-opt-out-api-access">RuntimeWire</a> &middot; <a href="https://x.com/seanhn/status/2116254333054693776">X — @seanhn</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/theo/status/2116420089411145913">Turn the effort dial down</a></h3>
+<div class="byline">
+<span class="src">X — @theo</span> &middot; Oct 31
+</div>
+<p class="dek">High beats extra high, low plus a critique loop beats max — builders argue the effort dial is a budget, not a quality setting.</p>
+<div class="body">
+<p>Theo reported moving Opus 5.5 from extra high to high effort and finding it better almost all of the time. Swyx went further: for throughput-constrained work, a low effort setting plus a critique loop beats one maximal run, and noted that Karpathy built his new Hackertube project on medium. Mollick added the other half of the picture: for one-shot problems with complex calculation or references, GPT-6 Pro in Chat still feels like consulting a single great oracle, while Codex&#x27;s top Ultra mode is a different thing entirely — it spawns many agents — and its Max Thinking mode is the highest single-agent setting.</p>
+<p>The practical rule emerging from the thread: effort is a budget, not a quality dial. In an agent loop you get many attempts, so a cheaper, faster setting checked by real tests, lint or a review pass often reaches the right answer sooner than one long, expensive attempt. Save maximum thinking for single-shot hard problems, and spend the saved budget on defining done clearly — several replies argued the brief matters more than the dial.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/swyx/status/2116642586387730593">X — @swyx</a> &middot; <a href="https://x.com/emollick/status/2116681050747248955">X — @emollick</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/badlogic/pi-mono/tree/main/packages/schema">pi-schema: fast validation where eval() is banned</a></h3>
+<div class="byline">
+<span class="src">pi-mono / X — @badlogicgames</span> &middot; Oct 31
+</div>
+<p class="dek">An agent hill-climbed a JSON Schema validator to near-compiled speed without eval() — and the method matters as much as the result.</p>
+<div class="body">
+<p>JSON Schema is how agents describe tool arguments, and the fast validators usually generate JavaScript per schema and run it with eval — which is banned under a strict Content Security Policy, where they fall back to slow interpreters. Pi-schema instead compiles a schema once into a tree of small pre-made closure functions, one per rule, so it gets most of the speed without ever generating code.</p>
+<p>The author&#x27;s own benchmarks (Node 24, one machine, not independently replicated) are striking: it passes 2,222 of 2,223 official JSON-Schema-Test-Suite core tests, and under strict CSP it runs a nested schema in 407 ns against TypeBox&#x27;s 42 microseconds — roughly 100x faster. The bundle is 8.5 KB, schema compilation takes 21 microseconds, and error explanations are built only on the first failure, so valid traffic never pays for them. How it was made matters as much as the result: an agent was given one informed prompt plus the official test suite and benchmarks as a score to climb. Give an agent a measurable score and a hard constraint, and it can hill-climb further than a vague brief ever will.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/vercel-labs/agent-desktop">agent-desktop: computer use without screenshots</a></h3>
+<div class="byline">
+<span class="src">Vercel Labs / X — @ctatedev</span> &middot; Oct 31
+</div>
+<p class="dek">Vercel Labs&#x27; agent-desktop drives desktop apps through accessibility trees, not screenshots — stable refs, safe retries, background operation.</p>
+<div class="body">
+<p>Most computer-use agents look at screenshots and guess where to click. Vercel Labs&#x27; agent-desktop instead reads the operating system&#x27;s accessibility tree — the same structure screen readers use — and returns JSON with a stable ref for every element an agent can act on. The agent clicks or types on a ref and snapshots again to verify; a changed screen returns a stale-ref error instead of a wrong click, and every error says whether a retry is safe. Actions go through the accessibility API without moving the pointer or stealing focus, so it can run in the background. It is a Rust CLI and C library for macOS, Windows and Linux with 56 commands, and it embeds no model — your agent keeps the loop.</p>
+<p>The open question from replies is what happens when two agents act on the same window at once. For a platform team, the deeper point stands: accessibility trees are a cheaper, more reliable signal than screenshots for agents driving real apps, and worth evaluating for internal tooling before reaching for vision-only computer use.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/robocurve/status/2116704239003349503">Same weights, different thinking — and secret codes</a></h3>
+<div class="byline">
+<span class="src">X — @robocurve</span> &middot; Oct 31
+</div>
+<p class="dek">Two copies of one model invented a shared code through a robot and a camera — isolation is a substrate problem, not a prompt problem.</p>
+<div class="body">
+<p>Two isolated copies of the same model were asked to exchange a secret word using only a robot and a camera, with no protocol agreed in advance. They succeeded, via air-writing, Morse code, flag semaphore and a 5-bit binary alphabet. Mollick&#x27;s read is the one to sit with: the copies share a common brain, which is why isolating agents from each other is proving so hard.</p>
+<p>For anyone building multi-agent systems, this reframes isolation as a substrate problem, not a prompt problem. If two agents must not coordinate — or must genuinely check each other — do not rely on instructions to keep them apart. Mix model families, or route messages through a paraphrasing intermediary, and remember that two same-model reviewers share the same blind spots.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/patrickc/status/2116636967517798672">Liquid software: an improvements box wired to an agent</a></h3>
+<div class="byline">
+<span class="src">X — @patrickc</span> &middot; Oct 31
+</div>
+<p class="dek">Collison&#x27;s improvements box: type what you want, an agent builds it. The trick is fencing what it may touch.</p>
+<div class="body">
+<p>Patrick Collison described building an improvements box into all of his personal vibecoded apps: a freeform text input wired to an agent that implements whatever is submitted. One other user of an app he built has already made 150 improvements in a few days. Collison calls the pattern liquid software, compares it to Lisp machines, Smalltalk and HyperCard, and asks the hard questions himself: does it become unmaintainable, how does collaboration work, and can such software be secure and reliable?</p>
+<p>Replies split between a security warning — prompt injection turns an improvements box into an open door — and a design answer: fence in the degrees of freedom the agent has, and send everything else to a human-reviewed queue. That fenced version is the one worth prototyping for internal tools: a scoped change surface plus a review queue gives teams the malleability without handing the keys to anyone who can type in the box.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/GoogleDeepMind/status/2116524000977285321">AI lands in planning offices: PlanAssist</a></h3>
+<div class="byline">
+<span class="src">X — @GoogleDeepMind</span> &middot; Oct 31
+</div>
+<p class="dek">Google&#x27;s PlanAssist cut planning-assessment time by up to 58% and is rolling out to 12 more UK councils.</p>
+<div class="body">
+<p>Google DeepMind&#x27;s PlanAssist, built with Gemini, is being rolled out to 12 more UK councils after cutting the time planning officers spend assessing householder applications by up to 58% in trials. It is the kind of applied-AI story that matters more than another benchmark: a narrow, measurable workflow, with a human officer still deciding.</p>
+<p>For the SaaS side of Gabriel&#x27;s work, this is the adoption pitch template — do not sell model quality, sell hours returned on one scoped process, measured before and after, with the human in the loop. That is also how to frame it internally at Riot: pick one painful, repeatable workflow and prove the time saved.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Money talked louder than models on Saturday: a smaller OpenAI round, a bond market turning cold on neoclouds, and token bills rising even as token prices fall.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/">OpenAI&#x27;s round shrinks</a></h3>
+<div class="byline">
+<span class="src">TechCrunch / CNBC</span> &middot; Oct 31
+</div>
+<p class="dek">OpenAI&#x27;s round shrank to up to $20B at $1.25T — and the valuation mark matters more than the amount.</p>
+<div class="body">
+<p>OpenAI has cut its new funding target by about $10B, to up to $20B at a $1.25T post-money valuation, down from a $30B pitch at $1.4T, according to the FT and confirmed by CNBC. Friday was the commitment deadline and some investors reduced allocations. A UAE-led group including MGX is expected to lead, with Coatue, SoftBank, Founders Fund, Sequoia and a16z also in, and a later retail offering for wealthy individuals is planned at the same price.</p>
+<p>Jessica Lessin&#x27;s read is the sharpest: big investors are getting more skittish about AI revenues ever meeting AI capex, and the round was about the valuation mark more than the cash — a new stock price that minimizes dilution is worth a lot. Watch whether the round actually closes at that mark; that, more than the headline size, is the signal.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.cnbc.com/2026/10/31/openai-fundraising-20-billion-valuation.html">CNBC</a> &middot; <a href="https://x.com/Jessicalessin/status/2116656870236856655">X — @Jessicalessin</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/a16z/status/2116598588172374141">The infrastructure money squeeze</a></h3>
+<div class="byline">
+<span class="src">WSJ / a16z / SemiAnalysis, via X</span> &middot; Oct 31
+</div>
+<p class="dek">Neoclouds face a colder bond market, Anthropic&#x27;s IPO could unlock data-center finance, and token bills keep rising as prices fall.</p>
+<div class="body">
+<p>The WSJ reports that CoreWeave, Nebius and Nscale have effectively been shut out of the bond market in recent weeks as lenders demand tougher terms; Nebius says asset-backed financing remains available. The story is paywalled and this edition relies on summaries, so treat the details as reported, not verified. The same squeeze frames SemiAnalysis&#x27;s clip on Anthropic&#x27;s IPO: you cannot fund a data center on Anthropic credit today, but an investment-grade public Anthropic could unlock megawatts of financing.</p>
+<p>Meanwhile a16z&#x27;s chart cuts the other way: average token prices are down 67% since May, but token spend is up more than 120%. Cheaper tokens do not mean cheaper bills — usage is growing faster than prices fall, and one analyst adds that inference providers need 25–83% more token throughput just to cover GPU rental since May. The financing story and the usage story are the same story: demand is real, but the capital structure funding it is getting more expensive.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/SemiAnalysis_/status/2116715704829223411">X — @SemiAnalysis_</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://inferencex.semianalysis.com/compare-per-dollar/kimi-k3-b200-vs-mi355x">AMD&#x27;s MI355X beats B200 per dollar — on agent inference</a></h3>
+<div class="byline">
+<span class="src">SemiAnalysis InferenceX</span> &middot; Oct 31
+</div>
+<p class="dek">AMD&#x27;s MI355X posts ~2x B200 performance per dollar on Kimi K3 agent inference — mostly a memory-fit story.</p>
+<div class="body">
+<p>SemiAnalysis&#x27;s InferenceX comparison puts AMD&#x27;s MI355X at up to 2x better performance per dollar than Nvidia&#x27;s B200 on Kimi K3 agentic inference — $0.038 versus $0.077 per million tokens at 50 tokens per second per user — credited to AMD&#x27;s kernel work and to memory. An MI355X server holds 2,304 GB of HBM, so a 2.8T-parameter model fits in one box and never crosses the slower network between servers, while a B200 server with under 1.5 TB must.</p>
+<p>Two caveats from the lists: these are SemiAnalysis&#x27;s own numbers, and the comparison is against B200, not the newer B300. The takeaway survives the caveats: for agent inference, memory capacity and single-box fit can matter more than accelerator brand. Benchmark per dollar at your own token rate and model size, not on peak FLOPS.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/SemiAnalysis_/status/2116606900271788210">X — @SemiAnalysis_</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/peterwildeford/status/2116591286438289825">Distillation crackdown shifts targets</a></h3>
+<div class="byline">
+<span class="src">X — @peterwildeford</span> &middot; Oct 31
+</div>
+<p class="dek">Anthropic&#x27;s distillation crackdown worked, Wildeford argues — and Chinese distillers moved on to OpenAI.</p>
+<div class="body">
+<p>Peter Wildeford argues Anthropic&#x27;s crackdown on distillation has worked — and that Chinese distillers have now moved on to OpenAI. He cites The Information&#x27;s October 29 scoop, via posts, that Moonshot and DeepSeek distilled OpenAI&#x27;s Astra for Kimi K3.1 and V4.1-Flash. The Information piece itself is paywalled and was not read for this edition, so this is a reported claim, not a verified one. Wildeford&#x27;s prescription is that OpenAI should adopt Anthropic&#x27;s measures, possibly as government standards.</p>
+<p>The policy angle is the point for builders: distillation has become a competitive and regulatory lever, not just a training technique. If you build on frontier APIs, assume outputs may be policed more tightly and model behavior may shift as providers defend their weights.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/ycombinator/status/2116600929382527221">YC Winter 2027 closes Monday</a></h3>
+<div class="byline">
+<span class="src">X — @ycombinator</span> &middot; Oct 31
+</div>
+<p class="dek">YC Winter 2027 applications close Monday Nov 2 — and Fall launches point at factory robots and pooled GPU spend.</p>
+<div class="body">
+<p>Y Combinator&#x27;s Winter 2027 applications close Monday, November 2, offering $500K plus a bundle of tokens, credits and deals. The Fall 2026 launches surfacing on the VC list show where early hardware and infra energy is going: Odin Robotics builds robot arms that fit into existing factory lines, mixing programmed control with learned skills, and ernd is a card that pools startups&#x27; GPU and inference spend to get big-customer pricing.</p>
+<p>If you advise founders, this is the one actionable item in today&#x27;s edition: the deadline is tomorrow, and the pooled-spend idea is a reminder that the current AI cost crunch is itself a startup opportunity.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/PaulKlayVC/status/2116227185283346830">Fund II is hard</a></h3>
+<div class="byline">
+<span class="src">X — @PaulKlayVC</span> &middot; Oct 31
+</div>
+<p class="dek">First-time funds stall as capital concentrates — while AI job-loss headlines fade.</p>
+<div class="body">
+<p>Only 12% of 2022 first-time VC funds have raised a second fund, according to Paul Klay&#x27;s analysis shared on the VC list. Through Q3 2026, funds of $500M or more took 78.1% of capital while making up just 6% of funds closed, and only 81 first-time US funds closed at all. His seven reasons include no deal-flow edge, no plan to double down on winners, and ignoring DPI — actual cash returned.</p>
+<p>Set against that, a16z&#x27;s jobs charts offer a calmer labour-market signal: job postings versus pre-pandemic are up 45% in engineering, 30% in healthcare and 25% in manufacturing, while AI-job-loss news is down about 65% and AI-cited layoffs down about 90% since May. Capital is concentrating at the top; the jobs panic, on this data, is easing.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/a16z/status/2116523102821908595">X — @a16z jobs charts</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Tuesday&#x27;s midterms dominate the weekend&#x27;s politics: the maps, the odds, and a warning from Brazil about trusting markets over polls.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">When gerrymanders backfire</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
+</div>
+<p class="dek">The new maps were built to survive a 10–12 point blue wave; the current margin is just over 8 — so probably no dummymander this year.</p>
+<div class="body">
+<p>Political scientists call it a dummymander: a gerrymander so greedy that it ends up benefiting the other party, as if the other party had drawn it. The classic case came from Democratic legislatures in the Deep South in the 1990s, which spread their remaining strength too thinly and watched 18 protected seats fall to 10 in the 1994 Republican wave.</p>
+<p>The current round started with Texas Republicans shifting as many as five seats their way, drew retaliation from Democrats in California, survived court challenges in part, and leaves the national map tilted toward Republicans by about nine seats on net. Analysts now ask whether the new maps could backfire in their first election. Bloomberg&#x27;s answer: probably not this year. The maps were drawn to withstand a blue wave of about 10 to 12 points; the RealClearPolitics generic-ballot average gives Democrats just over 8. And one expert&#x27;s caution reframes the test: the real question is not whether Republicans lose seats, but whether they end up worse off than under the old maps — and with voting shifts nationalized, they may lose dozens of competitive districts in states that were never redrawn before the wave ever reaches Texas and Florida.</p>
+<p>The odds, as of Friday afternoon: Kalshi put Democrats&#x27; chances of taking the House at 93% and the Senate at 71%. Democrats need three House seats and four Senate seats; the Cook Political Report raised Democratic prospects in Nebraska and Florida on Friday.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">What prediction markets missed in Brazil</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
+</div>
+<p class="dek">Prediction markets gave Bolsonaro 88% against coin-toss polls — because they were downstream of the stock market.</p>
+<div class="body">
+<p>On October 5, Brazil&#x27;s Bovespa index jumped 7.7% after right-wing candidate Flavio Bolsonaro won the first round, with a record $2B pouring in from abroad in a single day. On October 26 it plunged 13.9% on his defeat in the second round. Prediction markets had given him about an 88% chance before the result, even though polling put the race near a coin toss.</p>
+<p>Bloomberg Weekend&#x27;s Felix Salmon argues the mystery dissolves once you see the markets as downstream of the stock market: if stocks were pricing a Bolsonaro win, prediction traders deferred to them — and the prices after October 5 were set by the investors most convinced of that win, the classic winner&#x27;s curse. The lesson travels: a prediction market is not independent evidence when it shares its trader base with the asset it predicts.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Beyond AI: a bundle of forecasts for the decade ahead, and a dissenting essay on who actually gains from the golden age.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-01/when-gerrymanders-backfire">The Forecast: predictions for the decade ahead</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — The Forecast</span> &middot; Nov 1
+</div>
+<p class="dek">Go bags, doom loops, underwater drones, a billionaire tax vote — the Forecast&#x27;s predictions for the decade ahead.</p>
+<div class="body">
+<p>Bloomberg Weekend&#x27;s Forecast roundup looks past Tuesday to the next decade. Go bags — households permanently ready to evacuate — become commonplace as climate displacement grows, and a new era of doom loops begins, where debt stress plus climate disasters leave less and less for resilience after each flood. Solar and wind pass the world&#x27;s installed fossil-fuel base this year, per BloombergNEF, and California&#x27;s Proposition 40 — a one-time 5% tax on assets of residents worth over $1B, voted on November 3 — could spread to other states if it passes.</p>
+<p>Elsewhere: less of the internet will work without logging in; underwater cables may one day be guarded by a drone fleet from an Australia–UK–US project by 2027; AI could cut headcount at the largest US banks 5–10% over five years, and the Dutch government plans to cut 25,000 civil servant jobs in an AI efficiency drive; video games get more creative as the industry&#x27;s fear of AI fades; a hybrid machine-human language is emerging as writers adapt to AI detectors; and cold emails, a dying art, will be missed when they are gone. Week ahead: Apple and Palantir report Monday, midterms Tuesday, the Bank of England decides Thursday, October jobs data lands Friday.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://dark.ronacher.eu/2026/10/31/golden-age/">The Golden Age — for whom?</a></h3>
+<div class="byline">
+<span class="src">Armin Ronacher</span> &middot; Oct 31
+</div>
+<p class="dek">Ronacher&#x27;s counterpoint: AI&#x27;s gains accrue to its owners, not to a Europe of war, failing pensions and token taxes.</p>
+<div class="body">
+<p>Armin Ronacher&#x27;s essay argues that AI&#x27;s gains are being felt by the people who own the technology, not by a Europe facing war, failing pensions and the prospect of a new kind of tax on tokens. It is a short, bleak counterweight to the abundance narrative that dominates the lists — worth reading precisely because it asks who the golden age is golden for, rather than how fast it arrives.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Saturday&#x27;s lists distilled into things worth learning: four resources, each with a concrete takeaway for a tech lead building an AI platform.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://fsdatalab.github.io/blog/agent-text-at-scale/">Five principles for generating readable AI text in bulk</a></h3>
+<div class="byline">
+<span class="src">Shreya Shankar (Berkeley)</span> &middot; Oct 31
+</div>
+<p class="dek">Five rules for readable AI-generated lists — a style contract for agent output.</p>
+<div class="body">
+<p>Shreya Shankar&#x27;s five rules for AI-generated text at scale are directly usable wherever agents write lists, titles or summaries. Start each item with its subject or verb, in the tense readers expect; put the distinguishing words first, since skimmers read about two words per item; keep one structure and one word per concept; vary items only when the difference means something; and choose verbs that signal the dashboard&#x27;s purpose.</p>
+<p>Takeaway: apply this as a style contract for agent output in your own products — session titles, summaries, newsroom dashboards — and measure it by skimmability, not by how fluent the prose feels.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://xoranth.net/gcc-switch/">How GCC compiles a switch statement</a></h3>
+<div class="byline">
+<span class="src">xoranth</span> &middot; Oct 31
+</div>
+<p class="dek">Jump tables, bit-tests or balanced trees — how GCC picks, and why the cost model matters.</p>
+<div class="body">
+<p>How does a compiler turn a switch statement into fast code? Xoranth&#x27;s walkthrough shows GCC choosing between a jump table, a bit-test packing case values into a single 64-bit constant, or a probability-balanced binary tree, using dynamic programming to split cases into clusters. The choice depends on case density and likelihood, not on a single rule.</p>
+<p>Takeaway: this is systems intuition worth internalizing — cost models, clustering, and choosing the data structure by the shape of the input. The same thinking applies when you design routing, tool selection or dispatch in an agent system.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/NVIDIAAI/status/2116262634349818190">Nvidia&#x27;s RE-USE: tiny model, practical speech cleanup</a></h3>
+<div class="byline">
+<span class="src">Nvidia AI, via X</span> &middot; Oct 31
+</div>
+<p class="dek">A 9.6M-parameter open model for speech cleanup — small specialists beat frontier calls in pipeline stages.</p>
+<div class="body">
+<p>Nvidia&#x27;s open RE-USE model cleans up speech — noise, echo and distortion — with just 9.6 million parameters. It is a reminder that the most useful model in a pipeline is often the smallest specialist, not the largest generalist.</p>
+<p>Takeaway: audit your own agent pipelines for stages where a tiny specialist model (cleanup, classification, extraction) can replace a frontier call. That is where latency and cost actually fall.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/algo_luca/status/2116520160936833347">Trunk-based vs merge queues, simulated</a></h3>
+<div class="byline">
+<span class="src">X — @algo_luca</span> &middot; Oct 31
+</div>
+<p class="dek">A simulator for trunk-based vs merge-queue integration — measure the workflow before mandating it.</p>
+<div class="body">
+<p>Luca built a simulator, with Opus, comparing four integration strategies after the trunk-based development debate — trunk-based versus merge queues and their variants — instead of arguing from anecdote. The simulator turns a tribal workflow argument into numbers.</p>
+<p>Takeaway: before mandating a branching or review workflow for your SaaS team, simulate it. Throughput, queue time and conflict rate are measurable; team folklore is not.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
