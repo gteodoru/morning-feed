@@ -138,7 +138,7 @@
       "section": "AI Development Practices",
       "summary": "Google's Elephant-Goldfish Model is not a model at all \u2014 no weights, no API. It is an open-source plugin (Apache 2.0, ~8.5K stars, late Oct 2026) for spec-driven development: an Elephant session with full project memory drafts the design and writes zero code, then Goldfish reviewers \u2014 fresh subagents with zero memory of the conversation \u2014 read the spec cold across five stages, including an 'explain it back' comprehension test and a go/no-go completeness check. You approve before implementation. Installs into Antigravity, Claude Code, and Codex as seven Markdown skills and nine reviewer personas; thousands of Google engineers reportedly use it daily. Coverage: worth the overhead for real architectural decisions, skip for one-line fixes; security review is not in the default set (add your own Goldfish); the circulating '90% of assumptions caught' figure is an author's claim, not Google's measurement.",
       "page": "tips/2026-11-01-elephant-goldfish-model.html",
-      "consumed": false
+      "consumed": true
     },
     {
       "slug": "2026-11-01-polar-browser",
@@ -148,7 +148,7 @@
       "section": "AI Development Practices",
       "summary": "Polar is a macOS-only, Chromium-based AI browser for knowledge-work automation: agents act inside accounts you are already logged into \u2014 sales, recruiting, ops, research \u2014 with scheduled, reusable workflows that can run for hours. Founded by Kevin Jiang (ex-Perplexity Comet) with Vishaal Ram and Howard Zhong; launched July 29, 2026 with a $5.7M Madrona-led seed; freemium with paid plans from $20/month. The thesis: the first wave of AI browsers (search/chat) never created recurring demand; the second wave does work. The counterweight is a privacy critique (Aug 2026): cookies stay local, but page context, screenshots, and prompts leave the device; retention has no stated maximum, no self-service deletion, and no product-wide no-training promise; SOC 2 still in progress. Most users treat it as an automation layer, not a daily driver.",
       "page": "tips/2026-11-01-polar-browser.html",
-      "consumed": false
+      "consumed": true
     }
   ]
 }
