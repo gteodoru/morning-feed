@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Tuesday, November 3, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">One idea owned the day: a frontier model reading and rewriting neural-network weights directly. Around it, provable model identity, a Git backend rebuilt for agents, and a humbling result about how fast LLM findings expire.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-space programming: a frontier model that reads and writes neural networks</a></h3>
+<div class="byline">
+<span class="src">X — @rikiyatakehi</span> &middot; Nov 2
+</div>
+<p class="dek">MIT showed GPT-6 Astra reading raw weights, writing game-playing networks from scratch, and fixing a looping model with a 0.016% edit.</p>
+<div class="body">
+<p>MIT researchers Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab gave GPT-6 Astra raw network weights as text — no training loop, no gradient descent — and asked it to reason about them. It named which game each of four policy networks was trained on (Breakout, Pong, Pac-Man, Freeway) purely from where the weights concentrate, identified the language three tiny character-level transformers were trained on from their middle layers alone, and found every copying head with no false positives.</p>
+<p>The writing experiments are wilder. Given a stuck PPO policy for a car-on-ramp level (0 of 256 episodes succeeding), Astra edited 3.5% of the weights in one reply and the car succeeded in all 1,024 episodes. Given all-zero weights and the rules of MinAtar Breakout, Seaquest and Asterix, it wrote game-playing networks from scratch that beat PPO trained for 100 million steps in all three — 517.4 vs 15.8 in Breakout. And on Qwen3.5-0.8B, it traced a thinking loop to a single direction written by two MLP layers, subtracted it from 131,072 weights (0.016%), and lifted MATH-500 from 7.9% to 48.1% and GSM8K from 13.8% to 67.1%.</p>
+<p>The caveats matter as much as the headline. Astra could not identify a sycophantic Gemma 3 270M from weights alone, and could not improve a Gemma model that does not loop — the authors&#x27; own conclusion is that weight editing &#x27;could remove an obstacle that hid an ability, but it could not add an ability the model lacked.&#x27; Neel Nanda&#x27;s pushback, widely shared, is that this is &#x27;old school mechanistic interpretability&#x27; done surprisingly well by a frontier model, not something spooky — and that the style fell out of favour around 2022 because it does not scale to real LLMs&#x27; messiness. The honest read for a platform builder: targeted weight repair is now a plausible debugging tool, and weight auditing (backdoors, tampering) without running evaluations is suddenly on the table — but the regression-test question from the replies is the one to carry forward: after an agent edits weights, who checks what else changed?</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/rikiyatakehi/status/2117313742891327994">X — @rikiyatakehi</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.anthropic.com/research/provable-inference">FlashProve: a receipt for which model actually answered</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Nov 2
+</div>
+<p class="dek">Anthropic open-sourced FlashProve: cryptographic proof that a reply came from a committed model, without revealing its weights.</p>
+<div class="body">
+<p>When you call a model through an API, you cannot check that the reply came from the model you were promised rather than a cheaper substitute swapped in by a router, or a tampered token stream. Checking yourself would require the weights and the hardware to run them. Anthropic&#x27;s FlashProve, open-sourced under Apache 2.0, attacks this with a zkSNARK: the provider publishes a short commitment binding it to one exact set of weights, which stay hidden, and attaches a proof to each batch of replies that the committed model produced those tokens.</p>
+<p>The numbers are for Llama 4 Maverick (400B mixture-of-experts, ~17B active per token): about 110 tokens per second of proving on one H100, ~19 MB proofs, verified in ~17 seconds on a CPU — at roughly 70–95x the GPU time of serving. The top-level guarantees (completeness, soundness, zero knowledge) are stated and proved in Lean, precisely because, as Anthropic puts it, Claude &#x27;often makes decisions that are hard to evaluate&#x27; when writing crypto code. The limits are stated plainly too: it proves an integer version of the model under greedy decoding, so sampled or floating-point outputs can diverge; it is post-hoc, not inline; and it is a research artifact, not maintained.</p>
+<p>Why it matters for Gabriel&#x27;s platform work: provable inference is the missing receipt for agent infrastructure. If agents act inside logged-in accounts and make consequential calls, &#x27;which model actually answered&#x27; becomes an audit question, not a curiosity — and a CPU-verifiable proof is the first practical shape of an answer.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/anthropics/FlashProve/tree/main">GitHub — anthropics/FlashProve</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/OpenAIDevs/status/2117408792346509663">Pando: OpenAI rebuilt Git&#x27;s backend for the agent era</a></h3>
+<div class="byline">
+<span class="src">X — @OpenAIDevs</span> &middot; Nov 2
+</div>
+<p class="dek">OpenAI rebuilt Git&#x27;s backend for its monorepo so agent-driven pushes and fetches scale — without changing how anyone uses Git.</p>
+<div class="body">
+<p>OpenAI&#x27;s Pando is a new Git backend for its monorepo, built because agents push and fetch far more often than people do. It cut push latency by ~80% and now serves &#x27;nearly a petabyte of Git data a day,&#x27; with no change to how engineers or agents use Git. Greg Brockman says OpenAI took &#x27;the hard road of continuing to use Git&#x27; and is considering offering Pando to others.</p>
+<p>The design bet is the lesson: when agent usage multiplies load on a developer tool, swap the storage underneath and keep the protocol, rather than building a new version-control system and retraining every user and agent. For anyone running agent fleets against a monorepo, source control is no longer background plumbing — it is infrastructure under load, and the bottleneck shows up in push latency first.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2610.35962">h1: the bitter lesson, in theorem proving</a></h3>
+<div class="byline">
+<span class="src">arXiv</span> &middot; Nov 2
+</div>
+<p class="dek">A deliberately simple Lean harness beat fancier self-play designs — the efficient verifier interface, not the workflow, determined the solve rate.</p>
+<div class="body">
+<p>The team set out to test a fancier idea — test-time asymmetric self-play in Lean, where a &#x27;challenger&#x27; spins off related sub-problems from prover traces. Each time they simplified and strengthened the plain baseline, the fancy method&#x27;s gains washed out. What survived is h1: a model with an efficient interface to Lean 4 that keeps working through verifier feedback and self-reflection, with no imposed decomposition or search.</p>
+<p>It is state of the art on PutnamBench, FATE-X and FormalConjectures100-Solved, settles eight open FormalConjectures problems, and matches or beats specialized workflows (Goedel-Architect, AlphaProof Nexus) at matched models. The key finding, in the authors&#x27; words: &#x27;an efficient Lean interface largely determines cost and solve rate.&#x27; The bitter lesson, restated for theorem proving: before prescribing elaborate workflows, evaluate the frontier model with fast execution feedback. The same advice generalises to any agent harness — the interface to the verifier is the product.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/KempeLab/status/2117301273225466100">X — @KempeLab</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Anthropic&#x27;s IPO filing is the story of the week in one document: spectacular revenue, spectacular losses, and a valuation haircut — plus a governance sentence that may matter more than both.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/finance/stocks/anthropic-investors-push-for-cautious-valuation-closer-to-1-5-trillion-2f2df9cf">Anthropic&#x27;s IPO math: spectacular revenue, spectacular losses, and a self-imposed brake</a></h3>
+<div class="byline">
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 2
+</div>
+<p class="dek">Nearly $17B in Q3 revenue, a $23.3B loss, $895B in commitments — and investors marking the IPO down from ~$2T to $1.5–1.6T.</p>
+<div class="body">
+<p>Anthropic&#x27;s amended S-1, filed Monday, puts numbers on the IPO story for the first time. Third-quarter revenue hit nearly $17 billion as of September 30 — a twelve-fold increase year on year, and more than the whole first half combined — while the net loss widened to $23.3 billion (from $12.1 billion a year earlier) and operating expenses jumped 292% to $17.5 billion. The filing also discloses more than $895 billion in compute and infrastructure commitments ahead, with about $70 billion due in the next year. The listing, expected before Thanksgiving on Nasdaq under ticker ANT, is being positioned to rival SpaceX&#x27;s record $86.2 billion debut.</p>
+<p>The market&#x27;s answer was a haircut: institutional investors told Anthropic and its advisers the valuation should be around $1.5–1.6 trillion, well below figures closer to $2 trillion bandied about in recent months, citing choppy markets and growing concern about overexposure to AI bets.</p>
+<p>Buried in the same filing is a governance sentence worth more attention than the valuation debate. Anthropic says its internal estimates indicate it &#x27;may imminently meet&#x27; its Responsible Scaling Policy&#x27;s definition of &#x27;dramatically accelerated progress attributable to AI&#x27; — based on future models, not current ones — and that it does not anticipate being able to &#x27;safely use Claude to fully autonomously design and build successive generations of frontier models without meaningful human supervision or understanding.&#x27; It is weighing RSP changes requiring human sign-off on some R&amp;D decisions. Read together with the weight-space programming post landing the same day, this is a lab putting both a near-term automation claim and a self-imposed brake into a legal document its CEO signs. The sceptical reply is fair too: some readers called it IPO positioning. Either way, the sentence now exists in an SEC filing, and that is what makes it different from a blog post.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/theobearman/status/2117277210570604945">X — @theobearman on the S-1</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/SemiAnalysis_/status/2117407007829303721">Memory&#x27;s ~80% margins — and the bust question nobody can dodge</a></h3>
+<div class="byline">
+<span class="src">X — @SemiAnalysis_ / Chamath Palihapitiya</span> &middot; Nov 2
+</div>
+<p class="dek">Micron at ~81% operating margin, SK hynix ~80% — yet the stocks sit far below their highs. Franchise, or the next bust cycle?</p>
+<div class="body">
+<p>SemiAnalysis puts the numbers starkly: Micron ran an 80.7% operating margin last quarter, SK hynix 79.7% in 3Q26, Samsung&#x27;s semiconductor division 72.4%. Chamath Palihapitiya&#x27;s deep dive, landing in the Feed the same day, asks why the stocks are still 30–60% below their highs while profits explode — Micron&#x27;s fiscal 2026 revenue reached $133.2 billion, up 256% from $37.4 billion a year earlier, with GAAP gross margin at 80.7% against negative 9% in fiscal 2023.</p>
+<p>His answer is a question: is memory becoming a franchise, or is it headed for another boom-and-bust commodity cycle? The bust pattern does not need the SI boom to stop. The last two downturns began with customers working through inventory — buyers who stocked up paused orders, and suppliers were hit by falling prices as well as weaker shipments. Now the makers are ploughing record cash into new capacity arriving 2027–2029, China&#x27;s CXMT is expanding (4% to 10% of global DRAM revenue in a year, per Counterpoint), and customers are putting up billions in deposits to secure supply. Crusoe, meanwhile, is building its own medium-voltage switchgear — cutting lead times 40%, SemiAnalysis notes — because owning the gear on the critical path is how neoclouds get to power faster. The through-line: in the SI build-out, the scarce thing keeps moving — from chips to memory to power to the switchgear in between — and each bottleneck mints a margin until capacity catches up.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.tradingview.com/news/benzinga:685c2a12f094b:0-micron-sandisk-stocks-remain-far-below-highs-despite-exploding-memory-profits-chamath-palihapitiya-asks-why/">Chamath Palihapitiya — memory deep dive</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/shaunmmaguire/status/2117275330180448478">Orbital compute goes mainstream — plus the day&#x27;s funding roundup</a></h3>
+<div class="byline">
+<span class="src">X — @shaunmmaguire</span> &middot; Nov 2
+</div>
+<p class="dek">Musk and Maguire go all in on orbital compute; Tutor&#x27;s teleoperated robots, Blacksmith&#x27;s $1B CI bet, and Northwood&#x27;s $375M round fill out the funding day.</p>
+<div class="body">
+<p>Elon Musk: &#x27;Future super intelligence compute will obviously be overwhelmingly in space... it will round up to 100%!&#x27; Sequoia&#x27;s Shaun Maguire agrees — &#x27;Almost all SI compute will be in space. Too few understand this&#x27; — with a systems-level analysis promised in a week or two. The substantive replies cut both ways: space wins on free cooling and continuous sunlight, but launch cost, radiation-hardened chips and servicing at scale are the hard parts. Treat this as a directional bet from the two people most positioned to act on it, not a timeline: nobody in the thread priced a first orbital training run, and the terrestrial build-out (see Crusoe&#x27;s switchgear above) is where the money is going this quarter.</p>
+<p>Elsewhere in venture: a16z led Tutor Intelligence&#x27;s Series B — robots deployed in real factories and warehouses before full autonomy, with human &#x27;tutors&#x27; teleoperating and training the models, aiming for 1,000+ robots under contract by end of 2027, charging by the hour with no upfront cost. Blacksmith (YC W24), faster CI for AI-generated code, grew 20x in a year and raised a $66M Series C at $1B with 30 people. Northwood Space raised $375M (Series C, a16z and DFJ Growth) at $2B. And YC&#x27;s W27 applications closed Monday night — Paul Graham&#x27;s reminder of what exponential growth feels like: &#x27;One month&#x27;s progress for a successful startup. The previous month&#x27;s towering revenue number now looks small.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/a16z/status/2117287347826110628">X — @a16z on Tutor Intelligence</a> &middot; <a href="https://x.com/ycombinator/status/2117283089294520638">X — @ycombinator on Blacksmith</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/emollick/status/2117279363175739630">Why lab products feel disposable — and how to build anyway</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Nov 2
+</div>
+<p class="dek">Mollick: labs treat products as disposable because the models keep improving. Buyers need the opposite — and a16z&#x27;s three rules say how to survive the treadmill.</p>
+<div class="body">
+<p>Ethan Mollick&#x27;s observation explains a lot of enterprise frustration: the labs&#x27; &#x27;weird approach to software (sudden changes, bad communication)&#x27; makes sense if &#x27;these products are a temporary thing they have to do to raise money for a couple years until true AGI makes all products obsolete&#x27; — and they have been &#x27;rewarded for treating their products as disposable&#x27; because the models keep improving. The replies from buyers are the counter-argument: &#x27;customers don&#x27;t live in the AGI future, they live with the product today&#x27;; enterprises &#x27;need the opposite: stable contracts, change logs and an exit plan.&#x27; The practical synthesis, from another reply, is the one to adopt: treat the model as a swappable part and own the workflow around it.</p>
+<p>a16z&#x27;s three rules for AI apps in this environment, from its enterprise research: operate the workflow better than the customer can; make context cheaper to rent than to rebuild; prove value, then price to capture it. Their evidence: every model upgrade makes AI apps cheaper to run and easier to replace, yet 94% of enterprise LLM buyers expect spend to rise. Harvey beat a general assistant and Repsol&#x27;s in-house tool in a blind test; Notion bought Decagon&#x27;s support agents instead of building. Aaron Levie adds the stakes: the gap between people at the frontier and everyone else &#x27;may be the highest it&#x27;s ever been,&#x27; with upper-bound productivity gains going from 30–50% two years ago to &#x27;likely 5–10X depending on the field.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/a16z/status/2117308274433511930">X — @a16z</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Election Day dominates, with the Senate the genuinely uncertain prize — and a possible post-election Iran strike already shaping Gulf diplomacy.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/politics/policy/midterm-candidates-make-final-appeals-to-voters-a990371a">Election Day: the midterms are here</a></h3>
+<div class="byline">
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 3
+</div>
+<p class="dek">Polls close from 6 p.m. ET; the House looks likely to flip, the Senate may take weeks — and markets should not expect clarity.</p>
+<div class="body">
+<p>America votes today with control of Congress at stake, in a midterm widely seen as a referendum on Donald Trump&#x27;s second term. Voters are grappling with the high cost of living and surging fuel prices, with AI looming over everything from jobs and the economy to the campaigns themselves. Democrats hold a commanding early-voting turnout advantage and are expected to take the House; winning the Senate is less certain, with the GOP unexpectedly playing defence in traditionally safe bastions like Kansas, Texas, Alaska and South Carolina.</p>
+<p>Polls start closing at 6 p.m. ET, with many safer races called quickly — but control of the Senate may take weeks to determine because of mail-in voting and ranked-choice ballots. Legal challenges are already mounting: the Supreme Court rejected a Trump administration bid to set aside thousands of California ballots, while the DOJ is appealing a ruling involving Alaska&#x27;s Senate race. In the final appeals, Michigan Democrats navigated fallout from Rep. Haley Stevens&#x27;s endorsement of Republican Mike Rogers against Democratic Senate nominee Abdul El-Sayed, and James Talarico closed his bid to become the first Texas Democrat to win statewide in more than 30 years. Bloomberg&#x27;s warning for markets: do not expect the election to clear the air — tech stocks are already in a correction on AI worries, and Wall Street is split between asset managers warning of a bubble and bank CEOs staying bullish.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/middle-east/americas-gulf-allies-prepare-for-new-round-of-strikes-on-iranand-the-blowback-b4041a67">Gulf allies prepare for new strikes on Iran — and the blowback</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 2
+</div>
+<p class="dek">Gulf states brace for a heavy U.S. bombardment of Iran — and for Tehran&#x27;s retaliation against their own infrastructure.</p>
+<div class="body">
+<p>America&#x27;s Gulf allies are steeling themselves for a heavy U.S. bombardment of Iran that they expect to trigger retaliation against their own economic and civilian infrastructure as early as this week. The Trump administration and Arab mediators are still pushing for a negotiated end; Trump told Benjamin Netanyahu on Saturday that he wanted to give diplomacy a chance first, while Netanyahu pressed for strikes immediately after the midterms. The U.S. struck targets on the Iranian island of Qeshm overnight, according to several American media outlets, and the two sides are reviewing mediators&#x27; proposals.</p>
+<p>The Gulf fear is specific: Iran lacks the firepower to blunt U.S. and Israeli airstrikes and has adopted a strategy of quickly raising the stakes by attacking more vulnerable neighbours across the Gulf. &#x27;There is no world in which a short and sharp strike by the U.S. will be absorbed by Iran,&#x27; says Behnam Ben Taleblu of the Foundation for Defense of Democracies. Tehran says its response to any attack would be unrestrained, while President Pezeshkian says he is willing to continue talks. Talks mediated by Qatar are stuck on who concedes first.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">A founder tactic worth stealing, a market that keeps sliding despite stimulus, and a lawsuit that tests where AI companies get their training data.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://twistartups.substack.com/p/set-up-the-trial-then-ask-for-the">Set up the trial, then ask for the money</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 2
+</div>
+<p class="dek">Looker ran every trial itself — setup, teaching, watching — and only pitched once prospects truly understood the product.</p>
+<div class="body">
+<p>A free trial seems obvious for early-stage founders chasing first customers — until the prospect logs in, pokes around without understanding the product, and never returns, leaving the founder with no feedback about what went wrong. Looker founder Lloyd Tabb did it differently, as he detailed in a First Round interview from April 2024: Looker ran every trial itself, hands-on — setting the software up for the customer, teaching them to use it, watching them engage — and only started the sales conversation once it was sure the prospect fully understood the product and how it worked.</p>
+<p>The lesson generalises beyond enterprise sales, and it is directly relevant to AI adoption work: a trial that is not scaffolded is not a trial, it is an abandonment test. Whether the &#x27;product&#x27; is a platform, an agent workflow, or a new internal tool, the vendor — or the internal champion — has to do the setup, the teaching, and the watching before asking for commitment. Note the preview caveat: the full TWiST post sits behind a paywall; the tactic above is what the free preview establishes.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.devdiscourse.com/article/international/4001107-chinese-stocks-mired-at-one-year-low-as-policy-measures-disappoint?amp">China stimulus falls flat</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Markets Daily</span> &middot; Nov 3
+</div>
+<p class="dek">The CSI 300 is down 13% this year after a record 12 straight weekly declines; the new support measures read as an old playbook.</p>
+<div class="body">
+<p>China&#x27;s latest effort to steady its sliding stock market struggled for traction on Tuesday, with AI shares leading the losses as investors said the measures were inadequate. The CSI 300 fell 8.5% in October — its biggest monthly drop in more than a decade — and has declined a record 12 straight weeks, down 13% this year even as most of the world&#x27;s markets rallied. The measures, announced after officials met securities firms, banks and investors, included central-bank relending and swap operations to fund stock purchases — but, as one fund manager put it, they merely dust off an old playbook.</p>
+<p>&#x27;Overall I think it&#x27;s an effort to stabilize its financial markets, but it has a clear long-term perspective rather than an immediate reward,&#x27; said Anna Wu of Floodlines Research. &#x27;A real turnaround needs demand-side fiscal support that reaches households, a steadier property market, and evidence that earnings, especially in AI and tech, can justify valuations.&#x27; Bitcoin, meanwhile, showed relative buoyancy — the day&#x27;s small consolation for risk assets.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/TechCrunch/status/2117337220466057337">NYT sues Brave over scraped content</a></h3>
+<div class="byline">
+<span class="src">X — @TechCrunch</span> &middot; Nov 2
+</div>
+<p class="dek">The Times alleges Brave scraped its content and passed it to customers including Anthropic and Perplexity.</p>
+<div class="body">
+<p>The New York Times is suing Brave, alleging it scraped Times content and distributed it to customers including Anthropic and Perplexity. The suit lands in a year when the provenance of training and retrieval data has become a legal question, not just a technical one — and it pairs uncomfortably with today&#x27;s lead theme: if models can read weights and prove their outputs, the next question is proving where their inputs came from. No ruling yet; watch whether the case targets scraping, redistribution, or both, because the distinction decides how much of the AI data pipeline it actually touches.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://coinscreamer.com/hyperliquid-713-million-revenue-jeff-yan-tokenized-assets/">Crypto&#x27;s new powerhouse: Hyperliquid&#x27;s Jeff Yan</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 3
+</div>
+<p class="dek">Hyperliquid&#x27;s $713M in revenue and its push into stocks and commodities put it on traditional finance&#x27;s radar.</p>
+<div class="body">
+<p>Bloomberg&#x27;s deep dive profiles Jeff Yan, the 31-year-old who built Hyperliquid into a trading powerhouse with $713 million in revenue over the past year — and ambitions stretching beyond digital assets into stocks, commodities and tokenized assets. The push puts it on the broader financial industry&#x27;s radar even as the record $6.3 billion Binance hack, blamed on North Korean hackers with AI reportedly involved, highlights crypto&#x27;s risks. The contrast is the story: a tiny team building market infrastructure that traditional finance now has to take seriously, in the same week the industry&#x27;s biggest exchange was reminded how fragile custody can be.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Four things worth your learning time today: a study that dates your citations, an argument about the labs&#x27; business model, a survey question that quietly renamed AI, and a proof system you can run.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://zou-group.github.io/llm-claims-shelf-life/">The shelf life of LLM findings</a></h3>
+<div class="byline">
+<span class="src">Stanford — Zou Group</span> &middot; Nov 2
+</div>
+<p class="dek">Stanford re-ran 50 famous LLM findings on 20 models: 44% have expired. Date your evidence.</p>
+<div class="body">
+<p>Stanford researchers re-ran 50 widely cited published findings about LLM behaviour across 20 models released from July 2024 to September 2026. The verdict: 44% of findings have expired (a fifth or less of the original effect remains), 34% weakened, 16% persist, 6% strengthened. Capability failures fade fastest — fake citations (55% of GPT-3.5&#x27;s literature-review citations were fake in 2023; GPT-6.1-Sol and Claude Sonnet 5.5 &#x27;rarely output fabricated citations&#x27;), letter counting, lost-in-the-middle. What persists is mostly preference and judgment: sycophancy toward users, judges favouring their own answers, a left political lean, answering when they should abstain. About 16% of claims expire within a year of publication, 39% within two; expired claims lasted 15.7 months on average.</p>
+<p>Takeaway for a tech lead: date your evidence. A 2024 paper&#x27;s headline about &#x27;what LLMs do&#x27; may simply no longer be true, and areas targeted by post-training expire fastest — which means your team&#x27;s internal evals, re-run on current models, are worth more than last year&#x27;s literature. Mollick&#x27;s summary: models &#x27;no longer invent citations and both hallucination rates &amp; stereotyping has dropped. But they are still sycophantic &amp; lean left.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/james_y_zou/status/2117310373661700604">X — @james_y_zou</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/random_walker/status/2117246718219612594">Why the efficiency loop could eat the labs&#x27; business model</a></h3>
+<div class="byline">
+<span class="src">X — @random_walker</span> &middot; Nov 2
+</div>
+<p class="dek">Narayanan: recursive self-improvement may be &#x27;recursive self extinction&#x27; of the labs&#x27; business — unless they move up the stack.</p>
+<div class="body">
+<p>Arvind Narayanan&#x27;s seven-step argument is the sharpest business-model critique of the week. (1) Cost per equivalent capability falls at least 10x a year, likely accelerating as labs use AI for AI research. (2) Unverifiable tasks stay hard because any proxy &#x27;gets Goodharted&#x27; — he cites Claude&#x27;s &#x27;overly dense and ornamental writing style.&#x27; (3) So recursive self-improvement ends up narrow: exploding efficiency without broad superintelligence. (4) More than one lab stays at the frontier and open weights follow, so margins cannot stay high. (5) Jevons&#x27; paradox is not a magic bullet: tokens would need to grow ~10x a year just to keep revenue flat, and human review becomes the bottleneck. (6) Science creates value labs cannot capture. (7) The escape hatch is moving &#x27;up the stack&#x27; into enterprise software, digital workers, or per-outcome pricing with high switching costs — as Windows survived free Linux.</p>
+<p>His conclusion: &#x27;two different improvement loops have been conflated,&#x27; and the efficiency loop undermines the revenue the broader loop needs. The replies add the buyer&#x27;s version: if labs move into &#x27;workflows and systems of record, the switching costs end up with the customer. The time to negotiate data portability and exit terms is now.&#x27; Weakest premise, by his own admission: #5 — agents with nearly unlimited attention may yet make Jevons stronger than he allows.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">The Census Bureau&#x27;s &#x27;SI&#x27; question: how adoption statistics get rewritten</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 2
+</div>
+<p class="dek">The Census Bureau now asks businesses about &#x27;Super Intelligence or SI&#x27; — and its adoption series broke when the question changed.</p>
+<div class="body">
+<p>Simon Willison spotted a quiet renaming with loud implications. The Census Bureau&#x27;s biweekly Business Trends and Outlook Survey (200,000 businesses per round) changed its AI question on November 17, 2025 from using AI &#x27;in producing goods or services&#x27; to &#x27;in any of its business functions&#x27; — so before and after are not comparable. Under the new wording, ~30% of firms with 250+ employees said yes by February 2026 and ~40% by October (vs ~12% under the old wording in September 2025). From the October 19, 2026 collection, Executive Order 14434 renamed it again: &#x27;did this business use Super Intelligence or SI (formerly referred to as Artificial Intelligence or AI)...&#x27; First results with that wording publish Thursday.</p>
+<p>Takeaway: adoption statistics are only as good as the question, and the question just got politicised. When someone quotes you an &#x27;AI adoption rate&#x27; this quarter, ask which wording produced it — and treat any series spanning the November 2025 change as two different series stitched together.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/anthropics/FlashProve/tree/main">Build it yourself: the FlashProve repository</a></h3>
+<div class="byline">
+<span class="src">GitHub — anthropics</span> &middot; Nov 2
+</div>
+<p class="dek">Anthropic&#x27;s FlashProve repo: provable inference you can build and verify yourself, with Lean-proved soundness.</p>
+<div class="body">
+<p>If the FlashProve story above caught your attention, the repo itself is the learning resource: Apache 2.0 code, a README written for agents, and a route that builds the verifier and checks a stored proof in minutes on an ordinary Linux box (a real Maverick proof needs an H100 and 330 GB of RAM). The design is worth studying even if you never run it: prover work scales with the experts that actually ran, proofs are produced post-hoc in batches, and the soundness guarantee rests on a slow verifier that Lean proves accepts only what the theorem accepts, with a fast C++ verifier checked against it on every test proof. It is also a case study in building with AI assistance responsibly — Claude improved the zkSNARK code, and the team responded by formally proving the top-level guarantees rather than trusting the generated code.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.anthropic.com/research/provable-inference">Anthropic — Progress on provable inference</a>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
