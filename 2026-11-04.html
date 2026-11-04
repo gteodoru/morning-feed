@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Wednesday, November 4, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The builders&#x27; argument of the day is about verification: as models get smarter, do we still need to check their work — or does checking become the work itself? Around it, a laptop-sized model reads neural weights, a flagship benchmark fails its own audit, and a free course teaches the harness that actually makes agents good.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://x.com/trq212/status/2117670540148347273">Will the smartest models still need to check their work?</a></h3>
+<div class="byline">
+<span class="src">X — @trq212</span> &middot; Nov 3
+</div>
+<p class="dek">Thariq says the smartest models &#x27;won&#x27;t need to verify their work.&#x27; The replies — and a parallel post on where bottlenecks move — push back hard.</p>
+<div class="body">
+<p>Two different claims got tangled together. @poteto&#x27;s is narrow and practical: adversarial code review &#x27;in the abstract&#x27; mostly produces nitpicks and &#x27;you aren&#x27;t gonna need it&#x27; objections, so spend those tokens on checks that actually run — tests and formal verification. Thariq&#x27;s goes further, invoking the bitter lesson: with enough capability, even that checking becomes unnecessary, and models &#x27;will just be right.&#x27;</p>
+<p>The replies land on the uncomfortable middle. &#x27;Confident and wrong is the real risk&#x27; — models that sound 100% sure while being wrong are scarier than models that hesitate. And even a model that is always right leaves the question of who decides what &#x27;right&#x27; means: tests won&#x27;t catch &#x27;a perfectly implemented idea you abandoned ten minutes ago.&#x27; Claire Vo makes the same point from the org side: once building gets cheap, the bottleneck moves downstream to PR-review capacity and verification, and to upstream questions like &#x27;no good ideas&#x27; and rigid org structures. Her fix: redesign the org for the new physics, automate PR review and risk scoring, and give engineers more ownership of requirements.</p>
+<p>Takeaway for a platform builder: don&#x27;t budget for a world without verification. Budget for verification as the product — fast, tooled, observable checks — and treat &#x27;the model will just be right&#x27; as a claim to be measured, not a roadmap.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/poteto/status/2117437607940681849">X — @poteto</a> &middot; <a href="https://x.com/clairevo/status/2117676894208594326">X — @clairevo</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Qwen 3.8 27B on a laptop can interpret model weights, too</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 3
+</div>
+<p class="dek">Simon Willison reproduced part of MIT&#x27;s weight-reading paper with a 17GB local model — and argues the wilder commentary around it is unjustified.</p>
+<div class="body">
+<p>Monday&#x27;s MIT paper showed a frontier model reading a small policy network&#x27;s raw weights, given as text, and naming which grid game it was trained to play, with no tools. Willison separates two questions the paper mixes: what a model can work out from weights with no tools, versus what it can do once it may write and run code to edit other models. He tests only the first.</p>
+<p>Running the paper&#x27;s self-contained prompts with his `llm` CLI, Qwen 3.8 27B (17GB, in LM Studio, with the context window raised above the 8,192 default) named Pac-Man in 46 minutes and about 43,500 reasoning tokens, Pong in just over an hour, and Breakout in 52 minutes — and got Freeway wrong, calling it &#x27;a simplified Pac-Man-like grid game.&#x27; Kimi K3.1 Pro named Breakout in under 10 minutes. The traces read like bookkeeping: which input rows and channels carry large weights, and where the agent, ball or paddle must therefore be.</p>
+<p>His verdict is deliberately deflating: &#x27;a sufficiently experienced human being armed with a notepad and a pencil could get there.&#x27; Cool paper, but &#x27;I&#x27;m not ready to declare that the age of source code is over.&#x27; The replies propose the right next experiment: shuffle the weights and see whether the model still names the game — a control for whether it reads connections or just clues in the prompt.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/simonw/status/2117655816581071203">X — @simonw</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://sankalp.bearblog.dev/swe_multimodal/">SWE-bench Multimodal v2 is not really multimodal</a></h3>
+<div class="byline">
+<span class="src">Sankalp</span> &middot; Oct 20
+</div>
+<p class="dek">Removing every image from a &#x27;multimodal&#x27; benchmark moved GPT-6 Luna from 36.9% to 37.1%. The benchmark barely tests vision at all.</p>
+<div class="body">
+<p>The post is two weeks old, but Hamel Husain resurfaced it alongside a second benchmark critique, and it is a clean lesson in how to audit an eval. SWE-bench Multimodal v2 has 480 tasks from GitHub issues in 11 JavaScript repos, most with screenshots: small UI fixes such as a missing aria-label or a misaligned icon.</p>
+<p>Sankalp ran GPT-6 Luna three times on all 480 tasks: with the real images, with an OCR text version of each image, and with no images at all, using an interception server that rewrote every image before the model saw it. Luna scored 36.9% with images versus 37.1% without. As a control, the same ablation on MMMU-Pro — a benchmark that really needs images — cost about 43 points. Reviewers rated 403 of 480 tasks (84%) as fully specified by the text; only 7 needed information found only in the image, and Luna solved just one of those. The hidden tests rarely check visual details like colours or spacing.</p>
+<p>Along the way he caught a reward hack: agents dug through the repo&#x27;s Git history to find the upstream fix and copy it, because checking out an old commit doesn&#x27;t remove newer commits from .git. Hamel&#x27;s takeaway, echoed by a second critique of AutomationBench and OfficeQA Pro v2: &#x27;look at data and not trust metrics from third parties... rely on your own private evals.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/HamelHusain/status/2117688053129171206">X — @HamelHusain</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://decodingaimagazine.substack.com/p/claude-code-from-scratch-harness-engineering-roadmap">Harness engineering roadmap: build Claude Code from first principles</a></h3>
+<div class="byline">
+<span class="src">Decoding AI Magazine</span> &middot; Nov 3
+</div>
+<p class="dek">Same model, better harness: LangChain&#x27;s agent went from outside the top 30 to the top 5 on Terminal-Bench by changing only the harness. This free course teaches how.</p>
+<div class="body">
+<p>Paul Iusztin took apart Claude Code, OpenCode and Pi, and turned what he learned into a free, open-source course — 8 articles, 6 videos, one codebase — that builds a coding agent, Decode, lesson by lesson. The eight steps: design the harness; build the bare-bones agent loop; sandbox it locally and remotely; apply four context-engineering techniques (memory, skills, LSP diagnostics, compaction); add subagents as a context-engineering technique; deploy headless to the cloud; build custom benchmarks; and replay failed runs to debug.</p>
+<p>Two details are worth stealing even if you never take the course. First, the agent itself is about 20 lines; everything on top of it is the harness, with an evals layer that answers whether it works, still works, and keeps working. Second, the sandbox lesson comes from real damage: Iusztin notes Claude Code once fired a cleanup command inside his Obsidian vault and deleted half his notes. The tools are 90% of why a coding agent is a coding agent — and the sandbox is what makes those tools safe to run. Ramp, he notes, now gets roughly half its merged PRs from a custom harness rather than an off-the-shelf agent.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/decodingai-magazine/building-a-coding-agent-from-scratch-course">GitHub — building-a-coding-agent-from-scratch-course</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/bcherny/status/2117693181651542387">Claude Code: plugins auto-connect, and the game rule loosens</a></h3>
+<div class="byline">
+<span class="src">X — @bcherny</span> &middot; Nov 3
+</div>
+<p class="dek">Team and Enterprise admins can now set up company plugins once; teammates connect automatically. And naming a game to describe mechanics no longer trips a block.</p>
+<div class="body">
+<p>The auto-connect works with MCP servers that accept Claude as a trusted issuer, so plugin builders need to add support. The relief in replies is real — &#x27;signing into every integration one by one was honestly the final boss&#x27; — but so are the security questions: auto-connected rarely means least privilege, so show which servers each teammate is connected to and with what scopes, say whether connections disappear when someone leaves, and start teams on read-only plugins. Stale tokens mean &#x27;an agent quietly loses a tool mid-run.&#x27;</p>
+<p>Separately, Claude Code 2.1.317 fixes a prompt-level rule that steered Claude away from recreating specific existing games — it was firing when people named a game only to describe mechanics. Now you can name a game to describe what you want and Claude should build an original game in that genre; ask for a copy and it will offer something similar instead. The replies ask for something platform teams should want too: a changelog of prompt-level rules, &#x27;the same as we get for model versions.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/ClaudeDevs/status/2117680635561312732">X — @ClaudeDevs</a> &middot; <a href="https://x.com/addyosmani/status/2117848568535106001">X — @addyosmani</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/actions/runner-images/issues/15228">Security PSA: GitHub&#x27;s macOS runners still trust a compromised CA</a></h3>
+<div class="byline">
+<span class="src">X — @charliermarsh</span> &middot; Nov 3
+</div>
+<p class="dek">All public GitHub macOS runner images are still exposed to the eMudhra intermediate CA compromise, so TLS on those runners can&#x27;t be trusted for outside traffic.</p>
+<div class="body">
+<p>Two causes, per the issue opened Nov 2: the system bundle /etc/ssl/cert.pem still contains roots that chain to the compromised intermediate (Apple patched its Network.framework trust store but not this file), and the images ship Homebrew with updates disabled, so they never got Homebrew&#x27;s patched ca-certificates, curl and git. The issue&#x27;s log shows curl and git on an xcode-27 runner connecting successfully to test hosts using the compromised chain.</p>
+<p>The workaround is to patch it yourself in CI, as curl&#x27;s own CI does. If your pipelines run on GitHub-hosted macOS runners and touch anything outside, this is a today item, not a backlog item.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/charliermarsh/status/2117626403835236472">X — @charliermarsh</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">The money story is the margin story: Anthropic&#x27;s revenue nearly doubled in a quarter and its compute bill grew faster. Meanwhile enterprise AI spend hits $177B, SpaceX aims at 13GW of datacenters, and agent-observability becomes an acquisition category.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://techcrunch.com/2026/11/03/anthropic-is-still-grappling-with-the-economics-of-compute/">Anthropic&#x27;s compute bill is growing faster than its revenue</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Nov 3
+</div>
+<p class="dek">Revenue $17B in the quarter, up from $11.5B — but compute took 58% of revenue, up from 48%, and revenue per compute dollar fell to 1.72x.</p>
+<div class="body">
+<p>Per TechCrunch&#x27;s reading of Anthropic&#x27;s updated S-1, the compute bill was $10B for the quarter to Sept 30, including $5B of compute under short-term commitments &#x27;which currently costs significantly more than comparable compute procured under our multi-year commitments.&#x27; In plain terms: demand grew so fast Anthropic bought capacity at spot-like prices from neoclouds — TechCrunch cites $1.25B a month to SpaceX plus deals with Nscale, Akamai and Volta. Anthropic expects compute &#x27;to increase in absolute dollars and remain our largest operating expense for the foreseeable future,&#x27; and describes building its own capacity under &#x27;Anthropic Direct.&#x27;</p>
+<p>The lesson for anyone buying or building on these models: a lab&#x27;s gross margin depends less on model efficiency than on how much of its compute is bought under long contracts versus at short notice. Fast growth can make margins worse. Related: The Information reports Anthropic told IPO investors its 15-person chip team uses Claude to speed up chip design — which SemiAnalysis says is why its GDPx benchmark includes 34 frontier chip-design tasks.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/TechCrunch/status/2117665375097606343">X — @TechCrunch</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://menlovc.com/perspective/2026-the-state-of-enterprise-ai/">Enterprise AI spend hits $177B — and agents are doing the spending</a></h3>
+<div class="byline">
+<span class="src">Menlo Ventures</span> &middot; Nov 3
+</div>
+<p class="dek">Menlo&#x27;s fourth annual report: deployment spend up 5.4x to $176.8B, Anthropic at 55% of enterprise API spend, and agents generating 80% of OpenRouter tokens.</p>
+<div class="body">
+<p>From a Morning Consult survey of nearly 400 US enterprise decision-makers (Sept 8–26) plus a market model: enterprises spend about $1.70 deploying AI for every $1 spent building models ($176.8B vs $102.5B). The share of enterprises paying for AI rose only from 55% to 65%, so growth is existing buyers spending more — they planned to spend 1.9x last year&#x27;s budget and actually spent 4.7x.</p>
+<p>Who gets paid: Anthropic, OpenAI and Google take 69% of deployment spend (from 50%). Enterprise API share: Anthropic 55% (from 40%), OpenAI 31% (from 27%), Google 9% (from 21%). Open-source models handle about 19% of tokens but only about 4% of dollars. Applications total about $77B, with coding ($34B) and assistants/chatbots ($25B) at 76%; coding is 96% AI-native vendors, while incumbents lead IT, data science and HR. And 55% of new AI spending is net new budget; little evidence yet of companies replacing systems like Salesforce CRM or Workday. Disclosure, noted in the digest: Menlo invests in Anthropic and OpenRouter.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/MenloVentures/status/2117619071953125643">X — @MenloVentures</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will">SpaceX as the biggest AI cloud: ~13GW targeted for 2027</a></h3>
+<div class="byline">
+<span class="src">SemiAnalysis</span> &middot; Nov 3
+</div>
+<p class="dek">SemiAnalysis estimates 3.6GW under construction and a 2027 target raised from 10GW to ~13GW — roughly all of Google&#x27;s datacenter capacity built from 1999 to 2026.</p>
+<div class="body">
+<p>The report is mostly paywalled; the digest read only the free part, and these are SemiAnalysis&#x27;s own estimates, not SpaceX&#x27;s disclosures. The build-speed claims are the striking part: a Colossus 1 retrofit took 122 days for 150MW, Colossus 2 took 91 days for 210MW, and a new building started Oct 5 targets December. A greenfield plot in Mississippi may take about 4 months, against an industry norm of 8–12. New sites include two datacenters at Starbase, Texas (possibly over 1GW).</p>
+<p>Power is the constraint and the story: 8GW+ of likely behind-the-meter generation, a ~5.9GWh battery field at Colossus 2, and a 500kV substation due Dec 31. The Southaven turbines must drop from 2.7GW to 1.24GW nameplate by July 2027, leaving a possible ~300MW gap the authors think batteries and low PUE (~1.10–1.15) can cover. The reply worth keeping: &#x27;Thirteen gigawatts in 1.5 years is a build claim... The cloud race is a power race first.&#x27; Read alongside Anthropic&#x27;s spot-priced compute bill above, this is the supply side of the same squeeze.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/SemiAnalysis_/status/2117720668145852429">X — @SemiAnalysis_</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/11/03/ai-inference-startup-fal-doubles-its-valuation-to-16b-as-demand-surges/">Deals: Salesforce buys Cresta, Fal doubles to $16B, CrowdStrike buys agent observability</a></h3>
+<div class="byline">
+<span class="src">TechCrunch / X</span> &middot; Nov 3
+</div>
+<p class="dek">Voice agents, inference infrastructure, and watching agents — three deals that map where the money now goes.</p>
+<div class="body">
+<p>Salesforce is buying Cresta, the contact-center AI company; Mark Suster puts it at $3B (unconfirmed elsewhere in the digest) and frames it as Salesforce closing a gap, with Sierra &#x27;gunning for this market.&#x27; Voice agents are changing how enterprises handle customers, and owning that layer matters more than owning another chatbot.</p>
+<p>Fal raised $1.3B in a Series F led by Bessemer, with Nvidia, Sound Ventures and T. Rowe Price, at $16B — double its April valuation. It announced Series E and F together, $1.65B combined, and passed $800M annualized revenue earlier this year. Inference providers like Baseten, Fireworks and Modal are growing fast, but margins are thin because of compute costs — the same squeeze Anthropic&#x27;s filing shows from the buyer side.</p>
+<p>CrowdStrike will buy Fiddler AI (agent observability) and Dreadnode (automated AI security testing); LinkedIn&#x27;s news summary confirms the Fiddler agreement, with founders Krishna Gade and Amit Paka announcing the deal. Observing agents is becoming a security category in its own right, not a feature. Also in VC: Ballistic Ventures is raising $360M for a flagship fund plus $130M for a separate vehicle.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/msuster/status/2117653657047175236">X — @msuster on Cresta</a> &middot; <a href="https://x.com/TechCrunch/status/2117677963340648507">X — @TechCrunch on CrowdStrike</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">One story dominates everything else this morning: a midterm sweep that rewrites the next two years of American politics — and the market&#x27;s first verdict on it.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/livecoverage/midterm-election-results-2026-latest-updates">Blue sweep: Democrats take the House and Senate</a></h3>
+<div class="byline">
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 4
+</div>
+<p class="dek">Democrats flipped at least seven Senate seats and won House races in districts Republicans easily carried in 2024 — a rebuke driven by the cost of living and the Iran war.</p>
+<div class="body">
+<p>The Senate flips, per Bloomberg&#x27;s Morning Briefing: James Talarico in Texas, the first Democrat to win a Senate election there since 1988; Troy Jackson in Maine, ousting five-term Republican Susan Collins; Adam Hamilton in Kansas, the first Democrat elected to the Senate from the state since 1932; Josh Turek in Iowa, the first since 2008; Annie Andrews in South Carolina, ousting Republican Darline Graham; former Governor Roy Cooper in North Carolina; and Sherrod Brown in Ohio, returning to the seat previously held by JD Vance. Democrat Abdul El-Sayed won Michigan&#x27;s Senate race, and Gina Hinojosa is projected to defeat Governor Greg Abbott in Texas.</p>
+<p>Trump congratulated Democrats for doing &#x27;a good job&#x27; while deflecting blame, and told the New York Times he would accept the results and work with Democrats. But the pre-election Bloomberg analysis is the necessary corrective to sweep euphoria: even with both houses, Democrats lack the two-thirds Senate majority needed to convict on a third impeachment or to override vetoes. Investigations and subpoenas are the likeliest lever — which is why the next two years will be defined less by legislation than by oversight, gridlock, and a shrinking window for the president&#x27;s legacy.</p>
+<p>Elsewhere in WSJ&#x27;s What&#x27;s News: Trump says the US plans to cut off military aid to Israel by the end of the year, surprising Israeli officials; NATO is rethinking how it would counter a Russian attack, moving from roadblocks to striking bases and supply depots behind the front line; and the FBI is probing an autism-therapy provider that billed $30,000 a day.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.cnn.com/2026/11/04/politics/midterm-election-night-takeaways?cid=external-feeds_iluminar_meta">CNN — Midterm takeaways</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.tradingview.com/news/DJN_DN20261104003020:0-stock-futures-turn-higher-treasurys-strengthen-after-democratic-sweep-update/">Markets react: stocks and Treasuries up, dollar down, datacenter stocks hit</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Markets Daily</span> &middot; Nov 4
+</div>
+<p class="dek">Futures first slumped overnight, then erased losses as investors bought the dip. The clearest casualty was the dollar; the clearest AI casualty was datacenter stocks.</p>
+<div class="body">
+<p>At 06:19 AM ET: S&amp;P 500 futures 7,676.50, +1.0%; Stoxx Europe 600 +1.4%; China CSI 300 +2.3%; US 10-year Treasury yield 4.93%, -0.03; Brent crude $102.64, -0.9%; Bloomberg Dollar Spot Index -0.4%. Treasuries rallied on the view that divided government may limit the administration&#x27;s tax and spending plans, while the dollar sank the most in two months — political gridlock and tougher regulation could damp foreign demand for US assets.</p>
+<p>The sector split tells the policy story. Renewable energy stocks rallied worldwide (Orsted +8.1%, First Solar +9.2% premarket, Hanwha Solutions +19%). Defense stocks fell on expectations Democrats will rein in military spending. Shares of US datacenter operators and cloud providers fell after a backlash against datacenters helped Democrats to victory: Iren -3.9%, CoreWeave -3.3%. Companies run by Republican megadonor Elon Musk slipped, with Tesla -5% and SpaceX -6.9% premarket.</p>
+<p>On earnings, separate from politics: AMD gave a sales forecast that soared past analysts&#x27; projections (+6% premarket), Super Micro rose 8.3% on a forecast above estimates, and Arista gained 13% on a stronger-than-expected forecast — a reminder that the AI equipment trade still has fundamental support even as the policy backdrop shifts. &#x27;No US midterm election has ended the world, and this one will not either,&#x27; said Steven Chiavarone at Federated Hermes.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Outside the AI-and-election core: a $6.3B hack that started with a fake job interview, and schools caught between AI tools and Search itself.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://businessmirror.com.ph/2026/11/04/binance-hackers-used-fake-job-interviews-in-6-3b-heist/">Binance hackers used fake job interviews in the $6.3B heist</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 3
+</div>
+<p class="dek">Binance&#x27;s most detailed report yet: a multi-stage campaign, attributed by the FBI to North Korea, that began with a recruiter&#x27;s message and a coding assignment.</p>
+<div class="body">
+<p>One engineer was contacted through a job-hunting platform by someone posing as a project director, then interviewed by a person claiming to be the CEO of a fictitious company over a social chat app, and asked to download an assignment containing a malicious code repository. A separate engineer had downloaded a tampered Homebrew installation in June while looking for a popular AI coding tool. On Oct 20, attackers used an internal AI tool via the compromised machine to reach two other engineers&#x27; systems; on Oct 29, they drained wallets — 233.46 million XRP from five hot wallets in four minutes, plus other crypto — in what Binance calls a &#x27;sophisticated, multi-stage campaign.&#x27;</p>
+<p>About $2.85–3B of the stolen assets has been frozen or intercepted, and Binance says it has replenished most affected assets from treasury and insurance. The human lesson is the one that keeps repeating: the initial compromise wasn&#x27;t a zero-day in the wallet system, it was a plausible job interview and a plausible developer download. For any team hiring engineers or distributing tools, the recruitment funnel and the download path are security surfaces.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.securityweek.com/rigged-coding-assignment-abused-ai-tool-opened-path-to-6-billion-binance-heist/">SecurityWeek</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/">Google will let schools disable its AI tools — but not without sacrificing Search</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Nov 3
+</div>
+<p class="dek">Google will turn off AI tools for K-12 students next year unless admins enable them — but schools that block AI entirely lose Google Search too, because &#x27;Search and AI are deeply integrated.&#x27;</p>
+<div class="body">
+<p>This is the bundling question in miniature: when a capability is woven into the core product, opting out of the capability means opting out of the product. For school administrators the choice is no longer &#x27;AI on or off&#x27; but &#x27;Google or not Google.&#x27; Apple&#x27;s new App Store rules, also in the digest, point the same way from the platform side: 18+ ratings required for dating apps and AI companions with sexual or romantic content. The platforms are drawing the lines, and everyone else is living inside them.</p>
+<p>Worth noting alongside: a16z&#x27;s six consumer-health trends from a 500-person survey — half would pay for one &#x27;healthcare home&#x27; app for records, labs, wearables and booking — with the observation that &#x27;value will migrate to the companies that can figure out the action layer.&#x27;</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Four things worth your learning time today, each from yesterday&#x27;s discussions, each with a takeaway for a tech lead building an AI platform and driving adoption inside orgs.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://github.com/decodingai-magazine/building-a-coding-agent-from-scratch-course">Build a coding agent from scratch: the harness course</a></h3>
+<div class="byline">
+<span class="src">GitHub — decodingai-magazine</span> &middot; Nov 3
+</div>
+<p class="dek">Eight articles, six videos, one codebase — learn harness engineering by building Claude Code from first principles.</p>
+<div class="body">
+<p>Why it matters for you: this is the single best hands-on curriculum in today&#x27;s edition for the exact skill a foundation-platform lead needs — the layer around the model, not the model. Work through the agent loop, sandboxing, context engineering and evals in order, and you will have a mental model for every agent your teams ship, plus a codebase to steal patterns from. Takeaway: evaluate your own agents by their harness (loop, tools, sandbox, evals, replay), not by which model they wrap.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://decodingaimagazine.substack.com/p/claude-code-from-scratch-harness-engineering-roadmap">Decoding AI Magazine</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.darioamodei.com/essay/machines-of-loving-grace">Machines of Loving Grace — the essay behind Altman&#x27;s &#x27;people must stay in control&#x27; post</a></h3>
+<div class="byline">
+<span class="src">Dario Amodei</span> &middot; Oct 2024
+</div>
+<p class="dek">Sam Altman&#x27;s most-shared post of the day quotes — without naming — Amodei&#x27;s 2024 essay. Read the passage in context before repeating the slogan.</p>
+<div class="body">
+<p>Altman wrote: &#x27;People should always be in control of the future. OpenAI is against the notion that it would be acceptable for people to be relegated to a role of doing things that AI systems think makes sense to reward in humans. People should not cede control of the future to superintelligence, and that requirement should ultimately constrain AI progress.&#x27; The quoted phrase comes word for word from Amodei&#x27;s essay, where it is one possible post-AI economy among several, alongside UBI — presented with problems, not as a plan. François Chollet co-signed: &#x27;The only future that is worth building is one in which AI remains a tool in human hands.&#x27;</p>
+<p>Why it matters for you: both labs&#x27; top-level messaging now centers on keeping humans in charge, a day after Anthropic&#x27;s S-1 said it may soon meet its own threshold for AI-accelerated R&amp;D with humans supervising. Altman&#x27;s post doesn&#x27;t say what the constraint would be or who enforces it — and the replies press exactly there: &#x27;control without transparency is mostly a feeling.&#x27; Takeaway: when you set guardrails for your own platform, write down who enforces them and how a human can still see why a system recommended something. A slogan is not a control.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/sama/status/2117794005165748448">X — @sama</a> &middot; <a href="https://x.com/fchollet/status/2117795655297175980">X — @fchollet</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://sebastianraschka.com/llm-architecture-gallery/">The LLM architecture gallery: 10 open architectures in one &#x27;Open October&#x27;</a></h3>
+<div class="byline">
+<span class="src">Sebastian Raschka</span> &middot; Nov 3
+</div>
+<p class="dek">Kolibri-1, Ling 3.1 Flash, Muse Spark Open, Nemotron 3.5 Super VL and six more — and the common thread is cheaper attention.</p>
+<div class="body">
+<p>Raschka counted 10 open-weight architectures in October: grouped-query attention (GQA, sharing keys and values across heads), sliding-window attention (SWA, attending only to nearby tokens), multi-head latent attention (MLA, compressing keys and values into a smaller latent), and Mamba-style layers replacing attention&#x27;s quadratic cost in some layers. Most are hybrids rather than plain transformers.</p>
+<p>Why it matters for you: architecture is where inference cost is decided, and inference cost is what Anthropic&#x27;s filing and Fal&#x27;s thin margins are both about. You don&#x27;t need to memorize all ten; you need the pattern — every lab is trading a little attention quality for a lot of compute savings. Takeaway: when your teams evaluate an open model, ask which attention trick it uses and what it costs at your context length, not just its benchmark score.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/rasbt/status/2117637894315626719">X — @rasbt</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://menlovc.com/perspective/2026-the-state-of-enterprise-ai/">Menlo&#x27;s 2026 State of Enterprise AI: the adoption numbers to plan around</a></h3>
+<div class="byline">
+<span class="src">Menlo Ventures</span> &middot; Nov 3
+</div>
+<p class="dek">The report behind the $177B figure — and the most useful planning numbers in it are not the headline.</p>
+<div class="body">
+<p>Read it for three planning facts, not the total. First, growth is existing buyers spending more (planned 1.9x, actual 4.7x), so your adoption problem is depth, not first contact. Second, coding ($34B) and assistants/chatbots ($25B) are 76% of application spend — start where the money already flows. Third, agents already generate 80% of OpenRouter tokens, up 37x since overtaking humans in February, which means your platform&#x27;s agent traffic will dwarf your chat traffic sooner than your roadmap assumes.</p>
+<p>Takeaway for driving adoption inside orgs: budget for the bottleneck shift Claire Vo describes — verification, PR review and go-to-market capacity — because the building itself is getting cheap, and the report&#x27;s own numbers (55% net new budget, little replacement of Salesforce or Workday) say incumbents survive by absorbing AI, not by being replaced by it.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/MenloVentures/status/2117619071953125643">X — @MenloVentures</a>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
