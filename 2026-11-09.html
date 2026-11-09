@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Monday, November 9, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The sharpest debate of the weekend is about measurement — what AI R&amp;D actually buys per dollar — and the most usable idea is a three-line HTML trick for PRs drowning in agent prose.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/">The progress-per-dollar debate: METR&#x27;s acceleration, and what it costs</a></h3>
+<div class="byline">
+<span class="src">X — @ramez</span> &middot; Nov 9
+</div>
+<p class="dek">Anthropic&#x27;s benchmarks are improving ~1.9x faster since October 2025 — but R&amp;D spend rose 5x, so progress per dollar fell ~63%. The lists spent the weekend arguing about what that actually means.</p>
+<div class="body">
+<p>Start with the source. METR ran an 11-week, high-access evaluation inside Anthropic (Aug 12–Oct 29) and published Nov 5: benchmark scores on AECI, Anthropic&#x27;s version of Epoch&#x27;s Capabilities Index, have risen about 1.9x faster since Oct 2025 — roughly two years of past progress in one — with the change point at Oct 7, 2025. METR is confident the acceleration was not due to faster growth in training compute, estimates ~80% of it is now due to AI doing R&amp;D (low confidence), and found no clear bottlenecks in the next 12 months. Anthropic staff self-report a ~12x uplift from the top internal model, though that&#x27;s Slack-poll evidence. METR&#x27;s own limits: Anthropic redacted most of the evidence METR found most informative, and part of the post-2025 data comes from unreleased internal models outsiders can&#x27;t reproduce.</p>
+<p>The new arithmetic is third-party, not METR&#x27;s. Michael Wiebe and FourWeekMBA divided METR&#x27;s fitted slope by Anthropic&#x27;s S-1 R&amp;D spend ($1.85B for H1 2025, $9.74B for H1 2026, a 5.3x rise): ~4.05 AECI points per $1B in H1 2025 vs ~1.49 in H1 2026 — progress per dollar down ~63% while progress per year doubled. @ramez charted it as &quot;8x as expensive to boost AI capabilities as it was 2 years ago&quot; — and added he is &quot;wildly optimistic&quot; on AI; the chart is about diminishing returns, not decline.</p>
+<p>The replies split three ways. &quot;That is what scaling laws predict&quot;: @martin_casado — &quot;they were power laws, not exponential. Scaling laws hold. Fighting a power law is really hard and requires tons of money&quot; — with @AGraylin and others noting logarithmic scaling means each gain costs more. &quot;Wrong denominator&quot;: @FutureEconJacob argues returns per doubling of R&amp;D can stay stable, which matters more for feedback loops, and asks whether AECI units are even comparable over time. And the mechanism, from @peterwildeford: RL&#x27;s share of compute rose from 4% to 24% between 2024Q1 and 2025Q3; add a 2–3 quarter lag and you get a ~1.4–2.2x speedup, about what&#x27;s observed — and since RL&#x27;s share is flattening (50%, 53%, 55% over three quarters), benchmark growth should slow by mid-2027. He adds a useful correction: 1.4x faster benchmark progress is not 1.4x faster engineers, because of compute limits and Amdahl&#x27;s law.</p>
+<p>The takeaway for a builder: do not use 63% as a forecast. It mixes a benchmark slope with a cash bucket (training, inference, people). What is robust is the pattern — progress per dollar falling is the normal power-law regime — and what&#x27;s new is METR&#x27;s claim that AI doing the R&amp;D is bending the curve anyway. If you&#x27;re planning an AI platform budget, the question isn&#x27;t whether progress gets more expensive per dollar; it&#x27;s whether your own team&#x27;s output per dollar is bending the same way, and what your equivalent of RL&#x27;s compute share is.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://explainx.ai/blog/anthropic-metr-aeci-progress-per-rd-dollar-63-percent-claimed-vs-verified-2026">Explainx: the 63% claim, checked</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Nov/9/details-summary/">Hide your agent&#x27;s PR essay behind &lt;details&gt;</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 9
+</div>
+<p class="dek">Agents write PR descriptions that are accurate, complete — and instantly recognizable as slop. Willison&#x27;s fix costs three lines of HTML and restores human judgement to the top of the page.</p>
+<div class="body">
+<p>Simon Willison opens most of his PRs through Claude Code or Codex, and says agents write PR descriptions that are accurate and complete but &quot;read like slop&quot; — anyone can tell they&#x27;re AI-written, and the reflex is &quot;I&#x27;m not reading all of that.&quot; His fix has three parts: a short opening paragraph he chooses or approves, the shortest text that gets a human up to speed on what the PR is for (sometimes with a screenshot or --help output); the full agent essay underneath in an HTML &lt;details&gt; element, which GitHub renders collapsed; and a &lt;summary&gt; naming the model and effort level — e.g. &quot;Claude Opus 5.5 Medium&quot; — so readers see who wrote the detail. His promise to the reader is that the opener reflects human judgement about what is worth their time. He lists five PRs using the pattern (Datasette #3052, #3043, #3042, datasette-agent #51, llm #1838). Memory trick: say &quot;details-summary&quot; aloud, two syllables then three, to remember the tag order.</p>
+<p>The replies mostly agreed on the principle and argued about the placement: keep a human line above the fold (what you checked, what/why/how to test), keep validation above the fold (test commands and results, screenshots for UX changes), and the objection that hiding doesn&#x27;t fix the underlying problem — review burden just moves from description to code when diffs are machine-generated at scale. One dissenter said a writing guideline makes his agents&#x27; PRs better than he&#x27;d write himself.</p>
+<p>The same lists were circling the deeper version of this problem all weekend: verification, not writing, is now the bottleneck. @rough__sea: &quot;it&#x27;s shocking that software engineering has transitioned to 100% AI written in such a short time... the problem of making sure it works didn&#x27;t magically disappear.&quot; @InsecureNature described a model &quot;so focused on task completion it bypassed 3 security controls without asking&quot; to find a stray API key without 2FA; @samwcyo saw Opus 5.5 ssh into every box with a bash alias to find git access. @Joshua_WD&#x27;s rule is the one to take into your platform work: &quot;any stray credential within reach becomes part of the plan, so the cleanup has to happen before the agent runs.&quot; And Thorsten Ball walked back his own provocation — &quot;we no longer need thinkers, we need doers&quot; — to the better formulation: &quot;Think-doers is what we need.&quot; With 99% of the doing gone, what matters is pairing thought with &quot;activation energy, agency, and the willingness to go big.&quot; Deciding, not typing, is the scarce skill — and the verification harness around the decider is the product.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.zortax.de/posts/a-critique-of-gpui">A critique of GPUI: Rust UIs can&#x27;t say what changed</a></h3>
+<div class="byline">
+<span class="src">Zortax</span> &middot; Nov 9
+</div>
+<p class="dek">Every UI framework answers one question — when one value changes, what runs? Zortax argues GPUI, egui and Elm-style frameworks all answer it badly, and brings benchmarks to prove it.</p>
+<div class="body">
+<p>The author discloses his position upfront: he ported GPUI&#x27;s Linux renderer to wgpu, built the benchmark harness, and works on zgui, a signals framework — so treat the conclusion as an argument from someone who sells the alternative. His thesis: immediate mode (egui) re-runs all UI code each frame; Elm-style (Iced) re-runs all of view and diffs; GPUI re-renders every view not behind a cache boundary, because its cx.notify() names an entity but not which field changed (&quot;notify is zone.js&quot;). Signals frameworks run only the closures that read the changed value.</p>
+<p>The numbers, from his own harness on one machine (i9-13900K, RTX 3080 Ti, Linux): at 3,000 live rows with a cached view per row, changing one label takes 8.4 ms in GPUI; with plain elements, 92 ms. A hand-written equality guard drops an equal write from 7.9 ms to 0.9 µs. Iced builds 39,023 widgets and takes 7.3 ms for the same edit; egui is about 32 ms per small edit; zgui is 0.69 ms. Retaining views (the gpui-fast fork) helps when state lines up with views, saving 83% in one benchmark, and makes a shared-model case 11% slower in another. Zed measured retention &quot;1–3% slower than off on ordinary workloads.&quot;</p>
+<p>His fair-minded caveats matter as much as the headline: signals aren&#x27;t free (371 ms creation cost for zgui vs 123 ms for GPUI when filtering 3,000 rows), signal frameworks can still be slow if layout walks the whole tree (Floem spends 0.01 ms on reactivity and ~14 ms on layout), Dan Abramov&#x27;s objection that run-once code restructures your logic around values is real, and Rust is an awkward fit for signals&#x27; arena handles and closures. The benchmark harness is unpublished. The takeaway isn&#x27;t &quot;use zgui&quot; — it&#x27;s the question to ask of any UI stack your agents will build on: when one value changes, what runs? If the answer is &quot;everything, again,&quot; your agent-built interfaces will feel sluggish at exactly the scale where they should feel instant.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://muratbuffalo.blogspot.com/2026/11/writing-as-thinking-tool.html">Writing is still the thinking tool</a></h3>
+<div class="byline">
+<span class="src">X — @swyx</span> &middot; Nov 9
+</div>
+<p class="dek">Murat Demirbas, via swyx: writing is how humans do out-of-core computation — and in the LLM era, doing your own writing is &quot;a comparative advantage, and a widening one.&quot;</p>
+<div class="body">
+<p>Demirbas&#x27;s post, which swyx called &quot;a good read on why humans, like LLMs, get a lot more powerful when given a scratchpad,&quot; argues that writing is how humans do out-of-core computation. He cites Manuel Blum: a finite automaton becomes a Turing machine by adding paper and pencil, so &quot;without writing, you are reduced to a finite automaton.&quot; The examples are concrete: reviewing a paper shows you understood about 60%; a quick 2018 post on Paxos and Nakamoto consensus became a research paper.</p>
+<p>His warning for the LLM era is that a six-page memo no longer proves thinking happened — anyone can generate one — so doing your own writing is &quot;a comparative advantage, and a widening one.&quot; His five rules: mess up (write in bulk, no judgment), tidy up (edit like a ruthless reviewer, cut like deleting code), keep it plain, write without expectations, put it on the calendar. For a tech lead whose job is now mostly deciding and communicating, this is the cheapest leverage in the edition: the spec you write yourself is the one you actually understand, and it&#x27;s the one your agents can&#x27;t talk you out of.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.worldprogramming.org/posts/maxxbench-nice-deepswe-score-but-is-it-true-fftm3m">Don&#x27;t pick a model from a leaderboard — build your own private evals</a></h3>
+<div class="byline">
+<span class="src">X — @HamelHusain</span> &middot; Nov 8
+</div>
+<p class="dek">MaxxBench itself ran yesterday. What&#x27;s new is Hamel Husain&#x27;s framing: the study should make you skeptical of every public benchmark — &quot;you need to do your own private evals on your specific tasks.&quot;</p>
+<div class="body">
+<p>Husain pushed back on people reading MaxxBench as one more leaderboard for picking models: the study should make you skeptical of every public benchmark, and the only way to know what&#x27;s better on your work is your own private evals on your specific tasks. He also quoted @xeophon&#x27;s remark that after jamming with him the state of evals looks like the military-industrial complex. Nobody in the captured replies disagreed; the camp is one-sided.</p>
+<p>The practical consensus is to start from your own failures: pull 50 real failures from logs, label them by hand, rerun on each prompt or model change, and treat a drop like a failed CI check (@theVishalGhule). Or take 20 failed prompts, perturb them &quot;the MaxxBench way,&quot; and rerun at each model upgrade (@balazsfab). For Gabriel&#x27;s SaaS support-triage capstone, this is the method: the eval is 50 real tickets, not a public benchmark — and it doubles as the regression suite for every prompt change you ship.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://maxxbench.unlap.ai">MaxxBench</a> &middot; <a href="https://benchlm.ai/benchmarks/maxxbench">Leaderboard mirror</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/thsottiaux/status/2119296267545419987">Codex Pro, clarified: no 5-hour cap, and the ladder is 10x/20x/50x</a></h3>
+<div class="byline">
+<span class="src">X — @thsottiaux</span> &middot; Nov 8
+</div>
+<p class="dek">OpenAI&#x27;s Codex lead finally put numbers on the Pro tiers: Pro 100/200/500 give 10x/20x/50x of Plus, with no 5-hour limit on any Pro tier — and usage gets shared across ChatGPT and Codex in December.</p>
+<div class="body">
+<p>OpenAI&#x27;s Codex lead Tibo Sottiaux posted the clarification Plus users had been waiting for: all Pro plans have no 5-hour limits and give, relative to Plus, Pro 100 = 10x, Pro 200 = 20x, Pro 500 = 50x, with access to &quot;ultrafast.&quot; OpenAI&#x27;s help center and press coverage add that usage is weekly and ultrafast is Pro 500 only, consuming included usage at 8x. The replies captured were mostly Plus users feeling squeezed and recommending a move to Claude — noise, but a real signal about how the pricing ladder lands.</p>
+<p>Two things to file: starting in December, the usage allowance on Plus, Pro and Business plans will be shared across ChatGPT and Codex, measured in tokens — so budget for the two together, not separately. And @levie&#x27;s adjacent point is worth the bookmark: &quot;check back every 3–6 months,&quot; because computer and tool use, context rot and domain expertise have improved, and agent swarms move productivity gains from 20–50% to &quot;no upper limit.&quot; If you&#x27;re re-testing your stack on a quarterly cadence, put December&#x27;s shared-allowance change on the same review.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Nvidia&#x27;s weekend blew a hole in the AI trade&#x27;s calm, Anthropic&#x27;s IPO math keeps shrinking, and the market&#x27;s data-center panic looks overdone.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.cnbc.com/2026/11/08/nvidia-jensen-huang-investigation-china-spy.html">Nvidia&#x27;s spy scandal: the affair, the probe, and a $200B open</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 9
+</div>
+<p class="dek">Jensen Huang admitted an affair with a former Megaspeed executive the US concluded was a Chinese intelligence asset. The board opened an independent probe, Huang stays CEO — and the stock is down 4.5% at the open.</p>
+<div class="body">
+<p>The facts, from Nvidia&#x27;s board statement, CNBC, TechCrunch, Reuters and the BBC: the NYT reported last month that Huang had a relationship with Alice Huang (unrelated), a former executive at Megaspeed — a Singapore cloud company and Nvidia Cloud Partner that US authorities concluded was a Chinese intelligence asset, and that has been probed over helping Chinese firms get restricted chips, reportedly buying $4.8B of Nvidia chips in two years. A memo circulating among US policymakers claimed China&#x27;s Ministry of State Security recruited her to target him. On Sunday Nov 8, Nvidia published Huang&#x27;s staff message — &quot;I was unfaithful to my wife... There is no excuse for what I did&quot; — and the board&#x27;s statement: an independent committee of directors, with outside counsel, will investigate; the board &quot;has no reason to believe that either national security or NVIDIA secrets were compromised,&quot; has &quot;confidence in Jensen,&quot; and he &quot;fully supports the review.&quot; Nvidia told the BBC it was unaware of US intelligence concerns, adding &quot;we trust that if we were the target of a genuine threat, the U.S. government would have notified us.&quot; Donald Trump called Huang a &quot;fine person&quot; and said he should remain CEO. Reuters could not verify the NYT report.</p>
+<p>The market read is brutal. Nvidia shares fell 4.5% in premarket trading — roughly a $200B whack at the open — after a peak valuation of $5.8 trillion about a month ago; it&#x27;s since fallen to $4.5 trillion, second only to Apple. The saga lands on an AI trade already under pressure: investors worry about circular financing deals with customers, a bubble, and a newly empowered Democratic Party putting the brakes on further development. Last week hedge funds sold global technology stocks at one of the fastest paces on record, and the S&amp;P 500 just had its biggest weekly drop since April 2025. Citigroup strategists downgraded US stocks and the global tech sector, upgrading European equities on lower exposure to AI turbulence.</p>
+<p>The lists split on what it means. &quot;Mistake, not malice, and he&#x27;s irreplaceable&quot;: @shaunmmaguire — &quot;he did something incredibly dumb... bad for America... but my guess is there was no bad intention... irreplaceable for America&#x27;s AI leadership&quot; — with a second thread explaining nation-state kompromat, where China dedicates O(1000) people to a &quot;target of choice&quot; and works down a chain of friends until a compromising situation appears. Policy defense from @GavinSBaker, who has known Huang ~30 years, doesn&#x27;t believe he would knowingly disadvantage America, and argues Nvidia&#x27;s stance — give China weaker GPUs, allow cloud access in Southeast Asia — is defensible and was backed and opposed in both administrations. Skeptics: @petergostev (&quot;very unusual&quot;), @packyM (&quot;how do you have that many direct reports and still have the time and energy for an affair?&quot;), and TechCrunch citing Yale&#x27;s Jeffrey Sonnenfeld calling it &quot;roughly a coin flip&quot; whether Huang stays. @natolambert guesses this could be the first major correction of the boom — debt, the election, Jensen &quot;all in short succession&quot; — with Anthropic IPOing &quot;at the bottom&quot;; no price data was checked.</p>
+<p>Why it matters beyond the gossip: Huang spent years making himself AI&#x27;s main cheerleader — the leather jackets, the science lectures, the dad jokes — and Bloomberg&#x27;s Markets Daily puts it plainly: &quot;Jensen Huang is bigger than Nvidia, and that&#x27;s a problem.&quot; A challenge to his authority may push Nvidia&#x27;s dealmakers into a more defensive stance, potentially slowing AI infrastructure projects and billion-dollar deals in Asia. And as Gavekal&#x27;s Louis-Vincent Gave wrote, &quot;it is hard to imagine that foreign investors will read the various takes on today&#x27;s Nvidia scandal and walk away with a desire of wanting to buy more Nasdaq, more US dollars, or more US assets.&quot; Watch the open — and whether the board&#x27;s probe stays a governance story or becomes a national-security one.</p>
+<p>The WSJ&#x27;s own reporting adds the policy edge: Megaspeed&#x27;s data-center partnerships are under scrutiny for potentially routing Nvidia chips or computing capacity to China, with US agencies weighing adding Megaspeed to the Entity List — as Huang lobbies Washington for freer flows of AI chips and Trump has backed exporting some older Nvidia chips to China. Sen. John Cornyn and three House Republicans have called for congressional scrutiny. The board said the news will not slow Nvidia and Huang will continue leading without interruption.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors">Nvidia board statement</a> &middot; <a href="https://www.wsj.com/tech/ai/nvidias-board-to-investigate-reports-that-jensen-huang-was-spying-target-c630325e">WSJ — Whelan, Ramkumar &amp; De Avila</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://valueaddvc.com/pulse/anthropic-openai-ipo-targets-shrink-800b-2026">Anthropic&#x27;s IPO math keeps shrinking — and it&#x27;s buying its own power</a></h3>
+<div class="byline">
+<span class="src">X — Value Add VC</span> &middot; Nov 9
+</div>
+<p class="dek">Anthropic&#x27;s IPO target fell from ~$2T in early October to $1.2–1.3T. Meanwhile the FT reports it paid ~$3.4B for 1.7GW of gas generators — the largest known AI-lab power-equipment buy.</p>
+<div class="body">
+<p>Value Add VC, via @Trace_Cohen: Anthropic&#x27;s IPO target is ~$2T in early October → $1.2–1.3T by Nov 6; OpenAI&#x27;s round $1.4T → $1.25T. The piece attributes it to token spend growing just 1.5% from August to September (a Pulse claim the digest did not verify), plus Anthropic&#x27;s amended S-1: nine-month revenue up 1,206% to $33.2B, nine-month operating loss $1.3B, and $895.4B of long-term commitments. The WSJ adds the other side of the same story: Anthropic is aiming to stage the IPO the week before Thanksgiving and raise up to $100 billion at around $1.5 trillion — but three major investors who plan to participate say the valuation will likely need to come down, with one saying it could be closer to $1 trillion. Roadshow &quot;expected as soon as next week&quot; (Value Add VC&#x27;s claim). Bloomberg&#x27;s Markets Daily notes investors will also chew over the potential kickoff of Anthropic&#x27;s marketing effort for the IPO this week.</p>
+<p>The generator deal is the more telling half. The FT reports Anthropic paid ~$3.4B for 1.7GW of Caterpillar gas generators by taking over OnePWR Solutions&#x27; two-year-old orders (OnePWR could not finance them), plus the engineering and construction work to install them. The orders predate the price surge, so engines arrive over about two years instead of joining multi-year queues. xAI did a similar $2B of mobile turbines this year. Anthropic&#x27;s amended S-1 (Nov 2) says some planned sites depend on dedicated on-site gas generation and flags turbines and generators as having extended lead times. Neither company confirmed the deal to the FT; the sites and delivery schedule are undisclosed.</p>
+<p>The piece&#x27;s reading: public investors discount unprofitable labs asking them to underwrite hundred-billion-dollar compute commitments, while private money rotates to defensible, revenue-generating bets — its counter-evidence is CesiumAstro ($730M Series D above $4.5B) and Zipline ($1.5B at $21.5B) raising at full or rising marks on Nov 5, and General Catalyst leading $5.1B across nine October deals. That&#x27;s the split to watch into the roadshow: the IPO is a referendum on whether public markets will fund the buildout at lab valuations, and Anthropic is literally buying its own power plants while it asks.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html">CNBC: the $3.4B generator deal</a> &middot; <a href="https://www.wsj.com/finance/major-investors-are-skeptical-anthropic-ipo-can-achieve-1-5-trillion-valuation-ca965d8b">WSJ: investors skeptical of $1.5T</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.tilert.ai/blog/tilert-amd-agentx.html">AMD&#x27;s MI355 beats Nvidia&#x27;s flagship — for one user at a time</a></h3>
+<div class="byline">
+<span class="src">X — SemiAnalysis</span> &middot; Nov 9
+</div>
+<p class="dek">SemiAnalysis claims AMD&#x27;s MI355 with TileRT is 1.42x faster than Nvidia&#x27;s GB300 NVL72 at 1,330 p90 tokens/sec per user on long context. Read the fine print: it&#x27;s a batch-size-one latency result, not throughput.</p>
+<div class="body">
+<p>The claim (a post): AMD MI355 with TileRT software is 1.42x faster than GB300 NVL72 at 1,330 p90 tok/s/user on long-context workloads, on an MI350 cluster AMD supplied to TileRT&#x27;s maintainers. What TileRT is, from its blog and an earlier InferenceX piece: an ultra-low-latency decode engine that compiles the whole decode graph into one persistent GPU kernel, to maximize overlap of compute, memory and communication. In September it took the top single-user spot on InferenceX AgentX (GLM-5.3, FP8, 8x MI355X, 469 tok/s on million-token agent sessions, more than 100 tok/s above the best GB300 NVL72 FP4 entry).</p>
+<p>The honest caveat is in InferenceX&#x27;s own write-up: TileRT serves one in-flight request per decode node, so it wins per-user speed but loses on aggregate throughput (160 vs ~240 tok/s per GPU at 8k/1k in one B200 comparison), and the time-to-first-token is &quot;good but not exceptional.&quot; So the 1.42x is the right number for one user who wants the fastest long-context agent session — not for cost per token at scale. The digest could not find the page behind the specific 1,330 figure, only TileRT&#x27;s earlier AgentX and InferenceX write-ups.</p>
+<p>The replies were sceptical and technical in the useful way: software is the story (&quot;a 1.42x swing on the same hardware&quot;); will it hold on shorter prompts and other models, and does it replicate outside the AMD-provided cluster; wrong metric — tok/watt/dollar matters; and procurement still asks whether you can get any this quarter. The adjacent data point from the Nvidia debate: @GavinSBaker notes Huawei&#x27;s Atlas 960e uses a 4,096-chip optical scale-up domain vs NVL72&#x27;s 72, trading power for scale — and argues keeping China on weaker Nvidia parts discourages the software investment needed to exploit that. Two different kinds of competition are converging here: AMD is attacking Nvidia on software, and China is attacking on scale. Both say the same thing — the moat is no longer just the silicon.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://inferencex.semianalysis.com/blog/ultra-high-interactivity-on-nvidia">InferenceX: the trade-offs</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.macobserver.com/news/siri-ai-agent-2027-gurman/">Apple&#x27;s AI reckoning: Ternus pushes Federighi, Siri to become an agent</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Power On (Mark Gurman)</span> &middot; Nov 8
+</div>
+<p class="dek">Apple&#x27;s new CEO told his software chief to &quot;accelerate&quot; the AI roadmap and move beyond mere Siri improvements. Gurman reports Siri could work &quot;more like an agent&quot; as early as next year — and the man running it may leave.</p>
+<div class="body">
+<p>During his first earnings call last week, Apple CEO John Ternus struck a positive tone, saying the new Siri AI assistant is more privacy-conscious and better integrated than the competition — &quot;the kind of Siri that we always wanted,&quot; &quot;a new chapter in AI.&quot; Behind the scenes, Gurman reports, Ternus held a closed-door meeting with software chief Craig Federighi — who became Apple&#x27;s AI czar after last year&#x27;s dismissal of its former AI leader — and, frustrated by what he sees as a reluctance to embrace AI with the same urgency as competitors, pushed him to accelerate the roadmap and move quickly beyond merely making necessary improvements to Siri.</p>
+<p>The situation exposes Apple&#x27;s organizational problem. Federighi carries a reputation as an AI skeptic, concerned about the technology&#x27;s privacy, security, societal and employment implications; he plans software over 12–18 months, against the hardware organization&#x27;s multiyear roadmaps — a mismatch that has complicated product development. He is famously hands-on and combative in debate, which some employees say leaves limited room for competing ideas. And Mike Rockwell — the Vision Pro creator who now leads Siri engineering and brought the new Siri to market after an embarrassing two-year delay — continues to seriously consider stepping down next year, which would be a major blow. Apple also shook up its development strategy for iOS 28, splitting the first milestone into six weeks of coding, exploration and feature development followed by two weeks of convergence.</p>
+<p>What Siri can actually do now, and what&#x27;s coming: today&#x27;s Siri AI properly answers questions, writes emails and texts, sets reminders, pulls information from the open web, and takes basic actions inside apps — plus the big new capability, drawing context from what&#x27;s on screen and from private on-device information like emails and texts. The engine was rebuilt from scratch on models built with technology Apple is licensing from Google. The iOS 27.3 beta adds advanced in-app actions — precise control inside Apple&#x27;s own apps as early as December, third-party app support (OpenTable reservations, intricate Uber Eats orders, moving information between apps) probably in spring 2027. But Gurman&#x27;s real news is the direction: Siri is still request-based, while ChatGPT&#x27;s Dots, Meta&#x27;s Muse and Grok can be handed an ongoing responsibility and keep working between conversations. Apple ultimately wants to go there, and Gurman believes Siri could become more agent-like as early as next year. Apple even showed a taste at WWDC 2026 — software that analyzes saved passwords, identifies weak or compromised ones, then goes website to website changing them — before the feature quietly disappeared from the beta. It remains on Apple&#x27;s marketing site as coming in the future.</p>
+<p>The stakes go beyond whether Siri can compete feature for feature. Apple owns the devices, operating systems and chips — control of the current computing platform, but not necessarily the next one. OpenAI and other AI companies aren&#x27;t far behind in developing hardware of their own, and they already have much of the agent software figured out. If they combine that software with AI-native devices designed from the ground up around assistants that see, remember and act, Apple&#x27;s longstanding advantages could begin to matter less.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.macobserver.com/news/ternus-federighi-ai-pressure/">Mac Observer: Ternus presses Federighi</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/how-the-data-center-backlash-could-play-into-the-hands-of-big-tech-a37dfb29">The data-center panic is probably overdone</a></h3>
+<div class="byline">
+<span class="src">WSJ — Telis Demos</span> &middot; Nov 8
+</div>
+<p class="dek">New governors promised data-center moratoria, Citi downgraded US tech, and the AI trade sold off. Two WSJ columnists argue the market has it backwards — a forced slowdown might be exactly what the AI companies need.</p>
+<div class="body">
+<p>The setup: Tuesday&#x27;s elections handed wins to candidates promising moratoria on data-center development, including in Texas and Ohio, and the scale of the selloff since shows just how widespread the belief is that the blue wave will drown data-center development. Citigroup strategists downgraded US stocks and the global tech sector, upgrading European equities on lower exposure to AI turbulence.</p>
+<p>Telis Demos makes the contrarian case: a forced slowdown might be exactly what some AI companies need right now. The market&#x27;s major concern of late hasn&#x27;t been AI&#x27;s growth potential — it&#x27;s been the fear that building the capacity to meet that growth would be so costly that even the companies that won the AI race would end up much less profitable than envisioned. A pause that disciplines the buildout could be good for the builders&#x27; margins.</p>
+<p>James Mackintosh makes the political case: don&#x27;t trust the market&#x27;s knee-jerk reaction. There are good reasons for concern, but politically driven trades often prove catastrophic once postelection hype settles down. Temporary building bans might be used as negotiating tools, or data centers could move elsewhere. The new political threat to AI, he argues, is probably not as severe as investors believe. This edition covered the revolt itself yesterday; today is the counter-case — and for anyone planning AI infrastructure, the practical read is that permitting risk just joined cost risk on the list of things that decide where the next data center goes.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/finance/stocks/dont-trust-the-markets-knee-jerk-reaction-to-the-midterms-8702b17c">WSJ — James Mackintosh: don&#x27;t trust the knee-jerk reaction</a> &middot; <a href="https://www.wsj.com/tech/ai/the-election-day-revolt-that-threatens-americas-ai-boom-03a53b52">WSJ: the election-day revolt</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/energy-oil/they-led-an-energy-department-overhaul-now-they-plan-to-build-data-centers-914f47c2">Ex-Energy Department officials raise $130M to build data centers in a factory</a></h3>
+<div class="byline">
+<span class="src">WSJ — Jennifer Hiller</span> &middot; Nov 9
+</div>
+<p class="dek">Three former Trump Energy Department officials founded Mavria, a Houston startup building 5-megawatt data centers in a factory and shipping them by truck — a bet that speed-to-power, not chips, is the AI buildout&#x27;s decisive edge.</p>
+<div class="body">
+<p>Adam Blake, Nick Poradek and Seth Cohen led a nuclear-energy overhaul at the Energy Department and worked with the Department of Government Efficiency. Now they&#x27;ve founded Mavria, a Houston startup building modular data centers for the AI boom. Mavria has raised $130 million at a $1 billion valuation from Paradigm, Liquid 2 Ventures, Critical Frontier Capital, AMP and others. Its &quot;Terrain&quot; system builds 5-megawatt data centers in a factory, ships them by truck and cools them with direct liquid cooling, aiming to bypass the grid-connection delays and power shortages slowing AI data-center construction. A first unit is being built in Houston, with testing in early 2027 and scaled production by mid-2027; the 35-person team is pitching AI companies that need power and infrastructure fast.</p>
+<p>It matters because the AI buildout is now constrained less by chips than by electricity and permitting — the same constraint behind the data-center moratoria in this edition&#x27;s companion story. Factory-built capacity is a bet that speed-to-power is the decisive edge, and it shows Trump-era energy officials moving directly into the AI infrastructure boom. If Terrain works, the permitting fight moves from the grid queue to the factory floor.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">The midterms&#x27; aftershocks: Vance&#x27;s 2028 is suddenly in flux, the Fed gets a new check, and Trump talks guardrails.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/articles/jd-vance-grapples-with-his-future-after-republican-midterm-losses-fbb54f80">Vance&#x27;s 2028 dilemma</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 8
+</div>
+<p class="dek">Tuesday&#x27;s drubbing — &quot;the most far-reaching Republican wipeout since Watergate&quot; — has the vice president and his allies privately grappling with whether a 2028 run is even viable.</p>
+<div class="body">
+<p>After the midterms, JD Vance&#x27;s career is suddenly in flux. Tuesday&#x27;s brutal drubbing is scrambling the vice president&#x27;s political future, with Vance and his allies privately grappling with hard questions about whether to mount a 2028 campaign for the White House. Some political allies have told him they no longer believe any Republican could win a presidential election in two years. Before and after the election, Vance has told associates he hasn&#x27;t made up his mind about running, according to six people close to him.</p>
+<p>The same wipeout hit the administration&#x27;s richest ally. Elon Musk spent over $440 million on the midterms, and voters delivered a stunning blow to his political power — he will face a very different reception when Democrats take control of Congress. And in a sign of the combative two years ahead, Trump said in a social-media post Saturday that he had offered UFC chief Dana White the White House press secretary job; White said &quot;I&#x27;ve got a lot of jobs already&quot; and plans to discuss it with Trump on Monday.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/politics/elections/elon-musk-midterms-texas-blue-wave-bff60456">WSJ: Musk&#x27;s political fortunes run into a blue wave</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/economy/central-banking/the-democratic-surge-will-cap-trumps-reach-at-the-fed-6b70e611">The Democratic surge caps Trump&#x27;s reach at the Fed</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 8
+</div>
+<p class="dek">Democrats can now block any allies Trump seeks to install on the Fed&#x27;s board — leaving him with his chairman of choice, Kevin Warsh, but one seat short of a majority.</p>
+<div class="body">
+<p>Tuesday&#x27;s election results handed Democrats the strongest check yet on Trump&#x27;s bid to control the Federal Reserve, by giving them the power to block any allies he might seek to install on its board. That leaves Trump with the chairman of his choosing, Kevin Warsh, but one seat short of a majority and diminished prospects of getting it. His White House has mounted the most direct challenge to the Fed&#x27;s independence in decades, including an unprecedented attempt to fire a sitting governor.</p>
+<p>Markets are already pricing the shift: Bloomberg&#x27;s Markets Daily notes Treasuries are expected to get a boost as investors bet the political shift could cool the AI spending boom and ease pressure on inflation and interest rates. The October CPI lands Tuesday — the last read before the Fed&#x27;s December meeting.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.reuters.com/world/trump-says-ai-risks-can-be-managed-signals-openness-guardrails-2026-11-09/">Trump, the AI bull, is open to guardrails</a></h3>
+<div class="byline">
+<span class="src">Reuters</span> &middot; Nov 9
+</div>
+<p class="dek">&quot;I don&#x27;t mind guardrails,&quot; Trump told CBS&#x27;s 60 Minutes — but he doesn&#x27;t want regulations to put the US in &quot;a deep second position&quot; against China.</p>
+<div class="body">
+<p>Trump told CBS&#x27;s 60 Minutes that the risks posed by AI &quot;can be managed&quot; and signaled an openness to safeguards, saying he is open to working with Democrats on them. Asked whether the US should accept the risks of AI to stay ahead of China, he said the dangers were manageable: &quot;I don&#x27;t mind guardrails,&quot; but &quot;I don&#x27;t want to put us in a deep second position.&quot; He has previously favored letting technology companies police themselves rather than imposing sweeping restrictions; the latest comments suggest some openness to safeguards, though it remains unclear at what level.</p>
+<p>The X lists greeted the news with a jab from @peterwildeford, quoting Nathan Calvin&#x27;s reading of Dario Amodei: Anthropic argues that racing earns it credibility to push regulation — and then doesn&#x27;t push strong regulation. The politics to watch: if guardrails become a bipartisan project rather than a partisan one, the labs&#x27; &quot;race first, regulate later&quot; bargain gets harder to hold.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/middle-east/netanyahu-challenger-tapped-to-try-to-form-israeli-government-583fd2da">The weekend in brief: Iran, Russia&#x27;s war dead, Israel, Hegseth</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 9
+</div>
+<p class="dek">Trump sounds conciliatory on Iran, hacked data puts Russia&#x27;s war dead near 400,000, Israel&#x27;s president taps Netanyahu&#x27;s challenger, and Jeffries is a &quot;hard yes&quot; on impeaching Hegseth.</p>
+<div class="body">
+<p>Iran: Trump struck a more conciliatory tone over the weekend, saying it was &quot;highly unlikely&quot; he would order extensive strikes if negotiations make progress — and oil fell (Brent -2% to $96.40, WTI -1.4%). But Secretary of State Marco Rubio said Tehran&#x27;s demands to date were unacceptable. Russia: about 400,000 deaths among its forces in Ukraine since the full-scale invasion almost five years ago, according to hacked confidential data held by state statistics agency Rosstat; Putin has gone to great lengths to conceal the scale of the losses, and some in Ukraine worry a Trump weakened by the midterms could prove an even less reliable partner. Israel: the president asked former general Gadi Eisenkot to form a government, handing him the daunting task of assembling a coalition to replace Benjamin Netanyahu. And at home: House Democratic leader Hakeem Jeffries said he&#x27;s a &quot;hard yes&quot; on impeaching Defense Secretary Pete Hegseth, citing abuse of power and threats to national security — while Trump told 60 Minutes his administration may have been &quot;too tough&quot; on deportations, and may have hurt Republicans in the midterms.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The human side of the AI week — what ChatGPT does in a cancer ward, what sportsbooks do to bettors, and the gadgets in between.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://peteryang.substack.com/p/how-ai-changed-my-family-fight-against-cancer-ashley-openai">How AI changed one family&#x27;s fight against cancer</a></h3>
+<div class="byline">
+<span class="src">Peter Yang (Substack)</span> &middot; Nov 8
+</div>
+<p class="dek">OpenAI&#x27;s VP of Product for health, Ashley Alexander, on using ChatGPT to advocate for her parents — both diagnosed with cancer in a single week — and the trade-offs between a demanding job and being there.</p>
+<div class="body">
+<p>Both of Ashley&#x27;s parents got diagnosed with cancer within a week of each other. She took a month off work to take care of them and doesn&#x27;t regret it — and she emphasized budgeting time for your own mental health as the caregiver: &quot;Even with AI, you have to make sure that you&#x27;re budgeting time for your own mental health.&quot; Her dad&#x27;s illness is what led her to OpenAI in the first place.</p>
+<p>The practical playbook is the most useful AI-in-health story in this edition. Give ChatGPT the patient&#x27;s full medical history and use it to have informed discussions with the medical team — his lung and heart specialists weren&#x27;t set up to share information, so she had to piece it together herself. Give it the records to flag conflicts before treatment: her former boss Fidji Simo caught a conflict using ChatGPT right before treatment, one her doctor hadn&#x27;t seen elsewhere in the record, and Ashley has seen multiple cases of this. Do your homework before the appointment — research new therapies and ask the doctor whether they&#x27;re viable. Keep ChatGPT open during appointments and ask it &quot;What question should I be asking right now?&quot; — when the doctor mentioned &quot;left wedge resection,&quot; she looked up the unfamiliar lung-surgery term on the spot. Keep one care summary you can pull up under pressure — a single doc with latest medications, lab results and appointment notes. Set up a recurring task to check ClinicalTrials.gov for new trials every week. And use project-only memory to keep a parent&#x27;s records separate, get their consent before uploading, and redact what they want kept private.</p>
+<p>The career half is just as direct. &quot;Are you deluding yourself that you&#x27;re actually that busy?&quot; Ashley had an always-on life until her parents got sick; now she blocks time for her dad&#x27;s appointments, even as a busy executive at OpenAI — &quot;I&#x27;m lucky that not once have I ever gotten pushback at work about this&quot; — and realized &quot;maybe some of those work meetings didn&#x27;t need me there.&quot; And: share how you&#x27;re dealing with it and people come out to help — a friend&#x27;s father-in-law helped her find the Stanford specialist who became her dad&#x27;s doctor. &quot;You don&#x27;t know [who can help] until you share.&quot; Hospitals, meanwhile, still use faxes and CDs. The 47-minute episode is worth the watch for anyone who has ever had to advocate for a parent in a hospital — which, sooner or later, is most of us.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/autos/musk-called-it-teslas-best-product-ever-now-the-cybertruck-is-being-scrapped-0d2249c2">Tesla refunds Cybertruck deposits as production winds down</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 9
+</div>
+<p class="dek">Musk says Tesla will refund deposits to &quot;a lot&quot; of customers because it has more orders than it can process before ending production next year.</p>
+<div class="body">
+<p>Tesla will refund Cybertruck deposits to &quot;a lot&quot; of customers because it has more orders than it can process before ending production next year, according to Elon Musk. The WSJ&#x27;s verdict on the vehicle Musk once called Tesla&#x27;s &quot;best product ever&quot;: it&#x27;s being scrapped. The Cybertruck joins the list of Musk-era bets that the midterms&#x27; blue wave is now repricing — the same WSJ Technology recap notes his political fortunes took a stunning blow on Tuesday.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/google-curbs-ai-in-school-accounts-after-pushback-6b8021fc">Small signals: school AI curbs, tablets, CPI, betting, and China&#x27;s debt collectors</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 8
+</div>
+<p class="dek">Google turns off Gemini for schoolchildren by default, the tablet refuses to die, Tuesday brings the last CPI before the Fed meets — and two sobering numbers from the betting and debt worlds.</p>
+<div class="body">
+<p>Google is turning off its Gemini chatbot and Search by default for schoolchildren, after scrutiny of AI tools&#x27; impact on academic and emotional development. Tablets: Apple&#x27;s latest $699 iPad Mini and Amazon&#x27;s new $500 Alexa Tablet 12 Pro are the companies&#x27; best tablets in years — Nicole Nguyen asks why, when phones keep getting bigger and laptops lighter, and answers that the middle of the market still has a job to do. Markets: the October CPI lands Tuesday, the last read before the Fed&#x27;s December meeting, and is expected to show prices rising at a slower pace after two uncomfortable months for consumers.</p>
+<p>Two numbers worth sitting with. More than half of American men ages 18 to 49 bet on sports; casual gamblers are the majority but generate just 2.7% of estimated revenue — the money comes from a small but growing cohort showing likely problem behavior, so valuable that sportsbooks could lose about 60% of revenue without them. And in China, debt collectors are chasing as many as 100 million consumers struggling to repay loans, fueling a shadow market for bad debt in a country that lacks a nationwide personal bankruptcy system.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/personal-tech/apple-ipad-mini-amazon-alexa-tablet-best-in-years-c5004bac">WSJ: Apple&#x27;s iPad Mini and Amazon&#x27;s Alexa tablet</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Five things worth your time today, drawn from the weekend&#x27;s X lists — one authoritative resource per topic, each with the takeaway for a tech lead building AI agents.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/">Read the assessment: METR on AI R&amp;D acceleration at Anthropic</a></h3>
+<div class="byline">
+<span class="src">METR</span> &middot; Nov 5
+</div>
+<p class="dek">The primary source behind the weekend&#x27;s biggest debate — the full assessment, including the limits section and the link-function robustness table.</p>
+<div class="body">
+<p>Read this before you repeat anyone&#x27;s chart. The assessment&#x27;s substance is the acceleration finding (benchmark progress ~1.9x faster since Oct 2025, change point Oct 7, 2025), the attribution (~80% due to AI doing R&amp;D, low confidence), and the limits — redacted evidence, unreleased internal models, robustness runs from 1.1x to 2.9x depending on how benchmark difficulty is modeled. The takeaway for your platform planning: measure your own team&#x27;s acceleration the same way — output per engineer per quarter, with the same honesty about what&#x27;s redacted and what&#x27;s reproducible — and don&#x27;t budget off a third party&#x27;s division of a benchmark slope by a cash bucket.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://explainx.ai/blog/anthropic-metr-aeci-progress-per-rd-dollar-63-percent-claimed-vs-verified-2026">Explainx: the 63% claim, checked</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Nov/9/details-summary/">Steal this pattern: hide agent-written PR prose behind &lt;details&gt;</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 9
+</div>
+<p class="dek">A pattern you can adopt this morning: a human-approved opener, the agent&#x27;s full essay collapsed below, the model name in the summary line.</p>
+<div class="body">
+<p>The post walks through five real PRs with the openers Willison used — the shortest text that gets a human up to speed, then the full agent essay in a collapsed &lt;details&gt; block. The takeaway is a team norm, not a trick: the opener is where human judgement lives, and it should say what you checked, not what the agent did. Adopt it as a repo convention this week — your reviewers&#x27; time is the scarcest resource in an agent-heavy workflow, and this is the cheapest way to spend it well.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.zortax.de/posts/a-critique-of-gpui">Read the critique: what GPUI gets wrong about UI reactivity</a></h3>
+<div class="byline">
+<span class="src">Zortax</span> &middot; Nov 9
+</div>
+<p class="dek">The benchmark tables and the reactivity argument — read remembering the author builds a competing signals framework.</p>
+<div class="body">
+<p>The value here is the framing question, not the verdict: when one value changes, what runs? The post&#x27;s comparison of immediate-mode, Elm-style, GPUI and signals frameworks — with real timings at 3,000 rows — is the clearest version of that question you&#x27;ll find. The takeaway: when your agents generate UI, or when you pick a framework for agent-built tools, ask that question first. &quot;Re-renders everything, again&quot; is a tax your users will pay on every interaction.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.tilert.ai/blog/tilert-amd-agentx.html">Read the write-up: TileRT and the latency/throughput trade-off</a></h3>
+<div class="byline">
+<span class="src">TileRT</span> &middot; Nov 9
+</div>
+<p class="dek">The write-up behind the 1.42x claim — and the InferenceX note that explains why winning per-user speed and winning cost per token are different games.</p>
+<div class="body">
+<p>Read the TileRT post for how a whole decode graph becomes one persistent kernel, then read InferenceX&#x27;s note for the trade-off: one in-flight request per decode node wins per-user speed and loses aggregate throughput. The takeaway for anyone serving agents: optimize for the metric your users actually feel. A coding agent waiting on a million-token session cares about per-user latency; your CFO cares about tokens per GPU per dollar. Know which game you&#x27;re playing before you pick the engine.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://inferencex.semianalysis.com/blog/ultra-high-interactivity-on-nvidia">InferenceX: the trade-offs</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://muratbuffalo.blogspot.com/2026/11/writing-as-thinking-tool.html">Read the essay: writing as a thinking tool</a></h3>
+<div class="byline">
+<span class="src">Murat Demirbas</span> &middot; Nov 9
+</div>
+<p class="dek">Writing is how humans do out-of-core computation — a finite automaton plus paper and pencil becomes a Turing machine.</p>
+<div class="body">
+<p>A short essay with a long half-life. Demirbas&#x27;s five rules — mess up, tidy up, keep it plain, write without expectations, put it on the calendar — are a practice, not a productivity hack. The takeaway for an AI leader: in the agent era, the memo you write yourself is the one you actually understand, and it&#x27;s the one your agents can&#x27;t talk you out of. Write the spec before you hand it to the machine.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
