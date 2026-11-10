@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Tuesday, November 10, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">Anthropic&#x27;s launch day: Fable 5.2 is the model, the prompting guide is the manual, and the cost math is the catch — plus the week&#x27;s most instructive multi-agent demo and a compiler written by an agent.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Claude Fable 5.2 arrives, with a restricted Mythos twin</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Nov 9
+</div>
+<p class="dek">Same model, two safeguard settings — and the strongest Claude yet, with a 20% price cut that doesn&#x27;t cut your bill.</p>
+<div class="body">
+<p>On Monday Anthropic released Claude Fable 5.2 and Claude Mythos 5.2 — the same model in two configurations. Fable is for everyone, with cyber and bio safeguards; Mythos has looser safeguards and is restricted to vetted cybersecurity and life-sciences groups. The price drops 20% to $8/$40 per million tokens, output is up to 30% faster, and there is a fast mode at 2.5x speed for $16/$80. Benchmarks are a step above Opus 5.5 almost everywhere Anthropic lists: FrontierCode 2.0 49.1% vs 45.5%, Remote Labor Index 41.3% vs 21.3%, RoboDojo robotics 64.9% vs 39.4%. Anthropic still says start on Opus 5.5.</p>
+<p>For teams, Fable 5.2 is now in the model selector: premium seats get it for up to 50% of each member&#x27;s weekly usage limits, standard seats the same through November 16, with one to three limit resets depending on tenure. Beyond that, usage is billed to the organization&#x27;s usage credits.</p>
+<p>Read the system card too: Anthropic&#x27;s measured AI-progress slope is about 1.88x, just under its 2x responsible-scaling threshold, and the call that it does not cross the threshold is now explicitly a “holistic judgment” because its automated AI R&amp;D evals are saturated. METR&#x27;s note on this model calls it a substantial step above Fable 5.1, and its October assessment of the same snapshot was codenamed “Model 3 Early.”</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.dev/blog/which-claude-model-should-you-build-with">Cheaper tokens, not cheaper tasks</a></h3>
+<div class="byline">
+<span class="src">X — @addyosmani</span> &middot; Nov 9
+</div>
+<p class="dek">Fable 5.2 writes hundreds of tests where Opus wrote twenty — so the task costs the same, or 31% more.</p>
+<div class="body">
+<p>SemiAnalysis puts Fable 5.2 on top of its GDPx benchmark at 16.4%, with gains concentrated in chip design (+10.8% over Opus 5.5) and software engineering (+15.5%). But the main reason is that Fable 5.2 tests its work far more thoroughly — hundreds or even thousands of test cases where Opus 5.5 and Fable 5.1 stopped at around twenty — and eagerly launches subagents to re-derive and audit. Cost per task rose 31% ($67.16 to $88.15) despite the 20% lower token price. Addy Osmani&#x27;s companion guide reaches the same conclusion: about the same per task as 5.1.</p>
+<p>Osmani&#x27;s ladder: start on Opus 5.5 at medium effort ($4/$20). Move down to Sonnet 5.5 ($2/$10) for scoped work and Haiku 5.5 for classification and subagents. Move up to Fable 5.2 ($8/$40) for major migrations, architecture, and leading many subagents. Try one effort step before switching models — past high, one more level can cost as much as a bigger model. On FrontierCode 2.0, Fable 5.2 at high roughly equals Opus 5.5 at max (45.3% vs 45.5%) for about half the cost per task; Opus 5.5 at low, with failures re-run at high, passed about 97% of a SWE-bench Pro subset for $0.17 a task vs 95.3% for $0.29 all at high. And an Opus lead over up to 25 Sonnet workers cost about a third less than Opus alone on a 22M-token defect search, with about the same score.</p>
+<p>The takeaway for your platform work: price per token is the wrong number. Measure score against spend on your own tasks, plot it, and shadow on real traffic before migrating.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">The Fable 5.2 prompting guide: “This codebase is yours”</a></h3>
+<div class="byline">
+<span class="src">X — @simonw</span> &middot; Nov 9
+</div>
+<p class="dek">One sentence changes whether the model refactors — the most practical document of the launch.</p>
+<div class="body">
+<p>Simon Willison&#x27;s advice on every Anthropic release: read the updated prompting guide, because it shows Anthropic is just as surprised by its new model&#x27;s idiosyncrasies as the rest of us. This one is the most practical document of the launch.</p>
+<p>Ownership changes behavior. Say nothing about ownership, or call the code someone else&#x27;s, and Fable 5.2 adds to the existing structure even when that duplicates code, reporting nearby problems instead of fixing them. Adding “This codebase is yours: what it&#x27;s for and how it&#x27;s built are your call, and you&#x27;ll keep building on it” made it merge repeated code in about half of small-task tries, versus under a tenth without it — at the cost of about 1.5x output tokens and an unrequested behavior change in 1 of 6 to 10 tries. Leave the sentence out when the user owns the code.</p>
+<p>Effort: start at high (the API default); most of the gain is already there. Caution piles up: notes, memories and reviewer conditions accumulate “never” rules, and Fable 5.2 obeys them closely — one stale “never retry” note cut retries after a busy tool from nearly always to about 4 in 10. A general “act more freely” changed nothing; naming the exception in the rule itself got the step taken 9 times in 10. Approvals are applied literally, so name the exact actions.</p>
+<p>Breaking changes: preserved thinking now applies to every account — change the system prompt, tools or an earlier message and resend thinking blocks and you get a 400 error. Keep history append-only, or use compaction, context editing or the drop_block opt-in.</p>
+<p>The human counterpoint, from @badlogicgames (3,300+ likes): “the most important skill in 2026 is still being able to tell your agents &#x27;wtf is this crap, no, not like this.&#x27;” As models get better, the bad output just looks more reasonable — which makes the judgment call harder, not easier.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/">1,000 agents prove Fermat&#x27;s Last Theorem</a></h3>
+<div class="byline">
+<span class="src">Claude Dev</span> &middot; Nov 9
+</div>
+<p class="dek">A thousand agents, one shared Postgres database, 28.7 hours — and a coordination design worth stealing.</p>
+<div class="body">
+<p>In September, dozens of agents on an internal model formalized Fermat&#x27;s Last Theorem in Lean using a purpose-built platform, a researcher, 11 days and about 6B output tokens. This time 1,000 agents on an early Fable 5.2 got only general tools: a no-network sandbox each, Lean plus Mathlib, a personal Git branch with merge requests into main, and a shared Postgres database. They were given 60 target statements, a one-sentence sketch, definitions and 47 already-proved lemmas, plus a hierarchy of 1 lead and 999 helpers. Nothing else about how to organize.</p>
+<p>In 10 minutes the lead created five tables: announce (orders), assign (who owns what), notes (open board), subtasks (claimable to-do list) and landed (finished work). All 10 feasible statements were done in about 70 minutes. The last hard piece, Langlands–Tunnell, became a task tree anyone could split: 2,418 tasks, up to 10 levels deep, proved at hour 28.4, FLT at 28.7 — a third of the earlier output tokens and a proof a seventh as long. On the same setup, Opus 5.5 got 26% done in 18 hours.</p>
+<p>The reusable part is the safety design: no messaging tools, only DB and Git; pushes only to the agent&#x27;s own branch; SQL as an unprivileged role with 5-second statement limits; an LLM classifier checking every shell command and file edit; any block on the lead halts the whole team pending human review. Over 1M tool calls, none was blocked. The caveats matter too: agents misjudge difficulty and give up, and the harness sent the lead 19 “keep going” reminders. Human encouragement still matters.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/astral-experiments/serc">serc: Codex writes a Rust CPython bytecode compiler</a></h3>
+<div class="byline">
+<span class="src">X — @charliermarsh</span> &middot; Nov 9
+</div>
+<p class="dek">Byte-for-byte identical .pyc files, 3–4x faster compiles — written entirely by an agent, with CPython as the oracle.</p>
+<div class="body">
+<p>Charlie Marsh had Codex write serc, an experimental compiler that turns Python source into .pyc files byte-for-byte identical to CPython&#x27;s, for CPython 3.12–3.15 and -O/-OO optimization levels. Median compile times: Airflow 324 to 79 ms (4.1x), Django 358 to 94 ms (3.8x), NumPy 432 to 131 ms (3.3x), Transformers 832 to 288 ms (2.9x). It is parallel by default, skips up-to-date caches, refuses to overwrite symlinks, and is installable as serc-cli on crates.io, dual-licensed MIT/Apache.</p>
+<p>Why it matters: a byte-identical oracle — CPython itself plus a huge corpus — is the ideal setup for an agent. As one reply put it, “an agent can just keep going until the diff is empty.” The README warns that all code changes, PR summaries and documentation were authored entirely by GPT in Codex, and that it “may emit incorrect bytecode in some cases.” It lives in a new astral-experiments org for agent-authored exploratory projects and might ship opt-in in uv. One practical point: you can compile bytecode without installing CPython, e.g. in a Docker build.</p>
+<p>Reply camps: bug-for-bug compatibility is the point and also the worry; a new security surface (bytecode differential CVEs); and what&#x27;s next — a Rust interpreter, or straight to LLVM IR.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openai.com/index/control-room">OpenAI&#x27;s Control Room: a kill switch for research models</a></h3>
+<div class="byline">
+<span class="src">X — @OpenAIDevs</span> &middot; Nov 9
+</div>
+<p class="dek">Every research inference carries a job ID; stop the job and output halts within 35 seconds.</p>
+<div class="body">
+<p>OpenAI described Control Room: every research inference request carries a job_id that the engine checks with a central service. Stop the job and output halts within 35 seconds. It fails closed. This is the infrastructure behind safe research at scale — a central kill switch for model output, not a policy document.</p>
+<p>In the same window, OpenAI let a “dot” attach to multiple local computers: “multi-exec” lets a dot run commands on any connected machine, and you choose one per task. The maximalist setup doing the rounds runs a persistent Mac Studio with every CLI logged in and “Allow All” browsing and downloads — use at your own risk, as its author says. The trade-off is the story: the more computers an agent can reach, the more the kill switch matters.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/">Decision models in production: Amazon replaces Sonnet with a decider</a></h3>
+<div class="byline">
+<span class="src">Strands Agents</span> &middot; Nov 9
+</div>
+<p class="dek">98% cheaper ticket labeling — and a rollout pattern (DUAL mode, 45-second rollback) any team can copy.</p>
+<div class="body">
+<p>Two Amazon engineers replaced Claude Sonnet 4.6 labeling tickets into 20 categories in a huge internal system with Strands Decider, a decision model built on Gemma 4 E4B. A decision model returns one probability per option plus confidence — no text. Results: 897 vs 4,215 ms per call, 2,010 vs 6,724 tokens per ticket, about $500 vs about $22,200 per million tickets — 98% less, on SageMaker ml.g5.xlarge at roughly 640 ms per request.</p>
+<p>Two lessons worth copying. First, a three-way switch (BEDROCK / DUAL / DECIDER) in AppConfig: run in DUAL on real traffic with every disagreement judged, and rollback as a 45-second config change. Second, JSON key order moved probabilities by up to 0.19, so sort keys. The limits they state: it only works for closed choices from a stable catalog that fit in about 4K tokens.</p>
+<p>This is the “big model + cheap decider” pattern in production at serious scale — the same shape as the research brief from October. Wherever your platform has a closed-choice classification step running on a frontier model, this is the first place to look for a 50x cost cut.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">Anthropic heads for the public markets while the neoclouds face their reckoning — and Nvidia&#x27;s worst week gets worse.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/finance/stocks/anthropic-prepares-to-push-ahead-with-ipo-despite-market-jitters-843dd16c">Anthropic forges ahead with its IPO</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 9
+</div>
+<p class="dek">Roadshow this week, trading as soon as next Thursday — at a valuation investors now want cut from $1.5 trillion.</p>
+<div class="body">
+<p>Anthropic is forging ahead with its IPO later this month, the Journal reports: meetings with key investors are lined up this week, and shares are aimed to start trading Thursday or Friday next week. Investors are eagerly awaiting the targeted valuation range, expected in a filing early this week. A week ago investors anticipated around $1.5 trillion; after last Thursday&#x27;s steep selloff in AI companies, some major investors are now pushing for it lower — Bloomberg reported Friday that a range of about $1.1 trillion to $1.3 trillion had been discussed.</p>
+<p>Morningstar&#x27;s Michael Field, on whether Anthropic should delay: “The cost both physically and reputationally of delaying the IPO might hurt the valuation more in the longer term, whereas if markets hold up at the level that they are, they&#x27;ll just get it done at a slightly lower valuation, suck it up and move on.” Meanwhile the S-1 did “the old SpaceX trick of putting $30 trillion of TAM” in it, per TradingVCs&#x27; Aman Verjee, and Cathie Wood blames Dario Amodei for AI-backlash headlines while predicting a labor shortage. The roadshow started Monday, per swyx. Watch today: the valuation range itself.</p>
+<p>In the same window, California voters rejected Prop 40, the one-time 5% billionaire tax, with tech outspending backers roughly 10 to 1.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-09/neoclouds-confront-dangers-over-demand-debt-and-democracy">Neoclouds confront demand, debt and democracy</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 9
+</div>
+<p class="dek">The fall arrived: debt markets are selective, voters just elected AI skeptics, and CoreWeave reports Tuesday.</p>
+<div class="body">
+<p>Over the summer it seemed like everyone wanted to be a neocloud. Then the fall arrived. A CoreWeave co-founder spooked the debt markets by telling the FT its goal was investment-grade ratings to access “unlimited” pools of insurance money; CoreWeave&#x27;s debt weakened and its stock plunged, taking much of both markets with it.</p>
+<p>Three things to watch as earnings land (CoreWeave Tuesday, Nebius Thursday). Demand: IREN reported AI sales soared to $200 million in the quarter from $71 million the previous period, but also larger-than-expected losses as it tries to service that demand. Debt: credit markets are showing something akin to indigestion — too many offerings, rising risk. One customer signed after the quarter&#x27;s close prepaying 90% of the chips IREN will buy. And democracy: last week&#x27;s midterms piled on another fear, with voters almost uniformly choosing candidates who are AI skeptics and want to halt data center construction. Bloomberg Intelligence&#x27;s Mandeep Singh estimates the results stand to shrink the $1.4 trillion tech companies were expected to spend on AI infrastructure by roughly 5% to 7% in 2027, with as many as 10 gigawatts of capacity failing to come online as planned.</p>
+<p>The shift favors the haves — those with permits, energy deals and operational projects — and companies with deep pockets to meet newer, costlier rules, plus the hyperscalers with investment-grade ratings. CoreWeave&#x27;s CEO says he doesn&#x27;t anticipate any impact on existing commitments: 1.5 GW of active power and 4.2 GW of contracted capacity signed as of August. Delays will also favor states that now look friendlier, like Louisiana, North Dakota and Oklahoma — though two years ago Texas was the easy, fast home, so conditions change fast.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-09/nvidia-call-to-commerce-official-raises-new-questions-evening-briefing-americas">Nvidia&#x27;s call about Alice Huang</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 9
+</div>
+<p class="dek">Nvidia&#x27;s general counsel phoned the Commerce official overseeing chip curbs about a detained Megaspeed executive — then BIS staff were muzzled.</p>
+<div class="body">
+<p>Nvidia&#x27;s general counsel, Tim Teter, intervened in a US government probe of suspected smuggling of AI chips by Megaspeed International, Bloomberg reports, questioning whether the Trump administration played a role in detaining an executive from the Singapore-based firm. In late summer 2025, Teter called Commerce Under Secretary Jeffrey Kessler, who oversees US chip export curbs, to ask whether his Bureau of Industry and Security was involved in Singapore&#x27;s detention of Alice Huang. It was not, people familiar with the matter said — but in the weeks that followed, BIS staff were muzzled in their ability to look into the company, including a mandate to route all Nvidia requests through Kessler or seek his approval for outreach.</p>
+<p>It is unclear whether Teter made specific requests about the agency&#x27;s inquiry, which was separate from Singapore&#x27;s. In late 2025 the Justice Department asked BIS to pause its efforts, and BIS has made no progress since, despite having enough evidence to proceed, the people said. Bloomberg&#x27;s analysis of trade records found Nvidia&#x27;s tallies to the US government undercounted chips sold to Megaspeed through hardware partners by about 50,000 units, worth billions. The administration revealed Monday that the FBI is now investigating the Huang affair.</p>
+<p>The market verdict: shares slid 4.3% Monday, wiping about $230 billion in value, after the board launched an investigation into reports that CEO Jensen Huang had been a spying target after a romantic relationship with Huang, a Megaspeed executive US intelligence believes was working for Chinese intelligence. Huang admitted the affair on Sunday. The board probe, a pulled-out appearance at an Anthropic event, a hired PR firm, and a short seller (Culper Research) that flagged the relationship six months ago all pile on. Note the decoupling, though: the S&amp;P 500 jumped 2.3% Monday for its biggest one-day gain since April. As Nvidia goes, so too does the stock market — but not on Monday.</p>
+<p>The counterpoint, from Gavin Baker: China, not Washington, is now the one blocking Nvidia GPUs. Since summer 2025 Beijing has pressured its tech giants off the H20, ordered them off the RTX Pro 6000D, sent customs teams to ports, and barred foreign AI chips from new state-funded data centers. Reuters reports about 600,000 H200s sitting in Hong Kong awaiting import approval, and gray-market H200 server prices roughly tripled in a year. “If allowing the export of these less powerful GPUs was a policy mistake that advantaged China, then why is China the one blocking them?”</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/11/09/ai-hardware-startup-nominal-triples-valuation-to-3b-in-8-months/">Nominal triples to $3B on AI for hardware testing</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Nov 9
+</div>
+<p class="dek">$240M Series C at a $3B valuation, eight months after $1B — AI for testing the hardware that AI runs on.</p>
+<div class="body">
+<p>Nominal, a four-year-old Austin startup offering an AI platform purpose-built for engineering and testing complex hardware — aircraft, nuclear reactors, smart factories — has raised a $240 million Series C at a $3 billion valuation, led by Lightspeed Venture Partners and co-led by Insight Partners. That triples its valuation in eight months: in March it announced a $155 million Series B extension at $1 billion, led by Trae Stephens at Founders Fund.</p>
+<p>It is used by 80-plus organizations including 5 of the 7 largest defense contractors. At Anduril, analysis that took hours is now near real time, and the Air Force selected it for Collaborative Combat Aircraft work, including a $71.2 million Strategic Funding Increase. Sequoia&#x27;s Alfred Lin frames the thesis: defense, space, energy and robotics need software-speed iteration, and “testing is where that pace breaks down.” The signal for the venture market: capital is flowing to AI applied to physical engineering, not just to models — and defense-adjacent revenue is the fastest route to a premium valuation right now.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks&#x27; second breach in weeks</a></h3>
+<div class="byline">
+<span class="src">Fireworks</span> &middot; Nov 9
+</div>
+<p class="dek">A breached third-party cloud host exposed billing data — and, for some accounts, secrets, datasets and incomplete model weights.</p>
+<div class="body">
+<p>Fireworks disclosed a second, wider breach. A third-party cloud provider hosting its R&amp;D machines was breached on October 23; on October 24 the attacker reached Fireworks development machines and ran an unauthorized workload. It got resource metadata, billing data (addresses, invoices, balances, credit usage — no card numbers, which Fireworks doesn&#x27;t store) and, for a limited set of accounts, secrets, datasets and incomplete model weights. Fireworks says no impact was detected on Inference, Training SDK or Nexus, is working with Palo Alto Unit 42, and has disabled self-serve dataset transfers. Its first bulletin (October 9) covered only stored secrets.</p>
+<p>Bloomberg Law reports Fireworks named Notion and Cursor among customers it is “actively working with,” out of 10,000-plus customers. The Information says Harvey was told and some big customers are weighing a move. Fireworks has about $1 billion annualized revenue and is preparing a raise at $30B-plus. The replies on X make the business point: switching inference providers is just a base URL change, so breaches become churn fast — and confidential inference will become standard for neoclouds. That ties directly to Google&#x27;s TPU 8tx pitch the same day.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/clairevo/status/2119985786045227197">Token fraud is killing free trials</a></h3>
+<div class="byline">
+<span class="src">X — @clairevo</span> &middot; Nov 9
+</div>
+<p class="dek">A profitable AI wrapper spends 90% of its time fighting fraud rings that farm trial codes — free trials are dead at ChatPRD.</p>
+<div class="body">
+<p>Claire Vo, who runs ChatPRD (profitable, not VC-funded), says she spends “90% of my time” fighting international token fraud, at a cost of “tens of thousands of dollars.” The playbook, from her follow-up posts: a Chinese reseller farms trial promo codes, wraps the authenticated session and proxies it into its own resold app, loops Outlook signups when limits run out, sells through AliPay, and rotates across tools — she names Linear, Cognition, Granola, SpaceX AI and Gumloop too — to stay under trial limits. An Egyptian team building Fortnite and Roblox maps slammed the most expensive models on trials using real cards that were cancelled and restarted. Hundreds of Indonesian users treated it as a “temu chatgpt,” so she banned the country.</p>
+<p>She runs Stripe Radar, rate limits and automated triggers, and every tightening hurts real users. Her decisions: free trials are dead at ChatPRD, she may ban all non-US business in 2027, and may go 100% enterprise. The replies agree: a paid trial worked best (Simplified, 15M+ users: “Freemium can quickly become a liability when every token costs real money”), and WorkOS Radar “stops token abuse for Cursor, Factory, and a bunch of others.”</p>
+<p>Why it matters for your SaaS: every AI wrapper with a free tier is now a target for compute arbitrage, and the economics favor paid trials and enterprise. If your support-triage agent ever gets a free tier, budget for fraud ops from day one.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The midterms keep echoing — through a Dalio warning about dysfunction, an impeachment bid, and a fridge hack blamed on Iran.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.linkedin.com/comm/pulse/what-i-think-results-us-midterm-elections-ray-dalio-2dnle">Dalio: the midterms change who deals with the problems, not the problems</a></h3>
+<div class="byline">
+<span class="src">Ray Dalio via LinkedIn</span> &middot; Nov 9
+</div>
+<p class="dek">Same debt, same wealth gap, same geopolitics — and likely more fighting, not less.</p>
+<div class="body">
+<p>Ray Dalio&#x27;s conclusion: the political changes won&#x27;t change the circumstances government has to deal with. “We will have the same debt issues, the same wealth and values gap issues, the same international geopolitical issues, the same climate issues, and the same technology issues, and the election results won&#x27;t change the dynamics of how things such as fights over wealth and power typically work. The midterm elections will just change who will be dealing with these issues and how.”</p>
+<p>The most important question is whether there will be more fighting and dysfunction or less; he thinks it is likely there will be more. The test comes fast: President Trump&#x27;s temporary funding expires December 11, the federal debt is projected to hit its limit in March 2027, and the Treasury is projected to run out of funding options in the fall of 2027. “It is likely that the fights over these funding issues will be brutal and that the fighting and uncertainty will probably raise Treasury bill and similar short-term yields because investors will want to avoid payment uncertainty.” He also flags Elizabeth Warren heading the Senate Banking Committee as a source of fights and changes affecting the economy and markets.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/national-security/pete-hegseth-impeachment-press-conference-cdf5d9d6">Massie introduces articles of impeachment against Hegseth</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 9
+</div>
+<p class="dek">The outgoing GOP rep alleges Hegseth unlawfully started the Iran war — a vote could make him the first Pentagon chief impeached in 150 years.</p>
+<div class="body">
+<p>Republican Representative Thomas Massie introduced articles of impeachment against Defense Secretary Pete Hegseth on Monday, roughly one week after the widely unpopular US-Israel war on Iran he has championed fueled a historic midterm defeat for the Republican Party. Massie, a longtime Trump administration antagonist who is set to leave the House in January, alleged Hegseth unlawfully initiated the Iran war and ignored a congressional resolution to remove troops from the conflict.</p>
+<p>The move paves the way for a vote that could make Hegseth the first Pentagon chief to be impeached in the House in 150 years. The incoming Democratic majority has made clear its intent to pursue Hegseth&#x27;s removal. Hegseth has dismissed the looming impeachment and vowed to stay at his Pentagon post for the rest of the Trump administration. Massie, quoted in Bloomberg&#x27;s Evening Briefing: “The reality is, we&#x27;re not indicting him for being bad at his job… The argument here is that he&#x27;s broken laws, and he&#x27;s violated the Constitution.”</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/europe/france-u-s-suspect-iran-was-behind-cyberattack-on-european-fridges-6247965c">Iran blamed for cyberattack on European supermarket fridges</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 9
+</div>
+<p class="dek">Tens of millions in spoiled food and equipment — France&#x27;s foreign minister says Iran will face retribution.</p>
+<div class="body">
+<p>France&#x27;s foreign minister Jean-Noël Barrot told reporters that Iran would face retribution for a cyberattack on European supermarket refrigerators that caused tens of millions of dollars of damage in spoiled food and equipment. US officials confirmed that probes into the campaign show the hallmarks of Iranian cyber methods, though an investigation is ongoing.</p>
+<p>The attack, and others like it, show the risk of connecting everything to the internet — a fridge fleet becomes critical infrastructure the moment it is networked. Worth watching alongside the Fireworks breach in AI Venture: the week has two unrelated reminders that the attack surface is now the supply chain and the device, not just the server.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Microsoft reorganizes itself around agents, Google ships more silicon, and a founder&#x27;s security warning from the week&#x27;s biggest scandal.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/microsoft-to-change-reporting-structure-to-reflect-effects-of-ai-59dce66d">Microsoft reorganizes around AI: Agents and Infra</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 9
+</div>
+<p class="dek">Three segments become two — Agents and Infra, and Devices and Consumer — as AI reshapes Microsoft the way Windows once did.</p>
+<div class="body">
+<p>Microsoft is reorganizing its reporting structure from three business segments to two — Agents and Infra, and Devices and Consumer — as demand for AI drives another major shift. Forty-three years after Windows, AI is reshaping Microsoft much as Windows once did. The reorg is also the context for the other Microsoft news in Bloomberg&#x27;s Tech In Depth: the company is winding down a deal to rent AI computing from Oracle, part of a larger reassessment of billions of dollars in cloud partnerships, declining to renew a contract that gave it access to Oracle equipment with older Nvidia chips.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/">Google adds TPU 8tx and TPU 8i Max</a></h3>
+<div class="byline">
+<span class="src">Google Cloud Blog</span> &middot; Nov 9
+</div>
+<p class="dek">Confidential inference for regulated agents, and double the memory bandwidth for massive context — as Bloomberg notes, Google is coming for Nvidia.</p>
+<div class="body">
+<p>Google expanded its eighth-generation TPU portfolio with two more systems, making four in a single year — a first. TPU 8tx is optimized for secure and confidential inference (and small-scale training): the same silicon as the 8t training chip, paired with 5th-generation AMD EPYC hosts, with hardware-level confidential compute for private fine-tuning and secure agent execution. TPU 8i Max is built for the memory wall: two 8i dies in one package, double the compute, double the SRAM and double the HBM bandwidth of the 8i, for massive context windows and the highest compute density per rack.</p>
+<p>Google gave no availability date, pricing or regions for either system; Amin Vahdat told Bloomberg they arrive next year. Google says TPUs now serve nearly 100 customers, naming none. The timing is pointed: Bloomberg&#x27;s lead item in the same briefing is “More Bad News for Nvidia: Google Is Coming,” as Alphabet rolls out a broader array of AI chips to challenge Nvidia in a market worth hundreds of billions. And with Fireworks&#x27; breach the same day, confidential inference is suddenly the feature everyone is pitching.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/assume-youre-a-target-and-always-6d0">TWiST: assume you&#x27;re a target, and always stay skeptical</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 9
+</div>
+<p class="dek">Founders should treat unexpected attention with suspicion — the week&#x27;s honeypot lesson, plus a link roundup.</p>
+<div class="body">
+<p>This Week in Startups&#x27; Monday episode is built around a security lesson drawn from the week&#x27;s biggest scandal: founders should treat any unexpected attention with suspicion, and assume they&#x27;re a target. The honeypot warning lands as the Jensen Huang affair keeps unfolding — influence, access and flattery are attack vectors, not just compliments.</p>
+<p>The episode&#x27;s link roundup is worth a skim too: Thinking Machines nears a $5B round at a $40B valuation (Dealroom); Siri chief Mike Rockwell may step down (MacRumors); Tesla is winding down Cybertruck production to make room for Cybercab; and dueling proofs from OpenAI and Anthropic astound scientists (Scientific American) — the same Fermat proof race covered in AI Development Practices.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/health/pharma/u-s-regulators-warn-glp-1-drugs-carry-possible-rare-blindness-risk-c36a4564">GLP-1 drugs to carry warning about rare blindness risk</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 9
+</div>
+<p class="dek">The FDA says the drugs carry a potential increased risk of NAION, which can lead to partial blindness.</p>
+<div class="body">
+<p>US regulators are requiring GLP-1 drugs to include warnings about a rare blindness risk. The drugs carry a potential increased risk of NAION, a condition that can lead to partial blindness, the FDA said in a safety communication. Dozens of patients have sued Novo Nordisk and Eli Lilly, the biggest makers of these drugs, arguing the medications caused them to lose vision; the companies are fighting the lawsuits. Eli Lilly said it is evaluating the FDA update and will respond soon; Novo said it continues to monitor safety and remains confident the benefits outweigh the risks.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Five things worth studying from the busiest X day this month — the manual, the cost math, the multi-agent design, the failure modes, and robots that learn in simulation.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting Claude Fable 5.2</a></h3>
+<div class="byline">
+<span class="src">Anthropic</span> &middot; Nov 9
+</div>
+<p class="dek">The official guide to the model&#x27;s quirks — ownership, effort, and why your old caution notes are now hurting you.</p>
+<div class="body">
+<p>What you&#x27;ll learn: how literally Fable 5.2 follows instructions, and which of its quirks are levers you can pull — ownership phrasing, effort levels, the finishing-work block, and why accumulated “never” rules quietly cripple your agents. The takeaway for your platform: write the ownership sentence deliberately, audit the caution notes piling up in your agent configs, and start at high effort. Full treatment in AI Development Practices.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.dev/blog/which-claude-model-should-you-build-with">Which Claude model should you build with?</a></h3>
+<div class="byline">
+<span class="src">Claude Dev</span> &middot; Nov 9
+</div>
+<p class="dek">The cost-per-task ladder: Opus as default, Sonnet for scoped work, Haiku for subagents — and why effort beats model-switching.</p>
+<div class="body">
+<p>What you&#x27;ll learn: the cost-per-task ladder and the subagent recipe — Opus 5.5 at medium as the default, Sonnet 5.5 for scoped work, Haiku 5.5 for classification and subagents, Fable 5.2 for major migrations and leading many subagents. The takeaway: try one effort step before switching models, and measure score against spend on your own tasks before migrating anything. Full treatment in AI Development Practices.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/">Safely scaling multi-agent teams with Fable 5.2</a></h3>
+<div class="byline">
+<span class="src">Claude Dev</span> &middot; Nov 9
+</div>
+<p class="dek">The Fermat run as a systems design: five Postgres tables, per-agent sandboxes, and a monitor that can halt the whole team.</p>
+<div class="body">
+<p>What you&#x27;ll learn: multi-agent coordination as systems design — five Postgres tables instead of messaging tools, per-agent sandboxes, an LLM classifier on every command, and a halt-the-team safety switch. The takeaway: coordination through shared state scales further than coordination through chat, and safety is architecture, not a policy doc. Full treatment in AI Development Practices.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.oneusefulthing.org/p/fable-52-and-jagged-agi">Fable 5.2 and Jagged AGI</a></h3>
+<div class="byline">
+<span class="src">One Useful Thing</span> &middot; Nov 9
+</div>
+<p class="dek">The best account of where the frontier still fails: not hallucinations anymore, but taste and self-assessment.</p>
+<div class="body">
+<p>Mollick&#x27;s verdict on Fable 5.2: “almost” AGI by his definition — an AI as good as most human experts at most intellectual tasks you can do with a computer. What it did: turned a tiny USB keyboard into a six-game console by reading the code of its two control apps, with no public docs; screened 22 business ideas and built one from the agendas of 201 local governments; rebuilt Auden&#x27;s 1941 “impossible” course as a site with critic and fact-checker agents; wrote a 182-page paper, “The One-Dollar Company,” that nothing ever cut. And built 450+ code-drawn 3D worlds in about 25,000 agent runs — where the agents invented their own bureaucracy: a rulebook that grew to 204 sections and 87,500 words.</p>
+<p>His core point, and the one to carry into your own agent work: the failures are no longer hallucinations but taste and self-assessment. Its critics found errors, but none asked whether the work was too long, repetitive or no fun. Judgment is the skill that doesn&#x27;t automate away — the same point @badlogicgames made on the lists this morning.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://research.tutorintelligence.com/ti0-1">Tutor Intelligence TI-0.1 / TRACE technical report</a></h3>
+<div class="byline">
+<span class="src">Tutor Intelligence</span> &middot; Nov 9
+</div>
+<p class="dek">Frontier coding agents rebuild robot tasks in simulation from a few teleop demos — robot performance as a function of compute.</p>
+<div class="body">
+<p>What you&#x27;ll learn: frontier coding agents (GPT-6 Astra, Opus 5.5) rebuild a robot task in Isaac Lab from a few teleop demos, using synchronized images, commands and measured joint state. Visual fit comes from inverse rendering; physical fit from replaying recorded commands and tuning delays, friction and pad stiffness (9.9 mm RMS arm error over 6.4 s). Agents write a hybrid-MDP reward with explicit modes; PPO trains a privileged-state policy (99.8% sim success on Lego pick), distilled into a camera-based diffusion policy on the Sonny robot. Real rollouts feed back into the simulation.</p>
+<p>The lessons they list: visual fidelity isn&#x27;t enough; task success can hide impossible grasps; smooth motion makes distillation work; hardware is ground truth. Their Rust stack, Golem, cut CPU 90% and RAM 79% vs Python. Their pitch: robot performance “becomes a function of compute.” The takeaway: the same agent patterns from software — simulation as the oracle, distillation as the deployment path — are now the robotics playbook.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
