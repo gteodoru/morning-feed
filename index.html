@@ -58,99 +58,89 @@ h3 { font-size: 20px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Tuesday, November 10, 2026</span>
+<span>Wednesday, November 11, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">7 stories</span>
+<span class="count">6 stories</span>
 </div>
-<p class="ednote">Anthropic&#x27;s launch day: Fable 5.2 is the model, the prompting guide is the manual, and the cost math is the catch — plus the week&#x27;s most instructive multi-agent demo and a compiler written by an agent.</p>
+<p class="ednote">Google&#x27;s new flagship model arrives with a swarm attached, DeepMind proves things about real compiled code, and hackers are stealing AI compute by the container-load — a day for builders to read closely.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Claude Fable 5.2 arrives, with a restricted Mythos twin</a></h3>
+<h3><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Gemini 4 Carbon: Google is back at the frontier — and it brought a swarm</a></h3>
 <div class="byline">
-<span class="src">Anthropic</span> &middot; Nov 9
+<span class="src">Google / X — @sundarpichai</span> &middot; Nov 10
 </div>
-<p class="dek">Same model, two safeguard settings — and the strongest Claude yet, with a 20% price cut that doesn&#x27;t cut your bill.</p>
+<p class="dek">Google&#x27;s strongest model yet tops CursorBench and posts a 94.2% ARC-AGI-2 score at $0.38 a task — but the price doubles on November 30.</p>
 <div class="body">
-<p>On Monday Anthropic released Claude Fable 5.2 and Claude Mythos 5.2 — the same model in two configurations. Fable is for everyone, with cyber and bio safeguards; Mythos has looser safeguards and is restricted to vetted cybersecurity and life-sciences groups. The price drops 20% to $8/$40 per million tokens, output is up to 30% faster, and there is a fast mode at 2.5x speed for $16/$80. Benchmarks are a step above Opus 5.5 almost everywhere Anthropic lists: FrontierCode 2.0 49.1% vs 45.5%, Remote Labor Index 41.3% vs 21.3%, RoboDojo robotics 64.9% vs 39.4%. Anthropic still says start on Opus 5.5.</p>
-<p>For teams, Fable 5.2 is now in the model selector: premium seats get it for up to 50% of each member&#x27;s weekly usage limits, standard seats the same through November 16, with one to three limit resets depending on tenure. Beyond that, usage is billed to the organization&#x27;s usage credits.</p>
-<p>Read the system card too: Anthropic&#x27;s measured AI-progress slope is about 1.88x, just under its 2x responsible-scaling threshold, and the call that it does not cross the threshold is now explicitly a “holistic judgment” because its automated AI R&amp;D evals are saturated. METR&#x27;s note on this model calls it a substantial step above Fable 5.1, and its October assessment of the same snapshot was codenamed “Model 3 Early.”</p>
+<p>Carbon is Google&#x27;s top model, built on Gemini 4 Argon, and it went from a defenders-only preview to general availability on Tuesday. Google&#x27;s claims: #1 on CursorBench 4.0 at 60.4%, top of Perplexity&#x27;s WANDR and Zapier&#x27;s AutomationBench, and &#x27;more than 2X lower cost per task compared to the next best external model.&#x27; The independent numbers back up the efficiency story more than the raw scores: ARC Prize verified ARC-AGI-2 at 94.2% for $0.38 a task, and ARC-AGI-3 at 65.1% on the standard harness — versus 99.1% on Google&#x27;s own provider-adapter harness, a reminder that on interactive benchmarks the harness is worth 30 points and a score without its harness doesn&#x27;t mean much.</p>
+<p>The pricing is the part to calendar: $2 per million input tokens and $10 per million output until November 30, then $4/$20 — exactly Opus 5.5&#x27;s price, as one reply noted, so &#x27;November is an eval window, not a discount.&#x27; SemiAnalysis ran the numbers on materials-science tasks and found Fable 5.2 costs 7.5x more than Carbon for about the same score. And access is gated: paid API and AI Studio, plus Google AI Ultra for consumers — Pro subscribers spent the launch morning complaining they couldn&#x27;t use it.</p>
+<p>The more durable story may be the /swarm design doc Google shipped alongside it in Antigravity. A coordinator agent spins up specialized workers, each in its own git worktree so edits never collide; dedicated &#x27;adversarial verifiers&#x27; run tests and challenge diffs; all agents talk on a shared, append-only message board; idle agents &#x27;park&#x27; at zero token cost and wake when needed. Google&#x27;s recommended split: Carbon for coordinator, architecture, security audit and adversarial-verification roles, lighter models for parallel file edits. Compare with the 1,000-agent Fermat run from the day before, which used a shared Postgres database as the coordination layer — both designs replace a single coordinator&#x27;s context with a shared log. Google&#x27;s own warning: swarms &#x27;consume quota much faster than a standard chat.&#x27;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/">Antigravity — /swarm design</a> &middot; <a href="https://x.com/arcprize/status/2120268980778668036">X — @arcprize</a> &middot; <a href="https://x.com/SemiAnalysis_/status/2120210355615842428">X — @SemiAnalysis_</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.dev/blog/which-claude-model-should-you-build-with">Cheaper tokens, not cheaper tasks</a></h3>
+<h3><a href="https://deepmind.google/blog/introducing-alphaproof-code/">DeepMind formally verified Signal&#x27;s actual machine code — in four weeks</a></h3>
 <div class="byline">
-<span class="src">X — @addyosmani</span> &middot; Nov 9
+<span class="src">DeepMind / X — @pushmeet</span> &middot; Nov 10
 </div>
-<p class="dek">Fable 5.2 writes hundreds of tests where Opus wrote twenty — so the task costs the same, or 31% more.</p>
+<p class="dek">About 6.5 million lines of machine-checked Lean proof cover the compiled ARM64 Signal library — the best learning story of the day.</p>
 <div class="body">
-<p>SemiAnalysis puts Fable 5.2 on top of its GDPx benchmark at 16.4%, with gains concentrated in chip design (+10.8% over Opus 5.5) and software engineering (+15.5%). But the main reason is that Fable 5.2 tests its work far more thoroughly — hundreds or even thousands of test cases where Opus 5.5 and Fable 5.1 stopped at around twenty — and eagerly launches subagents to re-derive and audit. Cost per task rose 31% ($67.16 to $88.15) despite the 20% lower token price. Addy Osmani&#x27;s companion guide reaches the same conclusion: about the same per task as 5.1.</p>
-<p>Osmani&#x27;s ladder: start on Opus 5.5 at medium effort ($4/$20). Move down to Sonnet 5.5 ($2/$10) for scoped work and Haiku 5.5 for classification and subagents. Move up to Fable 5.2 ($8/$40) for major migrations, architecture, and leading many subagents. Try one effort step before switching models — past high, one more level can cost as much as a bigger model. On FrontierCode 2.0, Fable 5.2 at high roughly equals Opus 5.5 at max (45.3% vs 45.5%) for about half the cost per task; Opus 5.5 at low, with failures re-run at high, passed about 97% of a SWE-bench Pro subset for $0.17 a task vs 95.3% for $0.29 all at high. And an Opus lead over up to 25 Sonnet workers cost about a third less than Opus alone on a 22M-token defect search, with about the same score.</p>
-<p>The takeaway for your platform work: price per token is the wrong number. Measure score against spend on your own tasks, plot it, and shadow on real traffic before migrating.</p>
+<p>The target is libsignal-protocol v0.105.4, the official Rust library behind Signal, wrapped in a small command-line harness — and the theorems are about whole runs of the compiled AArch64 binary, not the Rust source. That matters because real bugs often live between the design and the code that actually runs. What was proved, for one-to-one sessions: the post-quantum PQXDH handshake and the Triple Ratchet have forward secrecy, authentication, post-compromise security and handshake secrecy, covering init, send and receive. Key generation is not verified; the parties&#x27; keys are assumed.</p>
+<p>The scale is what makes this a story rather than a demo: about 6.5 million lines of machine-checked Lean proof, resting on about 26,000 lines of trusted specs and ARM64 semantics, with two independent proofs — one in the symbolic (Dolev–Yao) model, one in the computational (game-based) model. It took four weeks; DeepMind&#x27;s Kohli says similar efforts &#x27;could take teams decades of combined effort.&#x27; And the sanity test is the kind of thing to steal: they put two real, already-fixed bugs back into an isolated copy, and the system produced machine-checked proofs that those versions were insecure.</p>
+<p>The workflow is the lesson for anyone building with agents. Humans plus a mix of models translate the security goals into formal Lean specifications, and human experts review every spec. Gemini Carbon agents write the proofs, accepted only if Lean&#x27;s kernel checks them against the approved spec. Agents then audit the proof and flag about 1% of it for human review. One reply picked out the detail that matters most for agent-written tests generally: the comparator checks each statement and every definition it depends on against a copy no agent can write to, because &#x27;a goal can be weakened by editing a definition.&#x27; Lock the fixtures and helpers too, not just the asserts. Limits, honestly stated: this is libsignal, not the Signal apps — group messaging, multi-device and key generation are out of scope, and the symbolic result assumes perfect cryptography. You can check the proofs yourself: the repo builds and kernel-checks everything with Lean 4 v4.34.0 and pinned Rust 1.98.1, in several hours and about 15–34 GiB of peak RAM.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/google-deepmind/code-verification">GitHub — code-verification repo</a> &middot; <a href="https://x.com/pushmeet/status/2120127611137634376">X — @pushmeet</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">The Fable 5.2 prompting guide: “This codebase is yours”</a></h3>
+<h3><a href="https://www.wsj.com/tech/ai/hackers-hunt-for-ais-most-valuable-commodity-computing-power-4c2054d5">Hackers are stealing millions in AI computing power</a></h3>
 <div class="byline">
-<span class="src">X — @simonw</span> &middot; Nov 9
+<span class="src">WSJ — Robert McMillan</span> &middot; Nov 11
 </div>
-<p class="dek">One sentence changes whether the model refactors — the most practical document of the launch.</p>
+<p class="dek">A mid-October breach at Railway exposed up to 100,000 accounts and ran up $750,000 in AI charges — and the stolen keys feed a black market of 700+ resale sites.</p>
 <div class="body">
-<p>Simon Willison&#x27;s advice on every Anthropic release: read the updated prompting guide, because it shows Anthropic is just as surprised by its new model&#x27;s idiosyncrasies as the rest of us. This one is the most practical document of the launch.</p>
-<p>Ownership changes behavior. Say nothing about ownership, or call the code someone else&#x27;s, and Fable 5.2 adds to the existing structure even when that duplicates code, reporting nearby problems instead of fixing them. Adding “This codebase is yours: what it&#x27;s for and how it&#x27;s built are your call, and you&#x27;ll keep building on it” made it merge repeated code in about half of small-task tries, versus under a tenth without it — at the cost of about 1.5x output tokens and an unrequested behavior change in 1 of 6 to 10 tries. Leave the sentence out when the user owns the code.</p>
-<p>Effort: start at high (the API default); most of the gain is already there. Caution piles up: notes, memories and reviewer conditions accumulate “never” rules, and Fable 5.2 obeys them closely — one stale “never retry” note cut retries after a busy tool from nearly always to about 4 in 10. A general “act more freely” changed nothing; naming the exception in the rule itself got the step taken 9 times in 10. Approvals are applied literally, so name the exact actions.</p>
-<p>Breaking changes: preserved thinking now applies to every account — change the system prompt, tools or an earlier message and resend thinking blocks and you get a 400 error. Keep history append-only, or use compaction, context editing or the drop_block opt-in.</p>
-<p>The human counterpoint, from @badlogicgames (3,300+ likes): “the most important skill in 2026 is still being able to tell your agents &#x27;wtf is this crap, no, not like this.&#x27;” As models get better, the bad output just looks more reasonable — which makes the judgment call harder, not easier.</p>
+<p>AI computing power has become valuable enough to steal at industrial scale. In mid-October, attackers broke out of a software container at cloud company Railway, accessed as many as 100,000 customer accounts and ran up at least $750,000 in AI charges across Amazon Bedrock, OpenAI, Anthropic and Google Gemini — plus $371,000 in stolen cryptocurrency — in a practice known as &#x27;LLM jacking&#x27; that can cost a single organization $1 million.</p>
+<p>The stolen credentials feed illicit &#x27;transfer station&#x27; websites — more than 700 counted by Chainalysis, with the top five making nearly $6 million in cryptocurrency — that sell cheap access to American AI models in restricted countries including China, Russia and Iran, sometimes to clone US models through distillation. The wave began in early October and has also hit Zeabur (which shut down permanently), Warp and OpenCode — and it appears to be carried out by AI-powered &#x27;agent swarms&#x27; that never sleep. The practical takeaway for anyone running agents against paid APIs: treat API keys like production database credentials — scoped, rotated, spend-capped and monitored — because the other side is now automating the theft with the same tools you use to build.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/">1,000 agents prove Fermat&#x27;s Last Theorem</a></h3>
+<h3><a href="https://code.claude.com/docs/en/changelog">What&#x27;s new in Claude Code: Fable 5.2, cloud sessions that set themselves up, and ultrathink</a></h3>
 <div class="byline">
-<span class="src">Claude Dev</span> &middot; Nov 9
+<span class="src">Claude Code</span> &middot; Nov 11
 </div>
-<p class="dek">A thousand agents, one shared Postgres database, 28.7 hours — and a coordination design worth stealing.</p>
+<p class="dek">Fable 5.2 is up to 30% faster and 20% cheaper; cloud sessions now sort out their own environments, and /usage will fix what eats your plan.</p>
 <div class="body">
-<p>In September, dozens of agents on an internal model formalized Fermat&#x27;s Last Theorem in Lean using a purpose-built platform, a researcher, 11 days and about 6B output tokens. This time 1,000 agents on an early Fable 5.2 got only general tools: a no-network sandbox each, Lean plus Mathlib, a personal Git branch with merge requests into main, and a shared Postgres database. They were given 60 target statements, a one-sentence sketch, definitions and 47 already-proved lemmas, plus a hierarchy of 1 lead and 999 helpers. Nothing else about how to organize.</p>
-<p>In 10 minutes the lead created five tables: announce (orders), assign (who owns what), notes (open board), subtasks (claimable to-do list) and landed (finished work). All 10 feasible statements were done in about 70 minutes. The last hard piece, Langlands–Tunnell, became a task tree anyone could split: 2,418 tasks, up to 10 levels deep, proved at hour 28.4, FLT at 28.7 — a third of the earlier output tokens and a proof a seventh as long. On the same setup, Opus 5.5 got 26% done in 18 hours.</p>
-<p>The reusable part is the safety design: no messaging tools, only DB and Git; pushes only to the agent&#x27;s own branch; SQL as an unprivileged role with 5-second statement limits; an LLM classifier checking every shell command and file edit; any block on the lead halts the whole team pending human review. Over 1M tool calls, none was blocked. The caveats matter too: agents misjudge difficulty and give up, and the harness sent the lead 19 “keep going” reminders. Human encouragement still matters.</p>
+<p>Fable 5.2 is out — up to 30% faster than Fable 5.1, 20% cheaper per token ($8/$40 per million), with a 1M-token context and 49.1% on FrontierCode 2.0 against 32.4% for Fable 5.1 and 45.5% for Opus 5.5. The team still says start with Opus 5.5 for most coding and reach for Fable on big, open-ended tasks. Pro and Team Standard users can try Fable on up to 50% of their weekly limit through November 16; after that it draws on usage credits.</p>
+<p>The workflow changes matter more than the model. Cloud sessions can now set up their own environment: Claude finds what&#x27;s missing, asks you to approve a new environment with access to a domain, and collects any API key in a form so Claude never sees the key — the setup is saved for the next session. New housekeeping commands: /storage shows how much space old sessions and worktrees take and lets you clear them (commit first — uncommitted changes go with the worktree), and /usage now shows what is eating your plan and, when you press f, sends a prompt to fix it automatically. Ultrathink is back for one-turn xhigh effort without changing the session, /auto-mode-setup teaches auto mode which repos and domains you trust, and long idle conversations now compact automatically before the prompt cache expires. Also in the changelog: fork subagents are on by default in the desktop app and VS Code, and a new permissions.blockWritesOutsideWorkingDirectories setting refuses writes outside your working directories.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://github.com/astral-experiments/serc">serc: Codex writes a Rust CPython bytecode compiler</a></h3>
+<h3><a href="https://www.decodingai.com/p/write-your-own-llm-judges">Don&#x27;t let Claude Code design your LLM judges</a></h3>
 <div class="byline">
-<span class="src">X — @charliermarsh</span> &middot; Nov 9
+<span class="src">Decoding AI Magazine — Louis-François Bouchard</span> &middot; Nov 10
 </div>
-<p class="dek">Byte-for-byte identical .pyc files, 3–4x faster compiles — written entirely by an agent, with CPython as the oracle.</p>
+<p class="dek">28,200 LLM judgments on a writing benchmark taught one hard lesson: agents build what you decide — they can&#x27;t decide what a score should mean.</p>
 <div class="body">
-<p>Charlie Marsh had Codex write serc, an experimental compiler that turns Python source into .pyc files byte-for-byte identical to CPython&#x27;s, for CPython 3.12–3.15 and -O/-OO optimization levels. Median compile times: Airflow 324 to 79 ms (4.1x), Django 358 to 94 ms (3.8x), NumPy 432 to 131 ms (3.3x), Transformers 832 to 288 ms (2.9x). It is parallel by default, skips up-to-date caches, refuses to overwrite symlinks, and is installable as serc-cli on crates.io, dual-licensed MIT/Apache.</p>
-<p>Why it matters: a byte-identical oracle — CPython itself plus a huge corpus — is the ideal setup for an agent. As one reply put it, “an agent can just keep going until the diff is empty.” The README warns that all code changes, PR summaries and documentation were authored entirely by GPT in Codex, and that it “may emit incorrect bytecode in some cases.” It lives in a new astral-experiments org for agent-authored exploratory projects and might ship opt-in in uv. One practical point: you can compile bytecode without installing CPython, e.g. in a Docker build.</p>
-<p>Reply camps: bug-for-bug compatibility is the point and also the worry; a new security surface (bytecode differential CVEs); and what&#x27;s next — a Rust interpreter, or straight to LLVM IR.</p>
+<p>Louis-François Bouchard spent five months vibe-coding ToneBench, a benchmark that asks whether a model can write a YouTube script in his voice — 141 model configurations, 7,050 drafts, 28,200 judgments from four LLM judges plus code checks. Everything about the scores came down to a handful of decisions Claude Code never suggested, and the results would have been &#x27;TERRIBLE and untrustworthy&#x27; if he had let the agent make them too.</p>
+<p>First: read every prompt your agent writes for a judge, and write the rubric yourself. On the early-October baseline, 119 of 141 models scored above Bouchard&#x27;s own scripts on anti-slop, because the rubric punished habits he actually has — like reading an exact figure out loud and repeating it for emphasis. &#x27;Your best outputs should sit at the top of your scale. If they don&#x27;t, read the rubric again.&#x27; Second: measure the noise before you rank anything. Grok 4.7 ranks 5th on its best drafts, 29th on average and 67th on its worst; Opus 5.5 on xhigh moves about ±0.9 points and always lands first. And judges are noisy too: a Gemini judge tested against his human calibration set rated models almost randomly compared with the other four judges, so it was rejected — without the calibration set he would never have known.</p>
+<p>Third, the judges have preferences of their own: GPT-6.1 Sol gives OpenAI&#x27;s drafts about 4 points more than the other judges predict, Opus 5.5 gives Anthropic&#x27;s about 2 — no judge ever sees a model name, so it reacts to writing style. The operating rule that falls out of all of it, and the one that generalizes far beyond writing benchmarks: let agents write the code, make every measurement and design decision yourself, and never let the AI grade its own work without a human calibration set to check it against.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://openai.com/index/control-room">OpenAI&#x27;s Control Room: a kill switch for research models</a></h3>
+<h3><a href="https://x.com/mitchellh/status/2120221244478083249">How a small team ships with agents: push to main, release in 15 minutes</a></h3>
 <div class="byline">
-<span class="src">X — @OpenAIDevs</span> &middot; Nov 9
+<span class="src">X — @mitchellh</span> &middot; Nov 10
 </div>
-<p class="dek">Every research inference carries a job ID; stop the job and output halts within 35 seconds.</p>
+<p class="dek">Mitchell Hashimoto&#x27;s three rules at Superlogical: everyone pushes to main, anyone can cut a release, and teams sync by fixing fast instead of planning.</p>
 <div class="body">
-<p>OpenAI described Control Room: every research inference request carries a job_id that the engine checks with a central service. Stop the job and output halts within 35 seconds. It fails closed. This is the infrastructure behind safe research at scale — a central kill switch for model output, not a policy document.</p>
-<p>In the same window, OpenAI let a “dot” attach to multiple local computers: “multi-exec” lets a dot run commands on any connected machine, and you choose one per task. The maximalist setup doing the rounds runs a persistent Mac Studio with every CLI logged in and “Allow All” browsing and downloads — use at your own risk, as its author says. The trade-off is the story: the more computers an agent can reach, the more the kill switch matters.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/">Decision models in production: Amazon replaces Sonnet with a decider</a></h3>
-<div class="byline">
-<span class="src">Strands Agents</span> &middot; Nov 9
-</div>
-<p class="dek">98% cheaper ticket labeling — and a rollout pattern (DUAL mode, 45-second rollback) any team can copy.</p>
-<div class="body">
-<p>Two Amazon engineers replaced Claude Sonnet 4.6 labeling tickets into 20 categories in a huge internal system with Strands Decider, a decision model built on Gemma 4 E4B. A decision model returns one probability per option plus confidence — no text. Results: 897 vs 4,215 ms per call, 2,010 vs 6,724 tokens per ticket, about $500 vs about $22,200 per million tickets — 98% less, on SageMaker ml.g5.xlarge at roughly 640 ms per request.</p>
-<p>Two lessons worth copying. First, a three-way switch (BEDROCK / DUAL / DECIDER) in AppConfig: run in DUAL on real traffic with every disagreement judged, and rollback as a 45-second config change. Second, JSON key order moved probabilities by up to 0.19, so sort keys. The limits they state: it only works for closed choices from a stable catalog that fit in about 4K tokens.</p>
-<p>This is the “big model + cheap decider” pattern in production at serious scale — the same shape as the research brief from October. Wherever your platform has a closed-choice classification step running on a frontier model, this is the first place to look for a 50x cost cut.</p>
+<p>Mitchell Hashimoto&#x27;s account of how his startup Superlogical ships is the most concrete &#x27;agents in production&#x27; post of the day, and it inverts the usual process. Three rules: (1) Everyone pushes to main. Machine-aided review happens before the push, human-plus-machine review after it; PRs are only for work outside your lane. (2) Anyone can cut a release. Starting one triggers Slack and a 15-minute countdown; anyone can pause it, nobody can skip it. (3) Teams stay in sync by fixing fast instead of planning. Platforms ship features independently, and post-hoc human and AI review flags mismatches — &#x27;Windows has X, Mac doesn&#x27;t&#x27; — with parity following within 24–48 hours.</p>
+<p>All of it rests on mutual trust: &#x27;if we ever hire someone who we DON&#x27;T trust to push directly to main, then they probably aren&#x27;t the right fit.&#x27; The replies asked the obvious scaling questions — how do two people touching the same code sequence pushes, who reviews changes to the pre-push checks, how does decision context spread to people and their agents without sync meetings — and the 15-minute kill switch got the most praise. Worth reading alongside: an Anthropic engineer in the same window arguing &#x27;we need fewer one shot demos and more tools that show how you can collaborate with models.&#x27;</p>
 </div>
 </article>
 </div>
@@ -158,79 +148,112 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">6 stories</span>
+<span class="count">8 stories</span>
 </div>
-<p class="ednote">Anthropic heads for the public markets while the neoclouds face their reckoning — and Nvidia&#x27;s worst week gets worse.</p>
+<p class="ednote">Anthropic&#x27;s IPO is the event of the week — a $1.33 trillion test of whether the AI boom still has buyers — while OpenAI&#x27;s losses, CoreWeave&#x27;s funding gymnastics and a $750M Mercor round fill in the picture.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/finance/stocks/anthropic-prepares-to-push-ahead-with-ipo-despite-market-jitters-843dd16c">Anthropic forges ahead with its IPO</a></h3>
+<h3><a href="https://www.anthropic.com/news/roadshow-launch">Anthropic&#x27;s IPO: the first frontier lab goes public — and the whole AI trade is watching</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Nov 9
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 10
 </div>
-<p class="dek">Roadshow this week, trading as soon as next Thursday — at a valuation investors now want cut from $1.5 trillion.</p>
+<p class="dek">825 million shares at $70–$78, a $1.33 trillion valuation, up to $90.4 billion raised — pricing November 18, trading November 19.</p>
 <div class="body">
-<p>Anthropic is forging ahead with its IPO later this month, the Journal reports: meetings with key investors are lined up this week, and shares are aimed to start trading Thursday or Friday next week. Investors are eagerly awaiting the targeted valuation range, expected in a filing early this week. A week ago investors anticipated around $1.5 trillion; after last Thursday&#x27;s steep selloff in AI companies, some major investors are now pushing for it lower — Bloomberg reported Friday that a range of about $1.1 trillion to $1.3 trillion had been discussed.</p>
-<p>Morningstar&#x27;s Michael Field, on whether Anthropic should delay: “The cost both physically and reputationally of delaying the IPO might hurt the valuation more in the longer term, whereas if markets hold up at the level that they are, they&#x27;ll just get it done at a slightly lower valuation, suck it up and move on.” Meanwhile the S-1 did “the old SpaceX trick of putting $30 trillion of TAM” in it, per TradingVCs&#x27; Aman Verjee, and Cathie Wood blames Dario Amodei for AI-backlash headlines while predicting a labor shortage. The roadshow started Monday, per swyx. Watch today: the valuation range itself.</p>
-<p>In the same window, California voters rejected Prop 40, the one-time 5% billionaire tax, with tech outspending backers roughly 10 to 1.</p>
+<p>Anthropic launched its IPO roadshow on Tuesday: 825 million Class A shares at $70–$78, listing on Nasdaq under &#x27;ANT&#x27;, pricing November 18 and trading November 19. The base offering raises up to $64.4 billion; a $26 billion private placement to AMD, Broadcom, Alphabet, Micron, Microsoft, Nvidia and TSMC takes the total to as much as $90.4 billion — and with the underwriters&#x27; overallotment, roughly $100 billion. The valuation: about $1.33 trillion fully diluted, per the WSJ — far below the roughly $2 trillion floated months ago and the $1.5 trillion anticipated a week ago, after a steep selloff in AI stocks. CNBC reported the book was already covered on day one.</p>
+<p>The numbers behind the deal are extraordinary either way. Third-quarter revenue was nearly $17 billion, up from $1.4 billion a year earlier and up 47% on the quarter, and the revenue run rate hit $81 billion as of October 31. The seven founders&#x27; stakes are worth about $18 billion each at the IPO price, and each plans to cash out around $250 million. Dario Amodei will discuss the IPO in a livestreamed event with JPMorgan CEO Jamie Dimon. Retail gets about 20% of the deal, versus the usual 5–10%.</p>
+<p>The bear case is loud, and it is the story to watch. Jack Selby, who runs Copper Sky and is a managing partner in Peter Thiel&#x27;s family office, warned a disappointing debut &#x27;has to be a very prominent player in what will be a pretty massive correction&#x27; in the AI trade, questioning what Anthropic does that is so proprietary when DeepSeek and other Chinese models are roughly six months behind at far lower cost. Bill Gurley amplified Jaron Lanier&#x27;s NYT piece calling Anthropic&#x27;s alignment-first safety a &#x27;religious belief&#x27; and arguing the company &#x27;should be as far away from the regulation process as possible.&#x27; The WSJ&#x27;s Asa Fitch frames it as the real test of the boom: weak demand would reflect a long-brewing capital crunch in which chip buyers have drained their cash and run up debt — if they can&#x27;t raise money, data centers don&#x27;t get built. Democrats who took Congress plan investigations into data-center electricity prices and circular financing, investor Brad Gerstner warned 35% of US data-center projects planned for next year could be in jeopardy, and SoftBank just posted a $7.1 billion quarterly loss. A successful IPO, by contrast, signals the buildout can continue.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/finance/stocks/anthropic-ipo-valuation-8337b669">WSJ — Berber Jin &amp; Corrie Driebusch</a> &middot; <a href="https://www.wsj.com/tech/ai/anthropics-ipo-is-the-signal-amid-the-ai-noise-7d4300fa">WSJ — Asa Fitch: the signal amid the noise</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-09/neoclouds-confront-dangers-over-demand-debt-and-democracy">Neoclouds confront demand, debt and democracy</a></h3>
+<h3><a href="https://www.wsj.com/business/earnings/openai-continues-to-suffer-heavy-losses-as-revenue-rises-to-10-billion-d2a96bbb">OpenAI is losing more money than ever — and Anthropic just passed it on revenue</a></h3>
 <div class="byline">
-<span class="src">Bloomberg</span> &middot; Nov 9
+<span class="src">WSJ — Berber Jin</span> &middot; Nov 10
 </div>
-<p class="dek">The fall arrived: debt markets are selective, voters just elected AI skeptics, and CoreWeave reports Tuesday.</p>
+<p class="dek">Q3 revenue hit $10 billion, up ~50% in a quarter — but adjusted operating losses rose to $10.9 billion.</p>
 <div class="body">
-<p>Over the summer it seemed like everyone wanted to be a neocloud. Then the fall arrived. A CoreWeave co-founder spooked the debt markets by telling the FT its goal was investment-grade ratings to access “unlimited” pools of insurance money; CoreWeave&#x27;s debt weakened and its stock plunged, taking much of both markets with it.</p>
-<p>Three things to watch as earnings land (CoreWeave Tuesday, Nebius Thursday). Demand: IREN reported AI sales soared to $200 million in the quarter from $71 million the previous period, but also larger-than-expected losses as it tries to service that demand. Debt: credit markets are showing something akin to indigestion — too many offerings, rising risk. One customer signed after the quarter&#x27;s close prepaying 90% of the chips IREN will buy. And democracy: last week&#x27;s midterms piled on another fear, with voters almost uniformly choosing candidates who are AI skeptics and want to halt data center construction. Bloomberg Intelligence&#x27;s Mandeep Singh estimates the results stand to shrink the $1.4 trillion tech companies were expected to spend on AI infrastructure by roughly 5% to 7% in 2027, with as many as 10 gigawatts of capacity failing to come online as planned.</p>
-<p>The shift favors the haves — those with permits, energy deals and operational projects — and companies with deep pockets to meet newer, costlier rules, plus the hyperscalers with investment-grade ratings. CoreWeave&#x27;s CEO says he doesn&#x27;t anticipate any impact on existing commitments: 1.5 GW of active power and 4.2 GW of contracted capacity signed as of August. Delays will also favor states that now look friendlier, like Louisiana, North Dakota and Oklahoma — though two years ago Texas was the easy, fast home, so conditions change fast.</p>
+<p>OpenAI&#x27;s third-quarter revenue reached about $10 billion, up roughly 50% from the second quarter and nearly three times a year ago. But its adjusted operating losses edged up to $10.9 billion (excluding $2.6 billion of stock-based compensation) — the company is losing more money than ever even as sales soar, though its adjusted operating margin improved from negative 150% to negative 109%.</p>
+<p>The telling comparison is Anthropic: $17 billion in third-quarter revenue with a $567 million operating loss, after posting a small operating profit in the second quarter — thanks to the enterprise momentum of its Claude Code coding tool. OpenAI has cut prices on its latest models and is racing to catch up in the corporate market: it has hired a chief revenue officer, launched ads on ChatGPT (about 100 million paying users, 8.5% of weekly actives), and is planning an IPO next year. It also raised less than half of the $30 billion it targeted in its latest financing round, at a lower-than-targeted $1.25 trillion valuation. The race is no longer just about who has the best model — it is about who can turn enterprise usage into a business that pays for itself.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.bloomberg.com/news/newsletters/2026-11-09/nvidia-call-to-commerce-official-raises-new-questions-evening-briefing-americas">Nvidia&#x27;s call about Alice Huang</a></h3>
+<h3><a href="https://openai.com/index/introducing-businesses-chatgpt/">OpenAI turns ChatGPT into a business directory</a></h3>
 <div class="byline">
-<span class="src">Bloomberg</span> &middot; Nov 9
+<span class="src">X — @OpenAI</span> &middot; Nov 10
 </div>
-<p class="dek">Nvidia&#x27;s general counsel phoned the Commerce official overseeing chip curbs about a detained Megaspeed executive — then BIS staff were muzzled.</p>
+<p class="dek">Businesses can claim a profile, see what ChatGPT users ask about them, and run a Business Agent — 1.2 billion weekly users are now a distribution channel.</p>
 <div class="body">
-<p>Nvidia&#x27;s general counsel, Tim Teter, intervened in a US government probe of suspected smuggling of AI chips by Megaspeed International, Bloomberg reports, questioning whether the Trump administration played a role in detaining an executive from the Singapore-based firm. In late summer 2025, Teter called Commerce Under Secretary Jeffrey Kessler, who oversees US chip export curbs, to ask whether his Bureau of Industry and Security was involved in Singapore&#x27;s detention of Alice Huang. It was not, people familiar with the matter said — but in the weeks that followed, BIS staff were muzzled in their ability to look into the company, including a mandate to route all Nvidia requests through Kessler or seek his approval for outreach.</p>
-<p>It is unclear whether Teter made specific requests about the agency&#x27;s inquiry, which was separate from Singapore&#x27;s. In late 2025 the Justice Department asked BIS to pause its efforts, and BIS has made no progress since, despite having enough evidence to proceed, the people said. Bloomberg&#x27;s analysis of trade records found Nvidia&#x27;s tallies to the US government undercounted chips sold to Megaspeed through hardware partners by about 50,000 units, worth billions. The administration revealed Monday that the FBI is now investigating the Huang affair.</p>
-<p>The market verdict: shares slid 4.3% Monday, wiping about $230 billion in value, after the board launched an investigation into reports that CEO Jensen Huang had been a spying target after a romantic relationship with Huang, a Megaspeed executive US intelligence believes was working for Chinese intelligence. Huang admitted the affair on Sunday. The board probe, a pulled-out appearance at an Anthropic event, a hired PR firm, and a short seller (Culper Research) that flagged the relationship six months ago all pile on. Note the decoupling, though: the S&amp;P 500 jumped 2.3% Monday for its biggest one-day gain since April. As Nvidia goes, so too does the stock market — but not on Monday.</p>
-<p>The counterpoint, from Gavin Baker: China, not Washington, is now the one blocking Nvidia GPUs. Since summer 2025 Beijing has pressured its tech giants off the H20, ordered them off the RTX Pro 6000D, sent customs teams to ports, and barred foreign AI chips from new state-funded data centers. Reuters reports about 600,000 H200s sitting in Hong Kong awaiting import approval, and gray-market H200 server prices roughly tripled in a year. “If allowing the export of these less powerful GPUs was a policy mistake that advantaged China, then why is China the one blocking them?”</p>
+<p>Any eligible business can now claim its profile in ChatGPT&#x27;s &#x27;Business Hub&#x27;, edit its details and upload product feeds with prices and availability — Shopify merchants can verify through Shopify. Businesses get aggregated insights (mentions, website clicks, &#x27;discovery topics&#x27; — the themes in conversations where their site is cited), shown only above privacy thresholds; OpenAI says it never shares conversations.</p>
+<p>The bigger move is Business Agents: a separate, clearly labeled chat for U.S. ecommerce and online-service businesses that answers customers&#x27; questions — and businesses can sponsor them as the destination for ChatGPT Ads. The scale behind it: ChatGPT now has 1.2 billion weekly users, up from 1 billion &#x27;in just a few months.&#x27; The replies wrote themselves: &#x27;this is Google Business Profile all over again... don&#x27;t be late twice.&#x27; The open questions are liability (who&#x27;s on the hook when the agent quotes a wrong price?) and verification friction — one Shopify &#x27;instant verify&#x27; then demanded government ID. For any business with a website, the practical move is the same as it was for search in 2005: claim the profile now, while the facts about you are still yours to correct.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://techcrunch.com/2026/11/09/ai-hardware-startup-nominal-triples-valuation-to-3b-in-8-months/">Nominal triples to $3B on AI for hardware testing</a></h3>
+<h3><a href="https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors">Claude moves into the office: Sheets, Whiteboards, Data — and a seat in your meetings</a></h3>
 <div class="byline">
-<span class="src">TechCrunch</span> &middot; Nov 9
+<span class="src">Anthropic / X — @claudeai</span> &middot; Nov 10
 </div>
-<p class="dek">$240M Series C at a $3B valuation, eight months after $1B — AI for testing the hardware that AI runs on.</p>
+<p class="dek">On IPO roadshow day, Anthropic shipped a spreadsheet, a whiteboard, a data tool and a meeting agent — and gave every paid user a free limit reset.</p>
 <div class="body">
-<p>Nominal, a four-year-old Austin startup offering an AI platform purpose-built for engineering and testing complex hardware — aircraft, nuclear reactors, smart factories — has raised a $240 million Series C at a $3 billion valuation, led by Lightspeed Venture Partners and co-led by Insight Partners. That triples its valuation in eight months: in March it announced a $155 million Series B extension at $1 billion, led by Trae Stephens at Founders Fund.</p>
-<p>It is used by 80-plus organizations including 5 of the 7 largest defense contractors. At Anduril, analysis that took hours is now near real time, and the Air Force selected it for Collaborative Combat Aircraft work, including a $71.2 million Strategic Funding Increase. Sequoia&#x27;s Alfred Lin frames the thesis: defense, space, energy and robotics need software-speed iteration, and “testing is where that pace breaks down.” The signal for the venture market: capital is flowing to AI applied to physical engineering, not just to models — and defense-adjacent revenue is the fastest route to a premium valuation right now.</p>
+<p>On IPO roadshow day, Anthropic shipped an office suite. Claude Whiteboards (beta, paid plans) is a shared board where a team brainstorms with Claude, which turns a messy plan into a timeline with owners and dates and can group retro notes by theme; drag a box around part of the board to ask about it, export to a doc or deck, or continue in Lucid, Miro or Zoho&#x27;s Vani. Claude Sheets (beta) builds spreadsheets with tabs, formulas, formatting and drop-downs, often from one prompt — Anthropic admits it is &#x27;simple spreadsheet functionality&#x27; for now, with export to .xlsx/CSV or Claude for Excel for more. Claude Data is generally available (formerly Dashboards): it connects to warehouses and CRMs, with certified queries your data team blesses, data stories and narrated videos, live sharing and tracked changes with rollback.</p>
+<p>Claude Meetings (beta, Team/Enterprise, Google Meet first) joins a call as a visible participant and drafts the plan, timeline and answers while people talk. Interactive connectors open the full Adobe, Atlassian, Box or HubSpot app inside Claude. On Team plans all three are on by default; on Enterprise, Whiteboards and Sheets start off. The market read the competitive signal instantly: Microsoft shares dropped 3% on the news. And as a peace offering for a week of limit frustrations, Anthropic gave every Pro, Max, Ultra and Team user one free full limit reset, usable until December 10 — the most-liked Claude post of the day (37.7K likes), which tells you something about how the limits have been landing.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/claudeai/status/2120206365759094857">X — @claudeai</a> &middot; <a href="https://x.com/ClaudeDevs/status/2120275296637321476">X — @ClaudeDevs: free limit reset</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks&#x27; second breach in weeks</a></h3>
+<h3><a href="https://www.wsj.com/business/earnings/coreweave-crwv-3q-2026-earnings-report-stock-9c109753">CoreWeave&#x27;s workaround to capital constraints — for now</a></h3>
 <div class="byline">
-<span class="src">Fireworks</span> &middot; Nov 9
+<span class="src">WSJ — Rolfe Winkler &amp; Robbie Whelan</span> &middot; Nov 10
 </div>
-<p class="dek">A breached third-party cloud host exposed billing data — and, for some accounts, secrets, datasets and incomplete model weights.</p>
+<p class="dek">Q3 revenue $3.7B beat expectations and the backlog hit $133B — but with unsecured debt yielding ~15%, the buildout runs on $9B of customer prepayments.</p>
 <div class="body">
-<p>Fireworks disclosed a second, wider breach. A third-party cloud provider hosting its R&amp;D machines was breached on October 23; on October 24 the attacker reached Fireworks development machines and ran an unauthorized workload. It got resource metadata, billing data (addresses, invoices, balances, credit usage — no card numbers, which Fireworks doesn&#x27;t store) and, for a limited set of accounts, secrets, datasets and incomplete model weights. Fireworks says no impact was detected on Inference, Training SDK or Nexus, is working with Palo Alto Unit 42, and has disabled self-serve dataset transfers. Its first bulletin (October 9) covered only stored secrets.</p>
-<p>Bloomberg Law reports Fireworks named Notion and Cursor among customers it is “actively working with,” out of 10,000-plus customers. The Information says Harvey was told and some big customers are weighing a move. Fireworks has about $1 billion annualized revenue and is preparing a raise at $30B-plus. The replies on X make the business point: switching inference providers is just a base URL change, so breaches become churn fast — and confidential inference will become standard for neoclouds. That ties directly to Google&#x27;s TPU 8tx pitch the same day.</p>
+<p>CoreWeave reported third-quarter revenue of $3.7 billion, slightly above the $3.6 billion analysts expected, with its backlog rising to $133 billion — and its shares rose about 2% in after-hours trading after closing Tuesday at $48.73, easing fears at least temporarily after the stock more than halved since August on rising borrowing costs. CEO Michael Intrator pointed to contract-backed financing, operating cash flow and about $9 billion in customer prepayments and deposits expected in the next three months.</p>
+<p>The workaround is the story. With unsecured debt yielding around 15% and Intrator saying the company will not tap that market at current yields, CoreWeave is funding its buildout through customer prepayments, equipment financing from suppliers and the high-margin revenue from older, paid-off chips — while planning up to $39 billion of capital spending this year and targeting 8 gigawatts of installed computing power by 2030, up from 1.7 gigawatts today. It is fragile: data-center landlords are demanding investment-grade backstops, the equipment-financing model could leave CoreWeave on the hook if deals collapse, and political pressure is rising after the midterms. Analyst Gil Luria&#x27;s acid note: CoreWeave earns only about 3% returns on its data centers versus a far higher cost of debt, unlike hyperscalers — and Nvidia, a 12.8% shareholder and key financial backer, helps finance its chip purchases, feeding skeptics&#x27; concerns about circular financing. Gavin Baker&#x27;s broader observation from the same day&#x27;s lists: GPU clusters are moving from offtake agreements to customer prepayments, which makes operating cash flow to EBITDA the key metric and moves the diligence burden from private-credit funds to the actual GPU customer.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/business/energy-oil/coreweave-finds-a-workaround-to-capital-constraintsfor-now-1f548211">WSJ — Asa Fitch: the workaround</a>
 </div>
 </article>
 <article class="">
-<h3><a href="https://x.com/clairevo/status/2119985786045227197">Token fraud is killing free trials</a></h3>
+<h3><a href="https://www.mercor.com/blog/series-d/">Mercor&#x27;s $750M round leads a busy venture ledger</a></h3>
 <div class="byline">
-<span class="src">X — @clairevo</span> &middot; Nov 9
+<span class="src">X — @BrendanFoody / Reuters</span> &middot; Nov 10
 </div>
-<p class="dek">A profitable AI wrapper spends 90% of its time fighting fraud rings that farm trial codes — free trials are dead at ChatPRD.</p>
+<p class="dek">Mercor hit a $20B valuation on human expertise for training models; Stripe closed OpenRouter, Tendrils raised $30M to rebuild the CPU — and SoftBank took a $3.7B hit on turbines it didn&#x27;t need.</p>
 <div class="body">
-<p>Claire Vo, who runs ChatPRD (profitable, not VC-funded), says she spends “90% of my time” fighting international token fraud, at a cost of “tens of thousands of dollars.” The playbook, from her follow-up posts: a Chinese reseller farms trial promo codes, wraps the authenticated session and proxies it into its own resold app, loops Outlook signups when limits run out, sells through AliPay, and rotates across tools — she names Linear, Cognition, Granola, SpaceX AI and Gumloop too — to stay under trial limits. An Egyptian team building Fortnite and Roblox maps slammed the most expensive models on trials using real cards that were cancelled and restarted. Hundreds of Indonesian users treated it as a “temu chatgpt,” so she banned the country.</p>
-<p>She runs Stripe Radar, rate limits and automated triggers, and every tightening hurts real users. Her decisions: free trials are dead at ChatPRD, she may ban all non-US business in 2027, and may go 100% enterprise. The replies agree: a paid trial worked best (Simplified, 15M+ users: “Freemium can quickly become a liability when every token costs real money”), and WorkOS Radar “stops token abuse for Cursor, Factory, and a bunch of others.”</p>
-<p>Why it matters for your SaaS: every AI wrapper with a free tier is now a target for compute arbitrage, and the economics favor paid trials and enterprise. If your support-triage agent ever gets a free tier, budget for fraud ops from day one.</p>
+<p>Mercor raised a $750 million Series D at a $20 billion valuation (Benchmark, General Catalyst, Nvidia, Salesforce, Zoom), doubling its mark from October 2025. Run-rate revenue went from $1M to $3B in 27 months, and the company says growth sped up over the past six months as enterprises began training their own models. The debate in the replies is the interesting part: &#x27;human data is worth only $20B?&#x27; versus &#x27;domain expertise becomes the scarce input.&#x27; Stripe closed its OpenRouter deal (about $7.5 billion reported, terms undisclosed); OpenRouter now serves about 125% more tokens per week than when the deal was announced in August, with 10M+ developers, and says it stays provider-neutral. Benchmark also led Tendrils&#x27; $30 million round to &#x27;rebuild general-purpose computing&#x27; — the CPU — with Jack Altman joining the board.</p>
+<p>Elsewhere in the ledger: a16z led General Translation&#x27;s $27 million; Index led Alta&#x27;s Series A ($80 million total), billed as &#x27;financial infrastructure for the tokenized and agentic era&#x27;; Garage raised a $41 million Series B for its used fire-truck marketplace; Kleiner Perkins made its first European pre-seed, Ancep ($8.5 million). TSMC&#x27;s board approved up to $500 million each in Anthropic IPO shares and OpenAI preferred stock, and posted a 60% year-over-year jump in October revenue. And the cautionary tale: SoftBank took a $3.7 billion hit from cancelled gas-turbine reservations — it had reserved well over 13 gigawatts to power data centers for OpenAI — as part of a $7.1 billion quarterly loss; its shares are down more than 55% since June. LP data worth noting: family offices now put 34% of their VC commitments into SPVs, up from 9% in 2019 — is the fundraising slowdown capital leaving venture, or capital changing form?</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.reuters.com/legal/transactional/ai-training-startup-mercor-valued-20-billion-latest-funding-round-2026-11-10/">Reuters — Mercor</a> &middot; <a href="https://www.wsj.com/business/energy-oil/masayoshi-sons-huge-bet-on-electrical-turbines-backfires-b51f160c">WSJ — SoftBank&#x27;s turbine bet backfires</a> &middot; <a href="https://www.wsj.com/tech/ai/tsmc-approves-up-to-1-billion-investment-plan-in-anthropic-openai-3e4b4997">WSJ — TSMC&#x27;s $1B Anthropic/OpenAI plan</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.moneyweb.co.za/news/tech/nvidias-bull-case-hinges-on-ceo-huang-surviving-china-spy-probe/">Nvidia&#x27;s succession crisis: the bull case now hinges on one man surviving a probe</a></h3>
+<div class="byline">
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 10
+</div>
+<p class="dek">Shares fell ~10% in two sessions after the board opened an investigation — and after 33 years, Nvidia still has no successor and no board chairman.</p>
+<div class="body">
+<p>Nvidia&#x27;s board has opened an independent investigation — outside counsel Wachtell Lipton — into whether CEO Jensen Huang was targeted by a foreign intelligence operation, after Huang admitted in a Sunday memo to employees that he had an affair with a woman U.S. officials believe was working for Chinese intelligence. The Information reports about 240,000 export-restricted chips moved to China via a company tied to the woman, mostly H100s and H200s, some reaching Alibaba and Tencent; Bloomberg reports the Singapore cloud company at the center, Megaspeed, bought more than $4.8 billion of Nvidia chips in two years. Nvidia&#x27;s board says it has &#x27;no reason to believe&#x27; national security or company secrets were compromised, and a shareholder class action was filed Monday. Three House committee chairs have requested a closed-door briefing with Huang on November 18.</p>
+<p>The market consequence is inseparable from the governance one. Shares fell roughly 10% in the two sessions after the news, making Nvidia the second-worst performer in the S&amp;P 500 over that span, and now trade at under 12 times estimated earnings — the lowest multiple since 2013. &#x27;If he goes, the bull case goes with him,&#x27; said Jay Goldberg of Seaport Global, the only analyst with a sell rating: &#x27;Trying to conceive of a Nvidia without Jensen seems impossible.&#x27; The deeper problem, laid out in Bloomberg&#x27;s Tech In Depth: Huang has led the company for 33 years, the longest such run in Silicon Valley, and no successor has been designated — he has nearly 60 direct reports and no No. 2, no president, no COO. The WSJ&#x27;s Heard on the Street argues the best outcome is a reined-in Huang who stays, with national-security monitoring credibly independent of him and possibly a changed board structure — the board has no chairman. Tim Higgins&#x27; column asks the question that matters for the whole trade: a genuine technological revolution does not depend on one man — but this one has been sold, in large part, by its most magnetic salesman.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/business/a-reined-in-jensen-huang-is-nvidias-best-option-e79cb305">WSJ — Heard on the Street: a reined-in Huang</a> &middot; <a href="https://www.wsj.com/tech/ai/jensen-huang-nvidia-ceo-ai-bubble-93097556">WSJ — Tim Higgins: testing the AI boom</a> &middot; <a href="https://www.wsj.com/cio-journal/why-nvidia-ceo-jensen-huang-is-unique-586439c8">WSJ — Steven Rosenbush: why Huang is unique</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.lennysnewsletter.com/p/state-of-the-tech-job-market-late">Tech jobs, reshuffled: PMs at a four-year high, designers at a record low</a></h3>
+<div class="byline">
+<span class="src">X — @lennysan</span> &middot; Nov 10
+</div>
+<p class="dek">PM openings are up 75% from the 2023 low while engineering hiring has stalled and design roles hit a record low — and Claude is now the second-most-mentioned skill in designer job ads.</p>
+<div class="body">
+<p>Lenny Rachitsky&#x27;s late-2026 job-market report (data from TrueUp&#x27;s 9,000+ companies and Live Data Technologies&#x27; 124M U.S. job histories) is the clearest picture yet of how AI is reshaping who gets hired. Product management is the outlier: open PM roles are at a four-year high, up 75% from the March 2023 low (about 7,300 globally), and PM is the only core role whose share of hiring grew — 16% in 2021 to 21% now. Openings are up while actual hiring is flat, which Lenny reads as great PMs getting harder to land. Engineering tells the opposite story: open-role growth went +29% (2024), +15% (2025), +2.5% (2026); U.S. software-engineer hires were about 113K in the 12 months to April 2026, under half the 2022 peak of 239K; mobile and front-end openings nearly halved in a year. The exception inside engineering: forward-deployed engineer roles are up 4.6x, to about 1,500.</p>
+<p>Design is at a record low — about 1,900 open roles, down 28% year over year — and Claude is now the second-most-mentioned skill in designer job descriptions. The replies supplied the interpretation: &#x27;Deciding what to ship is the new bottleneck,&#x27; and &#x27;Design isn&#x27;t dying, it&#x27;s merging; one designer who ships with AI does three roles.&#x27; Also in the report: remote roles at a record low, jobs concentrating in the Bay Area, most growth outside software — and recruiter openings up about 300% since mid-2023, which Lenny flags as a possible sign engineering hiring will pick up again.</p>
 </div>
 </article>
 </div>
@@ -238,41 +261,30 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Politics</h2>
-<span class="count">3 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">The midterms keep echoing — through a Dalio warning about dysfunction, an impeachment bid, and a fridge hack blamed on Iran.</p>
+<p class="ednote">The Hegseth impeachment effort dies on a procedural vote, and a U.S. soldier is arrested in Britain on spying allegations.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.linkedin.com/comm/pulse/what-i-think-results-us-midterm-elections-ray-dalio-2dnle">Dalio: the midterms change who deals with the problems, not the problems</a></h3>
+<h3><a href="https://www.reuters.com/world/us/us-house-votes-derail-impeachment-defense-secretary-hegseth-2026-11-10/">Hegseth impeachment effort derailed, 211–204</a></h3>
 <div class="byline">
-<span class="src">Ray Dalio via LinkedIn</span> &middot; Nov 9
+<span class="src">Reuters</span> &middot; Nov 10
 </div>
-<p class="dek">Same debt, same wealth gap, same geopolitics — and likely more fighting, not less.</p>
+<p class="dek">House Republicans sent Thomas Massie&#x27;s eight articles to the Judiciary Committee, killing a floor vote this Congress — but Democrats take the House in January.</p>
 <div class="body">
-<p>Ray Dalio&#x27;s conclusion: the political changes won&#x27;t change the circumstances government has to deal with. “We will have the same debt issues, the same wealth and values gap issues, the same international geopolitical issues, the same climate issues, and the same technology issues, and the election results won&#x27;t change the dynamics of how things such as fights over wealth and power typically work. The midterm elections will just change who will be dealing with these issues and how.”</p>
-<p>The most important question is whether there will be more fighting and dysfunction or less; he thinks it is likely there will be more. The test comes fast: President Trump&#x27;s temporary funding expires December 11, the federal debt is projected to hit its limit in March 2027, and the Treasury is projected to run out of funding options in the fall of 2027. “It is likely that the fights over these funding issues will be brutal and that the fighting and uncertainty will probably raise Treasury bill and similar short-term yields because investors will want to avoid payment uncertainty.” He also flags Elizabeth Warren heading the Senate Banking Committee as a source of fights and changes affecting the economy and markets.</p>
+<p>The House voted 211–204 to send Thomas Massie&#x27;s eight articles of impeachment against Defense Secretary Pete Hegseth to the Judiciary Committee, effectively killing the effort for this Congress. Massie, the Kentucky Republican who introduced the articles, was the sole Republican to vote against the referral; 203 Democrats voted with him, and 18 members didn&#x27;t vote — including 11 Democrats, among them Nancy Pelosi, whose absence helped GOP leaders prevail. Trump hailed the decision as an &#x27;EXONERATION of a Great American Patriot.&#x27;</p>
+<p>The articles accused Hegseth of waging war against Iran without congressional approval, launching deadly strikes against suspected drug boats in the Caribbean, the capture of Venezuela&#x27;s Nicolás Maduro, strikes against Iran-backed Houthis in Yemen, ignoring laws to minimize civilian casualties, and free-speech violations against Sen. Mark Kelly. The vote was procedural — nobody voted on the merits — and the committee, controlled by Trump allies, has no obligation to take the articles up before this Congress ends January 3. Democrats take the House in January and have signaled they will revive the push; House Democratic leader Hakeem Jeffries, who backed impeachment, called himself a &#x27;hard yes.&#x27;</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/politics/national-security/pete-hegseth-impeachment-press-conference-cdf5d9d6">Massie introduces articles of impeachment against Hegseth</a></h3>
+<h3><a href="https://www.wsj.com/world/europe/member-us-army-arrested-spy-russia-cce59efb">Senior U.S. soldier arrested in the U.K. on allegations of spying for Russia</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Nov 9
+<span class="src">WSJ</span> &middot; Nov 10
 </div>
-<p class="dek">The outgoing GOP rep alleges Hegseth unlawfully started the Iran war — a vote could make him the first Pentagon chief impeached in 150 years.</p>
+<p class="dek">A 41-year-old assigned to NATO&#x27;s rapid-reaction corps was arrested near Gloucester under the National Security Act; the U.S. also indicted three Iran-backed operatives over a plot against RAF Fairford.</p>
 <div class="body">
-<p>Republican Representative Thomas Massie introduced articles of impeachment against Defense Secretary Pete Hegseth on Monday, roughly one week after the widely unpopular US-Israel war on Iran he has championed fueled a historic midterm defeat for the Republican Party. Massie, a longtime Trump administration antagonist who is set to leave the House in January, alleged Hegseth unlawfully initiated the Iran war and ignored a congressional resolution to remove troops from the conflict.</p>
-<p>The move paves the way for a vote that could make Hegseth the first Pentagon chief to be impeached in the House in 150 years. The incoming Democratic majority has made clear its intent to pursue Hegseth&#x27;s removal. Hegseth has dismissed the looming impeachment and vowed to stay at his Pentagon post for the rest of the Trump administration. Massie, quoted in Bloomberg&#x27;s Evening Briefing: “The reality is, we&#x27;re not indicting him for being bad at his job… The argument here is that he&#x27;s broken laws, and he&#x27;s violated the Constitution.”</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.wsj.com/world/europe/france-u-s-suspect-iran-was-behind-cyberattack-on-european-fridges-6247965c">Iran blamed for cyberattack on European supermarket fridges</a></h3>
-<div class="byline">
-<span class="src">WSJ</span> &middot; Nov 9
-</div>
-<p class="dek">Tens of millions in spoiled food and equipment — France&#x27;s foreign minister says Iran will face retribution.</p>
-<div class="body">
-<p>France&#x27;s foreign minister Jean-Noël Barrot told reporters that Iran would face retribution for a cyberattack on European supermarket refrigerators that caused tens of millions of dollars of damage in spoiled food and equipment. US officials confirmed that probes into the campaign show the hallmarks of Iranian cyber methods, though an investigation is ongoing.</p>
-<p>The attack, and others like it, show the risk of connecting everything to the internet — a fridge fleet becomes critical infrastructure the moment it is networked. Worth watching alongside the Fireworks breach in AI Venture: the week has two unrelated reminders that the attack surface is now the supply chain and the device, not just the server.</p>
+<p>British counterterrorism police, working with the U.S. military and FBI, arrested a 41-year-old senior U.S. Army soldier near Gloucester on Tuesday on allegations of spying for Russia. The man was assigned to NATO&#x27;s Allied Rapid Reaction Corps, headquartered at Imjin Barracks; a U.S. official described him as a field-grade officer — a major, lieutenant colonel or colonel. He was arrested under Sections 1 and 3 of the National Security Act, which cover espionage, and can be held without charge for up to 14 days.</p>
+<p>FBI Director Kash Patel said the arrest &#x27;involves allegations of espionage,&#x27; and Brig. Gen. Sean Stinchon, commanding general of U.S. Army Counterintelligence Command, called it &#x27;a sobering reminder that insider threats are real and persistent.&#x27; Police said the arrest wasn&#x27;t linked to any other active investigation — a pointed clarification given the September incident at RAF Fairford, the Gloucestershire air base that hosts U.S. bombers. The same day, the U.S. indicted three Iran-backed operatives for plotting an attack against Fairford. The Kremlin said it had &#x27;absolutely nothing to do with this.&#x27;</p>
 </div>
 </article>
 </div>
@@ -280,50 +292,30 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">4 stories</span>
+<span class="count">2 stories</span>
 </div>
-<p class="ednote">Microsoft reorganizes itself around agents, Google ships more silicon, and a founder&#x27;s security warning from the week&#x27;s biggest scandal.</p>
+<p class="ednote">Inflation came in hot for a third straight month, the Fed is now openly debating a half-point hike, and measles has hit a 35-year high.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/tech/ai/microsoft-to-change-reporting-structure-to-reflect-effects-of-ai-59dce66d">Microsoft reorganizes around AI: Agents and Infra</a></h3>
+<h3><a href="https://www.usatoday.com/story/money/economy/inflation-cost-of-living/2026/11/10/october-2026-cpi-report-inflation/92628283007/">U.S. inflation keeps rising — and a half-point Fed hike is now on the table</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Nov 9
+<span class="src">Bloomberg</span> &middot; Nov 10
 </div>
-<p class="dek">Three segments become two — Agents and Infra, and Devices and Consumer — as AI reshapes Microsoft the way Windows once did.</p>
+<p class="dek">Core CPI rose 0.3% for a third straight month — exactly the line Fed Governor Waller set for considering a 50-point December hike.</p>
 <div class="body">
-<p>Microsoft is reorganizing its reporting structure from three business segments to two — Agents and Infra, and Devices and Consumer — as demand for AI drives another major shift. Forty-three years after Windows, AI is reshaping Microsoft much as Windows once did. The reorg is also the context for the other Microsoft news in Bloomberg&#x27;s Tech In Depth: the company is winding down a deal to rent AI computing from Oracle, part of a larger reassessment of billions of dollars in cloud partnerships, declining to renew a contract that gave it access to Oracle equipment with older Nvidia chips.</p>
+<p>The consumer price index — excluding food and energy — rose 0.3% in October, the third straight month at that pace and above the 0.2% economists expected; headline prices rose 0.4% as the cost of essentials climbed across the board. The three-month annualized core rate is now 3.7%. No year-over-year figures were published: the BLS didn&#x27;t collect October 2025 prices during last year&#x27;s government shutdown, so there is no base to compare against — though Bloomberg estimates core would be about 2.8% year over year.</p>
+<p>The timing is what makes it land hard. Hours before the print, Fed Governor Christopher Waller said a core reading of 0.3% or higher should put a half-point December hike on the table — and the print was exactly 0.3%. Two-year Treasury yields jumped the most in 19 months and 10-year yields pushed back above 5%; a December hike is now seen as a done deal (CME FedWatch put it above 90%), with the only question 25 or 50 basis points. Chicago Fed President Austan Goolsbee called the report &#x27;borderline disturbing,&#x27; citing persistently high services inflation as &#x27;perhaps the most troubling part.&#x27; This was the last CPI the Fed sees before its December 8–9 meeting. One cost-of-living detail that hits close to home: U.S. baby food and formula prices jumped 5.1% in October, the biggest increase on record, as the industry grapples with rising costs and contamination — Similac maker Abbott plans to spin off its nutrition business, and Perrigo is selling its formula unit.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/">Google adds TPU 8tx and TPU 8i Max</a></h3>
+<h3><a href="https://people.com/measles-cases-in-us-surpassed-5000-for-first-time-in-35-years-12242322">Measles cases hit a 35-year high</a></h3>
 <div class="byline">
-<span class="src">Google Cloud Blog</span> &middot; Nov 9
+<span class="src">Bloomberg</span> &middot; Nov 10
 </div>
-<p class="dek">Confidential inference for regulated agents, and double the memory bandwidth for massive context — as Bloomberg notes, Google is coming for Nvidia.</p>
+<p class="dek">5,182 confirmed cases this year, eight deaths, and kindergarten MMR coverage below herd immunity — with the U.S. elimination status under review this week.</p>
 <div class="body">
-<p>Google expanded its eighth-generation TPU portfolio with two more systems, making four in a single year — a first. TPU 8tx is optimized for secure and confidential inference (and small-scale training): the same silicon as the 8t training chip, paired with 5th-generation AMD EPYC hosts, with hardware-level confidential compute for private fine-tuning and secure agent execution. TPU 8i Max is built for the memory wall: two 8i dies in one package, double the compute, double the SRAM and double the HBM bandwidth of the 8i, for massive context windows and the highest compute density per rack.</p>
-<p>Google gave no availability date, pricing or regions for either system; Amin Vahdat told Bloomberg they arrive next year. Google says TPUs now serve nearly 100 customers, naming none. The timing is pointed: Bloomberg&#x27;s lead item in the same briefing is “More Bad News for Nvidia: Google Is Coming,” as Alphabet rolls out a broader array of AI chips to challenge Nvidia in a market worth hundreds of billions. And with Fireworks&#x27; breach the same day, confidential inference is suddenly the feature everyone is pitching.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://twistartups.substack.com/p/assume-youre-a-target-and-always-6d0">TWiST: assume you&#x27;re a target, and always stay skeptical</a></h3>
-<div class="byline">
-<span class="src">This Week in Startups</span> &middot; Nov 9
-</div>
-<p class="dek">Founders should treat unexpected attention with suspicion — the week&#x27;s honeypot lesson, plus a link roundup.</p>
-<div class="body">
-<p>This Week in Startups&#x27; Monday episode is built around a security lesson drawn from the week&#x27;s biggest scandal: founders should treat any unexpected attention with suspicion, and assume they&#x27;re a target. The honeypot warning lands as the Jensen Huang affair keeps unfolding — influence, access and flattery are attack vectors, not just compliments.</p>
-<p>The episode&#x27;s link roundup is worth a skim too: Thinking Machines nears a $5B round at a $40B valuation (Dealroom); Siri chief Mike Rockwell may step down (MacRumors); Tesla is winding down Cybertruck production to make room for Cybercab; and dueling proofs from OpenAI and Anthropic astound scientists (Scientific American) — the same Fermat proof race covered in AI Development Practices.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.wsj.com/health/pharma/u-s-regulators-warn-glp-1-drugs-carry-possible-rare-blindness-risk-c36a4564">GLP-1 drugs to carry warning about rare blindness risk</a></h3>
-<div class="byline">
-<span class="src">WSJ</span> &middot; Nov 9
-</div>
-<p class="dek">The FDA says the drugs carry a potential increased risk of NAION, which can lead to partial blindness.</p>
-<div class="body">
-<p>US regulators are requiring GLP-1 drugs to include warnings about a rare blindness risk. The drugs carry a potential increased risk of NAION, a condition that can lead to partial blindness, the FDA said in a safety communication. Dozens of patients have sued Novo Nordisk and Eli Lilly, the biggest makers of these drugs, arguing the medications caused them to lose vision; the companies are fighting the lawsuits. Eli Lilly said it is evaluating the FDA update and will respond soon; Novo said it continues to monitor safety and remains confident the benefits outweigh the risks.</p>
+<p>The U.S. has confirmed 5,182 measles cases this year as of November 5 — more than double the 2,289 recorded in all of 2025 and the highest annual total since 1991, when 9,643 were reported. The CDC counts four measles-associated deaths; state-level data puts the toll at eight, including two infants. Pennsylvania has been hit particularly hard, with more than 1,500 infections and six deaths, and has deployed hundreds of health workers and pop-up clinics. 96% of cases involved people who were unvaccinated or whose vaccination status was unknown.</p>
+<p>The driver is the vaccination rate: national MMR coverage among kindergartners has fallen from 95.2% in the 2019–20 school year to 92.4% in 2025–26, below the 95% associated with herd immunity — leaving about 280,000 children unprotected. A Pan American Health Organization commission is meeting in Washington November 10–13 to review whether the U.S. keeps the measles elimination status it has held since 2000. The response has become fragmented: the CDC has seen big staff cuts, states say they need stronger federal coordination, and Canada and Mexico are battling outbreaks of their own. Public trust in science globally has fallen below Covid-era levels.</p>
 </div>
 </article>
 </div>
@@ -331,60 +323,41 @@ h3 { font-size: 20px; }
 <section>
 <div class="sec-head">
 <h2>Learn &amp; Build</h2>
-<span class="count">5 stories</span>
+<span class="count">3 stories</span>
 </div>
-<p class="ednote">Five things worth studying from the busiest X day this month — the manual, the cost math, the multi-agent design, the failure modes, and robots that learn in simulation.</p>
+<p class="ednote">Three things worth your study time today: how to run a swarm of coding agents, how to audit your own work with AI, and why open models have quietly abandoned full attention.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting Claude Fable 5.2</a></h3>
+<h3><a href="https://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/">The /swarm design doc: how Google runs multi-agent coding</a></h3>
 <div class="byline">
-<span class="src">Anthropic</span> &middot; Nov 9
+<span class="src">Google Antigravity</span> &middot; Nov 10
 </div>
-<p class="dek">The official guide to the model&#x27;s quirks — ownership, effort, and why your old caution notes are now hurting you.</p>
+<p class="dek">A coordinator spins up specialized workers in separate git worktrees, adversarial verifiers challenge every diff, and idle agents park at zero token cost.</p>
 <div class="body">
-<p>What you&#x27;ll learn: how literally Fable 5.2 follows instructions, and which of its quirks are levers you can pull — ownership phrasing, effort levels, the finishing-work block, and why accumulated “never” rules quietly cripple your agents. The takeaway for your platform: write the ownership sentence deliberately, audit the caution notes piling up in your agent configs, and start at high effort. Full treatment in AI Development Practices.</p>
+<p>If yesterday&#x27;s edition was the theory of multi-agent coding, today brings the design doc. In Antigravity&#x27;s /swarm (preview), a coordinator agent spins up specialized workers, each in its own git worktree so edits never collide; dedicated &#x27;adversarial verifiers&#x27; run tests and challenge diffs; all agents talk on a shared, append-only message board; idle agents &#x27;park&#x27; at zero token cost and wake when someone needs them. Each agent can be pinned to a different model, and Google&#x27;s recommended split is Carbon for coordinator, architecture, security audit and adversarial-verification roles, with lighter models for parallel file edits.</p>
+<p>Compare it with the 1,000-agent Fermat run from the day before, which used a shared Postgres database as the coordination layer: both designs replace a single coordinator&#x27;s context with a shared log. The takeaway for your platform work: the coordination layer — worktrees plus an append-only board — is the product, not the agents. And Google&#x27;s own warning, worth pricing into any plan: swarms &#x27;consume quota much faster than a standard chat.&#x27;</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.dev/blog/which-claude-model-should-you-build-with">Which Claude model should you build with?</a></h3>
+<h3><a href="https://babieslearninglanguage.blogspot.com/2026/11/an-ai-audit-of-my-works-computational.html">Audit your own work with AI — before someone else does</a></h3>
 <div class="byline">
-<span class="src">Claude Dev</span> &middot; Nov 9
+<span class="src">Michael Frank</span> &middot; Nov 10
 </div>
-<p class="dek">The cost-per-task ladder: Opus as default, Sonnet for scoped work, Haiku for subagents — and why effort beats model-switching.</p>
+<p class="dek">A Stanford researcher had Claude audit all 79 papers he co-authored in five years. Over half had at least one error — and one spurious result is headed for correction or retraction.</p>
 <div class="body">
-<p>What you&#x27;ll learn: the cost-per-task ladder and the subagent recipe — Opus 5.5 at medium as the default, Sonnet 5.5 for scoped work, Haiku 5.5 for classification and subagents, Fable 5.2 for major migrations and leading many subagents. The takeaway: try one effort step before switching models, and measure score against spend on your own tasks before migrating anything. Full treatment in AI Development Practices.</p>
+<p>Stanford&#x27;s Michael Frank had Claude (Opus 5.5) audit all 79 papers he co-authored over five years — 59 of them empirical — and published the results. Openness: 58 of 59 posted code and data, but only 31 of 58 (53%) could be fully rerun. Reproducibility: 40 of 58 had at least one number not reproducible within 10% — about 2% of numbers, but papers carry a median of 155 numbers each, over 10,000 in total; of 216 deviations, 60 were typos, and ten crossed a significance boundary. Errors: at least one error in over half the papers, including a reversed boys/girls coefficient, missing SES coded as high-SES, and one upstream bug in a model-training pipeline that &#x27;manufactured a spurious result&#x27; — a correction or retraction is under discussion for that one. Privacy: participant identifiers and Prolific IDs had been pushed to repositories.</p>
+<p>His lesson is the one to carry into your own teams: science needs software-style reliability engineering — routine pre-submission AI audits and repo bots that catch leaked IDs the way bots catch leaked secrets. The meta-point is just as useful: the audit itself is a template. Pick a body of work your team has shipped, point a strong model at it with a clear rubric, and read what comes back before your users or your auditors do.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://claude.dev/blog/safely-scaling-multi-agent-teams-with-fable-5-2/">Safely scaling multi-agent teams with Fable 5.2</a></h3>
+<h3><a href="https://x.com/rasbt/status/2120192452287963540">Hybrid attention is now the default in open models</a></h3>
 <div class="byline">
-<span class="src">Claude Dev</span> &middot; Nov 9
+<span class="src">X — @rasbt</span> &middot; Nov 10
 </div>
-<p class="dek">The Fermat run as a systems design: five Postgres tables, per-agent sandboxes, and a monitor that can halt the whole team.</p>
+<p class="dek">Sebastian Raschka&#x27;s survey: by late 2026 no open model in his set uses full attention throughout — and the KV cache, not compute, is what breaks first for agents.</p>
 <div class="body">
-<p>What you&#x27;ll learn: multi-agent coordination as systems design — five Postgres tables instead of messaging tools, per-agent sandboxes, an LLM classifier on every command, and a halt-the-team safety switch. The takeaway: coordination through shared state scales further than coordination through chat, and safety is architecture, not a policy doc. Full treatment in AI Development Practices.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://www.oneusefulthing.org/p/fable-52-and-jagged-agi">Fable 5.2 and Jagged AGI</a></h3>
-<div class="byline">
-<span class="src">One Useful Thing</span> &middot; Nov 9
-</div>
-<p class="dek">The best account of where the frontier still fails: not hallucinations anymore, but taste and self-assessment.</p>
-<div class="body">
-<p>Mollick&#x27;s verdict on Fable 5.2: “almost” AGI by his definition — an AI as good as most human experts at most intellectual tasks you can do with a computer. What it did: turned a tiny USB keyboard into a six-game console by reading the code of its two control apps, with no public docs; screened 22 business ideas and built one from the agendas of 201 local governments; rebuilt Auden&#x27;s 1941 “impossible” course as a site with critic and fact-checker agents; wrote a 182-page paper, “The One-Dollar Company,” that nothing ever cut. And built 450+ code-drawn 3D worlds in about 25,000 agent runs — where the agents invented their own bureaucracy: a rulebook that grew to 204 sections and 87,500 words.</p>
-<p>His core point, and the one to carry into your own agent work: the failures are no longer hallucinations but taste and self-assessment. Its critics found errors, but none asked whether the work was too long, repetitive or no fun. Judgment is the skill that doesn&#x27;t automate away — the same point @badlogicgames made on the lists this morning.</p>
-</div>
-</article>
-<article class="">
-<h3><a href="https://research.tutorintelligence.com/ti0-1">Tutor Intelligence TI-0.1 / TRACE technical report</a></h3>
-<div class="byline">
-<span class="src">Tutor Intelligence</span> &middot; Nov 9
-</div>
-<p class="dek">Frontier coding agents rebuild robot tasks in simulation from a few teleop demos — robot performance as a function of compute.</p>
-<div class="body">
-<p>What you&#x27;ll learn: frontier coding agents (GPT-6 Astra, Opus 5.5) rebuild a robot task in Isaac Lab from a few teleop demos, using synchronized images, commands and measured joint state. Visual fit comes from inverse rendering; physical fit from replaying recorded commands and tuning delays, friction and pad stiffness (9.9 mm RMS arm error over 6.4 s). Agents write a hybrid-MDP reward with explicit modes; PPO trains a privileged-state policy (99.8% sim success on Lego pick), distilled into a camera-based diffusion policy on the Sonny robot. Real rollouts feed back into the simulation.</p>
-<p>The lessons they list: visual fidelity isn&#x27;t enough; task success can hide impossible grasps; smooth motion makes distillation work; hardware is ground truth. Their Rust stack, Golem, cut CPU 90% and RAM 79% vs Python. Their pitch: robot performance “becomes a function of compute.” The takeaway: the same agent patterns from software — simulation as the oracle, distillation as the deployment path — are now the robotics playbook.</p>
+<p>Sebastian Raschka, previewing a bigger open-LLM roundup, sorts open models into three groups — full attention throughout, some full attention mixed with sliding-window or recurrent layers, and no full attention at all. The trend he reports: in 2025 there were still many full-attention models; by the second half of 2026 there are none in his set, and models split about 50/50 between &#x27;some full attention&#x27; and &#x27;no full attention.&#x27;</p>
+<p>Why it matters for agents: long context gets cheaper, which helps agents that make many tool calls — and there are two different savings. Less compute, because sparse attention attends only to selected tokens or blocks and can still reach distant positions; and less memory, because recurrent layers like Gated DeltaNet keep a fixed-size state. That compression hurts exact retrieval, which is why models still mix in some attention layers. The replies added the operational point: memory bandwidth on the KV cache is usually what breaks first — agent traffic runs about 7x the tokens of a chat turn, so the KV cache &#x27;eats the GPU before any reasoning happens.&#x27; The open question the thread leaves hanging, and the one to test in your own evals: &#x27;Can these track a corrected tool result fifty calls later?&#x27;</p>
 </div>
 </article>
 </div>
