@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Thursday, November 12, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Decision models, agents that (don&#x27;t) learn, and a new pecking order in coding models — today&#x27;s technical threads are about what the models can actually do inside your stack.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google joins the decision-model race with Gemini Decision 1</a></h3>
+<div class="byline">
+<span class="src">X — @OfficialLoganK</span> &middot; Nov 11
+</div>
+<p class="dek">A model that doesn&#x27;t generate text — it answers up to 1,000 questions about one input in a single pass, in 150–250 ms, for $0.10 per million tokens.</p>
+<div class="body">
+<p>Google has entered the category we covered on Nov 8 — the &quot;big model + cheap decider&quot; pattern — with a new endpoint, the Decisions API, and a new model, gemini-decision-1. It doesn&#x27;t generate text. You send one shared input (up to 262,144 tokens — text, images, audio, video or PDF, mixed in one request) and up to 1,000 independent questions, and the model scores every candidate answer in a single forward pass and returns probabilities.</p>
+<p>There are three question types: &quot;noul&quot; (yes/no, a calibrated probability from 0.01 to 0.99 plus a confidence score), &quot;choice&quot; (2–255 options; returns the winner and a probability for each) and &quot;score&quot; (an ordered rubric of 2–255 levels; returns a probability-weighted expected score). Price: $0.10 per million input tokens, $0 for output — the shared input is billed once no matter how many questions you ask — with a free tier in AI Studio. Latency is 150–250 ms end to end, per Google. Not supported: batch, caching, tools, thinking, structured outputs or text generation.</p>
+<p>The comparison matters more than the launch. Simon Willison says the API is &quot;almost identical&quot; to TypeSafe&#x27;s Jev — same three question types, and it even reuses Jev&#x27;s word &quot;noul.&quot; It costs the same as OpenAI&#x27;s GPT-6 Luna decision model ($0.10/M). Jev is still cheapest at $0.042/M but handles text and JSON only; OpenAI&#x27;s handles text and images; Gemini&#x27;s is the first fully multimodal one. VentureBeat adds Amazon&#x27;s Strands Decider, which you can run on your own infrastructure.</p>
+<p>Willison&#x27;s test is the telling bit: he asked four yes/no questions about his stomping-robot video (dragon? robot? France? USA?). Jev and OpenAI returned hard 1.0/0.0 answers. Gemini returned 0.05 / 0.92 / 0.08 / 0.92 — &quot;a little less confident,&quot; which is what calibrated probabilities should look like. On the lists, the dominant camp called it a routing and guardrail primitive: at $0.10 in and $0 out, &quot;it turns agent routing and guardrails from a generative bottleneck into a deterministic primitive&quot; (@Pipflare), fast enough to gate a user-visible action &quot;and have the user not notice&quot; (@smwca).</p>
+<p>Why it matters for you: in an agent pipeline, many steps aren&#x27;t really generation. They&#x27;re judgments — which tool, which model, does this pass the policy, is this answer good enough. A generative model does those slowly, in free text you then have to parse, and it isn&#x27;t trained to know how sure it is. A decision model makes each of those steps a typed, sub-second, almost-free call with a number you can threshold — and the confidence score lets your code send ambiguous cases to a fallback model or a human. That&#x27;s also why Google can price it like an embedding model. If you&#x27;re designing the Riot agent platform, this is the layer that sits between the big model and the action.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://simonwillison.net/2026/Nov/11/gemini-decisions-api/">Simon Willison: the hands-on comparison</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://creatoreconomy.so/p/when-to-use-fable-vs-opus-in-claude-code-full-tutorial">Fable 5.2 vs Opus 5.5: use Opus daily, Fable for the hardest work</a></h3>
+<div class="byline">
+<span class="src">Peter Yang</span> &middot; Nov 11
+</div>
+<p class="dek">Peter Yang&#x27;s rule after 500+ hours in Claude Code — and the three follow-ups that complicate it.</p>
+<div class="body">
+<p>Anthropic now has the two best models in the world, says Peter Yang after 500+ hours in Claude Code — Fable 5.2 and Opus 5.5 — and his rule is simple: &quot;Use Opus as your daily driver and Fable for your hardest work.&quot; Fable is smarter than Opus on most tasks, including coding and long-running agents, but costs 2x as much per token, and on the Max plan you can use Fable for up to half of your weekly limit.</p>
+<p>Yang&#x27;s split: Opus for managing email, automating workflows and building personal apps; Fable for strategic advice on his business, caring for his mom, and auditing his AI skills for bugs. Anthropic researcher Alex&#x27;s tips for Fable: ask it what&#x27;s wrong with your idea before it builds anything; use it on medium effort, as Anthropic employees do; tell it upfront what needs your approval and what it can do on its own; give it a whole project instead of a single next step.</p>
+<p>Three follow-ups from the lists complicate the picture. Agent Arena: Claude Fable 5.2 (Max) is #1 with &quot;+30.4% net improvement, about 1.6x the #2 model Opus 5.5, across 4.7k real-world agentic sessions&quot; — the live board shows +30.48% vs +19.51% over 7,841 sessions. @theo called it &quot;the biggest lead any lab has had since GPT-3.&quot; But BullshitBench: refusals are &quot;WAY down&quot; (Fable 5 declined about a third), and Fable 5.2 ranked 40th and 53rd where Fable/Opus had dominated the top 10 — it now answers premises it should push back on. And Anthropic changed its recommended prompt to &quot;You are the owner and long-term maintainer of this codebase, and its design is up to you.&quot; If you copied the old line, update it.</p>
+<p>The takeaway: the quality jump is real and measured on real sessions, not benchmarks — but the sycophancy cost is real too. Use Fable where its judgment earns its price, and keep the pushback prompt in place.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://arena.ai/leaderboard/agent">Agent Arena leaderboard</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2611.14505">Continual-ARC: your agent&#x27;s notes aren&#x27;t learning</a></h3>
+<div class="byline">
+<span class="src">X — @DanielLenton1</span> &middot; Nov 11
+</div>
+<p class="dek">A new benchmark finds today&#x27;s agent harnesses take notes but don&#x27;t actually learn from experience — while training a 9B model&#x27;s weights does.</p>
+<div class="body">
+<p>Do agent harnesses actually learn from experience? Unify&#x27;s new benchmark, Continual-ARC, says mostly no — and the result should change how you design an agent that is supposed to get better at your team&#x27;s work over time.</p>
+<p>The benchmark is a long stream of ARC puzzles, which need no domain knowledge, only basic priors like objects and counting. The same puzzles come back after gaps with fresh inputs, and new puzzles keep arriving. On every instance the learner has a budget of 16: it can pay 1 to see a worked example, or submit an answer, and a wrong answer costs 1 too. The learner may keep anything between instances — notes, a program library, or updated weights — so memory-based and weight-based learners compete on the same scale. That&#x27;s the main design point: most continual-learning benchmarks only test one kind of learner.</p>
+<p>The findings, on Qwen3.5-9B with GLM-5.3 Flash as a stronger teacher: harness persistence generally didn&#x27;t improve memorization unless an expert told it what to store. Most harness methods learned less than a dumb floor that just caches each task&#x27;s demonstrations. No harness-based method gained on unseen puzzles. Weight training (Qwen trained to imitate GLM&#x27;s moves, the DAgger method) saved more than half the budget on seen puzzles and more than a quarter on the 100 new ones. A concrete run: Prime Agent &quot;as shipped&quot; used 82.8% of its budget on average, solved 22% of 200 instances, and spent $79.42 over 16,368 model calls in 79.5 hours. A program-library method shows the split clearly: on seen puzzles it saved 65% of budget (solve rate 43% → 78%), but on held-out puzzles only 3% (28.5% → 32.6%). Notes and libraries help memorization, not skill.</p>
+<p>Daniel Lenton&#x27;s analogy in the replies: harness notes are &quot;like Leonard in Memento.&quot; Good for basic knowledge, but &quot;note-taking doesn&#x27;t cut it&quot; when the model needs an intuitive feel for a new domain. The reply camps agreed on the upside — &quot;model specialization is unreasonably effective&quot; (@dzhulgakov) — and flagged the open question: which forgetting is safe? (@NashBriggsy: a specialist dropping internet trivia is fine; &quot;the tricky part is knowing which forgetting was the useful kind before some edge case bites you.&quot;)</p>
+<p>The takeaway for your platform: today&#x27;s memory files are a cache, not learning. If you&#x27;re betting on agents that improve at your team&#x27;s work, the measured gains are in weight updates — fine-tunes on your own trajectories. That&#x27;s exactly what Monte, the YC post-training platform in the venture section, is pitching.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.unify.ai/blog/why-we-built-continual-arc">Unify: Why we built Continual-ARC</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The AI trade&#x27;s worst week got worse: Nvidia&#x27;s board is deciding Jensen Huang&#x27;s fate while Anthropic prices the biggest IPO in history — and the week&#x27;s other cheques kept flowing to the picks-and-shovels layer.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/technology/nvidia-is-preparing-oust-ceo-jensen-huang-wsj-reports-2026-11-11/">Nvidia&#x27;s board is deciding whether to oust Jensen Huang</a></h3>
+<div class="byline">
+<span class="src">Reuters</span> &middot; Nov 12
+</div>
+<p class="dek">The board met Wednesday night after the NYT reported a second affair and the WSJ reported it was preparing to force him out. The stock fell ~9% after hours; ~$600B in value is gone since the investigation was announced.</p>
+<div class="body">
+<p>It went from bad to much worse for Jensen Huang on Wednesday. The New York Times reported the embattled Nvidia CEO had a relationship with an executive who reports to him — Nvidia&#x27;s VP of health care. Minutes later, the Wall Street Journal reported the board was preparing to force him out. Shares fell more than 9% after hours, and were down about 6% in premarket trading on Thursday. If the losses hold, Nvidia has lost about $600B in value since the investigation was announced, per Reuters.</p>
+<p>The backstory: on Sunday the board opened an independent investigation after reports that a Chinese intelligence operation had targeted Huang. A memo circulating among US policymakers said China&#x27;s Ministry of State Security had recruited Alice Huang — a former executive at the Singapore chip firm Megaspeed, which rented access to Nvidia GPUs, and no relation to the CEO — to target him. Huang acknowledged an affair in a message to staff (&quot;I was unfaithful to my wife. There is no excuse for what I did&quot;), without naming the woman. The board said it had &quot;no reason to believe&quot; national security or company secrets were compromised, and that it retained confidence in Huang.</p>
+<p>The board met Wednesday night to decide. Under Nvidia&#x27;s bylaws a majority of the 11 directors can remove him &quot;with or without cause&quot;; all but Huang are independent. Bloomberg reported the board has been working with an outside firm on potential replacements, and the investigation is being run by Wachtell, Lipton. Polymarket showed an 88% chance he leaves by year-end, with Ian Buck the favorite successor; an analyst named CFO Colette Kress as the natural interim CEO. No decision was public as of Thursday ~5am ET.</p>
+<p>The lists split into four camps. &quot;Wait for the investigation, or let shareholders vote&quot;: Gavin Baker (3.7K likes) wants a vote &quot;after the investigation is complete&quot; — ousting him now is hard to defend &quot;with the stock down 8% after hours&quot; — with Elad Gil, Jason Calacanis, Elon Musk and Ron Conway agreeing. &quot;You don&#x27;t replace the founder&quot;: Naval (12K likes) — &quot;You&#x27;d think we&#x27;d have learned from Steve Jobs and Travis Kalanick&quot; — and Tim Sweeney, quoted by Baker: &quot;an Apple firing Steve Jobs level of idiocy.&quot; Elad Gil drew a governance lesson: keep boards small and high-trust, and avoid the &quot;governance experts&quot; who push professors and hired-gun CEOs at IPO time. &quot;Who benefits? Open models&quot;: Amjad Masad (4.3K likes) — if Jensen, &quot;the premier champion of open models,&quot; is taken out, whoever wants AI closed wins; the counter, from @Daniel_Cui_: &quot;Open models don&#x27;t hinge on one CEO. Llama, Qwen and DeepSeek weights are already out.&quot; And &quot;he has to go&quot;: an affair with a direct report plus allegedly lying to the board means a CEO &quot;needs to be ousted&quot;; the technology will survive.</p>
+<p>Two threads run underneath the scandal. Policy: Jessica Lessin flagged a scoop that Commerce is moving quickly to cut off Chinese customers&#x27; remote access to advanced chips — an issue that had made Huang &quot;most irate&quot; with officials — and Reuters reports Chinese AI companies are now seeking overseas access to Nvidia chips, fearing tighter curbs. Senators Elizabeth Warren and Chris Coons asked the administration to preserve all documents tied to Nvidia&#x27;s chip exports to China. And the investor fear, per Reuters: an ouster could dampen Nvidia&#x27;s willingness to bankroll the AI boom — some $164.5B in financial commitments, including a $105B cap on an OpenAI data centre in Ohio.</p>
+<p>Jason Calacanis&#x27;s lesson from the same episode, in TWiST 2361: assume you&#x27;re a target. Bad actors go after people one or two steps removed from the real target — an investor, or an IT person with keys to the kingdom. Watch today: the board&#x27;s decision, Thursday&#x27;s market reaction, and the Commerce remote-access rule.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias">Last Week in AI #347: the full five-week recap</a> &middot; <a href="https://calacanis.substack.com/p/assume-youre-a-target-and-always">TWiST 2361: assume you&#x27;re a target</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/">Anthropic prices the biggest IPO in history — and warns AI may soon start improving itself</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Nov 10
+</div>
+<p class="dek">825 million shares at $70–$78, a $1.404 trillion top-end valuation, trading around Nov 19 — and a revised S-1 that says the lab &#x27;may imminently meet&#x27; its own threshold for recursive self-improvement.</p>
+<div class="body">
+<p>Anthropic set a price range for what would be one of the largest IPOs ever, telling the SEC in an updated filing on Tuesday that it will offer 825 million Class A shares at $70 to $78 each. The sale would raise $57.75–$64.35 billion, and at the top of the range would imply a fully diluted valuation of $1.404 trillion. The company plans to begin trading on the Nasdaq under the ticker ANT around November 19, with up to 20% of the offering allocated to retail investors. Underwriters including Goldman Sachs and Morgan Stanley have an option on 123.75 million more shares. Separately, AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC agreed to buy $26 billion of non-voting shares at the IPO price — Google and Nvidia $10 billion each — taking total net proceeds to an estimated $84.6–$93.7 billion.</p>
+<p>The financials: run-rate revenue reached $81 billion at the end of October, up ~$10 billion from September, on third-quarter revenue of $17 billion and nine-month revenue of $33.2 billion. The nine-month net loss was $104 billion, driven largely by non-cash fair-value charges on convertible notes, and compute and infrastructure commitments stand at $900.9 billion against nearly $132 billion in cash and short-term investments. Each of the seven co-founders will sell ~3.38 million shares, about $250 million apiece at the $74 midpoint, while retaining control through Class F shares carrying 50.1% of the vote.</p>
+<p>The pricing lands below earlier ambitions — Anthropic had reportedly targeted up to $2 trillion in October — and investors told CNBC even $1.5 trillion looked like a stretch after the Nasdaq&#x27;s steepest single-session drop in 19 months. The FT reported bankers are weighing a higher price; Bloomberg reported the deal was fully covered. OpenAI, meanwhile, raised $11 billion of a round expected to total about $20 billion, at a $1.25 trillion valuation. Ramp&#x27;s data shows token spending grew just 1.5% across August and September, after 42% growth in July — the spending stall is the bear case, and the roadshow is where it gets tested. Anthropic is running investor events to bolster demand, including a livestream with CEO Dario Amodei and JPMorgan CEO Jamie Dimon on Friday.</p>
+<p>Buried in the same filing is the other story. A revised S-1/A added language warning that Anthropic &quot;may imminently meet&quot; its Responsible Scaling Policy&#x27;s definition of &quot;dramatically accelerated progress attributable to AI&quot; — its threshold for recursive self-improvement, AI that helps build more capable AI. The passage concedes the company has in the past not identified a significant acceleration in its rate of development until after it occurred, and may fail to again. Anthropic states no current model has been designated as exceeding the threshold, and that it does not expect Claude to design successive frontier models on its own, safely, without meaningful human supervision. It is considering updates to the policy to keep humans in control.</p>
+<p>The same week, Anthropic released Fable 5.2 and Mythos 5.2 — cutting Fable&#x27;s price from $10 to $8 per million input tokens and promising 30% faster responses — after METR, which Anthropic agreed to embed, found internal models were speeding up the company&#x27;s AI progress by roughly 2x. Read together: the biggest IPO in history is also the first time a lab has put &quot;we may be near self-improving AI&quot; into a securities filing. The disclosure and the valuation are the same story.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias">Last Week in AI #347: IPO, RSI and the five-week recap</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://a16z.com/welcome-to-the-b2a-economy/">The B2A economy is here — and United just banned the bots</a></h3>
+<div class="byline">
+<span class="src">a16z</span> &middot; Nov 11
+</div>
+<p class="dek">a16z&#x27;s case that agents will choose what we buy, read next to the one hard number — and the first big incumbent pushback.</p>
+<div class="body">
+<p>a16z&#x27;s thesis, from Olivia and Justine Moore: agents will choose products, subscriptions and purchases for us, so businesses must court agents the way they courted human visitors. The numbers they lead with: Shopify&#x27;s AI-driven traffic grew 8x year over year in Q1 &#x27;26 and AI-search orders nearly 13x. HUMAN Security saw agentic browser traffic grow 8x from August to October, with Meta&#x27;s Muse at ~60% of agent requests and OpenAI products ~30%.</p>
+<p>Read it next to the sourcing fact-check, which is the more useful document. The opening line — that agents are &quot;the majority of web traffic&quot; — cites no source, and the chart behind it counts all bots (51% in 2024–25, 54% forecast for 2026), not AI agents. The reply camps on the lists were practical, not awestruck: every site needs to see what agents are doing on it; the monetization infra is missing; fix your stock and delivery data first, or agents can&#x27;t trust the order.</p>
+<p>And the first big incumbent pushback has already landed. United Airlines will ban AI bots from booking its flights, the WSJ reports: the airline cited concerns that third-party agents could expose customers&#x27; sensitive information or make unintended purchases, and said automated AI actions could violate FAA and Transportation Department rules governing the information airlines must present to customers. An AI agent can&#x27;t, for example, attest during check-in that bags don&#x27;t contain explosives.</p>
+<p>The takeaway: the agent-as-customer thesis is real enough that airlines are writing policy about it — but the infrastructure (trust, attribution, payment, liability) is where the money and the fights will be. If your agents are going to buy things on behalf of users, the counterparty&#x27;s terms are part of the design, not an afterthought.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/tech/ai/united-airlines-is-banning-ai-bots-from-booking-flights-5b514b38">WSJ: United bans AI bots from booking flights</a> &middot; <a href="https://www.llms.blog/posts/a16z-agents-majority-web-traffic">llms.blog: the sourcing fact-check</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/build-distribution-not-more-features-6be">Build distribution, not more features</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 11
+</div>
+<p class="dek">From TWiST&#x27;s VC roundtable: anyone can vibe-code a Slack clone in a weekend — the moat is the users.</p>
+<div class="body">
+<p>From TWiST&#x27;s VC roundtable, four tactical lessons for founders — each of which reads as a strategy note for a 12-person SaaS, too.</p>
+<p>Distribution is your moat. Ben Lerer (Lerer Hippeau): anyone can vibe code a version of something like Slack over a few nights and weekends. What people underestimate is the importance of distribution, and the massive data advantage a user base creates.</p>
+<p>Charge for the work, not the time. Lerer Hippeau backed Blacklatter, an AI-first law firm charging for its output as opposed to a &quot;billable hours&quot; strategy. If you can guarantee a quality product at a fixed price, consumers prefer it.</p>
+<p>Know whether your round fits the fund&#x27;s math. A small check at a high valuation means that a fund like LAUNCH would need an Uber-sized exit to see a real return. Before you pitch, make sure the ownership on offer would make a real difference to that fund.</p>
+<p>Take tough questions head-on. Some firms, including Ben&#x27;s, score founders on how they handle being seriously challenged during a meeting. VCs want founders who address challenges directly rather than changing the subject.</p>
+<p>Guests: Ben Lerer, Jenny Fielding (Everywhere Ventures), D.A. Wallach (Time BioVentures). The through-line for your SaaS: the AI transition is a distribution problem as much as a capability problem — the users and their data are the moat, not the next feature.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techfundingnews.com/fractile-720m-series-c-7b-valuation-ai-inference-chips/">Money: Fractile&#x27;s $720M bet on memory, Rox at $1.3B, Stripe buys Parafin</a></h3>
+<div class="byline">
+<span class="src">Tech Funding News</span> &middot; Nov 12
+</div>
+<p class="dek">A UK chip startup with no shipped product is worth $7 billion — and the week&#x27;s other cheques.</p>
+<div class="body">
+<p>Fractile raised $720 million in a Series C at a $7 billion post-money valuation — up from about $1 billion in May — led by Thrive Capital, Founders Fund, Lightspeed and Redpoint, with the UK government&#x27;s Sovereign AI fund and the British Business Bank among the investors. The bet: stack DRAM directly on the processor to break the memory-bandwidth wall that throttles long-token inference. The first commercial chip is due in 2027. No production chip has shipped, and the speed claims (up to 10–25x faster) are the company&#x27;s own, untested by independent benchmarks. It is the largest European semiconductor funding round on record, per the UK Chancellor.</p>
+<p>Rox hit a $1.3 billion valuation 12 months after launch (General Catalyst and March Capital co-led); its five-person team maxed out its inference compute in two weeks and is offering a $20K referral for post-training and inference engineers. Stripe is acquiring Parafin, the small-business financing platform. Jev — the decision-model maker at the centre of today&#x27;s lead technical story — was valued at $7.5 billion just weeks after launch.</p>
+<p>The big cheques: Meta is raising $95 billion through equity offerings and an at-the-market program to fund AI infrastructure, while SpaceX secured $40 billion in committed financing for GPU equipment. OpenAI raised $11 billion of a round expected to total about $20 billion, at a $1.25 trillion valuation.</p>
+<p>The pattern: capital is flowing to the picks-and-shovels layer — memory, inference, financing rails — even as the public AI trade wobbles. The valuations assume the infrastructure buildout continues; the midterm results in the Politics section are the counterweight to that assumption.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias">Last Week in AI #347: Jev, Meta, SpaceX</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/economy/the-global-economy-looks-vulnerable-to-an-ai-bust-a04bb0f1">The global economy looks vulnerable to an AI bust</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 11
+</div>
+<p class="dek">The WSJ&#x27;s warning: a slowdown in AI investment would punish export economies with few other growth engines — and governments have little fiscal room to respond.</p>
+<div class="body">
+<p>A slowdown in AI investment would punish exports in economies that in many cases show few other signs of growth. A sustained stock slide would crush mom-and-pop investors all over the world who have piled into technology stocks in anticipation of bumper returns. Overstretched budgets mean governments have limited room to respond with more spending. Economists say the only real question is how severe the global consequences will be.</p>
+<p>The counter-signal, from the same WSJ edition: investors ran back to AI stocks less than a week after the historic selloff. CoreWeave jumped 25% after delivering a strong quarter and a promising outlook, sparking a widespread rally in chipmaker stocks, and the Nasdaq composite rose 1.6% on Wednesday. Read together with the Nvidia story above: the market is still deciding whether the selloff was a scare or a turn — and the answer now depends as much on a boardroom in Santa Clara as on any earnings print.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/finance/stocks/investors-run-back-to-ai-stocks-less-than-a-week-after-a-historic-selloff-854483e8">WSJ: investors run back to AI stocks</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Washington&#x27;s new power map is taking shape — in the Senate, in the Pentagon budget, and at the negotiating table with Iran. And the AI industry just learned what voters think of its data centers.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/middle-east/vance-considers-direct-talks-with-iran-hardliner-in-push-to-end-war-0c2e3ea4">Vance considers direct talks with Iran hard-liner</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 11
+</div>
+<p class="dek">The vice president is emerging as the lead negotiator with Tehran, as Trump empowers him to restart talks to end a war seen as a drag on the Republican Party.</p>
+<div class="body">
+<p>Vice President JD Vance is considering face-to-face peace talks with a hard-line Iranian security official, emerging as the lead negotiator with Iran, according to US and Middle East officials and people familiar with the negotiations. In recent days, President Trump has told top aides and counterparts he is open to Vance restarting talks with Iran and has empowered him to negotiate, in an effort to end a war seen as a drag on the Republican Party. US officials stressed that discussions about sending Vance to meet directly with Iranian officials remain preliminary.</p>
+<p>The context is the post-midterm map: Democrats, fresh off sweeping wins, are using their leverage on the president&#x27;s $1.5 trillion Pentagon budget request and on the proposed renaming of the Defense Department — the subject of the next story. A negotiated end to the war would take one of the Democrats&#x27; sharpest lines of attack off the table.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/world/middle-east/jd-vance-emerges-as-lead-iran-negotiator-cba55bcb">WSJ: Vance emerges as lead Iran negotiator</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/missing-democrats-fuel-party-backlash-after-hegseth-impeachment-effort-fails-0faaeaca">Hegseth survives impeachment — and Democrats blame the 11 who didn&#x27;t show</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 11
+</div>
+<p class="dek">The GOP push to block impeachment passed 211–204. Eleven Democrats weren&#x27;t present — potentially more than enough to have swung it.</p>
+<div class="body">
+<p>Republican leaders&#x27; push to block the impeachment process against Defense Secretary Pete Hegseth passed 211 to 204 in the GOP-run House late Tuesday. On the Democratic side, 11 members weren&#x27;t present for the roll call — potentially more than enough to have swung the result their way — angering activists and bewildering colleagues who wanted to maintain the pressure on the Pentagon chief.</p>
+<p>Democrats are now setting their sights on slashing Trump&#x27;s signature defense projects. A new &quot;Trump-class&quot; warship, which the Navy said would be the most expensive in its fleet, is a prime target in the president&#x27;s historic $1.5 trillion Pentagon budget request. Democrats also want to use their leverage to keep the Defense Department&#x27;s name from being formally changed to the Department of War.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/politics/national-security/democrats-target-trumps-warship-as-they-look-to-slash-his-signature-projects-41ceae17">WSJ: Democrats target Trump&#x27;s warship</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias">The blue wave hits AI: 43 of 44 data-center moratoria passed</a></h3>
+<div class="byline">
+<span class="src">Last Week in AI</span> &middot; Nov 11
+</div>
+<p class="dek">Voters didn&#x27;t just hand Democrats Congress — they voted, almost unanimously, to slow the data-center buildout. New York&#x27;s AI safety law just took effect.</p>
+<div class="body">
+<p>Democrats took control of both chambers of Congress in Tuesday&#x27;s midterms, and opposition to AI data centers ran through many of the winning campaigns. The Verge reported that 43 of 44 local data-center moratoria on the ballot passed; TechCrunch counted 41 data-center-related measures, with all but one favoring tighter restrictions. An NBC News exit poll found 76 percent of voters opposed data centers in their communities.</p>
+<p>Texas governor-elect Gina Hinojosa, who defeated Greg Abbott, has said she will issue a moratorium on all data-center approvals until the legislature passes protections for Texans. In Maine, Susan Collins — chair of the Senate Appropriations Committee, who had secured $6.2 million in federal funding for a high-performance computing hub — lost to Democrat Troy Jackson after 30 years in office; her donors included Alex Karp, Marc Andreessen and Ben Horowitz. Elon Musk, who spent close to $450 million backing Republican campaigns, deleted his post urging a red vote after results came in.</p>
+<p>Analysts at Yorkville Ives &amp; Co. told clients to expect major hurdles for AI legislation and a slowdown in up to 1,000 planned data centers — while suggesting that could help avert a bubble. Several sources expect the results to kill Republican efforts to preempt state AI laws, which now range from California&#x27;s auditor framework to New York&#x27;s RAISE Act. New York opened a registration portal Tuesday: from January, developers with over $500 million in revenue must publish safety frameworks and report critical incidents within 72 hours, with penalties up to $1 million for a first violation. OpenAI has started calling its data centers &quot;compute campuses&quot; and released a blueprint dropping NDA requirements for local officials — which the Guardrails Alliance&#x27;s Shaunna Thomas said she doubted was working.</p>
+<p>Meanwhile, the safety debate reached cabinet level: Secretary of State Marco Rubio warned publicly about what happens &quot;if these models become independent of human control and end up taking independent actions that are harmful,&quot; and about superintelligence in the hands of a malign actor. The politics of AI is no longer a lab conversation.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Science, careers, and the arguments worth eavesdropping on.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/">AlphaGenome 2 reads DNA cell type by cell type</a></h3>
+<div class="byline">
+<span class="src">DeepMind</span> &middot; Nov 11
+</div>
+<p class="dek">DeepMind&#x27;s new model predicts what a DNA variant does in a specific cell — and finds nearly twice as many causal variants as version 1.</p>
+<div class="body">
+<p>About 98% of the genome is non-coding, and most disease-linked variants sit in regulatory stretches that decide when and where a gene switches on. AlphaGenome 1 predicted those effects but didn&#x27;t say in which cell type — one researcher told Nature that was &quot;a bit of a problem, which is why it hasn&#x27;t been hugely useful for us.&quot;</p>
+<p>Version 2 is conditional: it takes the million-letter DNA sequence plus one target condition (a tissue, cell type or state) and feeds that condition into every stage of the model, so it learns how the same DNA is read differently in different cells. It was trained on more than 100 million single-cell profiles across 68 tissues, covering 637 human and 311 mouse cell types. And you can condition it on up to 256 of your own single-cell RNA-seq cells instead of a reference cell type — predictions for a new disease state or a vaccination response without fine-tuning.</p>
+<p>The results DeepMind and Peter Donnelly report: causal variants on TenK10K (28 immune cell types) found 30% vs 16%, and 43% vs 23% for the direction of the effect, versus AlphaGenome 1 fine-tuned on the same single-cell data. The share of within-tissue expression differences it explains rises from about 23% to 34%. Linking enhancers to genes more than 100 kb away improves from AUPRC 0.48 to 0.62 on CRISPR-validated pairs. Two worked examples: it reproduced a known IBD finding — a distant regulatory variant that over-activates the ETS2 gene only in gut macrophages — and on unseen COVID-vaccine single-cell data, it showed a severe-COVID variant disrupts gene activity more strongly in activated T cells than resting ones, an effect you&#x27;d miss in resting cells.</p>
+<p>The caveat, from Donnelly: it is selective. It makes confident calls for only about 2% of the ~6.8 million variants scored, though about 15x more often among variants that fine-mapping marks as likely causal. Where it does call, you get the three things a drug team needs: a gene, a direction and a cell type. Access is a free API for non-commercial research, private preview for commercial use. Research only, not for clinical use.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.genomics.com/newsroom/alphagenome-2-a-step-change-in-predicting-what-dna-does-and-what-it-might-add-to-drug-discovery---by-professor-sir-peter-donnelly-ceo-genomics">Genomics plc: Donnelly&#x27;s practitioner read</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/tszzl/status/2120609815135474064">Is AI winner-take-all? The lists say no</a></h3>
+<div class="byline">
+<span class="src">X — @tszzl</span> &middot; Nov 11
+</div>
+<p class="dek">OpenAI&#x27;s @tszzl: &#x27;if this were true, there wouldn&#x27;t be an anthropic.&#x27;</p>
+<div class="body">
+<p>@tszzl (OpenAI) put the question bluntly: &quot;if this were true, there wouldn&#x27;t be an anthropic.&quot; The only way he sees winner-take-all is &quot;if you plan on &#x27;pivotal acts&#x27; against all other efforts once you have the capability.&quot; @ramez agreed: AI is &quot;hyper-competitive and default plural,&quot; with no natural monopolies or strong network effects, so the likeliest path to monopoly is regulatory capture.</p>
+<p>The reply camps: &quot;Markets stay plural&quot; — without network effects, &quot;there will always be thousands of AI startups.&quot; &quot;The state won&#x27;t allow a winner&quot; — governments overseeing defense contractors work explicitly to prevent winner-take-all. But the counter-argument won&#x27;t go away: &quot;Recursive self-improvement could still compound a lead&quot; — why couldn&#x27;t the gap between lab #1 and lab #2 just keep growing? And Meta isn&#x27;t close anyway: its best model is about six months behind the frontier on the ECI index.</p>
+<p>Related, from the same lists: @teortaxesTex now gives some probability to coding being &quot;solved&quot; so fast that sub-30B models can zero-shot operating systems by Q2 2027, with no singularity following (&quot;basically Chollet&#x27;s take&quot;). @tamaybes predicts the intelligence-explosion-next-year camp will be &quot;largely discredited&quot; within a few years. Hold this next to Anthropic&#x27;s RSI warning in the same edition: the pluralists and the accelerationists are arguing about the same curve from opposite ends.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.nber.org/papers/w35859">Nearly 3 in 10 STEM PhD dissertations now contain AI-generated writing</a></h3>
+<div class="byline">
+<span class="src">NBER</span> &middot; Nov 11
+</div>
+<p class="dek">29.4% of U.S. STEM dissertations filed through May 2026, up from 1.7% in 2023 — across about 226,000 graduates. Institutions have barely responded.</p>
+<div class="body">
+<p>@daniel_p_gross flagged the NBER paper (w35859): 29.4% of U.S. STEM PhD dissertations filed through May 2026 contained AI-generated writing, up from 1.7% in 2023 and 18.8% in 2025, across about 226,000 graduates. His point is that institutions have barely responded.</p>
+<p>The number is a detection estimate, not a confession — but the direction is unambiguous, and it lands the same week Anthropic&#x27;s filing warns AI may soon accelerate its own development. The credential that once certified a human did the work is being rewritten faster than the rules around it. For anyone hiring or building teams: the dissertation is no longer reliable evidence of unaided writing ability, and the honest signal now has to come from somewhere else — live work, oral defense, or a track record you can check.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Five things from today&#x27;s threads worth going deep on — each with the one best resource to learn it properly, framed for the Riot AI foundation platform and the SaaS&#x27;s AI adoption.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://simonwillison.net/2026/Nov/11/gemini-decisions-api/">The decision-model pattern, compared hands-on</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 11
+</div>
+<p class="dek">Simon Willison runs the same four questions through Gemini Decision 1, Jev and OpenAI&#x27;s Luna — and shows why calibrated probabilities beat hard answers.</p>
+<div class="body">
+<p>Willison runs the same four yes/no questions through Gemini Decision 1, TypeSafe&#x27;s Jev and OpenAI&#x27;s GPT-6 Luna — and the difference is the lesson. Jev and OpenAI return hard 1.0/0.0 answers. Gemini returns 0.05 / 0.92 / 0.08 / 0.92: less confident, and more honest about it. The post also lays out the pricing table (Jev $0.042/M, Gemini and OpenAI $0.10/M) and the capability grid: Jev is text and JSON only, OpenAI adds images, Gemini is the first fully multimodal decision model.</p>
+<p>Why it matters for you: the pattern to steal isn&#x27;t the model, it&#x27;s thresholding on confidence. Prototype your routing and guardrail layer against the free tier in AI Studio before committing to a vendor — and design the fallback path (human review, bigger model) around the confidence score, not around parsing generated text.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.unify.ai/blog/why-we-built-continual-arc">Why your agents don&#x27;t learn from experience</a></h3>
+<div class="byline">
+<span class="src">Unify</span> &middot; Nov 11
+</div>
+<p class="dek">Unify&#x27;s blog on Continual-ARC: notes are a cache, weight updates are learning — and the benchmark that proves it.</p>
+<div class="body">
+<p>Unify&#x27;s blog explains why they built Continual-ARC and what the benchmark actually measures: a long stream of ARC puzzles where the learner can keep notes, a program library, or updated weights — and is scored on the share of its budget it burns. The headline result: harness memory helps you remember puzzles you&#x27;ve seen; it doesn&#x27;t teach you new skills. Weight training does both.</p>
+<p>Why it matters for you: if the support-triage agent for the SaaS is supposed to get better at your team&#x27;s work over time, plan a fine-tuning loop on your own trajectories from day one. A memory file will remember the last incident; it won&#x27;t make the agent better at the next one. The benchmark gives you the numbers to make that case internally.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.genomics.com/newsroom/alphagenome-2-a-step-change-in-predicting-what-dna-does-and-what-it-might-add-to-drug-discovery---by-professor-sir-peter-donnelly-ceo-genomics">AlphaGenome 2, the practitioner&#x27;s read</a></h3>
+<div class="byline">
+<span class="src">Genomics plc</span> &middot; Nov 11
+</div>
+<p class="dek">Genomics plc&#x27;s Peter Donnelly on what the model actually changes for drug discovery — and where it stays silent.</p>
+<div class="body">
+<p>Donnelly — CEO of Genomics plc and one of the field&#x27;s most respected statistical geneticists — reads AlphaGenome 2 as a practitioner, not a press release. His verdict: the step change is real, but the model is selective, making confident calls for only ~2% of variants scored. The value is concentrated where fine-mapping already points: there, it delivers the three things a drug team needs — a gene, a direction, a cell type.</p>
+<p>Why it matters for you: it&#x27;s a model for how to read any lab announcement. Skip the headline numbers; find the selectivity caveat and the worked examples. The IBD/ETS2 case and the COVID-vaccine T-cell case are the evidence that matters — a model that reproduces a known mechanism in the right cell type is worth more than a benchmark table.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.llms.blog/posts/a16z-agents-majority-web-traffic">The B2A economy, fact-checked</a></h3>
+<div class="byline">
+<span class="src">llms.blog</span> &middot; Nov 11
+</div>
+<p class="dek">Read a16z&#x27;s agent-as-customer thesis next to the sourcing check that punctures its headline stat.</p>
+<div class="body">
+<p>a16z&#x27;s B2A thesis is worth reading — but read it next to this fact-check. llms.blog shows the headline stat doesn&#x27;t survive its own chart: the &quot;majority of web traffic&quot; claim counts all bots, not AI agents. The thesis (agents as buyers, businesses courting agents) still stands; the urgency doesn&#x27;t.</p>
+<p>Why it matters for you: this is the exact skill the morning paper is trying to build — separating a real structural shift from a borrowed chart. When a thesis&#x27;s headline number comes from a different population than the one it claims to describe, keep the thesis, discount the urgency, and check the chart yourself next time.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://latent.space/p/jev-revolution/">The Jev revolution: how decision models started</a></h3>
+<div class="byline">
+<span class="src">Latent Space</span> &middot; Nov 11
+</div>
+<p class="dek">Jev&#x27;s creator on why the cheapest model in the category is the one Google just copied — and what &#x27;automate everything&#x27; means in practice.</p>
+<div class="body">
+<p>From the AI Engineer Code Summit: Jev&#x27;s creator Diogo Almeida on the decision-model category Google just joined — and his call for developers to &quot;automate everything.&quot; Latent Space&#x27;s write-up traces the design: probabilities instead of text, three question types, priced like an embedding model.</p>
+<p>Why it matters for you: the origin story tells you where the pricing floor is ($0.042/M) and why the incumbents are racing to match it. If you&#x27;re building a decider layer into the Riot platform, Jev is the reference implementation to study first — and the summit talk is the fastest way to absorb the design philosophy behind it.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
