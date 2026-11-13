@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Friday, November 13, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">6 stories</span>
+</div>
+<p class="ednote">The day&#x27;s technical news is really one theme: evidence. Weights that betray their training chips, pricing that only makes sense after December 1, and the verification discipline that separates agents you can ship from agents you can only demo.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://unemploymentlabs.com/checkpoint-forensics">You can read the GPU out of a model&#x27;s weights — and six Chinese models carry Blackwell&#x27;s fingerprint</a></h3>
+<div class="byline">
+<span class="src">X — @willdepue</span> &middot; Nov 12
+</div>
+<p class="dek">A GPU fingerprint hiding in the model weights: six Chinese frontier models were initialized on export-controlled Blackwell chips — proven from public artifacts, not leaks.</p>
+<div class="body">
+<p>Will DePue showed you can read which GPU a model was initialized on from its published weights — and six Chinese frontier models carry the fingerprint of export-controlled Blackwell chips. It is the best technical read of the week, and it landed on the same day Jensen Huang left Nvidia.</p>
+<p>The idea, step by step: before training, every weight needs a starting value. PyTorch generates them with a deterministic random-number generator (Philox, via NVIDIA&#x27;s cuRAND) from a seed. To fill billions of weights fast, the GPU splits the work across threads — 2,048 threads per streaming multiprocessor — so the chip&#x27;s SM count decides where each thread&#x27;s numbers land. An H100 has 132 SMs; a Blackwell B200/B300 has 148; a GB200/GB300 has 152. The same seed on a different chip produces the same numbers in different positions: in the report&#x27;s toy example, only 6% of positions still match. So the layout of the starting weights is a fingerprint of the chip.</p>
+<p>Does it survive training? Some weights are never updated — embedding rows for tokens that never appear in training data keep their starting values exactly. Trained weights keep a faint trace: across hundreds of thousands of weights, higher starting values still predict slightly higher final values (r = 0.066 on DeepSeek-V4-Flash, 57 sigma under the Blackwell layout, nothing under Hopper). DePue searched roughly 6 trillion seed-and-layout combinations, guarding against overfitting by picking the best combination on one set of weights and testing it on a held-out set. The real matches run 49 to 1,385 sigma; the weakest single test is 20.</p>
+<p>The physical check is what makes it convincing: unmodified PyTorch on a B300, with DeepSeek&#x27;s seed (953049583), reproduced 445 of 469 selected V4-Flash rows bit for bit. An H100 reproduced none of them — but did reproduce all 57,344 preserved values in DeepSeek-V3. A rented GB200 reproduced all 13 of Kimi K3&#x27;s preserved rows. Changing either seed by one broke every match. The method agrees with all 24 cases where a developer has disclosed its hardware.</p>
+<p>Findings: DeepSeek, Moonshot and MiniMax models read as Hopper until early-to-mid 2026, then Blackwell — DeepSeek-V4 in April, MiniMax-M3 in June, Kimi K3 in July, Ant&#x27;s Ling-3.1-flash in October. Qwen, GLM, Tencent, Xiaomi and StepFun still read as Hopper. Meituan&#x27;s LongCat-2.0 reads as Huawei Ascend, and DeepSeek-V4.1-Flash shows no NVIDIA fingerprint at all.</p>
+<p>What it does NOT show — the report is careful here: it shows the chip that created the starting weights, not necessarily the one that trained the model, though usually they are the same. It can&#x27;t say where the chips were; Blackwell can be rented outside China, so it doesn&#x27;t establish smuggling or an export-control violation. And a specially configured AMD MI300X can mimic the 148/152 layouts — DePue ruled that out for V4-Flash with a vendor-specific rounding test (in 377 values where the two vendors differ, the weights match NVIDIA in 363 and AMD in 0).</p>
+<p>Why it matters: it is a new kind of evidence — forensics from public artifacts, not leaks — and it is the technical backbone of the export-control fight now raging over Nvidia. It also shows that open weights reveal more than labs intend. The scale estimates are the soft part: the report now says roughly 4,500 GPUs for Kimi K3 and 3,000 for V4-Pro, about 12,000 across five runs, the largest cluster costing $200–300M — and DePue says he is &#x27;not confident&#x27; in those, because they depend on unknown efficiency and run length. Treat the fingerprint as solid and the cluster math as a rough sketch.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/macrogrants/checkpoint-forensics">Code — GitHub</a> &middot; <a href="https://x.com/willdepue/status/2120992457630326841">X — @willdepue</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Gemini 4 Hydrogen: the fast tier, and the pricing puzzle</a></h3>
+<div class="byline">
+<span class="src">Google</span> &middot; Nov 12
+</div>
+<p class="dek">The fast Gemini 4 tier beats Argon on the index and powers Search — but the pricing only makes sense after Carbon and Argon double on December 1.</p>
+<div class="body">
+<p>Google shipped Gemini 4 Hydrogen, the fast, cheap tier of the Gemini 4 family — and the pricing is the story. Hydrogen is &#x27;a fast, disciplined execution model for writing code, running tests, and verifying changes.&#x27; Carbon and Argon are for deep, long-horizon reasoning. Hydrogen is now the free-tier model and the model behind Search.</p>
+<p>The numbers, from Google: 51 on the Artificial Analysis Intelligence Index at default &#x27;high&#x27; thinking (Argon is 50), 54 at the new &#x27;xhigh.&#x27; Versus 3.8 Flash: 2.5x faster, 57% vs 18.2% on Terminal-Bench 4.1, and more than 5x fewer fabricated claims. Number 5 on Agent Arena; 58.8% on HLE-Diamond. One million input tokens and up to one million output tokens, four thinking levels. In Antigravity, an Orchestrator switches between Carbon and Hydrogen within one session — near-Carbon success on Terminal-Bench 4.0 with 24% less quota and 19% faster. Independent signal: Box&#x27;s Aaron Levie says on its Complex Work Eval, Hydrogen is +5 points over 3.8 Flash, finishing in under half the time with about 12% fewer tokens.</p>
+<p>The pricing puzzle, from Simon Willison: Hydrogen is $1.50 in / $7.50 out per million tokens. Carbon and Argon are $2/$10 through November 30 and $4/$20 from December 1. So Hydrogen is only 25% cheaper today and 75% cheaper after December 1 — and still 15x the price of Claude Haiku 5.5 and GPT-6 Luna ($0.10/$0.50). His pelican test found Hydrogen&#x27;s answers &#x27;notably worse.&#x27;</p>
+<p>The builders&#x27; camps on the lists: &#x27;The Dec 1 doubling is the real story&#x27; — several warn small firms will price products on Carbon this month and &#x27;find out from the invoice in January.&#x27; &#x27;Measure cost per finished task, not per token&#x27; — a cheaper model that needs two retries isn&#x27;t cheaper, and Argon uses fewer tokens per turn, so its token price hides the real difference. And &#x27;it&#x27;s steering, not confusion&#x27; — Google pushing volume onto the cheap tier. The practical move: benchmark Hydrogen against Carbon on your own tasks before December 1, and measure cost per completed task, retries included.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://simonwillison.net/2026/Nov/12/llm-gemini/">Simon Willison on the pricing</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://huggingface.co/thinkingmachines/Inkling-2-Small">Inkling 2 Small: open weights from Thinking Machines</a></h3>
+<div class="byline">
+<span class="src">Thinking Machines</span> &middot; Nov 12
+</div>
+<p class="dek">594B parameters, 17B active, Apache 2.0 — trained natively in 4-bit, not compressed after the fact.</p>
+<div class="body">
+<p>Thinking Machines open-sourced Inkling 2 Small — 594 billion parameters total, 17 billion active per token, Apache 2.0 — and the technical detail worth learning is the precision: it was pretrained, mid-trained and post-trained in NVFP4, so 4-bit is its native precision, not a compressed copy of a bigger model.</p>
+<p>The architecture: a 48-layer decoder-only mixture of experts. Each token goes to 8 of 384 experts, with hybrid local/global attention. Text and image input via a vision transformer, one-million-token context. The main NVFP4 checkpoint needs about 500GB of VRAM — two B300s or four H200s. An MXFP8 version needs 800GB and scores only &#x27;1–2 points&#x27; higher, which the lab calls not meaningful.</p>
+<p>On their own eval table: Code Arena WebDev 1653, top among open &#x27;flash&#x27; models except DeepSeek-V4.1-Flash (1665). BrowseComp 90.2%. ARC-AGI-2 81.7%. AA-Omniscience non-hallucination rate 73.3%, the best open model in the table. The honest blemish they report themselves: on FORTRESS benign it scores only 79.7%, meaning it refuses benign requests more than its peers. Safety testing covered CBRN, cyber and loss of control, including refusal-suppressed variants, with the conclusion of no &#x27;material uplift beyond what&#x27;s already available in the open-weight ecosystem.&#x27;</p>
+<p>The lists&#x27; reaction was practical: &#x27;Small isn&#x27;t small&#x27; — at 300–500GB, rented GPUs with vLLM or SGLang are the realistic route. But &#x27;Apache 2.0 plus first on US webdev is the combo I actually install.&#x27; One user built a single-file 3D game in about 52 seconds. If you run open-weight models on your own infrastructure, this is the one to try this week — and the native-4-bit training recipe is the technique to study.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/TheTuringPost/status/2120607968408531110">How to make coding agents trustworthy: seven steps and a harness</a></h3>
+<div class="byline">
+<span class="src">X — @TheTuringPost</span> &middot; Nov 12
+</div>
+<p class="dek">Seven steps and one harness: the same model went from 53% to 67% on Terminal-Bench when only the harness changed — and 11,000 PRs a month run at a 0.5% revert rate.</p>
+<div class="body">
+<p>Two sources converged on the same question this week — who checks the agent&#x27;s work — and their answers rhyme. Lauren, known as @poteto, gave the talk at AI Engineer, summarized by The Turing Post; Paul Iusztin&#x27;s Decoding AI recapped a whole course built around the same problem. Together they are the most actionable thing in today&#x27;s edition.</p>
+<p>The seven steps, from @poteto: (1) Clean the code agents learn from — they copy whatever looks like an established pattern, including workarounds and deprecated code. (2) Turn every correction into something enforceable: a lint rule, type constraint, test or better API. &#x27;A growing AGENTS.md still requires the agent to follow every instruction.&#x27; (3) Remove predictable mistakes — her team restricts React&#x27;s useEffect to framework internals because agents kept misusing it, and enforces import boundaries between processes. (4) Give agents a reliable way to run and inspect the product: debugging tools, reusable CLIs, and a &#x27;feature map&#x27; so &#x27;that thing in the left sidebar&#x27; means the same thing to every agent. (5) Review evidence of behavior — screenshots, videos, state diagrams — not convincing explanations. (6) Spend serious effort on verification: runtime verification, property-based UI tests, even TLA+ model checking. &#x27;Most of her token usage goes toward verification.&#x27; (7) Automate only once that loop is reliable. The results: 11,000 PRs a month at about a 0.5% revert rate, after roughly six months to get there. Her warning: &#x27;If your coding loop produces slop, automating it produces more slop, faster, with a larger token bill.&#x27;</p>
+<p>Decoding AI&#x27;s version of the same lesson, from their &#x27;Building a Coding Agent from Scratch&#x27; course: LangChain kept the same model and changed only the harness, and their coding agent went from 53% to 67% on Terminal-Bench — from outside the top 30 to the top 5. Same model. Better harness. The key move: take the &#x27;done&#x27; decision away from the model and give it to the harness. Tejas Kumar&#x27;s Hacker News agent upvoted 2 stories when asked for 1; his fix snapshots the front page before and after the task from a place the agent can&#x27;t write to, and passes only when exactly 1 new vote landed on the right story. The multi-agent workflow: &#x27;Explore in parallel. Implement once. Review in parallel.&#x27; And the line to tape to the wall: &#x27;Generating code is cheap. Your attention, spent working out whether the code is right, is not.&#x27;</p>
+<p>Two more results worth knowing from the same recap: on a 19-task benchmark, a 35B model passed 95% of tasks while a 120B model passed only 53% — and the smaller one was cheaper to run. And an agentic RAG chatbot on Amazon Bedrock cost 23% more, took 72% longer, and passed 2 fewer answers out of 120 than a single-search version. The takeaway for your platform: the harness is the product. Budget for verification before you budget for autonomy, and never let the agent write the test that judges it.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.aiaffairs.com/technology/openai-daybreak-red-team-defense-factory-security-tools/">OpenAI Daybreak: agents that attack your app — and agents that patch it</a></h3>
+<div class="byline">
+<span class="src">OpenAI</span> &middot; Nov 12
+</div>
+<p class="dek">Red Team pen-tests your app with agent teams; Defense Factory drafts the patch. The model underneath, GPT-6 Cyber, is OpenAI&#x27;s first rated Critical for cyber risk.</p>
+<div class="body">
+<p>OpenAI expanded its Daybreak security platform at its &#x27;Cyber at the Frontier&#x27; keynote on November 12, with two products that put agent teams on both sides of the same problem: finding flaws, and fixing them.</p>
+<p>Daybreak Red Team — in early access — is a coordinated team of agents that pen-tests web apps: they read source code and application context, map attack paths, validate bug-bounty reports, and check whether a patch actually stops the exploit, in isolated, scoped environments. Daybreak Defense Factory takes the finding and finishes the job: its agents trace the vulnerability through your code, write a patch, test it, and hand engineers a merge-ready fix to review — fed by your existing scanners (Wiz, Snyk, Endor Labs) or by new commits.</p>
+<p>The capability underneath is the real story. The model doing the work is GPT-6 Cyber, shipped November 5 — the first OpenAI model rated Critical for cybersecurity risk under its Preparedness Framework, which is why it ships through a separate approval tier with IP allowlisting rather than as an API key anyone can buy. On ExploitGym it scores 48.5% against 32.1% for GPT-5.6 Cyber; on offensive web penetration testing it found 40.3% of planted vulnerabilities against GPT-6 Astra&#x27;s 32.0%. OpenAI president Greg Brockman framed it as: organizations will be &#x27;secure only to the extent of the frontier model&#x27; they use for defense. Nancy Wang, who leads cyber-applied AI at OpenAI, called Red Team &#x27;superhuman pen-test at the scale of automated continuous scanning.&#x27;</p>
+<p>The honest reply from the lists: &#x27;Small teams don&#x27;t need more findings, they need fewer tickets that are already fixed.&#x27; That is the test to apply: Defense Factory is worth a pilot only if it closes the loop to a reviewed, merged patch — not if it just adds a faster scanner to a backlog nobody reads. No pricing has been announced for either product; Red Team is by application, Defense Factory is a preview plugin inside ChatGPT for workspaces that already have Daybreak access.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://radiancefields.com/world-labs-opens-atlas-world-model-to-everyone">World Labs opens Atlas to everyone</a></h3>
+<div class="byline">
+<span class="src">World Labs</span> &middot; Nov 12
+</div>
+<p class="dek">Agents block out the geometry, Atlas generates the pixels: Viewfinder, Chisel and a developer API, open to everyone.</p>
+<div class="body">
+<p>World Labs opened Atlas — its world model — to everyone on November 12, with two web apps and a developer API. Atlas turns an idea or an image into keyframes, video clips or 3D Gaussian splats.</p>
+<p>The design idea, per Ben Mildenhall, is the part to understand: agents are good at building coarse 3D geometry in code, but rendering polished pixels procedurally is &#x27;orders of magnitude more expensive&#x27; than generating them. So the Chisel web app and the Codex/Claude Code integrations let an agent block out the geometry while Atlas generates the final pixels. Chisel takes any mix of partial RGB and partial depth frames, plus text prompts. Viewfinder reconstructs a scene from photos or generated images, lets you move the camera and render camera paths; Splats to Mesh converts splats into meshes with real geometry; Relight lights and manipulates splats.</p>
+<p>A user report from the lists: one image, 12 views, 2 million splats, into Blender in 33 minutes, using 5,572 of 10,000 free credits. The caveats, also from the lists: users in Kazakhstan and Serbia can&#x27;t register, some object to the phone-number requirement, and there is no published pricing page. Atlas is closed-weights — what opened is product access, not the model. For your work, the interesting bit is the pattern: coarse structure from code, polished output from a generative model, with an API an agent can call directly. That division of labor — agent does geometry, model does pixels — is a template worth stealing for any pipeline where agents produce artifacts humans have to look at.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Nvidia lost its founder in a day, and the market lost $180 billion with him — while Anthropic&#x27;s IPO drew six times the orders on offer. The AI trade is splitting into two stories at once.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/business/nvidia-starts-search-for-next-ceo-4fe0a873">Jensen Huang is out at Nvidia</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">Huang is out, effective immediately; the stock fell as much as 14% and $180B vanished in a day. The spy premise is crumbling, Congress is closing in — and the fight over who controls AI chips is now wide open.</p>
+<div class="body">
+<p>Jensen Huang resigned Thursday as Nvidia&#x27;s president, CEO and director, effective immediately. CFO Colette Kress is interim CEO — and stays CFO — while the board considers internal and external candidates. Harvey C. Jones becomes Nvidia&#x27;s first-ever board chair. Earnings are still on for Tuesday, November 17.</p>
+<p>The market&#x27;s verdict was instant and violent: the stock fell as much as 14% intraday before closing 4.3% lower, erasing more than $180 billion of value in a day. The WSJ notes Nvidia has now lost some $1.8 trillion in market value from its October high, when its market cap peaked near $5.8 trillion. Shares of Micron, Marvell and neocloud CoreWeave fell too; AMD and Broadcom gained. As part of his termination, Huang forfeits about $108 million in unvested equity — roughly 0.07% of his net worth, per the Bloomberg Billionaires Index. Bloomberg Opinion&#x27;s take: &#x27;Huang May Prove That the &#x27;Irreplaceable CEO&#x27; Is a Myth&#x27; — Apple never found another Steve Jobs, nor Amazon another Jeff Bezos, but what they did, which appears to be missing at Nvidia, was methodically build companies designed to carry on their doctrines.</p>
+<p>The backstory, as the lists and the newsletters have it: a board probe, and reports of affairs — one with a woman US officials suspect of spying for China (Alice Huang, an executive at Nvidia customer Megaspeed International), a second with a direct report. What happened overnight is that the spy premise came under fire. David Sacks listed the officials who won&#x27;t back it: the Attorney General (&#x27;no conclusions reached&#x27;), the CIA (&#x27;not yet convinced&#x27;), the DNI (&#x27;not entirely accurate and over-torqued&#x27;), and the incoming House Intelligence chair (&#x27;I don&#x27;t know&#x27;) — calling the classified-memo leak &#x27;the only crime that we know for sure happened.&#x27; Gavin Baker: &#x27;This is why the board should have waited for their own investigation to finish.&#x27; Tim Sweeney called it &#x27;serious corporate governance issues.&#x27;</p>
+<p>The lists split into camps. &#x27;An irreplaceable founder, a historic blunder&#x27;: Tobi Lütke — &#x27;Nvidia ends today, and is replaced with a thing cosplaying nvidia&#x27;; Naval Ravikant — &#x27;the Steve Jobs of Nvidia&#x27;; Martin Casado — &#x27;Dark, dark day&#x27;; Steve O&#x27;Hear-style, @steipete — &#x27;rushed and not right&#x27;; Sweeney — &#x27;a sad day... for all humanity.&#x27; &#x27;The board got played; follow the leaks&#x27;: Sacks, Baker and Sweeney, plus an Nvidia employee posting as himself asking who benefits, pointing to Jensen&#x27;s positions on open-source training costs, liability for closed models, and distillation. &#x27;The conduct was real, and so is the loss&#x27;: Shaun Maguire — &#x27;infidelity is obviously bad,&#x27; but Nvidia loses a &#x27;technical, aggressive, founder-CEO&#x27; — he picks Nikesh Arora of Palo Alto Networks to succeed him; SemiAnalysis: &#x27;clearly the conduct issue is real.&#x27; &#x27;Nvidia will be fine&#x27;: Clément Delangue — its distributed leadership and &#x27;comfort with chaos&#x27; make it &#x27;antifragile.&#x27; &#x27;Governance lesson for founders&#x27;: Elad Gil — &#x27;Reset your board during good times.&#x27;</p>
+<p>The policy fight is where this becomes your problem, not just Nvidia&#x27;s. SemiAnalysis&#x27;s &#x27;Nvidia and the World Without Jensen&#x27; (free portion read): their Accelerator Model tracks more than 1.5GW of restricted Nvidia chips that ended up in China, and Commerce now agrees; they believe the intelligence community pushed for his exit. The RASA bill — the Remote Access Security Act — passed the House 369–22 and awaits a Senate vote; it would bar Chinese firms from renting restricted GPUs remotely in places like Malaysia. Nvidia and Oracle lobbied hard against it. SemiAnalysis argues remote access is better for the US: profits flow to US firms, the US can watch what Chinese labs do and cut them off &#x27;almost instantly,&#x27; and Chinese open-source kernels (DeepEP, DeepGEMM, MiniMax MSA) flow back to vLLM and SGLang. Cutting them off pushes China to domestic chips — already happening (GLM-5 on seven domestic accelerators; LongCat on Ascend). They favor &#x27;Biden-style diffusion rules&#x27; or the MATCH Act over RASA. Gavin Baker, from the other side: the hawks&#x27; win puts US security &#x27;at risk&#x27; — selling China weaker GPUs kept it on US hardware and permanently behind (&#x27;America had machine guns and we were giving China muskets&#x27;). Now China will build its own path and may arm Russia, Iran and North Korea with it. Commerce is finalizing a rule targeting Chinese firms&#x27; remote access to chips in Malaysia and Thailand, and the checkpoint-forensics report in today&#x27;s AI Development Practices section is the evidence the hawks will cite.</p>
+<p>The company itself: Jensen had about 60 direct reports and no deep bench. Ian Buck (CUDA&#x27;s creator) and Jonah Alben (GPU engineering) are the names floated. Nvidia disclosed $530B of off-balance-sheet guarantees; the &#x27;Jensen put&#x27; backed neocloud financing. Supply deals were personal: SemiAnalysis estimates SK Hynix 2027 HBM4 at about $3.0–3.3 per Gb for Nvidia versus $3.7–4.1 for others, and thinks more than 70% of capacity could be non-Nvidia by 2028. And open source: &#x27;Nvidia was single-handedly propping up&#x27; US open models — Nemotron, and investments in Reflection, Thinking Machines, Poolside and Hugging Face — whose future is now openly questioned on the lists.</p>
+<p>What to watch: Huang agreed to testify after senior lawmakers threatened a subpoena — three Republican committee chairmen asked him to appear for a joint closed-door briefing on November 18, and he is expected before Thanksgiving. Congress is pressing for answers not only about the affair but about what information may have been obtained and whether he knew of any diversion of chips through Megaspeed. Rep. Raja Krishnamoorthi says Nvidia&#x27;s existing H200 export licenses should be reviewed and wants Congress to codify tighter restrictions rather than leave them to the White House. Senators Warren and Coons asked the administration to preserve all documents. Commerce Secretary Howard Lutnick is under fire too — Axios reported he delayed acting on Trump&#x27;s directive to crack down on companies suspected of diverting chips to China, and the FT reported Commerce delayed blacklisting Megaspeed; Nvidia&#x27;s general counsel intervened in a Commerce investigation of suspected smuggling. And Trump is in Shenzhen for APEC November 18–19, expected to meet Xi, with chips on the agenda.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">Nvidia — CEO transition release</a> &middot; <a href="https://www.wsj.com/tech/colette-kress-nvidia-interim-ceo-ff26ef3a">WSJ — Colette Kress, interim CEO</a> &middot; <a href="https://newsletter.semianalysis.com/p/nvidia-and-the-world-without-jensen">SemiAnalysis — Nvidia and the World Without Jensen</a> &middot; <a href="https://www.wsj.com/tech/nvidias-meteoric-rise-in-one-chart-2f47d54e">WSJ — Nvidia&#x27;s meteoric rise in one chart</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.reuters.com/legal/transactional/anthropics-ipo-is-about-six-times-oversubscribed-bloomberg-news-reports-2026-11-12/">Anthropic&#x27;s IPO is six times oversubscribed</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 12
+</div>
+<p class="dek">Six times the orders for the shares on offer, up to $90.4B with the private placement — the biggest listing ever, if it holds. One skeptic warns it could also be the catalyst for a correction.</p>
+<div class="body">
+<p>While Nvidia burned, Anthropic basked. Bloomberg reported Thursday that Anthropic&#x27;s IPO has drawn about six times the orders for the shares available, with bankers telling prospective investors that existing backers will be prioritized — leaving some would-be buyers with smaller allocations than expected. The details, including demand, could still change.</p>
+<p>The numbers: the company and some existing shareholders aim to raise up to $64.4 billion by selling 825 million shares at $70 to $78 each, plus a $26 billion private placement — a combined $90.4 billion that would make it the biggest listing of all time, bigger than SpaceX&#x27;s IPO. Fully diluted value: about $1.4 trillion. Pricing is expected November 18, trading on Nasdaq under the ticker ANT on November 19. The private placement buyers are AMD, Broadcom, Google, Micron, Microsoft, Nvidia (about $10 billion) and TSMC Partners. The filing shows an $81 billion annualized revenue run rate as of October 31, up from $71 billion at the end of September and $65 billion at the end of July — against roughly $895 billion in compute commitments.</p>
+<p>The caution, from Bloomberg&#x27;s own Tech In Depth: Anthropic&#x27;s blockbuster IPO &#x27;may become the catalyst for a market correction in the AI trade,&#x27; in the words of Copper Sky Capital&#x27;s Jack Selby — &#x27;It&#x27;s a real business, but the business is still in its early innings and the idea that it is a trillion-dollar business seems exceptionally far-fetched.&#x27; The contrast with the Nvidia story is the day&#x27;s real signal: the market is repricing the AI trade&#x27;s leadership in real time, and it is doing it in both directions at once.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/pro/venture-capital/this-startup-raised-1-billion-to-build-ai-faster-and-with-fewer-humans-f7f07a59">Mirendil raises a $1B Series A to automate AI research itself</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">$1B at a reported $5B valuation, five months after a $200M seed — for a lab whose pitch is agents doing AI research, one researcher plus agents pretraining a model for under $10M in compute.</p>
+<div class="body">
+<p>Mirendil, the AI lab founded by former Anthropic researchers, announced a $1 billion Series A led by Kleiner Perkins and Clearlake Capital — five times its $200 million seed from June, which valued it at about $1 billion. The company did not disclose the Series A valuation; people familiar with the matter put it at $5 billion.</p>
+<p>What the money buys, on the company&#x27;s telling: a bet that AI agents can do AI research. In an October 21 disclosure, Mirendil said one researcher working with AI agents pretrained Mirendil-Base — a coding model in the 100–500 billion parameter range — from scratch in 3.5 months using less than $10 million in compute, with agents writing more than 99% of the code behind the run. Fern 0.1 is Mirendil-Base after a short post-training round. Lor, introduced October 28 in an invitation-only private beta, is the platform for delegating that kind of work: its agents write code, run experiments, provision compute and operate on machines the user selects. The pitch: &#x27;one person doing what took a team,&#x27; and a team doing what once required an institution.</p>
+<p>Read it with the caveats the coverage itself flags: the sub-$10 million figure covers only Mirendil-Base, the smallest model; the larger models were still training on October 21. The release names no valuation and no independent evaluation of any Mirendil model, and describes no safety checks or access policy for automated retraining. The signal to take seriously is the capital, not the claims: Kleiner Perkins co-led the seed and came back to lead the Series A, Google joined the round, and this lands days before Anthropic — the lab the founders left — starts trading. The race is no longer just who has the best model; it is who can automate the research itself.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.retellai.com/blog/retell-100m-revenue-run-rate">Retell hits $100M run rate on $4.6M raised</a></h3>
+<div class="byline">
+<span class="src">Retell</span> &middot; Nov 12
+</div>
+<p class="dek">$100M run rate on $4.6M raised, profitable, under 80 people — the capital-efficiency counterpoint to the billion-dollar rounds.</p>
+<div class="body">
+<p>Retell, the voice AI platform for contact centers, has passed $100 million in annualized run rate — up from $10 million 17 months ago — on just $4.6 million raised in total, from a single seed round led by Alt Capital. It reached profitability in 2025, with fewer than 80 employees.</p>
+<p>The numbers behind it: more than 4,000 businesses, 56,000 monthly active users, more than 100 million connected calls a month in 55-plus languages. Enterprise revenue grew 9x in 2026, with customers including Lenovo, BILL and CVS Health. The bet is that customers build and run their own agents — Asbury Automotive Group&#x27;s own developers manage Retell agents that answer service calls for its 157 dealerships, handling more than 3.1 million minutes of guest calls over the past year. The company also launched Conductor, a tool that helps contact-center teams create, evaluate and improve voice agents on their own after the demo phase, and Tell 1, its first AI model, trained on over a million hours of customer calls.</p>
+<p>Why it matters for the venture picture: this is the capital-efficiency counterpoint to the Mirendil story on the same day. Retell is in the same revenue range as competitors that raised hundreds of millions — on $4.6 million. In a week when the lists are arguing about whether the AI trade is a bubble, the Retell numbers are the kind of evidence that survives the argument: real revenue, real customers, real margin discipline. Aside, another agent startup on the lists, hit $2 million ARR and 150,000 monthly users in four months — $1M to $2M in 33 days. The agent economy is producing revenue faster than the funding rounds suggest.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/optimize-your-pitch-for-the-human">Optimize your pitch for the human (or bot) reading it</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 11
+</div>
+<p class="dek">VCs&#x27; agents do the first pass on pitches now — so founders are shipping a markdown file written for AI consumption. Qureshi calls it &#x27;a very positive signal.&#x27;</p>
+<div class="body">
+<p>Pitch decks are tailored to human audiences, but in 2026 it is just as likely that the first one to review your pitch will be a bot. As more VCs hand inbound screening to their agents, founders are starting to ship a company.md alongside the deck and data room — a markdown file written for AI consumption.</p>
+<p>Dragonfly managing partner Haseeb Qureshi clocked the trend on X this week: &#x27;Founders are starting to ship a company.md with their pitches: a markdown file written for AI consumption (alongside deck and data room). As a VC, I consider this a very positive signal. Instead of force-feeding my agent excel sheets, PDFs, and screenshots of charts, I can hand...&#x27; Qureshi calls the inclusion a &#x27;very positive signal&#x27; — it shows the founder understands the process, respects his time, and isn&#x27;t afraid of a &#x27;neutral read&#x27; on their company.</p>
+<p>This is a small story with a large implication, and it cuts both ways for you. If you ever raise for the SaaS, a company.md is cheap to produce and signals fluency with the exact workflow VCs now run. But it also means your pitch will be read, scored and possibly ranked by an agent before any human sees it — which makes the machine-readable version of your story as important as the deck. Write the file for the agent that reads it first: clean numbers, no buried claims, nothing that only makes sense in a slide. The agent is the first audience now.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Headlines today, with the stakes attached where they matter: Iran talks reverse, a spy sting in Britain, and a fundraising probe at home.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/politics/policy/trump-now-says-us-doesnt-need-a-deal-with-iran-e493c1ed">Trump says the US doesn&#x27;t need a deal with Iran</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">Trump reverses himself: days after empowering Vance to negotiate with Tehran, he says no deal is needed — and tells Vance to investigate Democratic-run cities instead. Oil edged higher.</p>
+<div class="body">
+<p>President Trump said the US doesn&#x27;t need a deal with Iran — and told Vice President JD Vance, who has taken the lead in negotiations with Tehran, to focus on investigating American cities run by Democrats instead. It is a sudden reversal: in recent days the president had told top aides and counterparts that he was open to Vance restarting talks with Iran and had empowered him to negotiate. A spokesman for Vance didn&#x27;t immediately respond to a request for comment.</p>
+<p>The market read it the obvious way: without much to go on about what he meant, oil still edged higher, dimming prospects for a breakthrough in a war begun by the US and Israel eight months ago. The WSJ&#x27;s readers were asked yesterday whether Vance should pursue face-to-face peace talks with a top Iranian security official — the answers split between those who say direct talks are overdue (&#x27;I don&#x27;t know why this wasn&#x27;t done in March&#x27;) and those who call the hope for results &#x27;foolhardy&#x27; while the administration is unwilling to strike decisively. The Vance channel itself is still live as a question: he has been considering direct talks with an Iranian hard-liner in the push to end the war. What changed is the president&#x27;s public posture — from empowering his vice president to negotiate, to saying no deal is needed at all.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/world/middle-east/vance-considers-direct-talks-with-iran-hardliner-in-push-to-end-war-0c2e3ea4">WSJ — Vance considers direct talks with Iran hard-liner</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/national-security/u-s-military-officer-arrested-in-the-u-k-was-detained-in-sting-operation-e809a042">US Army officer arrested in UK spy sting is identified</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">Lt. Col. Brandon Tyner was caught in a sting, talking unwittingly to British authorities. He faces trial in the UK, then prosecution in the US.</p>
+<div class="body">
+<p>The US Army officer arrested in the UK over allegations of spying for Russia has been identified as Lt. Col. Brandon Tyner. He was caught in a sting operation and is expected to be charged on Sunday or Monday, according to US officials familiar with the case. After being tried in the UK, he is expected to be prosecuted in the US under the Uniform Code of Military Justice. He was unwittingly speaking with British authorities, and his motive isn&#x27;t clear. A phone number affiliated with Tyner couldn&#x27;t be reached and an email affiliated with him wasn&#x27;t returned.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/policy/democrats-open-probe-into-top-trump-fundraiser-meredith-orourke-94f93562">Democrats open probe into Trump&#x27;s top fundraiser</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">Democrats say the operation that raised $800M+ &#x27;reeks of potential corruption&#x27;; the Trump camp calls the allegations &#x27;absurd, baseless and full of hypocrisy.&#x27;</p>
+<div class="body">
+<p>Incoming Democratic committee chairs have opened a probe into Meredith O&#x27;Rourke, President Trump&#x27;s chief fundraiser, requesting information about her role in raising more than $800 million for the president&#x27;s key projects. The letter says her operation &#x27;reeks of potential corruption,&#x27; ticking through instances where major companies made major donations to Trump priorities and subsequently received favorable treatment from the federal government. A spokeswoman for Trump and O&#x27;Rourke called the allegations &#x27;absurd, baseless and full of hypocrisy.&#x27;</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The numbers that don&#x27;t fit the AI narrative: home sales at a 16-year low, quiet millions paid to harmed teens, and a careful study saying remote work — not AI — explains the young-graduate hiring slump.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.legalscoops.com/social-media-addiction-lawsuit/">The confidential payments Meta and TikTok made to addicted teens</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Businessweek</span> &middot; Nov 12
+</div>
+<p class="dek">Most confidential settlements ran $2M–$2.5M per teen — TikTok paid four teens $2.5M each, Meta paid two $7M combined. With ~9,800 cases pending, the exposure could reach $400B.</p>
+<div class="body">
+<p>Social media companies have been quietly paying confidential settlements to teen plaintiffs over claims the platforms damaged their mental health — and Bloomberg Businessweek has now learned the numbers for the first time. Most ranged from $2 million to $2.5 million per teen. TikTok paid four teenagers $2.5 million each; Meta agreed to pay two of those plaintiffs a combined $7 million; YouTube paid a 15-year-old Florida plaintiff just over $2 million before TikTok settled with him for $2.5 million. In each deal whose terms the outlet learned, the companies made no admission of wrongdoing.</p>
+<p>The scale behind the settlements: roughly 9,800 personal injury cases remain pending against Meta, YouTube, Snap and TikTok, plus suits from about 2,000 school districts. Meta already agreed in August to pay $18 billion to settle with states. Bloomberg Intelligence has estimated the total potential liability at $400 billion. The settlements are a fraction of what the companies might end up paying — but they are the first hard numbers on what a harmed teenager&#x27;s case is actually worth to a platform that wants to avoid a trial.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/economy/housing/home-sales-in-october-plummet-to-16-year-low-16adebc0">US home sales fall to a 16-year low</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 12
+</div>
+<p class="dek">Existing-home sales fell 5.5% in October to the lowest since 2010, with mortgage rates above 7%. The West is at its slowest pace since 1999.</p>
+<div class="body">
+<p>Sales of previously owned homes fell 5.5% in October from the previous month, the National Association of Realtors said — dropping to their lowest level since 2010, a 16-year low. Economists surveyed by the WSJ had expected a decline of 3.8%. Discouraged buyers are grappling with mortgage rates above 7% and stubbornly high inflation. Sales plummeted in the West to the slowest pace in data going back to 1999, and hit the lowest levels in more than a decade in both the South and Midwest.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.stripeeconomics.com/p/ai-work-from-home-and-the-young-graduate">It&#x27;s not AI killing young-grad jobs. It&#x27;s work from home.</a></h3>
+<div class="byline">
+<span class="src">Stripe Economics</span> &middot; Nov 12
+</div>
+<p class="dek">Work from home explains 56–88% of the young-graduate hiring decline; AI exposure is statistically zero. The office disappeared — and juniors lost the place they learned by proximity.</p>
+<div class="body">
+<p>The most-repeated claim in AI coverage is that AI is killing entry-level jobs. Stripe Economics just published the cleanest counter-evidence so far — and the answer is more interesting than a simple rebuttal.</p>
+<p>The fact: among 22–26-year-olds with a bachelor&#x27;s degree, the employment rate was 88% in September 2026, a point below three years ago. The typical unemployed young grad has searched 12 weeks, a third longer than a few years ago. The method: compare young grads with 30–49-year-olds across occupation-by-region cells (CPS data, 2023 vs the 12 months to September 2026), then ask which predicts the gap better — how much the occupation works from home, or how exposed it is to AI.</p>
+<p>The result: each extra 10 points of work-from-home adoption means young-grad employment grew 3.9–6.6 points slower than mid-career. As an accounting exercise, work from home explains 56–88% of the decline. AI exposure is negative but statistically zero, and it stays insignificant with both in the model. Industries that use more AI showed, if anything, slightly faster young-grad growth. Stripe&#x27;s own data agrees: commuting zones where spending on office supplies, furniture and electronics — a work-from-home proxy — grew faster saw bigger drops in employment of 22–29-year-olds.</p>
+<p>The caveats, stated fairly in the post: it&#x27;s suggestive, not causal. AI exposure and remote-ability are highly correlated. Young non-graduates are down too. And AI&#x27;s real labor effects may only show up in the next recession. The post also cites the studies that do find AI effects — Brynjolfsson and coauthors, and Orr, Tucker and Warren, who find about a 5-point drop in initial employment for the most AI-exposed majors. Read it as a correction to a lazy narrative, not as proof that AI has no labor effects: the mechanism that is actually hurting young grads right now looks like the disappearance of the office — the place where juniors used to learn by proximity.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Four things worth an hour of your time: reproduce the GPU forensics yourself, steal Wharton&#x27;s approval-gated agent design, price your models by finished task, and read the Anthropic S-1 as a map of where enterprise AI money actually goes.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://github.com/macrogrants/checkpoint-forensics">Reproduce the GPU forensics: checkpoint-forensics on GitHub</a></h3>
+<div class="byline">
+<span class="src">Unemployment Labs</span> &middot; Nov 12
+</div>
+<p class="dek">Run the forensics yourself: the code that reads a model&#x27;s training GPU from its published weights.</p>
+<div class="body">
+<p>The checkpoint-forensics report is not just a read — it is a runnable experiment. The code is open, and the method is small enough to reproduce: take a model&#x27;s published weights, find the rows that were never updated in training, and test which GPU&#x27;s thread layout explains their starting values.</p>
+<p>Why it is worth your time as a tech lead: it is the clearest recent example of evidence you can derive from public artifacts instead of waiting for a leak or a vendor&#x27;s word — the same instinct that makes a good eval harness. Run it against a model your team uses, and you will understand in your hands how much provenance a weight file carries. The report&#x27;s calibration section is the teaching part: it agrees with all 24 cases where a developer has disclosed its hardware, and the physical check — a B300 reproducing 445 of 469 rows bit for bit with DeepSeek&#x27;s seed, an H100 reproducing none — is how you distinguish a real signal from a statistical mirage. Start with the report (linked from the AI Development Practices story), then the code.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://gail.wharton.upenn.edu/primer/">Wharton&#x27;s Primer: teachers talk, agents build the simulation</a></h3>
+<div class="byline">
+<span class="src">Wharton</span> &middot; Nov 12
+</div>
+<p class="dek">Agents that build teaching simulations — with a human approval gate before anything is built.</p>
+<div class="body">
+<p>Wharton&#x27;s Primer is a working answer to a problem every AI team will hit: how do you let agents build something a non-technical person has to trust? The design is the lesson.</p>
+<p>Authoring is approval-gated at every step. An Intake Agent interviews the teacher one question at a time — level, prior knowledge, misconceptions, assessment. A Design Agent writes a design document the teacher must approve; &#x27;nothing is built until you approve it.&#x27; Then a Casting Director writes the character prompts, an Image agent makes scenes, and an Experience Builder assembles it. At runtime a mentor surfaces misconceptions, a practice agent runs either Roleplay (pursue a goal against a counterpart) or Teachback (explain a concept to someone who doesn&#x27;t get it), and a feedback coach reviews the transcript. Teachers get individual and class reports.</p>
+<p>It is open — prompts, code and paper — LLM-agnostic, and runs on local models. It is also labeled an experimental prototype, not evaluated in classrooms or reviewed for FERPA/COPPA. The reply camps on the lists named the two things to steal and the two to watch: &#x27;The approval step is doing the real work&#x27; — the gate, not the generation, is the product; and &#x27;a playable sim can be wrong in convincing ways and a student won&#x27;t flag it,&#x27; so measure learning gains by student group, not just the mean. If you are designing agent workflows where a human has to sign off, this is the pattern to copy: interview, design doc, approval, then build.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://simonwillison.net/2026/Nov/12/llm-gemini/">Price your models by finished task: Willison on Gemini 4 pricing</a></h3>
+<div class="byline">
+<span class="src">Simon Willison</span> &middot; Nov 12
+</div>
+<p class="dek">The Dec 1 doubling is the real story — and the metric that matters is cost per finished task, not per token.</p>
+<div class="body">
+<p>Simon Willison&#x27;s note on Gemini 4 pricing is short and it is the most useful pricing read of the week — because it reframes the question from price per token to price per finished task.</p>
+<p>The table: Hydrogen $1.50/$7.50 per million tokens; Carbon and Argon $2/$10 through November 30, $4/$20 from December 1. So Hydrogen is only 25% cheaper today and 75% cheaper after December 1 — and still 15x the price of Claude Haiku 5.5 and GPT-6 Luna. Willison&#x27;s own pelican test found Hydrogen&#x27;s answers &#x27;notably worse.&#x27;</p>
+<p>The lesson, echoed by builders on the lists: &#x27;Measure cost per finished task, not per token.&#x27; A cheaper model that needs two retries isn&#x27;t cheaper, and Argon uses fewer tokens per turn, so its token price hides the real difference. If you are choosing models for the Riot platform or the SaaS agent, the exercise to run this week is simple: take a real task from your own queue, run it on Hydrogen and on Carbon, and compare cost per completed task — including retries. And calendar the December 1 doubling now, before it shows up as a January invoice surprise.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://vanaxity.com/insights/anthropic-s1-ai-spending">Read the Anthropic S-1 as a map of AI spending</a></h3>
+<div class="byline">
+<span class="src">Vanaxity</span> &middot; Nov 12
+</div>
+<p class="dek">The filing is a map of enterprise AI spending: $33.2B in nine months, an $81B run rate, and $895B in compute commitments.</p>
+<div class="body">
+<p>Read the Anthropic S-1 as a map of where enterprise AI spending is heading, not as a stock tip. The amended filing from November 10 is the clearest public view yet of how much companies spend on AI, and how fast that spend is growing.</p>
+<p>The numbers: 825 million shares at $70 to $78, up to $64.4 billion in the IPO plus $26 billion in a private placement. Revenue of $33.2 billion in the first nine months of 2026, up from $2.5 billion a year earlier. An $81 billion annualized revenue run rate as of October 31 — up $10 billion from the end of September and from $65 billion at the end of July. Seven tech companies buying $26 billion more at the IPO price: AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC Partners.</p>
+<p>What to learn from it: the shape of the spending. The run rate is annualizing recent consumption-based fees over a trailing 28-day period plus one month of subscriptions — a self-defined snapshot, not a forecast — and it sits next to roughly $895 billion of compute commitments. That ratio, growth against committed future spend, is the number that tells you whether the AI economy is a revenue story or a capital story. It is both, and the S-1 is where you can see the two lines crossing.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
