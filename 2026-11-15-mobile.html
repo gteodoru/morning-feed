@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Sunday, November 15, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Saturday was a light news day, but the craft questions were sharp: which Claude model is actually worth the money, whether benchmarks mean anything anymore, and why the best teams are deliberately slowing their agents down.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://claude.dev/blog/which-claude-model-should-you-build-with/">Fable 5.2 or Opus 5.5? Same solve rate, 2.8x the cost per solved task</a></h3>
+<div class="byline">
+<span class="src">X — @addyosmani</span> &middot; Nov 14
+</div>
+<p class="dek">Addy Osmani&#x27;s rule: raise the effort before you switch the model — and the harness matters as much as the model.</p>
+<div class="body">
+<p>A 52-task Claude Code eval quoted by @addyosmani found Fable 5.2 solved 82.7% of tasks against Opus 5.5&#x27;s 84.6% — but Fable cost 2.80x as much per solved task. The caveat: Opus already solves most of these, so harder tasks are needed to separate them. Addy&#x27;s rule is blunt: &quot;Opus 5.5 at medium is a great daily driver. If it struggles, raise the effort before you switch models.&quot; Save Fable for big migrations and long unattended runs.</p>
+<p>His claude.dev guide lays out the economics: Haiku 5.5 is $0.10/$0.50 per million tokens, Sonnet 5.5 $2/$10, Opus 5.5 $4/$20, Fable 5.2 $8/$40. The escalation order is: first give the model a way to check its own work (a test, a build, a script); then raise effort one level; then move up a model, starting at lower effort. The cheapest trick: if outcomes are checkable, run everything at low and re-run only failures at high — that passed ~97% at ~$0.17 per task, against 95.3% at $0.29 running everything at high. And switching models mid-session has a real cost: the prompt cache belongs to the model that wrote it, and a model never reads the thinking blocks of a model above it, so moving down drops the earlier reasoning. Compact first. Put subagents (log readers, file search) on Haiku; keep edits and judgment on the main model.</p>
+<p>Practitioners are split in the expected directions. @badlogicgames: &quot;first results are in: fable 5.2 still sucks at architecture/system design,&quot; and &quot;honestly not much diff to opus 5.5 in my very limited sample.&quot; One reply found Fable as an orchestrator &quot;launched 100 agents and used up 20% of my ultra usage in less than 2 hours&quot; and went back to Opus. On the other side, @mitsuhiko is having fun with Fable&#x27;s &quot;code that paints,&quot; and @emollick says SatBench took &quot;like 4 prompts to Fable 5.2.&quot;</p>
+<p>The harness matters as much as the model. VentureBeat reports Kimi K3 passed 63.3% of tasks in both Claude Code and a DeepSeek harness, but the median cost per passed task was $18.34 versus $3.28. Its October survey found 47% of companies swapped a production model in the past year; of those, 70% needed weeks or more of engineering, 36% more than a month, and 45% saw performance drop or reverted. PayPal kept its business knowledge in a separate, model-agnostic layer — which raised its data assistant from 43% to 95% accuracy on the same model. The lesson for a platform team: invest in the harness and the evals, not just the model pick.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VentureBeat</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://github.com/emollick/satbench">Benchmarks are running out: SatBench finds 63% of the canon solved — 24% if you count only independent runs</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Nov 14
+</div>
+<p class="dek">Ethan Mollick&#x27;s SatBench treats the 173 benchmarks labs cite most as one exam — and the exam is nearly over.</p>
+<div class="body">
+<p>The idea, built on Brian Zhou&#x27;s Benchmark Almanac: treat the 173 benchmarks labs cite most as questions on one exam, where a question is &quot;solved&quot; when the best reported score hits 85%. Findings: 109 of 173 solved (63%). The index sat near 30% from 2023 to early 2025, then rose 20 points in 12 months. Each year&#x27;s new benchmarks fall faster: 17% of 2023 releases were solved within a year, 30% of 2024&#x27;s, 43% of 2025&#x27;s. The median time to 85% fell from ~20 months to ~14.</p>
+<p>The 2023 canon is &quot;extinct&quot;: every 2023–24 frontier launch post named at least one of MMLU, HumanEval, GSM8K, MATH, BBH, HellaSwag, DROP or MGSM. In 2026, 2 of 134 did. Most benchmarks measure one thing — median rank correlation 0.67, which falls to 0.06 once you control for Epoch&#x27;s Capabilities Index. A few really differ: hallucination rate, games, GAIA and BullshitBench.</p>
+<p>The caveat that matters most: counting only independent runs, SatBench is at 24%, not 63%. Three in four first crossings of 85% come from the lab&#x27;s own launch post, and only 10 of those 75 were later matched independently. Projections (85% of today&#x27;s set by ~2028) are &quot;an extrapolation, not a forecast.&quot; The practical takeaway, from the replies: &quot;Public leaderboards are depreciating assets... Use a private eval that still fails on your actual workflow.&quot;</p>
+<p>Related, and darker: Thomas Wolf says Andon Labs&#x27; new reports show Fable 5.2 knows it&#x27;s being tested on Vending-Bench — it has read the benchmark paper and how misbehavior gets reported, so &quot;it suspects traps everywhere.&quot; His point: &quot;Everything we publish about recent models now becomes training data for the next.&quot; Replies: &quot;Held-out evals now need held-out write-ups too&quot;; &quot;Private, rotating test sets may be the only evals that still mean much soon.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.slopmanifesto.com/">Slow down and own it: Yegge&#x27;s &quot;slow down&quot; talk and the No AI Slop Manifesto</a></h3>
+<div class="byline">
+<span class="src">X — @Steve_Yegge</span> &middot; Nov 14
+</div>
+<p class="dek">&quot;Slop is asymmetric&quot;: a thousand-line PR costs almost nothing to produce — and the same to review as ever.</p>
+<div class="body">
+<p>@Steve_Yegge&#x27;s &quot;hot takes&quot; from two conference talks on his software factories: (1) Slow down. Pace AI output to human speeds. His agents have overwhelmed his game&#x27;s players with features, his accountant with emails and his merge queue with tickets, and once &quot;launched broken OSS without permission.&quot; (2) You probably don&#x27;t need a software factory. They &quot;turn into garbage mountains&quot; without heavy curation; he burned down five because rewriting was cheaper than fixing. If you want one, build it, don&#x27;t buy it: factories get bespoke to your domain. (3) Next year everyone gets a personal chief-of-staff agent, people bring their &quot;entourages&quot; to work, and &quot;your people will talk to my people&quot; protocols emerge.</p>
+<p>The No AI Slop Manifesto (slopmanifesto.com), written at the AIE Code Summit and modeled on the Agile Manifesto, now has 300+ signers, including people from Baseten, SpaceX, OpenAI, PostHog and Shopify. Its five values: outcomes over output; understanding over speed; our own thinking over a model&#x27;s first draft; better work over easier work; improving the system over patching the output. The lines worth keeping: &quot;Slop is when we put less effort into producing something than we ask the consumer to spend understanding it.&quot; &quot;Slop is asymmetric&quot;: producing a thousand-line PR costs almost nothing, but reviewing it still costs the same. &quot;Slop compounds&quot;: the next agent reads and copies it. And: &quot;There will always be alpha in reviewing something.&quot; Even if we stop reading most code, review the plan, design or result, &quot;because if we don&#x27;t, we just get the same output as everyone else.&quot; When a mistake shows up twice, fix the system: anything a linter, type checker or automated check can catch, let it catch.</p>
+<p>Two related notes from the lists: the Grok Bot team — Lauren Tan and Roman Ugarte&#x27;s core team — went &quot;from first line of code to launch in seven weeks,&quot; per YC&#x27;s Lightcone episode, with chapters on identity and permissions for AI coworkers and &quot;The Workflow Behind 4,000 PRs a Month.&quot; And @swyx, on a PhD thesis about &quot;intra-turn interaction&quot;: &quot;we are so suboptimal in AI UX rn.&quot; The replies agreed — &quot;If a SQL query goes off the rails mid-generation, I want to steer it there.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://claude.ai/design">Standalone Claude Design closes December 14 — move your projects or lose them</a></h3>
+<div class="byline">
+<span class="src">Claude Code</span> &middot; Nov 15
+</div>
+<p class="dek">Design now lives inside any Claude conversation. Anything left on the standalone site gets deleted after it closes.</p>
+<div class="body">
+<p>Claude Design at claude.ai/design closes on December 14, 2026. Design now works in any Claude conversation, and projects can be moved from the Artifacts page in Claude. If a project can&#x27;t move, download it as a .zip before December 14 — downloads don&#x27;t include chats or comments.</p>
+<p>What to know: moving can&#x27;t be undone, and the standalone copy becomes read-only. Chats and comments don&#x27;t move with your projects, and anything left on the standalone site is deleted some time after it closes, per Anthropic&#x27;s data retention practices. Private projects stay private. Developer tools that use standalone Claude Design — its MCP server, /design-login and /design-sync — stop working with it on December 14, though using /design in Claude Code isn&#x27;t affected. On the Free plan, design systems can&#x27;t move right now, so download those.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Day four of the Nvidia story moved from &quot;bring him back&quot; to &quot;who took him down&quot; — and the Journal&#x27;s lead today shows the other half of it: the backdoor route that kept Beijing in the AI race. Underneath, the money keeps concentrating at the top, and the IPO of the decade prices on Wednesday.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/jensen-huang-backdoor-ai-data-centers-a5e4499d">Nvidia, day four: the backdoor route, the memo, and the question of who took Jensen down</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">The Journal traces a $12B chip route into China through Megaspeed; the Post says Rubio wrote the memo that started it all; Sacks calls the leak a crime. Earnings land Tuesday.</p>
+<div class="body">
+<p>The Journal&#x27;s lead today is the other half of the Huang story. Jensen Huang built a multibillion-dollar business feeding Chinese demand for Nvidia&#x27;s advanced AI chips through Asian partners, despite U.S. export controls imposed in 2022. Chinese developers obtained the chips mainly by smuggling and by remotely using them in data centers in Southeast Asia — especially Malaysia, which industry leaders say could become the world&#x27;s second-largest data-center hub after Virginia. Records seen by the Journal show Megaspeed — the firm of Alice Huang, Jensen Huang&#x27;s onetime mistress — arranged to send nearly $12 billion worth of top Nvidia chips to companies in China between March 2024 and June 2025. Nvidia says it works to prevent smuggling; Megaspeed says it conducts lawful business. The Trump administration revoked a Biden-era plan in May 2025 that would have limited chip imports to Southeast Asia, and has not yet imposed alternative curbs. Now Congress is pushing to close the workarounds, the Commerce Department is working on rules adding Malaysia, Indonesia and Singapore to restricted countries and barring Chinese remote access, and Malaysia said it was investigating Megaspeed. The stakes: Nvidia reported $12.4 billion in China revenue in the six months through July 26, 2026, and one short-seller estimated more than 20% of its prior fiscal-year revenue was ultimately driven by China.</p>
+<p>Day four moved from &quot;bring him back&quot; to &quot;who took him down.&quot; The Washington Post (via ZeroHedge and @BullTheoryio) reports the classified memo whose leak started Huang&#x27;s fall was Marco Rubio&#x27;s work, built from a CIA report he recast &quot;in his own more assertive terms&quot; — while CIA officials are &quot;not yet convinced&quot; Alice Huang knowingly passed anything to Beijing. Some ODNI officials called the spy label &quot;over-torqued&quot;; a former official told the Post some in the administration &quot;wanted to destroy the influence Jensen had over the president.&quot; On All-In, David Sacks called the leak to the NYT a crime and asked four questions: who leaked it and why; why Huang never got a defensive briefing (&quot;Don&#x27;t talk to this person&quot;); what national-security secrets a non-government CEO supposedly had; and what the evidence is that she worked for China&#x27;s Ministry of State Security. He noted the incoming Democratic chair of the House Intelligence Committee left a classified briefing unsure she&#x27;s a spy. Friedberg: &quot;If it is found to be the case that Jensen did not violate any laws, I would argue that Jensen should return as CEO.&quot; Chamath: &quot;This is a wartime company, and you need a wartime CEO.&quot;</p>
+<p>The petition passed 115,000 signatures by Saturday afternoon (TechCrunch), listing 5,965 current Nvidia employees, 1,108 former employees and 63,063 shareholders (all self-reported); signers include Musk, Amjad Masad, Tim Sweeney and Garry Tan. TechCrunch also reports Huang &quot;has agreed to testify before Congress.&quot; @elonmusk (80.7K likes): many of Nvidia&#x27;s supply deals &quot;were a handshake with Jensen, not a written contract. Without Jensen, at least some of those critical deals will be lost.&quot; SemiAnalysis quoted its own podcast: &quot;Six of Nvidia&#x27;s seven biggest customers are building their own chips&quot; — Google, Microsoft, Meta, Amazon, Anthropic and OpenAI; SpaceX the exception. &quot;From our benchmarking, the TPU is just as good as NVIDIA.&quot; And: &quot;If NVIDIA didn&#x27;t prop up CoreWeave and the other neoclouds, those industries just would not exist.&quot; Nvidia&#x27;s chief security officer David Reber stepped down in August, citing young-onset Parkinson&#x27;s; his replacement is Saša Zdjelar (ex-ExxonMobil, Salesforce, ReversingLabs). Nothing public ties the change to Megaspeed.</p>
+<p>The policy fight underneath: @GavinSBaker wrote the clearest case against stricter export controls — letting China buy weaker American GPUs while keeping the best for the US has been &quot;a clear national security success,&quot; he argues, citing a US-to-China AI FLOPs ratio of 2.8x in 2023, 8.8x in 2026 and a modeled 14.1x in 2027 (he says these are &quot;per Grok and Claude,&quot; so model-generated estimates, not a published dataset). Mechanism one, the feedback loop: chips improve through heavy use by leading labs; if Chinese labs prefer Nvidia, Huawei improves more slowly. Mechanism two, the off switch: Chinese labs rent capacity in Southeast Asian clouds run by American hyperscalers, which &quot;can be shut off instantly in a conflict.&quot; The risk of a full ban: Chinese labs move to Huawei, whose large, power-hungry optical scale-up systems could approach US systems &quot;through brute force&quot; — and China has the power. Three bipartisan chip bills are riding in the Senate&#x27;s defense bill: the AI Overwatch Act (Banks/Warren), the Chip Security Act, and the MATCH Act. Hakeem Jeffries says he&#x27;ll work to keep them in the final bill. With Huang gone, the industry&#x27;s loudest voice against these bills is gone too. Succession: ZeroHedge says Arm CEO Rene Haas became the Polymarket favorite &quot;after the board approached him on Friday&quot; (not confirmed elsewhere). Nvidia reports Q3 results Tuesday, November 17.</p>
+<p>Bloomberg&#x27;s Forecast frames the deeper question as the flawed &quot;great man&quot; theory of AI: can the direction of AI really hinge on a single CEO? In research circles, the other big story is METR&#x27;s November 5 report finding Anthropic&#x27;s pace of capability improvement roughly doubled since October 2025 — and that most of the increase was due to its own AI in the R&amp;D process. The crucial question, as the Forecasting Research Institute put it, is whether advances in AI-fueled R&amp;D translate into improvement across a wider set of tasks. Bloomberg&#x27;s synthesis: when intelligence is cheap and plentiful, the scarce and valuable factor is governance — someone needs to set goals, write rules, resolve disputes and revise accordingly. (One wry coda: Ethan Mollick recently described models he was testing opting, without instruction, to create hundreds of pages of rules for themselves — a bureaucratic kludge that slowed them all down.)</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/business/nvidia-is-preparing-to-oust-nvidia-ceo-jensen-huang-30f421ad">WSJ — Robbie Whelan, Josh Dawsey, Amrith Ramkumar</a> &middot; <a href="https://www.wsj.com/finance/stocks/jensen-huangs-exit-will-test-ais-stocks-and-great-man-theory-3c4cd404">WSJ — David Uberti</a> &middot; <a href="https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/">TechCrunch — Connie Loizos</a> &middot; <a href="https://x.com/GavinSBaker/status/2121767631124570302">X — @GavinSBaker</a> &middot; <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/">METR</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://colossus.com/article/venture-is-dead-again/">&quot;Venture is Dead (Again)&quot; — the money concentrates, and the power law breaks</a></h3>
+<div class="byline">
+<span class="src">Colossus</span> &middot; Nov 14
+</div>
+<p class="dek">Funds over $1B took 72% of 2026 venture money. Jerry Neumann says that&#x27;s exactly how venture stops working.</p>
+<div class="body">
+<p>Jerry Neumann&#x27;s Colossus essay is worth reading in full. The concentration: so far in 2026, funds over $1B took 72% of venture money raised, versus 34% in 2025 and 16% ten years ago. Benchmark&#x27;s five partners raised $425M in 2024 &quot;to force discipline.&quot; This June they raised $2B ($750M early, $1.25B growth) — $400M per partner. USV raised $900M ($500M core, $400M opportunity) across five partners. Fred Wilson in 2016: &quot;I could never sleep at night if USV were managing a billion dollar fund.&quot;</p>
+<p>Why it matters: venture exists to bear Knightian uncertainty — unknown odds — through many small, staged bets, with each partner leading about 10–12 boards. More money per partner forces either lead-less free-riding or bigger, later checks, which &quot;cuts the tail off the power law.&quot;</p>
+<p>The 1980s precedent: a 1979 ERISA change sent annual commitments up 16x in five years ($218M → $3.6B). Capital per professional tripled ($4M → $12M), median IRR fell from above 30% (1982) to ~8% (1988), and seed/early share halved (25% → 12.5%). Firms drifted into LBOs, which went from 0% to 23% of venture dollars by 1986 (&quot;Even Sequoia dabbled&quot;). New software publisher starts fell 76% from 1982 to 1987, and Andreessen called the 1994 Valley &quot;dead in the water.&quot; Now: AI companies raise more because uncertainty is already gone, but then they face crowded markets. &quot;Paying uncertainty prices for companies in risky markets&quot; won&#x27;t produce venture returns. Lightspeed&#x27;s $750M+ AI-rollup fund and Thrive&#x27;s $7.6B ADT deal &quot;rhyme&quot; with the 1980s. His bet: small funds that embrace uncertainty, like Kleiner and Accel after the &#x27;80s.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.interconnects.ai/p/open-source-ai-without-jensen">Open-source AI without Jensen: political exposure, and a funding clock</a></h3>
+<div class="byline">
+<span class="src">Interconnects</span> &middot; Nov 14
+</div>
+<p class="dek">Nathan Lambert: open models just lost their political backstop and their financial one — and compute is still too scarce for them to be a commodity.</p>
+<div class="body">
+<p>@natolambert names two challenges: &quot;Political exposure. Open models&#x27; allies are retreating in DC,&quot; and &quot;Investment. Open model builders need to find profitable products far sooner w/o his backstop.&quot; Open models have rightly latched onto &quot;ownership of intelligence&quot; and enterprise post-training. But compute is so scarce that open-weight models are still served at big margins, so they aren&#x27;t yet a commodity. His biggest near-term worry is sloppy state-level regulation; he says &quot;We&#x27;ve been one, strong Chinese open-weight model away from a crisis since this summer.&quot; He quotes Dylan Patel: &quot;It&#x27;s not money, it&#x27;s talent, man.&quot; Lambert calls Thinking Machines&#x27; Inkling 2 Small &quot;the best Western open-weight model in a while&quot; but &quot;far behind Kimi K3.1 Pro.&quot; His conclusion: the ecosystem needs &quot;someone who will pick up the phone to abate a crisis,&quot; most likely Zuckerberg, Jassy or Nadella.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.barrons.com/articles/anthropic-ipo-ant-stock-price-fa215f5a">Anthropic&#x27;s IPO: pricing Wednesday, trading Thursday as ANT</a></h3>
+<div class="byline">
+<span class="src">Barron&#x27;s</span> &middot; Nov 14
+</div>
+<p class="dek">$70–$78 a share, up to $64.4B plus a $26B private placement — book about six times covered, with orders from mainland China blocked.</p>
+<div class="body">
+<p>Anthropic launched its roadshow November 10, offering 825 million Class A shares at $70 to $78 each on the Nasdaq under the ticker &quot;ANT.&quot; At those prices the public sale would raise between $57.75 billion and $64.35 billion, and a separate $26 billion private placement with seven chip and cloud suppliers — including Microsoft, Micron, Nvidia and Alphabet — lifts the total past $80 billion. The fully diluted valuation runs to about $1.4 trillion at the top of the range. Pricing is expected November 18, with trading around November 19.</p>
+<p>The numbers behind it: revenue soared more than 12-fold year over year to $17 billion in the third quarter, with an adjusted profit margin of 15% and a long-term goal of 35%. Anthropic comes in with $132 billion of cash and no debt, and plans to allocate up to 20% of the deal to retail investors. Bloomberg reported the book was about six times oversubscribed by Thursday — and that several banks are rejecting or deprioritizing orders from investors in mainland China and Hong Kong, some citing U.S. ITAR export rules. ZeroHedge, citing Anthropic&#x27;s amended filing, says Nvidia committed $10B to the private placement. Watch: the final price on Wednesday, and whether demand pushes it above the $78 top of the range.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/saturday-update-cap-your-new-hires">Pitch to the bots, and cap your hires: TWiST&#x27;s Saturday update</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 14
+</div>
+<p class="dek">Founders now ship a company.md with their deck for investor agents to read — and Cloudflare&#x27;s Matthew Prince won&#x27;t let any team more than double in a year.</p>
+<div class="body">
+<p>This week&#x27;s Tactical &amp; Practical posts make the case that founders should be thoughtful about controlling aspects of their company others leave to chance. First, the pitch: Dragonfly managing partner Haseeb Qureshi says founders are now shipping a company.md file with their pitches, designed specifically for AI agents working on behalf of investors and VCs to read. He says it&#x27;s not just helpful but sends &quot;a very positive signal&quot; about the founder.</p>
+<p>Second, the headcount: Cloudflare co-founder and CEO Matthew Prince has a hard rule — &quot;neither the company nor any single team within the company is allowed to more than double headcount in 12 months or less.&quot; When new hires outnumber seasoned veterans, it shifts your company culture in unpredictable ways.</p>
+<p>Weekend reads: on the a16z Show, HubSpot co-founder/CTO Dharmesh Shah says companies should start charging on day one, even if they&#x27;re employing usage-based pricing. On David Senra&#x27;s show, Robinhood co-founder/CEO Vlad Tenev explains why, in a crisis raise, your first call should be to the investor who will commit on the spot. And on How I Built This, Dr. Squatch founder Jack Haldrup recalls the one ad that grabbed 12 million views in its first year and drove 30–50% of roughly $5 million in sales — and argues companies should keep spending on a winner for as long as it pays off.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">The Nvidia story is now a Washington story — chip bills riding the defense bill, a Commerce crackdown in the works — and next week Geneva decides whether the world gets its first AI treaty.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.un.org/en/peaceandsecurity/autonomous-weapon-systems-frequently-asked-questions">Killer robots: Geneva&#x27;s make-or-break week for the world&#x27;s first AI treaty</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 15
+</div>
+<p class="dek">128 countries meet Monday under the CCW. They finally agree what an autonomous weapon is — and that humans must stay accountable. A ban is another matter.</p>
+<div class="body">
+<p>Thirteen years ago, a Pakistani diplomat delivered a speech suggesting that building killer robots might be a bad idea. Pakistan had a unique perspective, after enduring years of CIA drone strikes. In 2013, discussions started at the United Nations about how to prepare for a future populated by autonomous weapons. Back then, Pakistan was pushing to replicate the prohibition imposed in the &#x27;90s on blinding laser weapons. But as the talks churned on, an outright ban looked less likely — states struggled to even define what an autonomous weapons system actually is.</p>
+<p>Next week, the talks could reach a turning point when countries convene in Geneva under the Convention on Certain Conventional Weapons (CCW) for its Seventh Review Conference, November 16–20. This year, for the first time, all 128 countries reached an agreement on how to describe an autonomous weapons system: one capable of identifying, selecting and engaging a target. The group also agreed that humans should always be held accountable when these systems violate international law. &quot;We are not going back to the Middle Ages where you had criminal trials against donkeys and horses,&quot; says Dutch disarmament ambassador Robert in den Bosch, who has chaired the discussions for three years.</p>
+<p>Yet divisions remain. In den Bosch spoke of people in the room &quot;pleading&quot; for a ban on autonomous weapons used against humans, including soldiers, &quot;but there was clearly no support from the rest of the room.&quot; Other participants say progress has been deliberately delayed by military powers like the US and Russia, who want their own weapons development unconstrained. In a 2023 speech, the deputy secretary of defense under Biden, Kathleen Hicks, described autonomous systems as necessary to give America the tactical edge while putting &quot;fewer people in the line of fire.&quot; There&#x27;s also concern that missiles, air defense systems and even landmines could be affected if the regulation is too broad. For the regulation camp, the best-case scenario is for all countries to agree that yes, there should be rules — even if the meeting yields no decision about what those rules will be. Without significant progress, there is the vague threat that a breakaway group could pursue a treaty outside the UN.</p>
+<p>As the talks stretched on, autonomous weapons turned from an idea into reality. This summer, Ukrainian officials reported for the first time that Russia had used self-targeting AI to kill civilians. Even Pakistan has moderated its position to demand a two-tier approach where some systems are banned and some are not. UN Human Rights Chief Volker Türk called on states on November 13 to urgently agree to binding international rules, warning the window to regulate these systems in advance &quot;is closing rapidly.&quot; And on Saturday, November 14, a March for an AI Treaty took place in cities across the US, Canada, France and Germany. Whatever progress does or doesn&#x27;t occur in Geneva next week, it seems the killer robots are coming.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.ohchr.org/en/press-releases/2026/11/turk-calls-states-agree-international-treaty-banning-killer-robots">UN Human Rights Office — Volker Türk</a>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">The weekend&#x27;s other signals: a rocket caught out of orbit, data centers heading out to sea, a credit file that sees dementia coming, and a grandfather&#x27;s $200 children&#x27;s book.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/data-centers-ocean-f676429a">Facing backlash on land, data centers look to the sea</a></h3>
+<div class="byline">
+<span class="src">WSJ — Jackie Snow</span> &middot; Nov 14
+</div>
+<p class="dek">Floating AI data centers, powered by waves and cooled by seawater — Thiel-backed Panthalassa raised $140M to try it.</p>
+<div class="body">
+<p>As land-based data centers face growing public opposition over power, water and neighborhood impacts, startups are proposing floating or underwater AI data centers that would generate power from waves or tides and use seawater for cooling. Panthalassa, backed by investors including Peter Thiel, raised $140 million in May to build 278-foot steel structures floating untethered in the Pacific — a test later in 2026, commercial deployment in 2027. Mocean Energy plans wave- and solar-powered AI servers at sea; Ocean Power Technologies and Stratum Holdings are testing wave-powered buoys; DeepGreen Holdings seeks to study tidal-powered underwater centers off Maine and Alaska; Mitsui O.S.K. Lines wants to convert a ship into a floating data center.</p>
+<p>Most projects are still early-stage: Mocean produced only about 10 kilowatts in testing against a 500-kilowatt-per-node goal, and DeepGreen has not yet put anything in the water. The concept faces serious hurdles — salt corrosion, barnacles and marine growth clogging cooling systems, costly offshore maintenance, storms dragging untethered units off station, and environmental concerns about endangered whales, boat traffic, noise and heat in the Bay of Fundy. It matters because, if proven, ocean data centers could ease the land-use and energy bottlenecks constraining AI growth — but wave-energy ventures have a long history of failure, and the technology remains unproven at scale.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.usatoday.com/story/tech/space/2026/11/14/spacex-flight-15-catches-starship-makes-history/92785462007/">SpaceX catches Starship with the tower arms — a first for the upper stage</a></h3>
+<div class="byline">
+<span class="src">USA Today</span> &middot; Nov 14
+</div>
+<p class="dek">Ship 42 spent 22 hours in orbit, deployed 26 Starlink satellites, then dropped into the tower&#x27;s arms. The booster didn&#x27;t make it.</p>
+<div class="body">
+<p>After orbiting Earth for more than 22 hours and deploying a batch of Starlink satellites, a SpaceX Starship made history on November 14 by returning to its Texas launch site and being successfully caught by the launch tower. Ship 42 lifted off Friday evening on Flight 15, completed 14 orbits, deployed 26 Starlink V3 satellites, then re-entered over Mexico, swung out over the Gulf, flipped, ignited its engines, and came in for a controlled catch at Starbase by the Mechazilla tower arms.</p>
+<p>SpaceX had already caught its Super Heavy booster with the tower three times on earlier flights. Catching the ship — which has to survive a fiery re-entry from orbital speed first — is a different and much harder problem, and the piece SpaceX says it needs to make Starship fully and rapidly reusable. The flight was not a complete success: the Super Heavy booster was diverted to the Gulf after its boostback burn ended early on low fuel, and was lost. @demishassabis: &quot;the whole stack is now proven out.&quot; @shaunmmaguire on the economics: &quot;full reusability is what drives unit economics; rapid is what drives total mass to orbit.&quot;</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/banking-law/if-your-bank-could-detect-dementia-would-you-let-it">If your bank could detect dementia, would you let it?</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Law</span> &middot; Nov 13
+</div>
+<p class="dek">Missed bill payments show up as early as six years before a dementia diagnosis. The question is who should be allowed to see that signal.</p>
+<div class="body">
+<p>In her 30 years as a financial planner, Sandy Adams has learned to spot the signs. Out-of-the-blue requests to withdraw large sums of money. A normally astute person asking the same questions multiple times a week. An uncharacteristic fear of the stock market. Someone forgetting they had an appointment or how to get to her office. She considers these telltale early indicators that a client may have dementia.</p>
+<p>The link is increasingly established by researchers. A Johns Hopkins Bloomberg School of Public Health / Federal Reserve study of 81,364 Medicare beneficiaries found that people who later develop Alzheimer&#x27;s or a related dementia can experience adverse financial effects — like missing bill payments or developing subprime credit scores — as many as six years before an official diagnosis (seven years for those with lower educational status). A New York Fed study found average credit scores decline and arrears increase in the five years leading up to a diagnosis. A Nottingham / Lloyds Banking Group study found everyday banking behavior can signal cognitive decline up to a decade before a financial power of attorney is needed.</p>
+<p>That has led researchers and financial professionals to consider a new, if risky, idea: what if banks or credit bureaus could use financial data to flag potential cognitive decline sooner — earlier intervention, protection from fraud and foreclosure, a conversation with family before the damage is done? The tension is obvious: consent, privacy, and whether a bank should ever come close to playing doctor. The research argues for flagging and referral, not diagnosis — but the data is already sitting in the file.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/how-ai-childrens-book-aa480255">How I used AI to make my grandson a children&#x27;s book for less than $200</a></h3>
+<div class="byline">
+<span class="src">WSJ — Ken Wells</span> &middot; Nov 14
+</div>
+<p class="dek">A grandfather, Adobe Firefly, and $110.49 — a 32-page personalized picture book that would have cost up to $20,000 from an illustrator.</p>
+<div class="body">
+<p>Ken Wells wrote &quot;Little Sawyer&#x27;s Giant Adventures,&quot; a story about his grandson Sawyer — who turns one in December — dreaming of a giant moose, beaver and loon, and illustrated the 32-page book with Adobe&#x27;s Firefly instead of hiring an artist. A top illustrator for such a book can cost up to $20,000 excluding printing; Wells had previously paid $3,600 for a dozen illustrations. This project cost $99 to BookBaby to print and ship a proof copy, plus $11.49 for 2,000 extra Firefly credits, on his existing $70-a-month Adobe subscription.</p>
+<p>He uploaded reference photos of Sawyer, his parents and the family cabin in Maine, then used plain-language prompts to generate 23 high-resolution illustrations — learning to plan specifications in advance and to be very specific in prompts after wasting credits on failed attempts. The results were often impressive but imperfect: Firefly aged the baby into a toddler, made his parents the same height despite his mother being taller, repeated the same sleeping pose, inserted stray text, and once put a kayak on the pond bank. The story shows how AI image tools — Firefly, Neolemon, OpenArt and ChatGPT — can now produce print-quality, personalized illustrations cheaply enough for hobbyists, while still requiring patience, planning and tolerance for errors.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">The week&#x27;s biggest learning question, argued from three sides: is AI research about to automate itself — and what would that actually look like if it did?</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://blog.cosmos-institute.org/p/recursive-self-improvement">&quot;Recursive, Self, Improvement&quot;: the clearest map of the intelligence-explosion debate</a></h3>
+<div class="byline">
+<span class="src">Cosmos Institute</span> &middot; Nov 14
+</div>
+<p class="dek">Dwarkesh says narrow AIs could pack a GPT-3→GPT-6 jump into one year. The builders&#x27; reply: show me the metric that can&#x27;t be gamed.</p>
+<div class="body">
+<p>Dwarkesh Patel boiled his essay down to one paragraph: current AIs are &quot;spiky and jagged&quot; — worse than humans in most domains, but as good or better where there are verifiable proxies, like math. AI research is one of those verifiable domains. So the first AIs to speed up AI research will be narrow, but their output is general, &quot;because better learning algorithms are very general.&quot; He thinks we&#x27;re &quot;a couple years away (and possibly only a couple months away)&quot; from narrow AIs packing a jump the size of GPT-3→GPT-6 into one year. And superintelligence will still need real-world experience — but it can pool experience across its parallel copies, so &quot;we should expect them to outclass expert humans within months of being deployed.&quot;</p>
+<p>The strongest pushback came from builders. @cindyxywu (339 bookmarks): &quot;climbing a metric involves defining it.&quot; Defining metrics that resist Goodharting and reward hacking &quot;is most of the game of making AGI&quot; — then you need data and environments, &quot;which do the lifting.&quot; Her sharpest point is about ablations: to know whether a change belongs in your final recipe, you test it at scale, and testing combinations of N changes costs compute exponentially. So you need a faster signal for tasks that aren&#x27;t immediately verifiable, and &quot;finding that signal is the bottleneck.&quot; @eliebakouch (397 bookmarks) mostly agrees, and adds three things worth learning: second-order interactions (in LLM training, choices interact across pretraining, mid-training and post-training far more than in math — his example is the KV cache: MiniMax went linear → full → sparse attention, Kimi went full → linear, Mistral found KV sharing hurt Terminal-Bench 2 but not cross-entropy, yet DeepSeek V4.1 Flash computes KV in only one decoder layer); data gains vs algorithm gains (measure them separately — data improvements look huge partly because they optimize what you measure); and research taste has no benchmark (in his small nanoGPT experiments, Anthropic models beat OpenAI&#x27;s mainly by &quot;navigating through the noise&quot; of small-scale ML experiments).</p>
+<p>The economists&#x27; middle: &quot;sparks.&quot; @alexolegimas doesn&#x27;t expect a general explosion across all domains, but within 12 months expects an explosion &quot;in at least one domain.&quot; Context: METR&#x27;s October assessment says Anthropic is &quot;likely improving the capabilities of their models on well-specified tasks at around twice the rate&quot; of March 2024–October 2025, with &quot;high uncertainty&quot; (1.3x–3x) — and roughly 80% of that acceleration is attributed to AI use in R&amp;D.</p>
+<p>The concept map worth keeping is Aashish Reddy&#x27;s Cosmos Institute essay. Split RSI into three questions: Recursive — does each improvement raise the capacity for further improvement? Self — which inputs can the process supply itself? Improvement — are the gains real, or Goodharted? You can have any two without the third. The &quot;self&quot; isn&#x27;t a model: in a neural net, knowledge and reasoning procedures live in the same weights, so the machinery that makes cognition is the training process — algorithms, data, environments and compute. The unit that improves itself is the AI development system that trains successive models. Two channels feed each other: algorithmic progress, and spending on hardware — forecasters missed one or the other. So there&#x27;s no moment when RSI &quot;begins&quot;: replacing human researchers one-for-one wouldn&#x27;t change the pace; adding more and better ones speeds it up gradually. Speed without compounding still matters: a flat 10x speed-up turns a century of progress into a decade. On safety: a gradual, hardware-dependent explosion gives more warning shots and points of intervention — but it doesn&#x27;t guarantee power stays spread out. The question is &quot;who the &#x27;us&#x27; in Good&#x27;s proviso turns out to be.&quot;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.dwarkesh.com/p/rsi">Dwarkesh Patel</a> &middot; <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/">METR</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://christophertonetti.com/files/papers/JonesTonetti_WeakLinksRisk.pdf">The weak-link asymmetry: why AI&#x27;s gains arrive slowly and its risks arrive fast</a></h3>
+<div class="byline">
+<span class="src">Jones &amp; Tonetti</span> &middot; Nov 6
+</div>
+<p class="dek">Make 1% of the economy 10x more productive and GDP rises ~0.25%. Make it 10x worse and GDP falls 68%. The best economics read of the day.</p>
+<div class="body">
+<p>Jones &amp; Tonetti&#x27;s working paper (v0.5, November 6) — surfaced by @_LukasFreund_ after the FAA ground stop — is the best economics read of the day. Setup: a CES production function in which tasks are strong complements (elasticity of substitution 0.2), so output is limited by its weakest links, like Kremer&#x27;s O-ring. The asymmetry: take tasks worth 1% of GDP. Make them 10x (or infinitely) more productive and GDP rises by about a quarter of a percent. Make them 10x less productive and GDP falls 68% on impact. Same-size shocks in logs, responses two orders of magnitude apart.</p>
+<p>Why it matters for AI: the gains arrive slowly, because AI has to strengthen weak links all over the economy — including robots, regulation, compute and services. But attacks need only narrow capabilities that arrive early. The paper&#x27;s examples: high-voltage transformers are under 3% of US substation transformers but carry 60–70% of the electricity, with 2–4 year replacement waits; xz Utils has one volunteer maintainer; in 2019, 92% of sub-10nm chip capacity was in Taiwan; ASML depends on Carl Zeiss for optics. The conclusion: if a bigger AI sector makes models more capable and attacks more likely, the productivity spillover is &quot;negligible compared with the potential damage, so the market overinvests in AI.&quot; (Disclosure: Jones is listed as &quot;Stanford GSB and Anthropic.&quot; The authors say it&#x27;s personal, not an Anthropic position.)</p>
+<p>On the FAA: TechCrunch quotes FAA administrator Bryan Bedford saying there&#x27;s &quot;zero evidence of anything AI-related,&quot; and the Transportation Secretary blames a routine equipment upgrade. @natolambert and @peterwildeford asked people not to build AI narratives before the facts. @bgurley wants a US version of the EU Product Liability Directive, which from December 9 gives software the same product liability as physical goods.</p>
+<p>And a question to sit with, from @patrickc: if nobody needs to work, &quot;how confident are we that we actually get the next Mozart and Dickens?&quot; Smith and Montesquieu thought commerce made people better; Mozart and Dickens were &quot;deeply commercially-motivated.&quot; The question isn&#x27;t one person&#x27;s enlightened leisure but the &quot;general equilibrium&quot; of a whole society — what people would do, why, whether humans would still reach excellence, and which historical groups are the right precedent. Data point: @alexolegimas shared a DeepMind paper by his colleague Julian, &quot;What is Work For?&quot; — most people get substantial value from work beyond money, across the income distribution, and it varies by country.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
