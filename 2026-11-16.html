@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Monday, November 16, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">The craft questions this morning are about money, trust, and what models still cannot do: what an agent actually costs per good result, how to keep MCP servers from turning trusted tools against you, and why the fuzzy work inside every job is the real automation bottleneck.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/tech/ai/ai-agent-users-compute-costs-41a5db30">The agent bill is the product now: a cheap model that fails costs more than an expensive one that works</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">Big Tech wants everyone on agents but cannot figure out who pays for the compute — and the field data says cost per good result is the only number that matters.</p>
+<div class="body">
+<p>The WSJ&#x27;s blunt framing: Big Tech wants everyone to use an AI agent but cannot figure out how to shoulder the cost of running one. The field numbers make the point concrete. In a head-to-head on the same TPC-H analytics question with the same answer, @HoytEmerson found Sonnet 5.5 used 10% fewer prompt tokens and half the output of Haiku 5.5 — and was still roughly 12x more expensive. And VentureBeat&#x27;s rule of thumb from the MCP world applies here too: a 10-cent model that fails 80% of the time costs more per good result than a 30-cent one that works 90% of the time.</p>
+<p>The counterweight is that the cheap tier keeps getting better at the things that used to need the expensive tier. Google doubled context for Argon, Carbon and Hydrogen in Antigravity, with compaction down 3.5x per user turn (@_mohansolo). And @poteto reports 11,000 PRs in a month at a roughly 0.5% revert rate from the AI Engineer Code Summit.</p>
+<p>The takeaway for a platform team: price agents by verified outcomes, not by tokens. Put the cheap model on work you can check automatically, reserve the expensive one for judgment calls, and measure cost per good result — that is the number your CFO will eventually ask for.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://venturebeat.com/ai/one-compromised-mcp-server-can-trick-an-ai-agent-into-misusing-tools-you-already-trust">One compromised MCP server can turn your agent&#x27;s trusted tools against you</a></h3>
+<div class="byline">
+<span class="src">VentureBeat</span> &middot; Nov 15
+</div>
+<p class="dek">Unit 42 measured a 78.3% attack success rate when five MCP servers share one agent — the auth history explains why, and the fixes are concrete.</p>
+<div class="body">
+<p>MCP launched in November 2024 with no authentication at all. The history since is a slow retrofit: OAuth 2.1 arrived in March 2025, resource-server rules and RFC 8707 resource indicators in June 2025, client ID metadata documentation in November 2025, and in July 2026 dynamic client registration was deprecated and issuer validation made mandatory.</p>
+<p>It was not fast enough. Unit 42 measured a 78.3% attack success rate with five MCP servers on one agent — what VentureBeat calls &#x27;cascading trust&#x27;: one compromised server can trick the agent into misusing tools you already trust. The advice is concrete: short-lived, narrowly scoped tokens; an identity-aware gateway that pins tool definitions; never cache credentials at startup.</p>
+<p>For anyone building an agent platform, this is the design constraint to internalize early: every MCP server is untrusted input until proven otherwise, and the gateway — not the model — is where trust gets enforced.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/petergostev/status/2122071691782176906">Christiano: a 1-in-3 chance of extreme superintelligence within a year. Gostev: models still cannot do the fuzzy work.</a></h3>
+<div class="byline">
+<span class="src">X — @petergostev</span> &middot; Nov 15
+</div>
+<p class="dek">The timeline debate sharpened on both sides this weekend — and the counterargument is the one that matters for anyone deploying agents at work.</p>
+<div class="body">
+<p>Paul Christiano tells Dwarkesh Patel in an episode out today that there is &#x27;a 1 in 3 chance of extreme superintelligence within a year (absent any slowing down)&#x27; — and will say what labs and governments should do now. The accelerationist side has numbers: @peterwildeford, fitting a trend to Epoch&#x27;s ECI benchmark, puts Fable 5.2 roughly 5 months ahead of Anthropic&#x27;s trend, Gemini 4 Carbon about 4.5 months ahead. @ben_j_todd adds that even without recursive self-improvement, dumb trend extrapolation gets to AGI by 2030: AI revenue has tripled yearly for four-plus years, task length has grown 8x a year since 2024.</p>
+<p>The counter, from @petergostev, is worth reading whole: frontier models are &#x27;near idiot level&#x27; at fuzzy work — writing an IT ticket, an email that does not sound like it is addressed &#x27;to a supreme court judge,&#x27; pinging a colleague without being weird — and jobs are full of &#x27;inconsequential semi-tasks&#x27; like knowing when to present at an all-hands or cornering a VP. &#x27;There&#x27;s not a single frontier model... that could replace a single employee 1:1 end to end.&#x27; Automation therefore needs restructuring, which takes &#x27;decades rather than a handful of years.&#x27; @ylecun, meanwhile, calls extinction and &#x27;employment apocalypse&#x27; scenarios &#x27;totally ridiculous&#x27; and the p(doom) numbers &#x27;pulled out of their authors&#x27; back ends.&#x27;</p>
+<p>The takeaway: the bottleneck for real deployment is not raw capability, it is the fuzzy coordination layer. Design agents around semi-tasks — the ticket, the nudge, the draft — not around replacing a whole job.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://creatoreconomy.so/p/how-to-fix-ai-slop-with-claude-design-nate-parrott">How to get Claude to design without AI slop, in 40 minutes</a></h3>
+<div class="byline">
+<span class="src">Peter Yang — Behind the Craft</span> &middot; Nov 15
+</div>
+<p class="dek">Nate Parrott, the Anthropic designer behind Claude Design, demos his workflow and shares five tips — including telling Claude what its own biases are.</p>
+<div class="body">
+<p>In a 42-minute episode, Nate Parrott — the designer behind Claude Design and Artifacts — demos how he designs a Duet feature from a phone note, turns a spreadsheet into a live dashboard, and then turns that dashboard into a Claude Motion video, all from his phone. His five tips for avoiding AI slop:</p>
+<p>1. Give Claude context upfront: screenshots, pages you like, your past work. For an existing product, have it rebuild the real screens from code.
+2. Research familiar UX patterns: for hard layout problems, ask Claude to study products that solve something similar and note the layouts people already know.
+3. Make Claude aware of its own design biases. &#x27;The model has no idea what its own biases are.&#x27; In a design.md file, discourage the tells — serif-only text, off-white backgrounds, card-edge bars.
+4. Start with wireframes: nail the core user flows before anyone evaluates fonts and colors.
+5. Ask for multiple options, then remix: five options for key screens in different fonts, colors and styles, then pick the best parts and ask for five more.</p>
+<p>He also names the four tells that make a design look AI-made. The wireframe-first plus bias-file discipline transfers directly to any team shipping Claude-built interfaces — including agent-built ones. Note: the full copy-paste prompt Peter Yang made for Claude Code sits behind the paywall.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Nvidia&#x27;s crisis is now a governance story, a national-security story, and a market story at once — and this week it collides with the biggest IPO in history.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.reuters.com/world/bessent-says-nvidia-must-go-outside-company-find-new-ceo-2026-11-15/">Nvidia, day five: from &#x27;why was he pushed out&#x27; to &#x27;could he come back?&#x27;</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 16
+</div>
+<p class="dek">Allies are pushing for Jensen Huang&#x27;s return, the Treasury Secretary is pushing the board to look outside, and Huang himself has not signalled — with earnings tomorrow.</p>
+<div class="body">
+<p>The story has turned. Treasury Secretary Scott Bessent went on Fox News&#x27; Sunday Morning Futures and said the board should &#x27;go outside the company&#x27; for its next CEO — &#x27;they need a dramatic shakeup&#x27; — and demanded answers within 10 days from the board and outside counsel on the company&#x27;s culture of export-control compliance and whether it pressed illicit sales through Singapore shell companies. Hours later, the Financial Times reported Huang has been discussing a return with close associates, days after being ousted. The Information (Nick Wingfield and Jessica Lessin) reports allies are encouraging a comeback while Bessent pushes the board the other way — and that the effort is &#x27;ad hoc,&#x27; with Huang&#x27;s own views unclear. Elon Musk publicly called for his reinstatement. The board has hired Wachtell, Lipton to run an independent investigation; the FBI and DOJ are reviewing. Attorney General Todd Blanche, asked when DOJ learned Alice Huang may have been a suspected Chinese asset, said: &#x27;Nobody said that. I certainly haven&#x27;t said that.&#x27;</p>
+<p>The WSJ&#x27;s reporting gives the deeper picture. Huang built a multibillion-dollar business feeding Chinese appetite for American chips, cultivating Asian partners who could serve Chinese customers far from Washington&#x27;s eyes — chips reaching China smuggled, or accessed remotely in places like Malaysia. He befriended President Trump and lobbied hard to keep the backdoor open. The affair revelations now threaten to implode the whole ecosystem. And the downfall itself was operatic: an affair acknowledged one week ago, news of a second affair three days later, an emergency board meeting, resignation the following morning. In his final months Huang clashed with CFO Colette Kress — now interim CEO — over using the balance sheet to backstop fledgling cloud companies, data-center projects and startups, calling her a &#x27;deer in the headlights&#x27; and warning of an &#x27;avalanche&#x27; of purchasing commitments.</p>
+<p>The counter-case, in its two strongest forms: Balaji Srinivasan argues the spy story is collapsing — Alice Huang was at Megaspeed, which bought Nvidia chips to sell to Southeast Asian &#x27;neoclouds,&#x27; which is legal; the Remote Access Security Act passed the House, not the Senate, so it is not law; Singapore looked into Megaspeed and found no evidence of illegal sales to China; H200 sales are currently allowed. Tim Sweeney says the articles have &#x27;backtracked&#x27; to &#x27;Jensen did lawful things that powerful people didn&#x27;t like,&#x27; cites &#x27;$1.8 trillion in losses,&#x27; and argues for due process in court instead of &#x27;press takedowns.&#x27;</p>
+<p>The business stakes: TechCrunch quotes a source saying &#x27;Jensen is Nvidia... so much of this economy is riding on Nvidia.&#x27; Goldman&#x27;s Jim Schneider cut his target to $220 from $300, saying multi-party ecosystem deals &#x27;may be more difficult&#x27; to negotiate. Silicon Data&#x27;s Carmen Li notes short-term GPU rental prices are stable — but if remote-access rules cut off Chinese demand for overseas GPUs, &#x27;some of that capacity could become available to U.S. customers. Total GPU supply is not accessible GPU supply.&#x27; And SemiAnalysis makes the devil&#x27;s-advocate economic case: Nvidia makes about $7 million of profit on every megawatt deployed, the cloud provider another $7–10 million; if ByteDance can rent but not buy, &#x27;Meta potentially has a fourth of the cost of compute.&#x27;</p>
+<p>Watch: Nvidia Q3 earnings Tuesday November 17, any board statement on a permanent CEO, and whether Huang himself speaks.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/articles/how-jensen-huang-built-a-business-to-feed-chinese-appetite-for-american-chips-6c88ecce">WSJ — How Jensen Huang built the China backdoor</a> &middot; <a href="https://www.wsj.com/tech/ai/jensen-huangs-downfall-14449f8a">WSJ — Jensen Huang&#x27;s Downfall</a> &middot; <a href="https://x.com/balajis/status/2122115418659967289">X — @balajis</a> &middot; <a href="https://x.com/TimSweeneyEpic/status/2122008431611588833">X — @TimSweeneyEpic</a> &middot; <a href="https://x.com/SemiAnalysis_/status/2122161745901044112">X — @SemiAnalysis_</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/finance/stocks/the-individual-investors-who-are-hot-on-anthropic-ipo-but-cool-on-ai-461f89b4">Anthropic&#x27;s big week: ~7x oversubscribed, $90.4B on the table, pricing Wednesday</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 16
+</div>
+<p class="dek">The biggest IPO ever is also a referendum on the whole AI trade — and retail wants in even as the AI mood cools.</p>
+<div class="body">
+<p>Orders for Anthropic&#x27;s IPO have reached close to seven times the shares on offer, Bloomberg reported Sunday — hotter than SpaceX&#x27;s demand at the same stage. The price range is $70 to $78; bankers expect to set the final price Wednesday, with trading to begin Thursday on Nasdaq under the ticker ANT. Anthropic and its backers seek up to $90.4 billion including a separate $26 billion private placement, at a targeted $1.4 trillion valuation — the largest listing ever if it prices at the top. Seven of its compute suppliers, led by Alphabet and Nvidia, have agreed to buy the placement.</p>
+<p>Retail investors may get as much as 20% of the offering — well above the norm — using tactics honed during SpaceX&#x27;s June debut, and they are unlikely to get all the shares they want. The WSJ captures the split mood: individual investors are hot on Anthropic&#x27;s IPO but cool on AI. A decisive Democratic sweep in the midterms is sending AI-skeptic politicians into state and federal offices, Wall Street is reeling from Huang&#x27;s departure, and many Americans are grappling with the market&#x27;s massive, singular bet on AI.</p>
+<p>The stakes go beyond one company. CFRA&#x27;s Angelo Zino: &#x27;It&#x27;s extremely important because they might be the best indicator for the health of the AI ecosystem. What they have to say about monetizing AI, I think that becomes now equally, if not more important, than Nvidia with Jensen no longer there.&#x27; Morgan Stanley strategists are recommending a &#x27;max overweight&#x27; position in global stocks, saying the AI spending boom will make 2027 &#x27;the year to embrace risk.&#x27;</p>
+<p>And a warning on what the IPO concentrates: Hugging Face&#x27;s Clément Delangue, quoting reports the IPO could mint roughly 4,250 millionaires among 5,300 staff, writes that &#x27;concentration of power, capabilities and wealth is the biggest risk in AI... without much much stronger open-source, we might end up in a world with more asymmetry.&#x27; LeCun pointed to the AI Alliance&#x27;s Project Tapestry. Amodei, meanwhile, is expected to step into the industry-pitchman void Huang left.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://techcrunch.com/2026/11/15/helsing-backer-plural-raises-1-1b-to-fund-europes-next-moonshots/">Plural raises €1B to fund Europe&#x27;s next moonshots</a></h3>
+<div class="byline">
+<span class="src">TechCrunch</span> &middot; Nov 15
+</div>
+<p class="dek">Two-thirds for early stage, one-third for follow-ons — energy, AI infrastructure, defense and health, with second-time founders choosing defense over &#x27;just another app&#x27;.</p>
+<div class="body">
+<p>Plural, the backer of Helsing, raised €1 billion ($1.1 billion): two-thirds for its third early-stage fund, one-third for a new &#x27;opportunities&#x27; fund for follow-ons. Targets are energy, AI infrastructure, defense and health; the portfolio includes Helsing, Proxima Fusion, The Exploration Company and missile maker Hypersonica. Partner Khaled Helioui says second-time founders would rather build for European defense and energy &#x27;than just another app,&#x27; and some moonshots need &#x27;a couple hundred million&#x27; just to start. It joins Kembara and EQT&#x27;s Scaleup Europe Fund in Europe&#x27;s bigger-fund cohort.</p>
+<p>The counterpoint, from @paulg (26.9K likes): &#x27;As an investor, I can tell you the limiting factor isn&#x27;t investment. It&#x27;s founder ability.&#x27; The money is there; the founders are the constraint.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.startupsfortherestofus.com/episodes/episode-855-the-eight-saas-moats-that-still-work-in-the-age-of-ai">Was the SaaS panic wrong? The revenue data says the obituaries were early</a></h3>
+<div class="byline">
+<span class="src">Startups for the Rest of Us — Rob Walling</span> &middot; Nov 15
+</div>
+<p class="dek">Chollet, quoting Walling on Stripe data: SaaS equity prices are back to roughly pre-&#x27;SaaSpocalypse&#x27; levels, and revenue growth is &#x27;strong and even accelerated&#x27;.</p>
+<div class="body">
+<p>The early-2026 panic — Anthropic&#x27;s releases made agents look like SaaS killers, public SaaS stocks fell — does not match what the revenue data shows. @fchollet calls it plainly: &#x27;the early 2026 market panic about SaaS was BS,&#x27; quoting @robwalling on Stripe data: SaaS equity prices back to roughly pre-&#x27;SaaSpocalypse&#x27; levels, revenue growth &#x27;strong and even accelerated,&#x27; echoed across TinySeed&#x27;s 217 SaaS companies.</p>
+<p>The replies split in the expected directions. &#x27;You pay for ownership, not code&#x27; — customers pay &#x27;so somebody else owns the bugs, the compliance and the support inbox.&#x27; The system of record survives; thin wrappers still die. &#x27;Margins collapse when bespoke software becomes cheaper than SaaS rent.&#x27; And the honest caveat: &#x27;too early&#x27; to call it.</p>
+<p>For a SaaS owner, the takeaway is Walling&#x27;s framework itself — eight moats that still work in the age of AI, from the episode linked here. Owning the bugs, the compliance and the support inbox is a moat AI cannot vibe-code away.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/earnings/openai-continues-to-suffer-heavy-losses-as-revenue-rises-to-10-billion-d2a96bbb">OpenAI&#x27;s revenue hit $10B in Q3 — and so did its losses</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">Revenue up roughly 50% quarter over quarter, but the losses keep pace — the scale-or-profit question, stated in one line.</p>
+<div class="body">
+<p>OpenAI grew revenue by roughly 50% to $10 billion from the second to the third quarter, the WSJ reports — but continued to report heavy operating losses. The growth story and the burn story are the same story, and the Anthropic IPO this week will force the market to price both at once.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">A weekend of escalation abroad and a tax fight at home — plus the midterm aftershocks now reaching the AI buildout itself.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/middle-east/iran-attacks-bahrain-as-conflict-escalates-62ffd1b3">Iran targeted Bahrain for the second time in three days</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">The first spate of direct attacks on the Gulf state in weeks — even as Tehran says a path to ending its conflict with the US remains open.</p>
+<div class="body">
+<p>Iran targeted Bahrain for the second time in three days, the first spate of direct attacks on the Persian Gulf state in weeks, even as it reiterated that a path to ending its conflict with the US remains open. Oil fluctuated as traders weighed the Middle East tensions; Goldman Sachs warned the oil market faces a &#x27;sizable surplus&#x27; next year that will drag prices lower even as supply risks remain.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/democrats-torn-over-floating-new-taxes-to-cover-multitrillion-dollar-agenda-0d3293fa">Democrats are torn over floating new taxes to cover a multitrillion-dollar agenda</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">Big majorities, a broad consensus to reverse tariffs and spending cuts — and a trillion-dollar-plus question about how to pay for it.</p>
+<div class="body">
+<p>Democrats enter the new Congress with huge majorities and a broad consensus to reverse Trump&#x27;s tariffs and Republican cuts to Medicaid, food stamps and health-insurance subsidies. The thornier debate: whether and how to cover the potentially trillion-dollar-plus price tag. Party lawmakers are weighing when to attach tax increases to major legislation, as they design an agenda for 2027 that aims to make laws when possible and show the public the stakes in the 2028 election.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/video/three-states-where-the-ai-boom-could-slow-after-the-midterms/E9F353DE-0673-4582-9A45-430CD5FFE6CD">Three states where the AI boom could slow after the midterms</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">Voters banned or slowed data-center construction in the midterms — the buildout&#x27;s map is now a political question, not just an engineering one.</p>
+<div class="body">
+<p>Voters across the US voted to either ban or slow data-center construction in the midterm elections. The WSJ&#x27;s Amrith Ramkumar walks through the three states where this slowdown could be a problem for the AI industry. For anyone planning AI infrastructure, permitting and siting risk is now a first-order variable — the same lesson as the offshore data-center push in today&#x27;s Other section.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Apple&#x27;s next platform bet is waiting on Siri, the FAA&#x27;s worst week in decades traces to one router, and the home is the next AI battleground.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.macrumors.com/2026/11/15/apple-smart-glasses-hinge-on-siri/">Apple&#x27;s smart glasses are waiting on Siri — and on developers</a></h3>
+<div class="byline">
+<span class="src">MacRumors</span> &middot; Nov 15
+</div>
+<p class="dek">Gurman: unveil at WWDC June 2027, shipping before year-end — but the software is running behind, and the glasses are &#x27;AirPods for your face&#x27;.</p>
+<div class="body">
+<p>Apple&#x27;s just-announced Siri AI integrations are the centerpiece of its upcoming smart-glasses push, Mark Gurman reports in Power On. The glasses, code-named N50, will have no AR display at all — wearers interact through Siri, which uses the cameras to answer questions about the surroundings, identify buildings, translate signs and give directions. Third-party apps will not run on the glasses; they stay on a paired iPhone, and developers enable Siri control of specific functions inside their existing apps — restaurant reservations via OpenTable, a car via Uber or Lyft, coffee via Starbucks, tickets via Fandango. iOS 27.3, due in December, adds the precise Siri app controls for Apple&#x27;s own apps (a capability first demonstrated two and a half years ago, now rebuilt on new models); third-party support follows later. The aim is a WWDC June 2027 unveiling, shipping before year-end.</p>
+<p>The hardware is largely settled — prototypes slightly thinner than Meta&#x27;s second-generation Ray-Bans, a pared-down visionOS 28, a chip derived from older Apple Watch silicon, a proprietary magnetic three-pin charger the size of a Tic Tac that lets you wear the glasses while charging. The software is the schedule risk, and delays are possible. The same issue shadows the rest of Apple&#x27;s 2027 wave: camera-equipped AirPods are still on track for late 2027, the HomeView display went on sale Friday, and bringing Face ID to the iPhone Duo 2 is the top priority for the foldable — but a toss-up for next fall.</p>
+<p>The bet is the developer ecosystem, not the hardware. Apple believes the App Store gives it an edge over Meta&#x27;s Muse and Google&#x27;s Android XR — the same play it ran with AR apps before the Vision Pro. Whether Siri is good enough to carry it is the open question.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/business/airlines/the-single-router-in-southern-arkansas-that-ground-air-travel-to-a-halt-eedc326c">The single router in Arkansas that ground US air travel to a halt</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">Friday&#x27;s nationwide ground stop — the most severe since 9/11 — traced to a copper-wire replacement near El Dorado and a router flooding air-traffic control.</p>
+<div class="body">
+<p>The FAA&#x27;s move to halt all flight departures Friday afternoon was the most severe nationwide ground stop since September 11, 2001. Transportation Secretary Sean Duffy said the outage was traced to the replacement of outdated copper wire near El Dorado, Arkansas, where a router began flooding the air-traffic control system with connection attempts. US airlines are still scrambling to restore their networks: the FAA expects operations to return to normal today, though more than 10,000 flights were still delayed late Sunday. Radio broadcasts and messages between airline control rooms and pilots show how the four-hour saga played out — a case study in how fragile the infrastructure underneath a &#x27;routine&#x27; system really is.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/business/airlines/hear-how-the-faas-ground-stop-unfolded-2ed47ac3">WSJ — Hear how the FAA&#x27;s ground stop unfolded</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.oneusefulthing.org/p/becoming-strange-in-the-long-singularity">Mollick: a home device without a frontier model is &#x27;a growing liability&#x27;</a></h3>
+<div class="byline">
+<span class="src">X — @emollick</span> &middot; Nov 15
+</div>
+<p class="dek">Frontier models can reason about the house and spot safety issues; Google Home is &#x27;far below&#x27; what its own models can do — and the replies pushed back hard.</p>
+<div class="body">
+<p>Ethan Mollick: &#x27;Not having a good AI model powering your central home device will be a growing liability.&#x27; Frontier models can reason about the house, spot safety issues and solve problems; Google is well placed, but Google Home is &#x27;far below what a model like Hydrogen is capable of.&#x27; Apple&#x27;s new HomeView reviews, he adds, show hallucinations.</p>
+<p>The skeptics were loudest in the replies: &#x27;There is literally zero liability to not having a compu-home&#x27;; &#x27;ten years of Alexa and the most advanced skill is still reordering paper towels.&#x27; A local-model camp would rather run a &#x27;good enough&#x27; local MoE at home, and @tonnischwartz asks how ordinary people fence a model off their home network.</p>
+<p>Separately, Mollick notes only 1 of 270 jobs in the 1950 census is now obsolete (elevator operator) — so no current leader has managed &#x27;a radically different socio-technical regime.&#x27; The ambient-agent race is real, but the value case is still unproven — worth remembering as Apple&#x27;s HomeView lands.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/">Apple and OpenEvidence launch a 200,000-person AI-for-health study</a></h3>
+<div class="byline">
+<span class="src">Apple</span> &middot; Nov 15
+</div>
+<p class="dek">A US research app for iPhone 15 Pro and later, answers grounded in cited clinical literature — and study data &#x27;will not be used to train AI models&#x27;.</p>
+<div class="body">
+<p>Apple&#x27;s Health AI Usage Study with OpenEvidence is a US research app for up to 200,000 people (21 and older, iPhone 15 Pro or later, iOS 26). Answers are grounded in cited clinical literature, HealthKit sharing is optional, and guardrails steer worrying questions to a provider. The notable commitment: study data will not be used to train AI models — a line worth watching as health AI moves from demos to deployments.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/data-centers-ocean-f676429a">Facing backlash on land, data centers look to the sea</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 15
+</div>
+<p class="dek">The permitting fight is pushing AI infrastructure offshore — literally.</p>
+<div class="body">
+<p>As local opposition to data-center construction hardens on land — the same backlash that showed up in the midterm votes in today&#x27;s Politics section — the industry is looking offshore. The WSJ reports on data centers going to sea as an answer to the siting fight. It is the physical version of the argument running through the whole AI buildout: when the constraint is permission, not power or capital, the infrastructure moves somewhere the permission is easier.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Three things worth your study time today — the physics of AI doing real science, the positional embeddings inside every modern LLM, and a datetime library done right.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://openai.com/index/step-toward-defining-the-standard-model">A step toward defining the Standard Model on a lattice</a></h3>
+<div class="byline">
+<span class="src">OpenAI — Nathaniel Craig</span> &middot; Nov 15
+</div>
+<p class="dek">GPT-6 Astra helped close a 25-year hole in theoretical physics — the most concrete public account yet of AI as a research collaborator.</p>
+<div class="body">
+<p>OpenAI&#x27;s science blog opens with a guest post by UCSB physicist Nathaniel Craig, and it is the clearest description yet of what &#x27;AI as a research collaborator&#x27; looks like at the frontier. The problem: the Standard Model is fantastically accurate, but physicists mostly compute with perturbation theory, which fails for things like the proton&#x27;s mass. The fix, lattice field theory, never worked for the whole Standard Model because the weak force is chiral — put a left-handed fermion on a naive lattice and a right-handed &#x27;doubler&#x27; appears. Ginsparg and Wilson wrote the rules a chiral lattice must satisfy in 1982; Narayanan and Neuberger built &#x27;overlap fermions&#x27; in 1994; Lüscher separated left- and right-handed fermions in 1999. The missing piece, open &#x27;for more than 25 years&#x27;: setting the phase of the fermion measure consistently around every closed loop of force fields.</p>
+<p>Craig&#x27;s idea: represent the same force fields on a succession of finer grids, compare the allowed fermion states between neighbouring grids, and add up the differences. Astra&#x27;s role, in Craig&#x27;s words: it &#x27;suggested the right way to carry a given set of force fields onto finer grids, showed that the comparisons on finer grids would converge to a definite answer, and took the lead in developing the detailed proof.&#x27; Lattice theorists Maarten Golterman, Andreas Kronfeld and Yigal Shamir reviewed the proof and asked &#x27;probing questions.&#x27;</p>
+<p>Craig&#x27;s own caveats matter: it is &#x27;far more an answer in principle than an answer in practice&#x27;; experts still need to decide whether it has all the desired properties; and he is now checking reflection positivity at finite spacing. The replies name the real bottleneck: &#x27;how much of this was the model proposing ideas versus checking them&#x27; — and &#x27;I&#x27;ll take it seriously when another group can use the definition without the chat log.&#x27; The pattern to steal is human strategy plus model construction plus outside expert stress-test — and the verification bottleneck is the same one your agent evals face.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://magazine.sebastianraschka.com/p/understanding-positional-embeddings">Understanding positional embeddings in modern LLMs</a></h3>
+<div class="byline">
+<span class="src">Sebastian Raschka</span> &middot; Nov 15
+</div>
+<p class="dek">Why attention needs position, how rotary embeddings actually work in code, and what 2026&#x27;s open models really use.</p>
+<div class="body">
+<p>Attention without position treats &#x27;The red fox jumps over the gray fox&#x27; and &#x27;The gray fox jumps over the red fox&#x27; the same. A causal mask gives some implicit order, but cannot tell &#x27;one token back&#x27; from &#x27;ten back.&#x27; Raschka walks through the whole lineage: learned absolute embeddings (GPT-2, fixed at 1,024 positions); sinusoidal (2017, fixed sine/cosine at geometric frequencies); and RoPE (Su et al., 2021), which rotates each query and key feature-pair by an angle proportional to its position, so the dot product depends only on the offset between tokens. His worked example makes it click: 20 degrees per position, query at 5 (100 degrees), key at 2 (40 degrees), 60 degrees apart, dot product 13 — shift both by 3 and it is still 13. That is why a 100-token system prompt does not change how &#x27;the&#x27; attends to a fox three tokens back.</p>
+<p>He gives a roughly 20-line PyTorch implementation and shows split-half vs interleaved pairing are equivalent up to reordering. Then the 2026 state of play: full RoPE in every attention layer is still most common but fell from 2025 to 2026; partial RoPE (MiniMax-M3 rotates 64 of 128 dimensions) is &#x27;hardly worth it&#x27; on his math, though a paper found ~10% rotation often matched full RoPE; NoPE layers rely on the causal mask (SmolLM3 skips RoPE every 4th layer and reports better long context); learned relative position bias (Thinky&#x27;s Inkling, echoing T5) is rising. His prediction: RoPE stays dominant into 2027. If you are debugging long-context behaviour in your agents, this is the mechanism to understand first.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://burntsushi.net/jiff/">Jiff 1.0: a Rust datetime library that treats time zones as a first-class citizen</a></h3>
+<div class="byline">
+<span class="src">BurntSushi — Andrew Gallant</span> &middot; Nov 15
+</div>
+<p class="dek">Modelled on JavaScript&#x27;s Temporal, already inside uv, Cargo and Starship — and its design ideas are worth stealing in any language.</p>
+<div class="body">
+<p>Andrew Gallant (BurntSushi) shipped Jiff 1.0, a Rust datetime library modelled on JavaScript&#x27;s Temporal, already used by uv, Cargo, Starship, fd, Nushell and Jujutsu. The 1.0 is an &#x27;indefinite&#x27; stability commitment, so it can sit in other crates&#x27; public APIs.</p>
+<p>The ideas worth stealing in any language: put time zones front and center (ZonedDateTime); handle DST &#x27;gaps&#x27; and &#x27;folds&#x27; explicitly, with a default &#x27;compatible&#x27; strategy or earlier/later/reject; keep calendar units (months, days) separate from physical time, since &#x27;a day&#x27; is not always 24 hours; round spans relative to a real date. Agents that schedule, log and coordinate across time zones will hit every one of these edge cases — steal the model before you hit them.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
