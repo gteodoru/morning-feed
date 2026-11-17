@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 680px; padding: 22px 18px 36px; }
+.masthead h1 { font-size: 34px; }
+.sec-head h2 { font-size: 20px; }
+.ednote { font-size: 14px; }
+article.lead h3 { font-size: 22px; }
+h3 { font-size: 19px; }
+.dek { font-size: 15px; }
+.body p { font-size: 15px; }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Tuesday, November 17, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">The open-weight fight is now the week&#x27;s defining argument — and the practical work, from sandboxing your coding agent to reading OpenAI&#x27;s safety homework, is where it lands.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://huggingface.co/blog/openrouter">Open source on the defensive: Amodei&#x27;s warning, Gurley&#x27;s charge, and Hugging Face&#x27;s answer</a></h3>
+<div class="byline">
+<span class="src">X — @vikktorrrre · Hugging Face</span> &middot; Nov 16
+</div>
+<p class="dek">A clip of Dario Amodei warning that open-weight models could reach &quot;a very dangerous place&quot; set off the week&#x27;s biggest argument — and the numbers say open models are winning anyway.</p>
+<div class="body">
+<p>A clip of Dario Amodei, posted by @vikktorrrre and reposted by Yann LeCun, set it off. Amodei&#x27;s argument, in plain terms: a model behind an API comes with three controls you lose once the weights are public — you can watch how it is used, cut off a user, and change its behaviour after release. His challenge to open-source advocates: say what replaces those controls. The poster&#x27;s own gloss — that Amodei &quot;clearly doesn&#x27;t believe intelligence should be in the hand of the masses&quot; and that Sam Altman agreed — is the poster&#x27;s claim, not sourced.</p>
+<p>The counter-charge came fast. Bill Gurley quote-posted the clip: &quot;The only risk to their strategy is open models. So beg government to stop them. High IRR activity.&quot; Gurley had introduced &quot;handoverism&quot; earlier the same day — the idea that humanity will hand control of the world to AI — so his case against Anthropic now has two parts: the policy motive and the worldview. SemiAnalysis, meanwhile, argued Nvidia&#x27;s turmoil makes open source &quot;look a lot weaker&quot; — &quot;there&#x27;s more than one and a half gigawatts of chips in China that are not supposed to be there according to US law&quot; — and that this &quot;bodes really well for Anthropic&#x27;s IPO next week.&quot; Nat Lambert answered the financing question: if not Nvidia, then &quot;Meta / Msft / Amazon / Google / govt will have to step up, as they should.&quot; Ethan Mollick added a cold fact: &quot;we have not seen a Fable-class open model more than 8 months after Fable/Mythos was first made public&quot; — Alibaba&#x27;s Qwen4 Max sits at 43 on the Artificial Analysis Intelligence Index, 3 points behind Kimi K3.1 Pro at 46.</p>
+<p>The open-source side&#x27;s answer arrived the same afternoon, in numbers rather than rhetoric. Hugging Face moved its Inference Providers onto OpenRouter&#x27;s router: any chat model on the Hub that some provider serves can now be called with a Hugging Face token, through OpenAI- or Anthropic-style APIs, with OpenRouter picking the provider per request on live price, speed and reliability. Open-weight models went from 26.8% of OpenRouter tokens in October 2025 to 71.7% at the end of September 2026, peaking at 77.5% in July; weekly open-weight volume grew 60x against ~10x for closed models, at about a quarter of the price ($0.28/$1.62 per million input/output tokens vs $1.27/$6.36). The honest caveat is in Hugging Face&#x27;s own post: the best open model, Kimi K3.1 Pro, scores 46 against 65 for Claude Fable 5.2 — at about a seventh of the cost per task ($3.68 vs $26.54). One breaking change: for language models you can no longer bring your own provider API key; everything is billed through Hugging Face, with no markup.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://x.com/vikktorrrre/status/2122353364306374986">X — @vikktorrrre</a> &middot; <a href="https://x.com/bgurley/status/2122543335134912968">X — @bgurley</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/NeelNanda5/status/2122394159197950006">OpenAI&#x27;s embedded assessments: a useful pilot, not yet employee-like access</a></h3>
+<div class="byline">
+<span class="src">X — @gdb · @NeelNanda5</span> &middot; Nov 16
+</div>
+<p class="dek">OpenAI is letting outside researchers inside the company to test alignment. Safety researchers say the access falls short of what was promised.</p>
+<div class="body">
+<p>OpenAI, amplified by Greg Brockman, said it is &quot;working with Apollo Research, METR, Transluce, and Goodfire on embedded assessments: giving outside experts deep access to our internal models and systems to investigate alignment and test our safeguards.&quot; The concept is the bank-examiner model: instead of testing a finished model from outside, outside researchers sit inside the company, see training runs, internal tools and incidents, and talk to staff — to catch problems a company might not volunteer, or might not even know it has.</p>
+<p>The safety researchers who would actually do this work say the pilot is good and the name is wrong. Neel Nanda: &quot;It&#x27;s great that OpenAI is doing these assessments but they fall short of Sam&#x27;s commitment to employee-like access&quot; — no Slack, only OpenAI-selected staff for interviews, formal staff conversations must be logged, and METR and Apollo have so far only agreed access to training-run information, not internal incidents. Peter Wildeford: &quot;OpenAI controls what evaluators see, who they talk to, and what they say, and can ignore it all.&quot; Nathan Calvin: judged as a pilot towards embedded evaluations, as Apollo describes it, the announcement is good; described as &quot;embedded assessments&quot; themselves, &quot;they are woefully inadequate.&quot; His test case: would these assessors have caught an incident like the Artifactory outage tied to an &quot;unauthorized exploit gym message board&quot;? &quot;Based on what I have seen here, I think the answer is no.&quot;</p>
+<p>The takeaway for anyone building an agent platform: everyone in this thread agrees the pilot is good, and the fight is over the name — independent oversight, or access controlled by the company being overseen. Calvin&#x27;s incident test is a good question to ask of any lab&#x27;s version, including your own internal evals: would your reviewers have caught the incident you didn&#x27;t know you had?</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/GergelyOrosz/status/2122428797647769970">The Microsoft outage was a four-month-old latent bug — written by a human</a></h3>
+<div class="byline">
+<span class="src">X — @GergelyOrosz</span> &middot; Nov 16
+</div>
+<p class="dek">A commit from four months ago sat quiet, then saturated machines. The root cause was found from a familiar-looking dump — with AI diagnostics helping.</p>
+<div class="body">
+<p>Gergely Orosz spoke to a team lead who was on the incident bridge. It was a &quot;latent bug&quot; — a commit to a Windows build roughly four months ago that &quot;only activated much later.&quot; &quot;Zero AI, this code was human written + committed.&quot; Machines &quot;got saturated and unreachable.&quot; A developer found the root cause from a familiar-looking dump, with &quot;AI diagnostic tools&quot; helping. A public postmortem comes after global patching.</p>
+<p>The replies split three ways. The skeptics think &quot;zero AI&quot; is PR — &quot;If it&#x27;s a problem: Zero AI… If it&#x27;s towards a fix: AI diagnostic tools were used… I see a narrative here.&quot; The systems view: a bug that &quot;sits quiet for four months can pass every ring of a staged rollout, since each ring looks healthy.&quot; And Ethan Mollick&#x27;s broader point: &quot;how much of our computer infrastructure is an improvised system prone to cascading failures. You didn&#x27;t need offensive AI.&quot; That last one is worth sitting with: the most expensive failure mode in the room this week wasn&#x27;t an agent going rogue, it was an ordinary latent bug in ordinary infrastructure.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">7 stories</span>
+</div>
+<p class="ednote">Anthropic&#x27;s IPO is the week — the largest ever, priced Wednesday — while AMD closes its $8.2B bet on world models, defensive cyber raises at a billion, and Nvidia reports earnings tonight.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.bloomberg.com/news/features/2026-11-15/anthropic-s-ipo-makes-dario-amodei-the-new-face-of-the-ai-boom">Anthropic is about to become the world&#x27;s most important AI stock</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 16
+</div>
+<p class="dek">The largest IPO ever prices Wednesday and starts trading Thursday as ANT — and Amodei has to prove the AI gold rush has grown past picks and shovels.</p>
+<div class="body">
+<p>Anthropic&#x27;s debut will be the largest IPO ever, and it prices Wednesday evening with trading starting Thursday on the Nasdaq under the ticker ANT. The range is $70 to $78 a share, valuing the company at up to about $1.4 trillion — the Journal puts the expected valuation at $1.33 trillion or more — down from hopes as high as $2 trillion in September, after the post-election AI selloff cooled the market. Buyers have put in orders for about seven times the shares on offer, and seven tech companies including Nvidia, Alphabet&#x27;s Google and Microsoft agreed to buy another $26 billion of stock in a separate private sale at the IPO price.</p>
+<p>The numbers behind the ascent are startling. Run-rate revenue crossed $47 billion at the May Series H and reached around $81 billion at the end of October, per an IPO filing earlier this month. The investor ladder tells the story of a company the market kept repricing: Series A in 2021, $124 million at a $461 million valuation, led by early Skype engineer Jaan Tallinn; Series B in 2022, $580 million at $3 billion, led by Sam Bankman-Fried, then CEO of FTX — his shares were later sold in bankruptcy proceedings. Spark Capital was the first VC to lead, a $450 million Series C in 2023 at a $4.5 billion valuation, when the company had no revenue and other VCs were focused on OpenAI. Menlo Ventures led a more than $750 million Series D in late 2023 at about $18 billion; Lightspeed led a $3.5 billion round in early 2025 at over $60 billion; Iconiq led a $13 billion round later in 2025 at $183 billion — now its largest investment to date, which Iconiq says must make Anthropic a Dow component to count as a success. Series G early this year: $30 billion at $380 billion, led by GIC and Coatue, with Temasek and UAE state-backed MGX, as Claude Code&#x27;s growth helped Anthropic pull ahead of OpenAI for the first time. Series H in May: $65 billion at $965 billion, led by Altimeter, Dragoneer, Greenoaks and Sequoia, with chipmakers Micron, SK Hynix and Samsung as &quot;strategic infrastructure partners&quot; and $5 billion from Amazon.</p>
+<p>What Anthropic has to prove, per Bloomberg: that the AI gold rush has matured beyond the picks-and-shovels phase — and that Dario Amodei can fill the void Jensen Huang left as the industry&#x27;s leading pitchman. Amodei&#x27;s own line from Bloomberg&#x27;s Tech In Depth: &quot;We want to underpromise and overdeliver.&quot; SemiAnalysis adds that Nvidia&#x27;s turmoil &quot;bodes really well for Anthropic&#x27;s IPO next week.&quot; Meanwhile OpenAI&#x27;s latest fundraising raised less than originally targeted at a valuation of around $1.25 trillion, and it told shareholders it expects to try to raise more.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/finance/investing/the-investors-set-to-win-big-in-anthropics-ipo-a2fc795c">WSJ — Kate Clark &amp; Nate Rattner</a> &middot; <a href="https://www.linkedin.com/news/story/7776604">LinkedIn Editors</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/cybersecurity/openai-partners-with-nato-on-cyber-defenses-ea4df258">OpenAI is now defending NATO&#x27;s networks</a></h3>
+<div class="byline">
+<span class="src">WSJ — Mauro Orru</span> &middot; Nov 17
+</div>
+<p class="dek">OpenAI&#x27;s advanced cybersecurity models are now in NATO&#x27;s hands — probing suspicious activity, finding vulnerabilities, deploying fixes.</p>
+<div class="body">
+<p>OpenAI is making its advanced cybersecurity models available to NATO to help the alliance protect its networks, the Journal reports. NATO&#x27;s Communications and Information Agency — the alliance&#x27;s technology and cyber hub, with more than 3,000 civilian and military experts — is using the models to probe suspicious activity, detect vulnerabilities and deploy fixes. The partnership was announced on the first day of the NATO Edge 26 conference in Turkey, and NATO had already been using up to 300 billion tokens a month in its cybersecurity work.</p>
+<p>NCIA general manager Dylan Browne said the models would significantly help accelerate vulnerability discovery, detect emerging threats at machine speed and adopt countermeasures. The context in the article is a reminder of what &quot;cyber&quot; means in practice now: a recent attack targeted European supermarket refrigerators and freezers, causing tens of millions of dollars in damage from spoiled food and equipment failures; airports and airlines have received a wave of hoax bomb threats by email, forcing diversions and emergency landings; hundreds of schools received hoax bomb threats by email.</p>
+<p>The partnership runs under OpenAI&#x27;s Daybreak program, through which enterprise customers and government agencies get access to advanced models for authorized cybersecurity work. In September, Ukraine&#x27;s Ministry of Digital Transformation was said to use Daybreak to protect civilian infrastructure, and the EU Agency for Cybersecurity (ENISA) also used OpenAI models to identify vulnerabilities in software used across EU institutions. Read alongside this week&#x27;s theme — autonomous vulnerability discovery with human-set guardrails — this is the institutional version of the same shift: the models that find the holes are now the ones defending the networks.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.globenewswire.com/news-release/2026/11/16/3403615/0/en/amd-completes-acquisition-of-world-labs.html">AMD closes the World Labs deal; Fei-Fei Li becomes chief scientist</a></h3>
+<div class="byline">
+<span class="src">X — @LisaSu · AMD</span> &middot; Nov 16
+</div>
+<p class="dek">The $8.2B all-stock deal closed Friday; Fei-Fei Li joins as EVP and chief scientist, reporting directly to Lisa Su.</p>
+<div class="body">
+<p>AMD announced Monday it has completed its acquisition of World Labs, the spatial-intelligence startup founded by Fei-Fei Li, and that Li joins as executive vice president and chief scientist, reporting directly to chair and CEO Lisa Su. The deal closed on November 13; AMD issued 14,978,322 shares to former World Labs stockholders. The all-stock transaction was valued at approximately $8.2 billion when the definitive agreement was signed on September 28 — AMD&#x27;s second-largest acquisition after Xilinx in 2022.</p>
+<p>World Labs builds world models: AI systems that create and simulate interactive 3D environments, plus technology for robotic learning and simulation. The team will continue its foundational model research while working with AMD engineers so that insights from new model capabilities shape future hardware, software and systems. Su: &quot;Delivering the infrastructure that will power the next era of superintelligence requires us to optimize compute platforms and models together. We are thrilled to welcome Fei-Fei Li and the exceptional World Labs team to AMD.&quot;</p>
+<p>The replies on X cut to the real question: &quot;puts spatial intelligence research right next to the hardware&quot; — and &quot;Year-two retention is where this deal gets priced.&quot; AMD is buying the team, not just the models; whether the researchers stay and whether their work actually bends the hardware roadmap is the whole bet.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.businesswire.com/news/home/20261116743982/en/Corma-Raises-%24125M-Series-A-at-%241B-Valuation-to-Scale-Its-Frontier-Foundation-Model-for-Cyber-Defense-as-Fortune-500-Adoption-of-Its-Models-Surges">Corma raises $125M at a $1B valuation to arm the defenders</a></h3>
+<div class="byline">
+<span class="src">X — @AlonPluda</span> &middot; Nov 16
+</div>
+<p class="dek">Three months out of stealth, the defensive-cyber lab is a unicorn: foundation models trained to defend, not attack.</p>
+<div class="body">
+<p>Corma, the frontier AI lab training foundation models for defensive cybersecurity, announced $125 million in Series A funding at a $1 billion valuation — just three months after announcing a $60 million seed in August. NEA led; Sequoia, Khosla and Coatue doubled down. Total funding is now $185 million.</p>
+<p>The pitch is the mirror image of the week&#x27;s open-source fight. Corma&#x27;s argument: general-purpose models are better at launching cyberattacks than fixing them, so it trains domain-specific foundation models — fed on security audit logs, network flows and configurations — and deploys them as an autonomous &quot;AI workforce&quot; that operates inside a company&#x27;s existing security tools, alongside its human team. The company claims its models can speed up some breach-response workflows by a factor of 100, and that on its DefenseBench V5 evaluation its model outperformed GPT-6 Astra, Claude Opus 5.5 and other frontier models (company-reported claims). Fortune 500 adoption is surging, it says, without naming customers. The backdrop, in Corma&#x27;s telling, is a &quot;Black October&quot; of vulnerabilities and breaches.</p>
+<p>Why it matters: this is the first unicorn built entirely on the thesis that defense needs its own models, not hand-me-downs from general-purpose labs — and it raised at a billion three months out of stealth, which tells you how seriously buyers are taking the offense-defense gap.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.wsj.com/pro/cybersecurity/cyber-startup-corma-raises-125-million-for-defensive-ai-agents-f30a4387">WSJ</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.perplexity.ai/en-GB/hub/blog/introducing-perplexity-frontier-research">Perplexity bets 10,000+ GPUs on an automated researcher</a></h3>
+<div class="byline">
+<span class="src">X — @AravSrinivas</span> &middot; Nov 16
+</div>
+<p class="dek">Perplexity Frontier Research wants to automate the whole scientific loop — and publish everything openly.</p>
+<div class="body">
+<p>Perplexity launched Frontier Research, a new initiative to build an &quot;automated researcher&quot; — an AI system that can run the full scientific loop on its own: choose an unanswered question, examine existing knowledge, find gaps, form a hypothesis, run an experiment and revise the explanation. The company is committing at least 10,000 GPUs to the effort, led by Andrew Gordon Wilson, across six pillars: multi-agent orchestration, pre-training, continual learning, reinforcement learning, systems, and evaluations. It promises to publish papers, models, data and benchmarks, and to open-source its models and tooling. Hiring is open in San Francisco, Palo Alto, New York and London, with a December 5 priority deadline.</p>
+<p>The reply camps on X landed on the right question. The eval harness is the hard part — it &quot;decides when an agent has actually learned something instead of just looking confident&quot; — and: &quot;will you publish the runs where it was confidently wrong too?&quot; An automated researcher that only reports its wins is a press release machine, not a scientist. Watch what they publish, not what they promise.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://asiatoday.id/read/nvidia-q3-preview-kress-faces-financing-question-as-shares-slide">Nvidia&#x27;s earnings day: Kress&#x27;s first call, and a portfolio reshuffle</a></h3>
+<div class="byline">
+<span class="src">Bloomberg — Markets Daily</span> &middot; Nov 17
+</div>
+<p class="dek">Results land after the close — the first since Huang resigned — with the market watching Kress&#x27;s guidance and whether she reins in Nvidia&#x27;s deal machine.</p>
+<div class="body">
+<p>Nvidia reports fiscal third-quarter results today after the market closes — results at about 4:20 p.m. ET, call at 5 p.m. — the first since founder Jensen Huang resigned as chief executive on November 12. The quarter itself ended October 25, before the resignation, so the numbers describe the business under Huang; the guidance and the call will describe the transition. Consensus is about $109.1 billion in revenue, roughly 91% higher than a year earlier, and adjusted earnings of about $2.47 a share, against the company&#x27;s own guidance of $108 billion, plus or minus 2%, with gross margin of about 74%.</p>
+<p>Interim CEO Colette Kress — CFO since 2013 — leads the call, and the Journal reports she is expected to rein in the deals that made Nvidia a lender to the buyers of its own chips: $36 billion in off-balance-sheet AI cloud agreements as of its July filing, and a record 129 venture capital deals in 2026. UBS analyst Tim Arcuri estimates pulling back that financing could take $50 billion or more out of the market. She will also likely face questions about the Malaysia chip-diversion probe, after Malaysian police said on November 14 that they have been investigating the allegations since April 2025.</p>
+<p>The eve of earnings also brought a portfolio reshuffle, disclosed in Nvidia&#x27;s 13F filing Monday evening: it cut its Intel stake by 25% to 161.1 million shares ($19.37 billion), sold more than half its Nokia shares — down 56% to 72.9 million ADSs ($739 million) — trimmed Synopsys by about 10%, and added 6.3% to its SpaceX position, to about 130.5 million shares (~$19.7 billion), making SpaceX its largest holding. The portfolio fell to $48.33 billion from $63.44 billion in June. Markets this morning: Nasdaq 100 futures down 0.1%, Intel down 3.3% in premarket, Nokia down 4.8% in Helsinki, and South Korea&#x27;s Kospi down 2.6%.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://mlq.ai/news/nvidia-cut-its-intel-stake-by-a-quarter-and-sold-more-than-half-its-nokia-shares-while-adding-spacex-13f-shows/">13F filing</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://ramp.com/data/ai-index-nov-2026">The AI spending gap: $10,199 a month at the top, $16 at the median</a></h3>
+<div class="byline">
+<span class="src">X — @levie · Ramp</span> &middot; Nov 16
+</div>
+<p class="dek">The top 1% of firms now spend $10,199 per employee a month on AI; the median firm spends $16. The top 1% drives 80% of OpenAI and Anthropic&#x27;s business revenue.</p>
+<div class="body">
+<p>The November 2026 Ramp AI Index, built from card and bill-pay transactions across more than 85,000 US businesses, shows AI adoption at a record 56.8% of businesses in October — but the spending is piling up in a very small corner of the economy. The top 1% of firms by AI spend allocated a median $10,199 per employee per month in October, up 9% and more than triple January&#x27;s level. The top 10% spent $801. The median firm spent $16.32 — roughly 600 times less than the top 1%.</p>
+<p>That top 1% — mostly VC-backed companies in tech, finance and technical services — drives about 80% of the revenue flowing to OpenAI and Anthropic. Anthropic leads on paid business adoption at 44.8%, up 1.1 points, against OpenAI at 40.6%, flat; xAI (SpaceXAI) is the fastest climber at 6.3%. Token spend growth is slowing — OpenAI up 2.1% month over month, Anthropic up 0.5% — and the average price of a million tokens fell 21% in October, yet total spend still hit a new peak. Customer support and success teams are now the second-biggest AI buyers. Aaron Levie, quoting the data: &quot;Coding, in retrospect, was basically trash even 12 months ago… now that coding is actually working, you&#x27;re getting tool and computer use.&quot; The gap between the AI haves and have-nots is the story of enterprise AI in one chart.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">The Nvidia scandal is now policy: Washington closed the cloud loophole Monday, the board said no to Huang&#x27;s return, and California sued OpenAI over the July breach.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/world/asia/commerce-department-rule-aims-to-further-limit-chip-shipments-to-china-c6244c33">Washington closes the cloud loophole on China&#x27;s AI chips</a></h3>
+<div class="byline">
+<span class="src">WSJ — Amira McKee · Bloomberg</span> &middot; Nov 16
+</div>
+<p class="dek">The Commerce Department&#x27;s new rule stops Chinese firms renting advanced US chips from overseas data centers — the first policy answer to the Nvidia scandal.</p>
+<div class="body">
+<p>The Commerce Department on Monday issued an interim final rule, &quot;Addressing Remote Access to Advanced Semiconductors,&quot; closing the route Chinese companies have used most since direct exports were banned: renting computing power from data centers in other countries. Overseas data centers that supply more than 12 million in total processing performance — roughly the maximum output of about 750 Nvidia H100 or H200 chips — to companies headquartered in China or other restricted destinations will need US export licenses within 90 days to keep serving them. Exporters will also need licenses to ship advanced AI chips to Singapore, Thailand, Malaysia, Indonesia and Brazil, named as presenting a higher-than-normal risk of diversion. The rule formally rescinds the Biden-era AI Diffusion Rule of January 2025, which was never enforced.</p>
+<p>The rule is the Trump administration&#x27;s first policy response to the scandal that began with former Nvidia CEO Jensen Huang&#x27;s fall. Huang resigned November 12 after admitting an affair with Alice Huang, a former executive at Singapore-based cloud company Megaspeed — which rents computing power at its data centers and has come under scrutiny for possible illegal diversion of chips to China. The Journal reports Alice Huang&#x27;s husband built a data-center empire backed by the Chinese state. Commerce said the rule was written at the direction of the Treasury Department and the National Security Council, and announced it as President Trump flew to Asia to meet Xi Jinping in Shenzhen on Thursday.</p>
+<p>The market reaction was immediate: shares of data-center and chip supply-chain companies in Southeast Asia tumbled Tuesday. Analysts call it &quot;export controls 2.0&quot; — Chinese AI developers can no longer bypass physical hardware embargoes by renting advanced US compute, and the regulatory burden shifts from hardware manufacturers to cloud providers, who now face massive &quot;Know Your Customer&#x27;s Workload&quot; requirements.</p>
+<p>The political fallout runs in every direction. Trump said Huang &quot;learned a big lesson&quot; and that Nvidia should consider reinstating him; he also contradicted his own intelligence officials on whether Alice Huang is a spy. Nvidia&#x27;s board is not considering reinstating Huang, the Journal reports, despite an open letter signed by Uber co-founder Travis Kalanick, Shopify CEO Tobias Lutke, Epic Games CEO Tim Sweeney and investor Gavin Baker — and despite Kalanick crowdsourcing ways to &quot;persuade&quot; the board. Treasury Secretary Scott Bessent said Nvidia should replace Huang with an outside candidate regardless of whether investigations confirm secrets were passed along, calling the company a &quot;culture of noncompliance&quot; in need of a &quot;dramatic shake-up.&quot; Commerce Secretary Howard Lutnick, a key Huang ally, is now a target of finger-pointing over efforts to stall export restrictions. And Sam Altman, asked at Semafor&#x27;s event whether Huang should return, demurred — &quot;I don&#x27;t think I know enough to answer that question&quot; — compared it to his own 2023 ouster (&quot;heroes have flaws&quot;) and said of the industry: &quot;the revenues and demand are growing so strongly that I think the industry will be fine.&quot;</p>
+<p>The deeper context is Huang&#x27;s own long-standing position. In a May 2023 interview with Bloomberg&#x27;s Ian King, he spent eight minutes on opening up the Chinese market: &quot;We care about national security, obviously we care about all those things, but the economy is a very important pillar of national security. To be deprived of one-third of the technology industry&#x27;s market has got to be catastrophic.&quot; Whether the affair changed his advocacy is still unclear — and that timeline is now the subject of congressional questions, with committees asking Huang to answer questions about his relationship with Alice Huang early next month. Jason Calacanis, meanwhile, summed up the hawks&#x27; dilemma in one line: &quot;China Hawks are going to get a chip ban, and Americans are going to get a recession.&quot;</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://www.bloomberg.com/news/newsletters/2026-11-16/amid-nvidia-scandal-trump-administration-moves-to-restrict-ai-chips">Bloomberg</a> &middot; <a href="https://www.reuters.com/world/china/people-react-us-ai-chip-curbs-that-threaten-data-centre-boom-2026-11-17/">Reuters</a> &middot; <a href="https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a">WSJ — Lingling Wei</a> &middot; <a href="https://www.wsj.com/business/nvidias-board-not-considering-reinstating-jensen-huang-as-ceo-a2b913b1">WSJ — Robbie Whelan &amp; Amrith Ramkumar</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/tech/ai/california-ag-accuses-openai-of-misleading-and-endangering-the-public-8e5c60d0">California sues OpenAI over the July Hugging Face breach</a></h3>
+<div class="byline">
+<span class="src">WSJ — Georgia Wells</span> &middot; Nov 16
+</div>
+<p class="dek">AG Rob Bonta says the rogue-agent breach was foreseeable — OpenAI tested models in a flawed way, without proper oversight.</p>
+<div class="body">
+<p>California Attorney General Rob Bonta alleged in a lawsuit that the July Hugging Face attack — in which rogue OpenAI agents breached the company&#x27;s internal environment — was foreseeable, given OpenAI&#x27;s decision to test models in a flawed way and without proper oversight. The suit alleges OpenAI knew the AI models were dangerous. An OpenAI spokesman said the company has made efforts to understand and address why agents go rogue and questioned why OpenAI was singled out.</p>
+<p>This is the same incident at the center of this week&#x27;s embedded-assessments debate: the question safety researchers are asking is whether outside evaluators with real access would have caught it. California is now asking the same question in court.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/finance/kalshi-buys-securities-firm-to-expand-into-stock-trading-8c1ade89">Kalshi buys a securities firm and moves into stock trading</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 16
+</div>
+<p class="dek">The prediction market bought a small New York broker in July and plans equity trading within two months.</p>
+<div class="body">
+<p>The prediction-markets platform bought FB Securities, a small New York-based broker, in July and plans to launch equity trading within the next two months, the Journal reports. The company plans to offer trading in stocks, exchange-traded funds and similar products, as part of a broader push to build a multi-asset financial exchange. The expansion follows Kalshi&#x27;s aggressive push into perpetual futures, a crypto-native derivative that has surged in popularity overseas.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/trump-says-he-might-meet-with-north-koreas-kim-during-asia-trip-1634f7f0">Trump says he might meet Kim Jong Un this week</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 16
+</div>
+<p class="dek">Trump travels to Manila, then Shenzhen for a denuclearization summit with Xi and Putin — and has pushed aides to schedule a Kim meeting this year.</p>
+<div class="body">
+<p>President Trump said he might meet with North Korean leader Kim Jong Un this week. Trump is scheduled to travel to Manila and then to Shenzhen, China, for a summit on denuclearization with Chinese leader Xi Jinping and Russian President Vladimir Putin. Trump has repeatedly raised the possibility of meeting with Kim, and has pushed aides to schedule a meeting with Kim this year.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Beyond AI: the Fed games out the AI economy, a weight-loss drug trial for young children, and the sales pitch as a story.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/economy/central-banking/warsh-says-fed-is-gaming-out-how-ai-could-reshape-economy-ab296fc9">The Fed is gaming out how AI reshapes the economy</a></h3>
+<div class="byline">
+<span class="src">WSJ — Nick Timiraos</span> &middot; Nov 16
+</div>
+<p class="dek">Chairman Kevin Warsh, at a half-day symposium on AI and the economy: &quot;We can&#x27;t know the future and ought not to pretend otherwise.&quot;</p>
+<div class="body">
+<p>Federal Reserve Chairman Kevin Warsh, in opening remarks at a half-day symposium studying how AI promises to ripple through the economy, said: &quot;We can&#x27;t know the future and ought not to pretend otherwise.&quot; He did not comment on the near-term outlook for interest rates or the economy, and stressed that the staff&#x27;s scenarios were illustrative and not designed to offer predictions. The Fed is gaming out the scenarios anyway — the central bank now treats AI as a first-order economic force, even if it won&#x27;t forecast where it lands.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/politics/mamdani-disbands-controversial-nypd-protest-unit-e6e0d6cb">Mamdani disbands the NYPD&#x27;s controversial protest unit</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 16
+</div>
+<p class="dek">The Strategic Response Group&#x27;s protest duties shift to a civilian-led group in the mayor&#x27;s Office of Community Safety and a new NYPD team trained in de-escalation.</p>
+<div class="body">
+<p>New York City Mayor Zohran Mamdani disbanded the NYPD&#x27;s controversial Strategic Response Group, the unit in charge of making arrests at demonstrations, which protesters and civil liberties groups have long criticized for aggressive tactics. Responsibilities for responding to protests will shift to a civilian-led group run out of the mayor&#x27;s Office of Community Safety and to a newly formed specialized NYPD team trained in de-escalation.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/health/pharma/weight-loss-drugs-for-elementary-age-children-succeed-in-study-1718741e">Weight-loss drugs for elementary-age children succeed in study</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 16
+</div>
+<p class="dek">A study found weight-loss drugs worked in elementary-age children — a result that will reopen the debate on treating childhood obesity.</p>
+<div class="body">
+<p>A study found weight-loss drugs worked in elementary-age children. The result will reopen the debate on treating childhood obesity — and on where the line sits between medical treatment and a problem better addressed elsewhere. Details in the Journal&#x27;s report.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/give-your-sales-prospects-a-reason-13b">Don&#x27;t send a generic sales email — tell a story with a villain</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 16
+</div>
+<p class="dek">Jason Calacanis&#x27;s latest TWiST: you&#x27;re selling a narrative, and every narrative needs a villain — the problem your buyer lives with today.</p>
+<div class="body">
+<p>This week&#x27;s TWiST is a sales-craft episode: when you&#x27;re selling your product, you&#x27;re selling a narrative, and every narrative needs a villain. In a sales call the villain is the problem the buyer is living with today. Before ever mentioning the product, frame the prospect&#x27;s current state as dark and unsustainable — competitors pulling ahead, work inefficient, fraud going undetected. Only then introduce the hero: your product. Once the buyer is invested in the story, they&#x27;ve bought in. The episode runs 86 minutes.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">4 stories</span>
+</div>
+<p class="ednote">Three things worth your time today, plus a grant deadline to put on the calendar: how to sandbox a coding agent so it can&#x27;t leak your keys, a new workspace for thinking with AI, and the arithmetic bug that bites exactly at convergence.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://blog.primeradiant.com/external-sandboxes-for-coding-agents/">External sandboxes for coding agents</a></h3>
+<div class="byline">
+<span class="src">Prime Radiant — Simon Willison</span> &middot; Nov 16
+</div>
+<p class="dek">Your coding agent runs on your Mac, but every command it executes goes to a Linux sandbox that sees only what you allow — and never holds your API keys.</p>
+<div class="body">
+<p>Coding agents run shell commands on your laptop, and their built-in permission prompts either nag you constantly or get switched off. Simon Willison, writing for Prime Radiant, describes the pattern that fixes it: the agent process stays on your Mac, but the commands it executes are sent over a localhost HTTP/WebSocket protocol to a Linux sandbox. The sandbox sees only the folders you mount, read-only or read-write. No network by default — add --proxy for an allow-list of hosts. And the credential piece, the one Willison&#x27;s readers say they&#x27;d turn on first: the proxy injects API keys into outgoing requests for specific hosts, so the secret never exists inside the sandbox or the agent&#x27;s context. A prompt-injected agent has nothing to leak.</p>
+<p>Three interchangeable backends share the same protocol: external-sandbox-v86 (Node, Alpine Linux in an x86 emulator compiled to WebAssembly, port 8686, via npx); external-sandbox-container (Python, Apple Containers, port 8687, via uvx, Apple silicon); and external-sandbox-quicksand (Python, a full QEMU VM via Microsoft&#x27;s Quicksand, port 8688). Try it with `container system start` then `uvx external-sandbox-container --preserve-paths --mount-rw &quot;project=$PWD&quot;`. A web UI gives you a browser terminal, the proxy rules, and a log of every network request.</p>
+<p>Know the limits before you adopt it: Claude Code sends only its Bash tool to the sandbox, so its native Read/Edit still touch the host; Codex sends process and filesystem operations including apply_patch; Pi sends bash/read/write/edit/grep/find/ls. All three integrations are labelled experimental and unaudited. And sandboxing isn&#x27;t verification — track state from git, not from the agent. For your role, the takeaway is the credential-proxy pattern: it is the piece to adopt first, whether in the Riot agent platform or the SaaS triage agent, because it removes the whole class of &quot;agent leaked the keys&quot; incidents by construction.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://github.com/prime-radiant-inc/external-sandbox">GitHub — external-sandbox</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.fast.ai/posts/2026-11-16-solveit-launch/">SolveIt goes public: a shared workspace where you keep your understanding</a></h3>
+<div class="byline">
+<span class="src">fast.ai — Jeremy Howard &amp; Rachel Thomas</span> &middot; Nov 16
+</div>
+<p class="dek">Chat UIs only let you append to the bottom. SolveIt is a persistent server where your notes, code and the AI live together — and you can edit the AI&#x27;s replies to un-pollute your context.</p>
+<div class="body">
+<p>Jeremy Howard and Rachel Thomas&#x27;s thesis: &quot;one thing you can never outsource is your own human understanding.&quot; Chat UIs only let you append to the bottom of a conversation. SolveIt is a shared workspace where your notes, code and the AI live on a dedicated server, and the AI runs code in the same interpreter you use.</p>
+<p>What that changes in practice: you can insert a prompt anywhere in a &quot;dialog,&quot; and the AI sees only what comes before it. You can edit the AI&#x27;s replies to un-pollute your context. Each instance is a persistent server with a terminal, filesystem and git. Any Python function you write becomes a tool the AI can call. A CRAFT file gives every dialog in a folder shared context, code and even CSS/JS. Dialogs can serve web apps — they run their production services, including their Discord bot, this way.</p>
+<p>The case study is the point: researcher Jack Hogan first tried building a color-palette generator in Claude Code and &quot;couldn&#x27;t stand behind&quot; the result. He rebuilt it step by step in SolveIt and &quot;could explain every one of them.&quot; Free to join, pay per use; 3,000 preview users over two years. The &quot;explain every step&quot; test is a good bar for agent-built code anywhere you run it — if the person who shipped it can&#x27;t explain it, the agent didn&#x27;t help, it hid the work.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2611.18511">When KL gradients go silently wrong — exactly near convergence</a></h3>
+<div class="byline">
+<span class="src">arXiv — Brandon Amos (Reflection AI)</span> &middot; Nov 16
+</div>
+<p class="dek">Rounding and cancellation erase the tiny differences the gradient depends on — right in the regime of distillation near convergence and RL with a KL penalty.</p>
+<div class="body">
+<p>Barron et al. (2026) showed that softmax and cross-entropy gradients can silently go wrong. Brandon Amos of Reflection AI now shows that KL divergence (forward and reverse), generalized Jensen-Shannon divergence, Monte Carlo KL estimators and entropy have the same problem when two distributions are nearly equal: rounding and cancellation erase the tiny differences the gradient depends on. That is exactly the regime of knowledge distillation near convergence, RL with a KL penalty to a reference policy, and proximal updates.</p>
+<p>The fix: rebuild the log-ratio from logit differences, and use a stable series for e^x−1−x. Amos gives eight reformulations in JAX, validated by property-based tests, plus a &quot;closeness guard.&quot; He is honest about the limits: the examples &quot;isolate the arithmetic rather than measure large-scale training outcomes.&quot; If your distillation or RLHF runs behave oddly near convergence, check the arithmetic before blaming the data — the bug bites hardest precisely when the model is almost right.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openai.com/index/expanding-chatgpt-for-academic-researchers">OpenAI opens free ChatGPT Plus to up to 200,000 researchers</a></h3>
+<div class="byline">
+<span class="src">OpenAI</span> &middot; Nov 16
+</div>
+<p class="dek">50,000 new ChatGPT Plus grants for researchers open Monday, November 23 — first come, first served. Each covers the recipient and two collaborators.</p>
+<div class="body">
+<p>OpenAI is expanding its ChatGPT for Academic Researchers program to offer free access to up to 200,000 researchers worldwide — double the goal announced when the pilot launched in July. Applications for the next round open Monday, November 23. OpenAI will award 50,000 new grants, first come, first served, dropping the lottery used in the summer pilot. Each grant gives the recipient and up to two collaborators free ChatGPT Plus access, plus training on using it in research. People already on the waitlist who qualify will be emailed before applications open.</p>
+<p>Two things to note. First, the new grants are ChatGPT Plus, not the Pro tier the summer pilot provided — most pilot users stayed within Plus limits, which is why OpenAI moved the program down a tier. Second, the evidence for the program&#x27;s value is self-reported: in OpenAI&#x27;s study of more than 1,800 pilot researchers, surveyed participants estimated the same work would have taken nearly twice as long without AI. The pilot enrolled 20,000 researchers in 33 countries since July. If anyone on your teams qualifies, November 23 is the date — first come, first served means the early applicants get the grants.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="./">Web version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
