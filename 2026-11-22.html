@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Feed</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #1a1a1a; --accent: #8b0000; --muted: #6b6b6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: var(--ink);
+       font-family: Georgia, 'Times New Roman', serif; }
+.page { margin: 0 auto; background: #fdfcf8; padding: 30px 30px 44px; }
+.masthead { text-align: center; border-bottom: 4px double var(--rule);
+            padding-bottom: 14px; margin-bottom: 6px; }
+.masthead h1 { margin: 0; letter-spacing: 2px; font-variant: small-caps; }
+.dateline { display: flex; justify-content: space-between; color: var(--muted);
+            font-size: 13px; padding: 8px 2px; border-bottom: 1px solid var(--rule);
+            margin-bottom: 24px; font-style: italic; }
+section { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px;
+            border-bottom: 2px solid var(--rule); margin-bottom: 14px; }
+.sec-head h2 { margin: 0 0 6px; font-variant: small-caps; letter-spacing: 1px; }
+.sec-head .count { color: var(--muted); font-size: 13px; font-style: italic; }
+.ednote { font-style: italic; color: #4a4a4a; line-height: 1.5;
+          border-left: 3px solid var(--accent); padding-left: 12px;
+          margin: 0 0 18px; }
+article { margin-bottom: 20px; padding-bottom: 18px;
+          border-bottom: 1px dotted #bbb; }
+article:last-child { border-bottom: none; margin-bottom: 0; }
+h3 { margin: 0 0 4px; line-height: 1.3; }
+h3 a { color: var(--ink); text-decoration: none; }
+h3 a:hover { color: var(--accent); text-decoration: underline; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; margin-bottom: 8px; }
+.byline .src { color: var(--accent); font-style: normal; font-weight: bold; }
+.dek { font-weight: bold; line-height: 1.5; margin: 0 0 8px; }
+.body p { line-height: 1.65; margin: 0 0 10px; }
+.sources { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sources .slabel { font-style: italic; }
+.sources a { color: var(--accent); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.empty { color: var(--muted); font-style: italic; font-size: 14px; }
+footer { margin-top: 36px; border-top: 4px double var(--rule); padding-top: 12px;
+         text-align: center; color: var(--muted); font-size: 12px; font-style: italic; }
+footer a { color: var(--accent); }
+
+.page { max-width: 1060px; }
+.masthead h1 { font-size: 52px; }
+.sec-head h2 { font-size: 23px; }
+.ednote { font-size: 15px; max-width: 900px; }
+.stories { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+article.lead { grid-column: 1 / -1; }
+article.lead h3 { font-size: 27px; }
+article.lead .dek { font-size: 17px; }
+article.lead .body p { font-size: 16px; }
+h3 { font-size: 20px; }
+.dek { font-size: 15px; }
+.body p { font-size: 14.5px; }
+@media (max-width: 760px) { .stories { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<header class="masthead">
+<h1>The Morning Feed</h1>
+</header>
+<div class="dateline">
+<span>Sunday, November 22, 2026</span>
+<span>Curated from your HEY Feed</span>
+</div>
+<section>
+<div class="sec-head">
+<h2>AI Development Practices</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">Saturday&#x27;s biggest story isn&#x27;t a product launch — it&#x27;s a proof. The Riemann Hypothesis is now certified correct by machine checking, and the same weekend showed what happens when the checking itself is the hard part: providers caught reading your prompts, and a model that breaks ciphers faster than humans can verify them.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/">The Riemann Hypothesis proof is certified correct — by machines no human can check by hand</a></h3>
+<div class="byline">
+<span class="src">Lean / Mathlib</span> &middot; Nov 21
+</div>
+<p class="dek">The Lean community says it has &#x27;full confidence&#x27; Alpöge&#x27;s proof is correct — a 17-million-line library checked by several independent proof checkers. Nobody has read it.</p>
+<div class="body">
+<p>About 10:12 AM ET Saturday, @leanprover posted the joint statement from the Lean FRO and the Mathlib Initiative: &#x27;We have full confidence that Alpöge&#x27;s proof of the Riemann Hypothesis is correct.&#x27; The statement rests on four criteria. The statement is right: RH is already defined in Mathlib and &#x27;has been carefully vetted by experts in Lean and number theory.&#x27; The library compiles: dozens of people reproduced the same raw proof export. It proves the right theorem: the community wrote a separate file stating RH and importing only Mathlib, and two independent tools confirmed Alpöge&#x27;s theorem is exactly that statement — blocking the classic trick of proving a look-alike. And the proof is valid: Lean&#x27;s kernel, the con-leche and con-ron checkers, and third-party checkers in other languages all accepted it, on &#x27;an inert export of the proof, out of reach of hypothetical malicious code.&#x27;</p>
+<p>The scale, from MIT&#x27;s Andrew Sutherland, who ran the checks with Claude Code: 175,187 modules compile with zero errors on Lean/Mathlib v4.33.1; the five headline theorems use only Lean&#x27;s three standard axioms; the export is 61.6 GB, and a sandboxed rebuild with no network reproduced it byte for byte. The independent Rust kernel nanoda accepted it in 27m42s on 80 threads; con-leche accepted 1,468,418 declarations in 3m15s on 64 threads.</p>
+<p>The camps split fast. &#x27;Centaur math: honor the human&#x27; — @ElliotGlazer says the 2030 Fields Medal committee should award Levent Alpöge &#x27;or they should disband,&#x27; and @trq212 of Claude Code calls collaborating with models to push the frontier &#x27;a deeply technical skill in its own right.&#x27; &#x27;An alien wormhole, not theory-building&#x27; — @ObhishekSaha expected RH to need &#x27;new theory-building that fills entire books&#x27;; instead the proof &#x27;takes an incredibly complicated tour through the infrastructure built for a hundred other mineral reserves.&#x27; &#x27;The means of discovery are behind closed doors&#x27; — @elder_plinius (7.7K likes): &#x27;these discoveries are being made using models that the rest of us plebs aren&#x27;t even allowed to know the names of.&#x27; And &#x27;does anyone understand it?&#x27; — @teortaxesTex asks whether the Claude + Levent room understands the proof at all; @martin_casado answers as a pragmatist: &#x27;If a problem is worth solving, let&#x27;s solve it with a computer if we must.&#x27;</p>
+<p>For context: forecasters had RH solved in May 2035 only last month, and Terence Tao had said &#x27;some combination of humans and AIs in 2050 or something.&#x27; One useful correction from the replies: RH &#x27;breaks nothing in crypto&#x27; — RSA rests on factoring, and ML-KEM on Module-LWE. The deeper point for your work: a proof nobody has read is now accepted on machine checking alone. Trust moves from &#x27;a referee read 25,000 pages&#x27; to &#x27;the statement is right, and several independently built checkers agree.&#x27; That is a new kind of peer review — and it only works because Mathlib already had a vetted definition of the target. Verification, not generation, is becoming the bottleneck. The same theme runs through the MiniMax story below.</p>
+</div>
+<div class="sources">
+<span class="slabel">Sources:</span> <a href="https://math.mit.edu/~drew/grh/">Sutherland&#x27;s verification log</a> &middot; <a href="https://x.com/ObhishekSaha/status/2123861825750290445">X — @ObhishekSaha</a>
+</div>
+</article>
+<article class="">
+<h3><a href="https://code.claude.com/docs/en/code-mode">Claude Code&#x27;s Code Mode: let the model write the glue</a></h3>
+<div class="byline">
+<span class="src">Claude Code</span> &middot; Nov 21
+</div>
+<p class="dek">One JavaScript program makes all the tool calls, runs steps in parallel, and returns only what the model needs to read — but the permission model changes with it.</p>
+<div class="body">
+<p>A normal coding agent calls one tool at a time: run a search, read the whole result into context, decide, run the next command. On a refactor across 40 files, that&#x27;s 40+ round trips, and every raw output lands in the context window even when the model only needed one line of it.</p>
+<p>In Code Mode, &#x27;Claude writes a piece of JavaScript that makes the tool calls, and Claude Code runs that code in your session.&#x27; One program can run commands in parallel, feed one result into the next call, and &#x27;return the part of the output that Claude needs to read.&#x27; The docs&#x27; example raises a retry limit across files in four tool steps in one turn — and only the file path and test output come back to the model. It can also run long builds or test suites in the background (up to two hours in auto or bypassPermissions mode) while you keep talking. In the chat you still see the diff, not the code; Ctrl+O shows the code as collapsed &#x27;Code&#x27; rows.</p>
+<p>The safety model is the part worth learning. Each tool call inside the code still goes through your deny/ask rules and PreToolUse hooks under its usual name. But in auto mode, &#x27;the classifier reviews each piece of code before it runs, not each tool call. It doesn&#x27;t see values computed at run time, such as a path taken from search output.&#x27; So keep rules or hooks for calls you must control: a PreToolUse hook matching the tool called REPL can read the code before it runs, or add an ask rule for &#x27;REPL&#x27; to approve every program. A hook that allows or blocks shell commands must parse each part of a command — &#x27;a git push in a folder named app can reach your hook as cd &#x27;app&#x27; &amp;&amp; git push.&#x27; And the sandbox covers the shell commands, but &#x27;the JavaScript itself and its file, web, and MCP tool calls run outside the sandbox&#x27; — for full isolation, use a container or VM.</p>
+<p>How to try it: Claude Code v2.1.323+, native build, interactive terminal, CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude. Models: Opus 5.5, Sonnet 5.5, Haiku 5.5, Fable 5.2. It doesn&#x27;t work in VS Code, Desktop or cloud sessions, through Bedrock or other gateways, or with zero data retention. One reply from the thread is worth keeping: &#x27;once multi-step tool calls become code, you get diff and rollback for free&#x27; — a script leaves something you can read, diff, rerun, and keep afterwards. For the Riot platform work, this is worth enabling with a REPL ask-rule: the audit trail is the feature.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/">Researchers planted secret links in prompts — and caught inference providers reading them</a></h3>
+<div class="byline">
+<span class="src">OpenRouter</span> &middot; Nov 21
+</div>
+<p class="dek">Three providers off-boarded, 125 endpoints stripped of zero-data-retention status, after canary links planted in requests were opened 40–130 hours later.</p>
+<div class="body">
+<p>Someone was able to access outputs sent to MiniMax. A researcher found this by planting secret links in requests — and &#x27;40 to 130 hours later someone opened the secret links,&#x27; as @michael_chomsky summarized it (via @swyx: &#x27;is there any possible benign explanation why these providers were secretly phoning home?&#x27;). AltasCloud, Novita and StreamLake &#x27;were forwarding requests to MiniMax,&#x27; he wrote — providers &#x27;that should have just been providing inference instead sent your data to another provider… this provider happened to be Chinese, but would have been bad no matter what.&#x27;</p>
+<p>OpenRouter&#x27;s response, posted 8:32 PM ET Saturday: &#x27;no breach of OpenRouter itself.&#x27; It off-boarded three providers, &#x27;removed 125 endpoints from Zero Data Retention (ZDR) eligibility,&#x27; notified affected customers, will run the researchers&#x27; test continuously, and is checking network paths for forwarding. It credits a Dragos report and links write-ups from Novita, Phala, and Together (&#x27;prompt leakage for requests in June and July of 2026&#x27;).</p>
+<p>The lesson, from a reply translated from Chinese: &#x27;ZDR is only a first-hop promise. Once a request is forwarded to MiniMax or another downstream provider, that label no longer covers it.&#x27; Another: &#x27;the canary trick is the elegant part… your prompts pass through providers you never picked.&#x27; @Suhail, the same day: Particle is on OpenRouter and &#x27;will never re-route traffic to China or send your data anywhere else.&#x27; For anyone routing agent traffic through inference marketplaces — which is exactly what an AI cloud-agent platform does — the takeaway is blunt: a zero-retention promise covers the provider you chose, not the provider they chose.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.minimax.io/blog/practical-cryptanalysis-with-minimaxs-latest-internal-model">MiniMax&#x27;s internal model is breaking ciphers faster than humans can verify the breaks</a></h3>
+<div class="byline">
+<span class="src">MiniMax</span> &middot; Nov 21
+</div>
+<p class="dek">First practical collisions on SHA-3 candidates, key recovery on post-quantum schemes, 94 McEliece challenge keys — and a 690× gain on Anthropic&#x27;s HAWK attack.</p>
+<div class="body">
+<p>An internal-only model (&#x27;MIM&#x27;) ran automated cryptanalysis. On CryptanalysisBench Tier 2 — 135 NIST-competition schemes with no known practical attacks — it found the first practical collisions on SHA-3 candidates Waterfall-256 (0.045s) and Blender-256. Key recovery on post-quantum candidates LOCKER (it shrank the solver matrix from 42 PB to 58 MB) and ROLLO-I-128 (~6s). Plus a dozen bugs in reference code, such as DRS, where a mistyped &amp;&amp; vs &amp; allowed signature forgery from the public key alone.</p>
+<p>On peer-reviewed designs: a forgery on COLM (a CAESAR winner) with two encryption queries; full key recovery on SBC-VOLE (ASIACRYPT 2025) from one signature in 0.06s; ARADI (an NSA 2024 cipher) practical key recovery extended from 5 to 8 rounds. On hard problems: 94 TII McEliece challenge keys (55 previously unsolved), 6,180–43,400x faster than the CRYPTO 2026 record and Anthropic&#x27;s GPU solver. On HAWK it went &#x27;another 9.3 to 23.8 bits&#x27; below Anthropic&#x27;s attack, recovering a key in 30 minutes on one core.</p>
+<p>MiniMax&#x27;s own framing: &#x27;the bottleneck shifts from discovering attacks to verifying and assessing them.&#x27; They say it does not affect deployed standards, and that they disclosed to the authors. The code and traces are at github.com/MiniMax-AI/Research. It is the same theme as the Riemann story that leads this edition: checking the work becomes the hard part — and the checkers now need to be as automated as the provers.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://runtimewire.com/article/gemini-4-neon-wrote-amd-kernels-that-nearly-doubled-inkling-2-mini-decode-speed">Gemini 4 Neon wrote its own AMD kernels — Inkling 2 Mini prefill 5.9× faster than llama.cpp</a></h3>
+<div class="byline">
+<span class="src">X — @bebuu_ai</span> &middot; Nov 21
+</div>
+<p class="dek">An AMD engineer gave Neon the Inkling 2 Mini GGUF; 4.3 hours and ~490 tool calls later it had written and profiled custom kernels at ~80% of theoretical memory bandwidth.</p>
+<div class="body">
+<p>An AMD engineer gave Gemini 4 Neon the Inkling 2 Mini GGUF on a Strix Halo (8060S) GPU. Over 4.3 hours and ~490 tool calls, it wrote and profiled its own kernels. Versus llama.cpp on ROCm: decode 44.8 vs 23.8 tokens per second (1.88x), prefill 1,465 vs 233 (5.9x), at ~80% of theoretical memory bandwidth. The top replies ask the obvious question: &#x27;why doesn&#x27;t AMD ship these changes themselves?&#x27; Related: @exolabs had Inkling 2 Mini at 210 tok/s decode on a 96GB M5 Ultra Mac Studio, and says the looped design suits memory-limited laptops.</p>
+<p>Two companion notes from the same discussion. @simonw ran his pelican test on Gemini 4 Hydrogen: &#x27;high&#x27; thinking cost 3.99¢ and 5,311 output tokens; &#x27;xhigh&#x27; cost 23.61¢ and 31,477 tokens, and the difference &#x27;is VERY significant.&#x27; Replies want the same comparison on real bug fixes, and: &#x27;Reasoning effort belongs next to the model name in eval tables. 19s vs 2m36s.&#x27; And @jeremyphoward: &#x27;pretty much no-one at @GoogleDeepMind knew how good [Neon] was. On launch, they regularly described it as &#x27;approaching&#x27; the frontier… Evals are a *very* imperfect measure of model utility.&#x27; His prescription matches the replies: twenty real tasks from your own team tell you more than any eval — drop a model into a real workflow for a week &#x27;and count how often a human has to step in.&#x27;</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>AI Venture</h2>
+<span class="count">5 stories</span>
+</div>
+<p class="ednote">The market&#x27;s question this weekend: is the AI buildout over, or is the dip the buying opportunity? The loudest voices say the second — and the price war in inference says the builders agree.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://aistockwire.com/blog/musk-ai-cash-shortage-nuts-next-year-working-capital-compute-november-2026">&#x27;Rare buying opportunity&#x27; — or the buildout is over</a></h3>
+<div class="byline">
+<span class="src">X — @fchollet</span> &middot; Nov 21
+</div>
+<p class="dek">François Chollet&#x27;s two posts frame the weekend&#x27;s market debate: you&#x27;d be down 5% if you&#x27;d bought NVDA on the 2024 story — and HBM is sold out through 2029.</p>
+<div class="body">
+<p>François Chollet posted twice. First, the time-travel test: if someone in June 2024 had told you about reasoning models, saturated ARC 1–3, AI writing nearly all code, Millennium problems falling, and Nvidia still at ~80% share with 4.5x earnings — &#x27;would you have bought NVDA?… you&#x27;d be down 5%.&#x27; Then the trade: &#x27;Either you believe the AI buildout is over… or this a rare buying opportunity.&#x27; GPU spot prices are rising, &#x27;HBM and DRAM production is effectively sold out through 2029,&#x27; frontier training compute doubles every ~5 months, and inference runs at &#x27;70-85% margins.&#x27; The useful reply: &#x27;The sold-out-through-2029 HBM point is the one I can&#x27;t square with a peak-compute story.&#x27; The other: &#x27;The future arrived; it was already in the price.&#x27;</p>
+<p>Elon Musk replied to Chollet warning of an AI cash shortage in 2027 as compute lags — hundreds of billions in working capital, he argued, with Anthropic alone wanting 10 more gigawatts of SpaceX compute.</p>
+<p>And why didn&#x27;t the Riemann proof move Anthropic&#x27;s stock? @sebkrier: equity investors (&#x27;West Coast&#x27;) trade on narratives and upside, while credit (&#x27;East Coast&#x27;) cares whether serving supply outruns demand. &#x27;Solving an old pure math problem does not immediately widen Anthropic&#x27;s operating margins.&#x27; @alexolegimas: markets are forward-looking, and value comes from scarcity. &#x27;One company solving X means others will solve X shortly.&#x27; The market, in other words, prices the next proof, not this one.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bloomberglaw.com/insurance/ai-is-testing-what-economists-know-about-bubbles-essay">Economists now agree bubbles are real. They still can&#x27;t time them.</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Opinion</span> &middot; Nov 20
+</div>
+<p class="dek">Justin Fox: the Journal of Financial Economics never mentioned &#x27;bubble&#x27; in its first 28 years. Now it publishes ~14 bubble articles a year — and rapid credit growth means a 40% chance of crisis in three years, vs 7% normally.</p>
+<div class="body">
+<p>One of these days, the long upward run of US stock prices that began in 2009 will come to an end — &#x27;not just with a temporary rotation or drawdown or correction but years of falling valuations and disappointed expectations,&#x27; writes Justin Fox. &#x27;Perhaps, with stock indexes mostly down since peaking in early October, it already has.&#x27;</p>
+<p>What changed is the economics profession itself. The Journal of Financial Economics, which efficient-markets pioneer Eugene Fama co-founded in 1974, avoided all mention of bubbles in its first 28 years; over the past two decades it has published an average of 13.8 articles a year containing the word. A trio of Harvard economists put it this way: while Fama was right that &#x27;a sharp price increase of an industry portfolio does not, on average, predict unusually low returns going forward,&#x27; it does signal a much-heightened probability of a crash. Another recent paper found that rapid credit and asset price growth over three years was associated with a 40% chance of a financial crisis in the next three years, compared with a 7% chance in normal times.</p>
+<p>What do you do with that? &#x27;Don&#x27;t sell everything — a 40% chance of a financial crisis in the next three years implies a 60% chance of no crisis.&#x27; But don&#x27;t believe anyone who says the AI boom is different, at least in financial-market terms: railroads, electrification and the internet all transformed the economy, and all were accompanied by painful investment busts. The headline that summed up the mood, from last month: &#x27;Novogratz Joins Crowd Warning of AI Bubble, Says Pile In Anyway.&#x27; The honest position is the one the economists landed on: bubbles are real, the warning signs are trackable, and there is no reliable way to time the end — so be prepared for the tide to go out.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aicrier.com/post/1zfihph25ohrox3ffx6j">OpenCode cut DeepSeek and GLM prices 60% — by hosting them itself</a></h3>
+<div class="byline">
+<span class="src">X — @thdxr</span> &middot; Nov 21
+</div>
+<p class="dek">DeepSeek V4.1 Flash to $0.12/$0.48 per million tokens, GLM 5.3 to $0.56/$1.76 — undercutting Fireworks and Baseten by running open-weight models on its own GPUs.</p>
+<div class="body">
+<p>OpenCode cut GLM 5.3 and DeepSeek V4.1 Flash 60%. DeepSeek V4.1 Flash drops to $0.12 per million input tokens ($0.48 output) and GLM 5.3 to $0.56 input ($1.76 output). @thdxr, via YC: &#x27;60% lower than fireworks/baseten while doing more volume than them all hosted on our own GPUs.&#x27; The mechanism is the story: by hosting open-weight models on in-house GPUs, OpenCode bypasses the API middlemen and dares standalone inference clouds to match its unit economics.</p>
+<p>One reply worth noting before you celebrate: for coding agents &#x27;most of the spend is cached input, so the real question is whether the 60% cut holds after cache pricing.&#x27; Headline per-token prices and your actual bill are different things when 96% of a turn is cache reads. Still, the direction is unmistakable — inference is becoming a commodity business where owning the GPUs is the margin, and the price war is now being fought by the tools themselves, not just the labs.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://twistartups.substack.com/p/saturday-update-stick-to-your-price">A price cut won&#x27;t fix your churn — and one person should make the call</a></h3>
+<div class="byline">
+<span class="src">This Week in Startups</span> &middot; Nov 21
+</div>
+<p class="dek">Hormozi cut prices 25% and churn didn&#x27;t budge — it cost him ~$5M a year. Coinbase&#x27;s answer to hard calls: one decider, 48 hours, RAPID.</p>
+<div class="body">
+<p>Both of this week&#x27;s Tactical &amp; Practical posts advise being deliberate rather than jumping in with the obvious fix that feels right in the moment.</p>
+<p>First, pricing. Acquisition.com founder Alex Hormozi cut his prices by 25%, betting churn would drop enough to make up the difference. When his churn rate didn&#x27;t budge, it cost him around $5 million a year in profits. The post works through a quick formula to use before adjusting your own pricing — the point being that churn is usually a value problem, not a price problem, and a discount just charges you for learning that slowly.</p>
+<p>Second, decisions. Coinbase President and COO Emilie Choi explains how the company uses the RAPID framework to make speedy, complex decisions: determine the specific list of people who need to be in the room, limit the scope of the conversation, and empower just one person to make the final call — within 48 hours. The temptation with a hard call is to bring everyone together and brainstorm; the discipline is the opposite: fewer people, a narrower question, one decider, a deadline.</p>
+<p>From the weekend reads: Ryze AI&#x27;s Ira Bodnar shared the channel mix that took the autonomous AI marketing company to roughly $10M ARR in about a year — GEO 15% (its #1 priority for 3 months), SEO 10% (how it made its first $1M), paid ads 15%, LinkedIn 10%, X 5%. And Parloa&#x27;s Malte Kosub on why the agentic customer-service startup prices per minute of conversation or per chat, not per token: customers can&#x27;t understand value when it comes to tokens. Both are the same lesson as the Hormozi story, from the other side: price the value the customer can see.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://aviationweek.com/aerospace/emerging-technologies/boom-fires-first-superpower-engine-core-prototype">Boom test-fired its own supersonic engine — and its first customer may be a data center</a></h3>
+<div class="byline">
+<span class="src">Aviation Week</span> &middot; Nov 21
+</div>
+<p class="dek">The Superpower core lit on the second attempt and ran to 6,500 rpm on ~2,000 sensors — four years after Rolls-Royce walked away. The same core, minus the fan, is a 42 MW generator.</p>
+<div class="body">
+<p>Test engineers at Boom Supersonic successfully ran the prototype core of the company&#x27;s in-house developed engine for the first time on Nov. 21 — &#x27;the first full-size jet engine ever built by a startup,&#x27; as @snowmaker put it. The first light-off came on the second attempt. &#x27;Prometheus would be proud, we thought there was less than a 50% chance it would work — but on the second try overall we got light off,&#x27; founder and CEO Blake Scholl told Aviation Week. &#x27;We ran it up to 6,500 rpm, and we had the benefit of nearly 2,000 real-time sensors.&#x27;</p>
+<p>The core is the shared heart of two products: the Symphony medium-bypass turbofan for the Mach 1.7 Overture airliner, and the Superpower industrial gas turbine — the same core, minus the fan, driving a 42-megawatt generator. The first application, Scholl has said, is on the ground, not in the sky: behind-the-meter power for AI data centers, deployable in a couple of trailers with no cooling water. Boom is tracking toward tests of a fully integrated engine around the middle of next year, and is setting up an in-house foundry for casting single-crystal turbine blades from custom superalloys.</p>
+<p>The backstory is the strategy lesson: Rolls-Royce walked away as engine supplier in 2022, and Boom became, in Scholl&#x27;s words, &#x27;instantly unfundable.&#x27; Building its own engine was the only way forward — and the gap turned out to be the business model, with the turbine as the first revenue product years before any passenger flight. @paulg&#x27;s one-liner for the weekend captures the VC mood: &#x27;AI will Wallace every Darwin.&#x27;</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Politics</h2>
+<span class="count">2 stories</span>
+</div>
+<p class="ednote">Two policy fights to watch: Spain votes in a week, and Washington is weighing whether to &#x27;name and shame&#x27; companies that run Chinese open-weight models — the open-source community&#x27;s answer is blunt.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.europes.run/article/255350/who-to-watch-in-spain-s-election-race">Spain votes in a week — and the woman looming over it isn&#x27;t on the ballot</a></h3>
+<div class="byline">
+<span class="src">Bloomberg Weekend</span> &middot; Nov 22
+</div>
+<p class="dek">Snap election Sunday Nov 29: Sánchez called it eight months early after Congress rejected his housing measures; the PP leads the polls, Vox is a comfortable third, and Madrid&#x27;s Ayuso dominates the right without standing.</p>
+<div class="body">
+<p>Spanish Prime Minister Pedro Sánchez has called a snap general election for Sunday, Nov. 29 — eight months early, after Parliament rejected his minority government&#x27;s emergency housing measures. It will be Spain&#x27;s sixth general election in 11 years, for all 350 seats in Congress; 176 are needed to govern.</p>
+<p>The people to watch: Alberto Núñez Feijóo, whose conservative People&#x27;s Party tops most polls and who is favourite to become prime minister; Sánchez himself, written off before and the author of comebacks in 2017 and 2023, who has framed the campaign around the housing crisis; Santiago Abascal, whose anti-immigration Vox sits in a comfortable third and could hold the balance; and Isabel Díaz Ayuso, 48, president of the Madrid region since 2019, who has become one of the most influential figures on the Spanish right — and isn&#x27;t on the ballot at all. Bloomberg&#x27;s Forecast flags her profile as the weekend read.</p>
+<p>Most polls have the PP and Vox together past 176 seats, though the Socialists have pulled closer in the POLITICO poll average — and the 2023 caution applies: the same polls pointed the same way then, and Sánchez still won a new term 116 days after the vote. A PP–Vox government would shift one of Europe&#x27;s biggest economies to the right; a Sánchez comeback would be his third escape.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.zerohedge.com/ai/itll-mean-youre-not-retarded-all-shreds-white-house-plan-shame-open-source-ai-users">Washington weighs &#x27;naming and shaming&#x27; companies that run Chinese AI — the open-source world answers: build more</a></h3>
+<div class="byline">
+<span class="src">ZeroHedge</span> &middot; Nov 21
+</div>
+<p class="dek">Reuters: Treasury and the White House science office discussed forcing US firms to disclose use of Chinese models like Qwen, Kimi and DeepSeek. Friedberg calls it &#x27;a path to tyranny&#x27;; Chamath is blunter.</p>
+<div class="body">
+<p>Reuters reported that officials at the Treasury Department and the White House Office of Science and Technology Policy have discussed requiring US companies to publicly disclose their use of Chinese AI models — aimed at open-weight models such as Alibaba&#x27;s Qwen, Moonshot AI&#x27;s Kimi and DeepSeek. Airbnb, which uses Qwen for its AI customer service agent, is named; Reps. Andrew Garbarino and John Moolenaar have sent letters to Airbnb, DoorDash and Anysphere (Cursor) over their use of Chinese models. Reuters described the idea as part of a &#x27;name and shame&#x27; campaign to discourage use of Chinese AI while sticking to the administration&#x27;s broader anti-regulation stance. The idea has not been adopted, and it is unclear whether it would become formal rulemaking. Treasury Secretary Scott Bessent said in July the administration could sanction Chinese AI companies found guilty of stealing American models&#x27; IP through distillation.</p>
+<p>The All-In hosts shredded it on Friday&#x27;s episode. David Friedberg: any effort to &#x27;curb open source, restrict open source, label open source&#x27; is &#x27;going to both limit human prosperity, limit individual liberty, create an Orwellian state&#x27; — &#x27;I think this continues to be the path of tyranny.&#x27; Chamath Palihapitiya was blunter on what a disclosure nobody will see on a website would actually do: &#x27;Nothing. It&#x27;ll mean that you&#x27;re not retarded.&#x27; And: &#x27;if the decision is disclaim a thing that nobody&#x27;s going to see on your website, or go out of business, I would disclaim the thing, not go out of business.&#x27; His verdict: &#x27;a trial balloon,&#x27; and &#x27;Washington needs some extremely technical people on the inside that explains the actual technical implications of some of these things.&#x27;</p>
+<p>The builder community&#x27;s answer came from Hugging Face&#x27;s @ClementDelangue: &#x27;The best response to Chinese open-source AI isn&#x27;t to ban it, it&#x27;s to build more.&#x27; @rasbt adds that US and Chinese open models make each other better. @GavinSBaker separates the issues: approved in-China datacenter sales, gaming GPUs, and GPUs rented to Chinese labs abroad are three different questions. The context that matters: this is the demand-side lever after a month of supply-side controls — Commerce closed the cloud-rental loophole on Nov. 16 — and it lands the week Palo Alto Networks agreed to buy Applied Compute, a platform for running open-weight models, for $4.5 billion in stock.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Other</h2>
+<span class="count">1 story</span>
+</div>
+<p class="ednote">The weekend&#x27;s cultural scoreboard: a video game just out-earned every movie ever made on day one — and it may occupy more of our lives than Bond ever will.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://www.wsj.com/business/media/take-twos-grand-theft-auto-vi-hits-nearly-4-billion-in-sales-on-launch-day-a1e35d15">GTA VI made $3.79 billion in a day. Bond will need a lot of martinis to catch up.</a></h3>
+<div class="byline">
+<span class="src">WSJ</span> &middot; Nov 21
+</div>
+<p class="dek">Take-Two&#x27;s day-one sales beat Avengers: Endgame&#x27;s entire lifetime box office — and Bloomberg Intelligence expects ~$20 billion over the decade. But Bond still wins on audience.</p>
+<div class="body">
+<p>On Monday, Amazon MGM Studios announced that Robert Pattinson would be the next James Bond. On Thursday, Grand Theft Auto VI was released to stellar reviews — and, Take-Two said Friday, $3.79 billion in first-day retail sales, a record for any entertainment property. The record for a film, in nominal terms, is Avengers: Endgame at $2.9 billion worldwide, across its entire run. By the end of its first year, Bloomberg Intelligence expects GTA VI sales to exceed the combined box office of all five Daniel Craig Bond movies; BI&#x27;s Nathan Naidu expects roughly $20 billion in total spending over the next decade. The game sold 32.5 million pre-ordered copies, and earned a 99 on Metacritic — the highest-reviewed game of all time.</p>
+<p>By audience, things look better for 007: BI expects 60–70 million copies in GTA VI&#x27;s first year, while a blockbuster Bond could sell 100 million tickets. But on time spent — perhaps the clearest sense in which movies and games compete — it probably won&#x27;t be close. BI&#x27;s Kevin Near estimates viewers spent something like 2.5 billion to 6 billion hours watching Craig play Bond, across platforms; total time spent playing GTA V is in the ballpark of 35–55 billion hours, without counting time spent watching other people play on YouTube or Twitch. The next Bond may reach more people, but GTA VI will probably occupy vastly more of their lives. As Bloomberg&#x27;s Dispatch notes, gamers are already weighing their priorities as the release runs up against Thanksgiving family gatherings.</p>
+</div>
+</article>
+</div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Learn &amp; Build</h2>
+<span class="count">3 stories</span>
+</div>
+<p class="ednote">Three things worth studying from the weekend&#x27;s discussions: the open problems in post-training, an energy-based view of learning, and the case that code alone is no longer enough.</p>
+<div class="stories">
+<article class="lead">
+<h3><a href="https://natolambert.com/slides/2026/cornell-post-training/talk#1">The six open problems in post-training</a></h3>
+<div class="byline">
+<span class="src">Nathan Lambert</span> &middot; Nov 21
+</div>
+<p class="dek">Harness design, character training, open-source RL environments, reasoning efficiency, RL scaling laws, multi-agent scaling laws — Lambert&#x27;s agenda from Trillium Labs, in slide form.</p>
+<div class="body">
+<p>Nathan Lambert&#x27;s new deck — from his agenda at Trillium Labs, presented at Cornell — lays out the six biggest open problems in post-training: harness design for context management; character training; open-source RL environments; reasoning efficiency in RL; scaling laws for RL; and multi-agent scaling laws. It ends with a debate on how recursive self-improvement is changing the research itself.</p>
+<p>Why this one matters for you: post-training is the layer your platform will operate in. Harness design — how you manage context across long agent runs — and RL scaling laws are the two problems closest to the Riot AI foundation platform, and open-source RL environments are where the field&#x27;s leverage is compounding fastest. The deck is the map; read it before the next planning conversation about what the platform should actually do.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://arxiv.org/abs/2611.14383">An energy-based perspective on machine learning</a></h3>
+<div class="byline">
+<span class="src">arXiv</span> &middot; Nov 21
+</div>
+<p class="dek">Daibond &amp; Du&#x27;s tutorial, via Yann LeCun: energy-based models are &#x27;MORE GENERAL than probabilistic models&#x27; — a different foundation for thinking about learning.</p>
+<div class="body">
+<p>Daibond &amp; Du&#x27;s tutorial, shared by Yann LeCun, who adds that energy-based models are &#x27;MORE GENERAL than probabilistic models.&#x27; Energy-based models assign low energy to plausible configurations and high energy to implausible ones — a different foundation for thinking about learning than the probabilistic framing that dominates current practice.</p>
+<p>Read it alongside @fchollet&#x27;s point from the same weekend: the current stack — Transformer plus gradient descent plus token-space reasoning — &#x27;is not even in the top 50% most efficient. Future AI will look nothing like the current stack.&#x27; The tutorial is the kind of foundational reading that pays off precisely when the dominant paradigm starts to look contingent rather than inevitable.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://x.com/thorstenball/status/2124206451715604938">&#x27;Programming isn&#x27;t enough anymore&#x27;</a></h3>
+<div class="byline">
+<span class="src">X — @thorstenball</span> &middot; Nov 21
+</div>
+<p class="dek">Joy &amp; Curiosity #107: when code is cheap, what matters is having something worth building — so learn business, markets, and life outside software.</p>
+<div class="body">
+<p>&#x27;Programming isn&#x27;t enough anymore.&#x27; That&#x27;s Thorsten Ball&#x27;s argument in Joy &amp; Curiosity #107: when code is cheap, what matters is having something worth building — so learn business, markets, and life outside software. The scarce skill stops being writing the code and starts being judgment about what deserves to exist.</p>
+<p>The concrete illustration arrived the same weekend: Amp shipped &#x27;Boxes&#x27; — plain VMs with an agent on each, where you deploy apps by asking. The tooling now does the part that used to be the job. The takeaway for the SaaS transition is the same one as for an individual career: the org-change work — deciding what to build, and getting a team to actually adopt it — is the product now, not the code.</p>
+</div>
+</article>
+</div>
+</section>
+<footer>
+Assembled from your HEY Feed &middot; Prepared by Alfred &middot; <a href="mobile.html">Mobile version</a> &middot; <a href="archive.html">Past editions</a>
+</footer>
+</div></body></html>
