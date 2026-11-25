@@ -53,70 +53,79 @@ h3 { font-size: 19px; }
 <h1>The Morning Feed</h1>
 </header>
 <div class="dateline">
-<span>Tuesday, November 24, 2026</span>
+<span>Wednesday, November 25, 2026</span>
 <span>Curated from your HEY Feed</span>
 </div>
 <section>
 <div class="sec-head">
 <h2>AI Development Practices</h2>
-<span class="count">4 stories</span>
+<span class="count">6 stories</span>
 </div>
-<p class="ednote">The durability question moved from theory to practice this week: two teams shipped answers to what happens when an agent runs for hours, crashes, or has to wait for a human — and the deepest lesson is that the bottleneck has moved from writing code to reviewing it.</p>
+<p class="ednote">OpenAI dropped a decade of complexity theory in a single day — and the most important half is the part no GPU will ever run. Meanwhile Claude&#x27;s artifacts grew up into desktop apps, and the Python tooling layer quietly crowned a new default.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.decodingai.com/p/inngest-vs-langchain-durable-agent-stack">Inngest vs. LangChain: I Built the Same Long-Running Agent Twice</a></h3>
+<h3><a href="https://github.com/openai/math">OpenAI claims a decade of complexity theory in one day — ω = 9/4, Smale&#x27;s ninth, Hirsch dead</a></h3>
 <div class="byline">
-<span class="src">Decoding AI Magazine — Paul Iusztin</span> &middot; Nov 24
+<span class="src">X — @SebastienBubeck</span> &middot; Nov 24
 </div>
-<p class="dek">The same overnight coding agent, built on two stacks — and a clear verdict on which survives a crash, a stop, and a three-day pause.</p>
+<p class="dek">Nine manuscripts landed on GitHub on Tuesday claiming the matrix multiplication exponent is exactly 9/4, a strongly polynomial algorithm for linear programming, and a disproof of the polynomial Hirsch conjecture — if the proofs hold.</p>
 <div class="body">
-<p>Paul Iusztin built the same overnight coding agent — CodeClimb, an eval-driven GraphRAG code-search loop — on two stacks, to answer the fear every agent builder has: if the run crashes after six hours, do you pay twice to resume? His best night ran 26 rounds in 11.8 hours for $74.63.</p>
-<p>On Inngest, a server holds the run state and schedules steps while your worker executes; it notices a dead worker in about two minutes and can redirect or retry, and step.waitForEvent pauses a night for up to three days without holding a worker. On LangChain, the Agent Server, Postgres checkpoints and a Redis queue all live on one node — and with durability: &quot;sync&quot;, the most real-time option, the server batches writes every second, so any step not yet saved between batches is lost; task retries live inside the server process, so a crash wipes them, and a watchdog had to be added to clean up sandboxes the server can&#x27;t recover.</p>
-<p>Verdict, 4–2 to Inngest: durability, developer experience and cost (about $1.15 a night in sandboxes vs ~$2.17 on LangSmith) against LangChain&#x27;s observability and deployment. His rule of thumb: porting an existing codebase, a cracked team, or a super-custom build — Inngest as the durable engine you plug into your own code. Starting from scratch with a small team and standard patterns — LangChain, even at the higher price. Disclosure worth noting: Inngest sponsored the piece; the author says the opinions are his own and Inngest saw it at the same time as readers.</p>
+<p>Late Tuesday, OpenAI&#x27;s Sebastien Bubeck announced nine manuscripts added to github.com/openai/math, the output of an unnamed internal model. The headline claims: ω = 9/4 exactly — a matching lower bound to the 9/4 upper bound from October, closing a 50-year question (the floor of 2 was never in doubt; whether ω = 2 was). Also in the drop: VP ≠ VNP, the algebraic cousin of P vs NP; superpolynomial lower bounds for Hamiltonian cycle and the permanent; the FFT&#x27;s true overhead is √log n; the Erdős–Rado sunflower conjecture; a strongly polynomial linear programming algorithm answering Smale&#x27;s ninth problem; and a disproof of the polynomial Hirsch conjecture.</p>
+<p>The caveats matter as much as the claims. The repo itself says the results are &quot;at different stages of verification,&quot; with ~42% of top-line results formalized in Lean, that &quot;some of the unformalized results could have issues,&quot; and that the papers are &quot;raw research data, rather than polished academic papers.&quot; Treat each one as claimed, partially formalized, until outside complexity theorists weigh in — and note that the papers&#x27; authors defer &quot;completely&quot; to the math community on verification and credit.</p>
+<p>The reactions split four ways: the lower bound is the shock (nothing was known about lower bounds for general arithmetic circuits); it won&#x27;t speed up your GPU (ω improvements are historically &quot;galactic&quot; algorithms with constants too large to run — GPUs still do tiled O(n³)); wait for the eyes and the Lean; and the singularity camp. The honest read: the map changes even if the kernels don&#x27;t — every algorithm whose cost is stated &quot;in terms of ω&quot; now has a fixed number. And the same tensor-geometry toolkit produced several of the claims, so they stand or fall together. Tim Roughgarden&#x27;s gloss is worth holding onto: we already live in much of what Impagliazzo predicted for &quot;Algorithmica&quot; — machines finding proofs, specify-the-output programming — while VP≠VNP pushes back the other way on P≠NP.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.anthropic.com/research/working-with-ai">Claude Ship automates the PR review bottleneck — and Anthropic&#x27;s research says reorganization is where the value is</a></h3>
+<h3><a href="https://claude.com/resources/articles/install-as-app">Claude artifacts are now desktop apps — and MCP servers ship their own Skills</a></h3>
 <div class="byline">
-<span class="src">Anthropic — via X @ClaudeDevs / @bcherny</span> &middot; Nov 23
+<span class="src">X — @ClaudeDevs</span> &middot; Nov 24
 </div>
-<p class="dek">Two Anthropic releases, one argument: as coding gets cheap, review — and reorganizing the work itself — becomes the choke point.</p>
+<p class="dek">An artifact can now live on your Mac or Windows desktop as a persistent app with connectors, notifications and a menu-bar item — and the how-to-use-me instructions now travel with the MCP server itself.</p>
 <div class="body">
-<p>Claude Ship (beta) takes a PR through review, fixes and an approval decision based on a policy file in your repo — &quot;like a smarter CODEOWNERS file,&quot; in @bcherny&#x27;s framing. Run /ship in the CLI or desktop app; on Team and Enterprise, admins can enable it per repo so it runs on every PR. The merge gate stays where it was (branch protection, required checks) — what moves to the model is the judgment about whether a diff is safe under the policy. @PontusLenell made the sharpest point in the replies: &quot;the policy file quietly becomes the most read document in the company. whoever writes what counts as safe to approve ends up doing the senior review once, for every PR after it.&quot;</p>
-<p>The same day, Anthropic&#x27;s economists published &quot;Working with AI&quot; — 66 interviews at 58 US enterprise customers, from AI-native startups to 100-year-old firms. Value comes mostly from more output, not lower costs; of 100 pieces of AI-written software described in detail, 80% automated manual work. Very few AI-driven domestic layoffs — but two-thirds of firms reported hiring less because of AI. And the bottlenecks, as coding speeds up: &quot;code review, sales, and strategic decision-making.&quot; Top-down automation creates insecurity and surveillance fears among the experts needed to make workflows durable; handing out tools and waiting gives uneven, single-task adoption. The highest value came with reorganizing: broader roles owning whole workflows, people moved to the bottleneck tasks, infrastructure for non-developer coding.</p>
-<p>The same-day counterpoint, via @lennysan&#x27;s Atlassian episode: teams where everyone was an &quot;AI builder,&quot; with no PM or design roles, moved &quot;faster than ever&quot; for a few weeks — and a month later everyone had gone back to their old jobs. A PM: &quot;Throughput&#x27;s not our problem. Direction&#x27;s our problem.&quot; As @emollick summarized the paper: &quot;The most AI value comes from changing the organization.&quot; One tension to watch: @natolambert argues readable chain-of-thought is an inefficiency that will go away — monitoring has to move from reading reasoning to testing outputs and tool calls, &quot;while you can still read the traces to validate them.&quot;</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://x.com/bcherny/status/2124961485801836573">X — @bcherny, Claude Ship thread</a>
+<p>Starting Tuesday, any Claude artifact can be installed as a Mac or Windows app in beta: its own icon and window, shareable, updating automatically when the underlying artifact is edited, able to use Claude and your connectors. Anthropic&#x27;s own team built a layered image editor, a file manager and a terminal-with-Claude this way. The demo video drew 56K likes; the replies immediately asked the security question (&quot;thanks Claude for giving hackers another loophole&quot;) and the sleeper feature (&quot;the menu bar item is the sleeper feature&quot;).</p>
+<p>The permissions model is the part to read twice: three tiers — Default (browser-level only), App permissions (notifications, always-on-top windows, global shortcuts), and Full computer access (run programs, read, change or delete files without asking each time). Each approval covers one version only, so Claude re-asks after every edit; Anthropic doesn&#x27;t review apps before install, so full access is for apps you trust. Team and Enterprise admins can switch the whole feature off.</p>
+<p>The same day, MCP turned two: servers can now ship their own Skills, so Claude Code knows how to use a tool out of the box and the instructions stop drifting from the server version. The open questions in the replies are the right ones: when a server&#x27;s skill and the repo&#x27;s own instructions disagree, which wins — and is there still a difference between this and a plugin?</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/">DeepMind&#x27;s agent teams proved faster quantum algorithms — in Lean, so no trust is required</a></h3>
+<h3><a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/">GPT-6 designs proteins with reasoning and code alone</a></h3>
 <div class="byline">
-<span class="src">Google DeepMind — via X</span> &middot; Nov 23
+<span class="src">OpenAI</span> &middot; Nov 24
 </div>
-<p class="dek">Independent teams of Gemini 4 agents, debating every four hours and proving every idea in Lean, cut quantum-circuit costs up to 290×.</p>
+<p class="dek">OpenAI says its GPT-6 family designs protein shapes and sequences &quot;using only reasoning and code&quot; — and in wet-lab tests with Onava, GPT-6.2 designs showed evidence of binding across five targets.</p>
 <div class="body">
-<p>Some quantum algorithms need more resources than the first error-corrected machines will have, and you can&#x27;t test big circuits on classical computers — so correctness has to be proved, not tested. DeepMind&#x27;s answer: separate, independent teams of Gemini 4 agents worked on each problem, every idea proven in Lean before entering a shared notebook, and every four hours the teams met at a &quot;virtual conference&quot; to trade and debate ideas.</p>
-<p>Results: an inertial-confinement-fusion calculation 11.8× cheaper, with memory down from 5,650 to 4,338 logical qubits; a light-sensitive molecule simulation 8× cheaper; Cytochrome P450 — the enzyme that breaks down most medicines — 2.5× cheaper, 481 to 333 qubits; a 2.57× speedup on one Grover implementation; and a 290× speedup for arcsin, a routine used to load numbers into quantum states. DeepMind is candid that these still need more resources than the first error-corrected machines will likely have — and it open-sourced the Lean library, problem specs and verified solutions.</p>
-<p>@fchollet&#x27;s take: &quot;A 10x reduction in simulation cost is essentially a hardware leap achieved through software.&quot; The pattern is the same as the Riemann proof: agent search plus a proof checker means you don&#x27;t need to trust the agents — the verification carries the trust.</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://arxiv.org/abs/2611.09822v2">arXiv paper</a>
+<p>Per OpenAI, an internal model &quot;matched or outperformed specialized models on many protein design tasks&quot; — no biology-specific model in the loop, just the general reasoner writing code. Read the caveat OpenAI includes itself: &quot;Specialized models helped supply sequences and select candidates for testing.&quot; So this is a capability demonstration with a human-designed selection pipeline around it, not a fully autonomous wet-lab loop — but the direction is the point: general reasoning models are starting to do work that used to require domain-specific architectures. Worth watching alongside the math drop: in the same week, one model family claimed advances in pure math and in protein design.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.prnewswire.com/news-releases/cisco-and-openai-launch-shirudo-a-new-project-to-safeguard-agentic-ai-302948685.html">Shirudo: OpenAI and Cisco let agents write eBPF &quot;shields&quot; against exploits before patches land</a></h3>
+<h3><a href="https://huggingface.co/blog/harness-adapters-at-scale">Harness adapters: a small LoRA, trained inside your agent harness, lifts a 27B model from 39% to 55%</a></h3>
 <div class="byline">
-<span class="src">OpenAI / Cisco — via X @gdb</span> &middot; Nov 23
+<span class="src">Hugging Face</span> &middot; Nov 24
 </div>
-<p class="dek">A Linux runtime where agents write small, signed kernel controls to block an exploit path — no reboot, no downtime — while the real patch is still being built.</p>
+<p class="dek">Freeze the model, RL-train a small adapter inside a specific harness on your own task distribution — and the model reasons less, calls fewer tools, and does better first time.</p>
 <div class="body">
-<p>Shirudo — Japanese for &quot;shield&quot; — is an open-source Linux runtime from OpenAI and Cisco (built on Isovalent&#x27;s Tetragon eBPF platform) that lets agents write dynamic eBPF controls to shield systems from exploits, buying time to test and roll out patches without downtime. A guardian agent scans code and vendor disclosures, traces a vulnerability to the affected assets and attack paths, writes a small targeted shield, and tests that it blocks the exploit while the service still runs. Shields are cryptographically signed and TPM-verified before they load, graduate to active blocking only when the evidence says they&#x27;re safe, and retire when the real patch lands. In a controlled demo, a Codex-generated shield blocked a Java4Shell exploit against a running Elasticsearch process — no restart.</p>
-<p>The replies asked the right questions: how do you validate a generated control before enforcement, and roll it back if it blocks real traffic (@MoisesAJunior)? What stops an agent from writing a bad rule (@liupingwei)? And the real containment was never the eBPF verifier but the release process — staging, canary, rollback window (@epure_liviu). This is a direct answer to last week&#x27;s lead: AI-found vulnerabilities outpacing patching. The gap between discovery and patch is now a machine-speed race, and Shirudo is the defenders&#x27; first purpose-built entry.</p>
+<p>Hugging Face&#x27;s recipe, published by Lewis Tunstall: freeze a model and RL-train a small LoRA inside a specific agent harness (pi, Hermes Agent, OpenCode) on your own tasks. Qwen3.8-27B under pi went from 39% to 55% pass@1 on Terminal-Bench 2.1 while average tokens fell from 2.9K to 1.5K per task — &quot;mostly… the model reasoning less, calling less tools, and performing better first time.&quot; On the SWE-bench Pro hard subset, the best variant went from 40.0% to 74.0%.</p>
+<p>The engineering detail worth stealing: merging the three harness adapters by plain sum over-applied the updates (pi fell back to baseline); averaging diluted them; ½-weighting worked best, giving one &quot;super adapter&quot; that runs in all three harnesses. The takeaway for anyone running agents in production: the harness is part of the model now, and a small, cheap, task-specific adapter can beat a bigger model swap. The recipe is public. Related: a team post-training four US open-weight models with their &quot;Tenet&quot; recipe claims Muse Spark Open is the first model to pass 30% all-pass on Legal Agent Bench.</p>
 </div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://x.com/gdb/status/2124985602722676794">X — @gdb announcement thread</a>
+</article>
+<article class="">
+<h3><a href="https://pypi.org/project/uv/">uv passed pip — more than half of all PyPI downloads now go through uv</a></h3>
+<div class="byline">
+<span class="src">X — @charliermarsh</span> &middot; Nov 24
+</div>
+<p class="dek">Astral&#x27;s Charlie Marsh: in late September, uv passed pip, with more than half of all PyPI package downloads now going through uv.</p>
+<div class="body">
+<p>The number is the story — the Rust-written package manager that replaced pip, pip-tools, pipx, poetry, pyenv and virtualenv with one binary now moves the majority of Python&#x27;s package traffic. The sharp question in the replies, unanswered: how much of that growth is agents defaulting to uv versus people actually switching? Either way, the default toolchain for Python has changed, and if you&#x27;re still writing pip install in your READMEs and Dockerfiles, you&#x27;re documenting the old world. (For your teams: &quot;uv pip install&quot; is the drop-in path — same commands, 10–100x faster.)</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://substack.com/@petergyang/note/c-394103243">&quot;Building is free, but alignment isn&#x27;t&quot;: what engineers should do when AI writes all the code</a></h3>
+<div class="byline">
+<span class="src">Substack — Peter Yang</span> &middot; Nov 24
+</div>
+<p class="dek">Peter Yang&#x27;s interview with Charles Lamanna, EVP of Microsoft Copilot: &quot;We&#x27;ve overfit to how engineers like to work [with AI] to the rest of knowledge work.&quot;</p>
+<div class="body">
+<p>Lamanna&#x27;s framing is the one to carry into your own org: building is now free, alignment is the scarce resource. &quot;If a sales rep is spending days not talking to another person in single-player mode, they&#x27;re probably not a very good salesperson.&quot; And the line that should worry every team shipping agents: &quot;Agents are very harsh customers. They want the best performance, price, and reliability, and what they prefer isn&#x27;t always what a person would prefer.&quot; The interview covers what &quot;multiplayer AI&quot; should look like — agents as participants in shared work, not solo copilots — and what engineers should actually do when the code writes itself: spend the freed time on the judgment calls the model can&#x27;t make. Video: https://youtu.be/Ka2c-DGJvWc</p>
 </div>
 </article>
 </div>
@@ -124,59 +133,60 @@ h3 { font-size: 19px; }
 <section>
 <div class="sec-head">
 <h2>AI Venture</h2>
-<span class="count">4 stories</span>
+<span class="count">5 stories</span>
 </div>
-<p class="ednote">Jensen Huang is back, Anthropic&#x27;s stock is not, and the money keeps flowing to the companies that sell agents to enterprises that actually buy them.</p>
+<p class="ednote">The IPO pop is gone; the deals are not. Anthropic slid below its debut price while Amazon, CrowdStrike and Sierra wrote the week&#x27;s biggest checks — and Latin America&#x27;s largest VC raised its biggest fund ever, for AI.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director">Jensen Huang is back as Nvidia CEO — reinstated by a unanimous board after a weekend of White House pressure</a></h3>
+<h3><a href="https://www.wsj.com/finance/stocks/anthropic-had-the-biggest-ipo-ever-the-trade-is-already-unraveling-f971d7c5">Anthropic falls below its IPO price — the biggest debut ever is now a losing trade</a></h3>
 <div class="byline">
-<span class="src">Nvidia / WSJ / Bloomberg</span> &middot; Nov 23
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 24
 </div>
-<p class="dek">Eleven days after resigning amid allegations of an affair with a suspected Chinese spy, Huang is back — with the probe still open, the board&#x27;s independence in question, and the stock up nearly a trillion dollars in a day.</p>
+<p class="dek">Shares fell 6.5% to $81.91 on Tuesday, closing below the $83 IPO price for the first time — three straight days of declines since a 34% debut pop.</p>
 <div class="body">
-<p>Nvidia&#x27;s board voted unanimously on Monday to reinstate Jensen Huang as President, CEO and director, effective immediately, after &quot;a series of discussions and meetings&quot; left it satisfied with his &quot;candor and ability to lead.&quot; Colette Kress goes back to being CFO. The release says the board received &quot;input from senior levels of the United States government&quot; and is confident his return &quot;poses no national security risk.&quot; The WSJ reports what that input was: Trump asked Vice President JD Vance to persuade the board, telling him he hadn&#x27;t seen evidence Huang had done anything wrong; Vance worked Saturday and Sunday telling directors the government didn&#x27;t view Huang as a security risk. An unnamed-source report relayed by @DeItaone (reposted by @ClementDelangue) says Trump and Vance became convinced Huang was &quot;a singular figure protecting open source models and preventing closed-source model companies from becoming too powerful.&quot;</p>
-<p>The market answered instantly: NVDA closed +31.6%, about +$955B in market cap — the largest single-day gain by any stock in history, per @KobeissiLetter — and the Nasdaq added more than $2 trillion. Short sellers were down roughly $12.2B on the day.</p>
-<p>But this is not case closed. The independent-director investigation into reports that Huang was &quot;the target of a foreign intelligence effort&quot; will &quot;proceed to conclusion&quot;; Nvidia set up a National Security and Export Control Committee of independent directors with outside national-security counsel, and is hiring a Chief Compliance Officer. Lawmakers from both parties sharply criticized the reinstatement. Former House Speaker Newt Gingrich: &quot;There is something profoundly wrong about Jensen Huang having a relationship with a Chinese Communist Spy and helping China get a huge number of very advanced computer chips... and now he is being reinstated as CEO.&quot; Bloomberg&#x27;s Beth Kowitt: &quot;The Nvidia Board Just Confirmed Its Own Irrelevance.&quot; And the administration put Megaspeed — the Singapore firm at the heart of the chip-smuggling saga — on a trade blacklist barring it from buying advanced AI chips.</p>
-<p>The camps on X split four ways: &quot;the media got it wrong&quot; (@Jason: &quot;It is not the job of journalists to hold people accountable; it&#x27;s to collect, verify and report facts&quot;); &quot;Jensen protects open source&quot; (@balajis: &quot;Open source AI is protected&quot;; @APompliano wants him to &quot;pour billions of dollars into American open-source AI&quot;); &quot;this isn&#x27;t over&quot; (@shashj: &quot;Exceptionally risky move... Jensen is going to be raked over the coals by Democratic-led committees&quot;); and the builders (@rasbt: &quot;Whatever you think of the last two weeks, CUDA is a big part of why deep learning took off when it did&quot; — AlexNet on two GTX 580s in 2012; @goodside: the market-cap gap with and without Huang is &quot;Jensen&#x27;s inequality&quot;). @sama posted one word: &quot;Jensen!&quot;</p>
-</div>
-<div class="sources">
-<span class="slabel">Sources:</span> <a href="https://www.wsj.com/business/trump-engineered-huangs-reinstatement-as-nvidia-ceo-4e9c1cd3">WSJ — Trump Engineered Huang&#x27;s Reinstatement</a> &middot; <a href="https://www.wsj.com/articles/nvidia-board-reinstates-jensen-huang-as-ceo-a6b49914">WSJ — Nvidia Board Reinstates Jensen Huang as CEO</a>
+<p>The largest IPO in history opened with a 34% jump and has now given it all back. Tuesday&#x27;s drop came in a broader tech selloff — the Nasdaq fell 1.5%, the Philadelphia Semiconductor Index dropped 7.9% — but Anthropic&#x27;s slide is the one the market is watching: as Bloomberg&#x27;s evening briefing put it, &quot;if Anthropic were a baseball team, it would be 1-3.&quot; The weak showing is unwelcome news for its chief rival OpenAI, which is eager to stage its own IPO next year, and for the slew of AI companies eyeing offerings. The question now is whether the IPO price was the peak of the AI trade&#x27;s pricing power or just a wobble — the next few sessions will say more than the debut did.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/finance/stocks/the-blame-game-has-begun-over-anthropics-turbulent-trading-debut-280a34b1">Anthropic&#x27;s IPO was the easy part — the stock is already testing its $83 floor</a></h3>
+<h3><a href="https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/">Amazon&#x27;s $7.5B Decart deal: not a company buyout — a talent-and-software grab aimed at Nvidia</a></h3>
 <div class="byline">
-<span class="src">Bloomberg — Tech In Depth / WSJ</span> &middot; Nov 23
+<span class="src">Bloomberg / X — @PaulBonnet</span> &middot; Nov 24
 </div>
-<p class="dek">The greenshoe is spent, the safety net is gone, and another 300 million shares unlock on Dec. 15 — now Anthropic has to prove safety and spending can coexist in public.</p>
+<p class="dek">Amazon is buying the technology behind the Decart Optimization Stack and hiring its founders and researchers — not Decart&#x27;s world models — in a reported $7.5 billion deal to make its Trainium chips competitive.</p>
 <div class="body">
-<p>The IPO itself was a triumph: the greenshoe fully exercised — 147 million extra shares at $83 — lifting gross IPO proceeds to about $93.5 billion and the total, with a $26 billion private placement, to $119.5 billion, the biggest offering in history. Then the hard part started. Anthropic fell 8.5% on Friday to $88.91, after touching $83.05 intraday — five cents above its IPO price. It fell again on Monday to $87.64, even as the Nasdaq had its best day since April 2025, and slipped below its IPO price in early trading on Tuesday.</p>
-<p>The WSJ&#x27;s blame game is already underway: big investment firms such as Citadel got large allocations while others were shut out, feeding speculation the company prioritized large users of Claude; around 300 million shares — about $26 billion at the IPO price — became immediately sellable by current and former employees; and Morgan Stanley used the full greenshoe on day one, so it can no longer buy shares in the open market to support the stock below $83. Another roughly 300 million shares unlock on Dec. 15.</p>
-<p>The substance underneath: CFO Krishna Rao says Anthropic carries roughly $901 billion of future infrastructure commitments and wants to be &quot;forward-leaning&quot; on computing power while remaining conservative on the balance sheet — T. Rowe Price&#x27;s Emma Norchet points to falling computing cost per dollar of revenue as evidence the strategy can work. And the safety tension is now priced in public: roughly 5% to 7% of revenue in the first nine months came from customers later found violating usage policies, and blocking unauthorized model distillation created a material revenue headwind in Q3. GIC invested again anyway: &quot;Safety is the mission.&quot; Meanwhile, Cognition AI is in talks to raise at a $75 billion valuation — two months after a funding round at $48 billion.</p>
+<p>Read the structure, not the headline number. Amazon is acquiring the proprietary technology behind DOS — software that makes AI models run faster and cheaper across different chips — and bringing co-founders Dean and Orian Leitersdorf and Moshe Shalev plus their team into its chip division. Decart&#x27;s famous real-time world models are not part of the deal. Amazon did not disclose a price; Bloomberg, citing a person familiar, put it at ~$7.5B. Per VC Paul Bonnet&#x27;s breakdown, that&#x27;s ~$2.5B of proceeds on ~$450M invested, a ~5.5x blended multiple — with much of the founders&#x27; money deferred over five years and tied to staying and to targets.</p>
+<p>The strategy is the story: Amazon has worked with Decart since 2025 to optimize Trainium, and DOS is how it narrows the software moat — CUDA — that protects Nvidia. It&#x27;s the same lesson as the whole week: in the chip war, the software that squeezes performance out of silicon is now worth billions on its own. Completion is expected within ~50 days.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://techcrunch.com/2026/11/23/sierra-doubles-valuation-to-30b-within-six-months-as-demand-for-ai-in-cx-takes-off/">Sierra doubles to a $30B valuation in six months; the enterprise-agent money keeps flowing</a></h3>
+<h3><a href="https://techcrunch.com/2026/11/23/sierra-doubles-valuation-to-30b-within-six-months-as-demand-for-ai-in-cx-takes-off/">Sierra doubles to a $30B valuation in six months — $1.75B for the AI customer-service agent</a></h3>
 <div class="byline">
-<span class="src">X — @btaylor / TechCrunch</span> &middot; Nov 23
+<span class="src">Bloomberg</span> &middot; Nov 23
 </div>
-<p class="dek">$1.75B Series F at $30B, $400M ARR in 2.5 years — plus a $277M seed for multi-silicon inference and a $100M ARR API five months after launch.</p>
+<p class="dek">Bret Taylor&#x27;s Sierra raised more than $1.75 billion in a Series F led by Greenoaks and Lightspeed — double the ~$15 billion valuation of its May round.</p>
 <div class="body">
-<p>Sierra — Bret Taylor and Clay Bavor&#x27;s enterprise customer-service agent company — raised $1.75 billion in a Series F at a $30 billion valuation, led by Greenoaks and Lightspeed, with Benchmark, Sequoia, GV and Tiger all re-upping. That&#x27;s a doubling in six months (over $15 billion in May), on $400 million in ARR reached in just over 2.5 years, with agents now serving almost 50% of the Fortune 50.</p>
-<p>The rest of the day&#x27;s money: Marlowe raised a $277 million seed — per Bessemer — for a &quot;multi-silicon AI factory,&quot; inference infrastructure built across different hardware, led by Accel, Bessemer, Altimeter, Atreides, Valor and Eclipse. River API passed $100 million in ARR five months after release and is on track for $200 million this year; Perplexity was an early design partner. And Hoplite raised $5.5 million led by John and Patrick Collison (with Paul Graham, YC, Theo Browne and 20VC) to launch &quot;Swarms&quot; for software engineering.</p>
-<p>The read: capital is concentrating on agents with enterprise revenue attached — support, inference, APIs — not on demos.</p>
+<p>The customer-service AI company co-founded by former Salesforce co-CEO Bret Taylor (who also chairs OpenAI&#x27;s board) now counts JPMorgan Chase, Wells Fargo and Cigna among its customers, and says annualized revenue passed $400 million in October — doubling roughly every five months. All five of its previous lead investors (Benchmark, Sequoia, Greenoaks, GV, Tiger Global) doubled down. Taylor and co-founder Clay Bavor used the announcement to push back on bubble talk, arguing that heavily regulated, established companies are adopting AI fastest — the opposite of the usual &quot;AI is a toy for startups&quot; story. At ~75x ARR, the market is pricing Sierra as if that adoption curve keeps bending up. Whether it does is the open question for every AI application company raising at these multiples.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://cryptobriefing.com/openai-launches-openworks-small-businesses/">OpenAI will pay local AI experts up to $8,000 a month to help small businesses</a></h3>
+<h3><a href="https://www.wsj.com/pro/cybersecurity/crowdstrikes-44-billion-zscaler-deal-reflects-a-new-imperative-in-cybersecurity-5669e9db">CrowdStrike to buy Zscaler for $44B: &quot;Safety is required to let AI in&quot;</a></h3>
 <div class="byline">
-<span class="src">OpenAI — via X @gdb</span> &middot; Nov 23
+<span class="src">Bloomberg</span> &middot; Nov 23
 </div>
-<p class="dek">OpenWorks is a distribution play dressed as a helping hand: paid local consultants seeding ChatGPT Business in 20 pilot cities.</p>
+<p class="dek">The all-stock deal — 1.135 CrowdStrike shares per Zscaler share, a 34% premium — would be the largest pure-play cybersecurity acquisition ever, built explicitly around securing AI agents.</p>
 <div class="body">
-<p>OpenAI is building a nationwide network of &quot;OpenWorks Partners&quot; — local AI experts paid a monthly stipend of up to $8,000 to spend days each month with small businesses and host a monthly workshop. The businesses get free one-on-one help on a project they choose, plus three months of ChatGPT Business. Eligible: independently owned US small businesses — restaurants, retailers, service firms, manufacturers. Not eligible: software/SaaS, venture-backed or PE-owned. The pilot runs in 20 cities, including Chicago, Kansas City, Fargo, Jackson MS, Charlotte, Austin, Houston, Atlanta, LA, Seattle and New York.</p>
-<p>The sharpest reply, from @AIgorStadnyk: &quot;The hard part for a small business isn&#x27;t the model. It&#x27;s hooking it into the booking system, the invoices and the WhatsApp chat they already run on.&quot; Why it matters: it&#x27;s a distribution play — paid local consultants seeding ChatGPT Business — aimed at exactly the organizational-change bottleneck Anthropic&#x27;s research describes. OpenAI is buying its way past it, one town at a time.</p>
+<p>The framing from CrowdStrike CEO George Kurtz is the whole thesis: &quot;Security used to be about keeping the adversary out. Today, safety is required to let AI in.&quot; The network used to connect people to places; now it connects agents to data. Zscaler CEO Jay Chaudhry — who will keep running Zscaler and join CrowdStrike&#x27;s board — put it more bluntly: &quot;AI agents are rapidly becoming the new weakest link,&quot; because they operate continuously at machine speed and can cause significant damage if compromised.</p>
+<p>The deal values Zscaler at ~$43.9 billion, with CrowdStrike shareholders owning ~84% of the combined company. Bloomberg notes Chaudhry and his family stand to gain ~$14.5 billion. Closing is expected in the second half of CrowdStrike&#x27;s fiscal 2028. The strategic read: the agent era is consolidating the security stack around a single control plane — one party accountable for the platform, as customers reportedly asked for.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://phemex.com/news/article/kaszek-raises-record-650m-earlystage-fund-targeting-latin-american-ai-startups-104723">Kaszek raises $650M — Latin America&#x27;s largest-ever early-stage fund, and it&#x27;s for AI</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 24
+</div>
+<p class="dek">Kaszek Ventures closed Fund VII above its $600M target, the region&#x27;s largest early-stage fund ever, to back 20–30 companies — mostly AI application-layer startups, plus data centers and chips.</p>
+<div class="body">
+<p>Latin America&#x27;s largest VC is betting the region&#x27;s AI moment is the application layer: startups using language models to improve products and operations in financial services, healthcare and online marketplaces, with B2B services singled out by co-founder Hernán Kazah as the biggest opportunity. The fund will also explore AI infrastructure — data centers and chips — and Brazil and Mexico remain the biggest markets. Backers include Washington University in St. Louis and the Wellcome Trust; ~60% of the capital is reserved for follow-on rounds. PitchBook ranks it the largest Latin America-focused venture fund closed since 2023. Total commitments since Kaszek&#x27;s 2011 founding: nearly $4 billion.</p>
 </div>
 </article>
 </div>
@@ -184,48 +194,69 @@ h3 { font-size: 19px; }
 <section>
 <div class="sec-head">
 <h2>Politics</h2>
-<span class="count">4 stories</span>
+<span class="count">6 stories</span>
 </div>
-<p class="ednote">Washington keeps redrawing the lines around AI, trade, and national security — and the Nvidia saga is now a case study in how fast those lines move.</p>
+<p class="ednote">Huang apologized. Huawei was convicted. And Washington is preparing to raise tariffs on China and a dozen other countries — the chip war&#x27;s legal and political fronts all moved on the same day.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/politics/national-security/u-s-army-plans-to-detonate-tons-of-toxic-lead-explosives-in-iowa-0237a92">Trump ordered the Army to hold off detonating tons of toxic explosives in Iowa</a></h3>
+<h3><a href="https://www.wsj.com/business/jensen-huang-apologized-to-nvidia-staff-in-company-meeting-c798dfba">Huang says he&#x27;s sorry</a></h3>
 <div class="byline">
-<span class="src">WSJ — What&#x27;s News</span> &middot; Nov 23
+<span class="src">Bloomberg / WSJ / X</span> &middot; Nov 24
 </div>
-<p class="dek">The blast was rescheduled for the day before Thanksgiving; Trump wants court approval and the sign-off of Gov.-elect Rob Sand first.</p>
+<p class="dek">A day after his reinstatement, Jensen Huang told Nvidia staff he was in therapy, admitted violating the company&#x27;s code of conduct, and said he didn&#x27;t get his job back because he&#x27;s &quot;a tech bro who&#x27;s above the law.&quot;</p>
 <div class="body">
-<p>The detonation, originally planned for last week, was rescheduled for the day before Thanksgiving to allow for optimal weather conditions, the Army said. Trump said on Monday that he wants the Army to get approval from federal courts and Gov.-elect Rob Sand, a Democrat, first. The Army and Sand&#x27;s representatives didn&#x27;t immediately respond to requests for comment.</p>
+<p>At an hour-long all-hands in Santa Clara on Tuesday, Huang apologized to employees, thanked CFO Colette Kress for leading the company in his absence, and said he was in daily therapy — about 90 minutes a day — to address the behavior that led to the scandal, including an affair with a woman US officials allegedly suspect to be a Chinese spy. &quot;I made some terrible mistakes,&quot; he said, per the NYT&#x27;s account of the livestream. &quot;I was unfaithful to Lori, and I hurt my kids, and of course, I hurt all of you.&quot; He called it the hardest company meeting he had ever done; the hardest meeting, he said, was with his wife. He also thanked the Trump administration for quick access to intelligence that he said helped the board judge the national-security risks of reinstating him as low — and rejected the idea that political pressure put him back, saying he didn&#x27;t return because he&#x27;s above the rules. He took no questions, and faces a bipartisan grilling in Congress next week.</p>
+<p>Meanwhile on X, the story itself became a fight over who wrote it: Reuters reported Trump and Vance &quot;personally intervened over the weekend,&quot; convinced Huang was &quot;a singular figure protecting US open-weight AI models&quot;; Mitt Romney posted a 70K-like rebuke — &quot;we rushed AI along without regulating safeguards… and at the same time, we sold China the very chips they&#x27;d need to get ahead of us&quot;; and a funding-network charge claimed Coefficient Giving, funded through Dustin Moskovitz&#x27;s Anthropic stock, &quot;spent hundreds of millions on both journalism and policy outfits that shaped the Jensen Huang story.&quot; Pushback came from inside the same camp: Martin Casado said these networks &quot;are not always aligned and certainly not controlled by the labs,&quot; and Tim Sweeney called it &quot;a new category of attack… coordinated by non-profit entities funded by a commercial company&#x27;s competitors.&quot; Treat the funding claims as allegations — they were not checked against primary sources. And Bloomberg Opinion&#x27;s Parmy Olson adds the sting: last week Huang&#x27;s removal looked like the first sign of proper accountability for the industry&#x27;s wayward leaders; his resurrection can only hurt firms like Anthropic.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.reuters.com/legal/litigation/chinese-official-sentenced-death-leaking-secrets-foreign-country-2026-11-23/">China sentences an official to death for spying for a foreign power</a></h3>
+<h3><a href="https://www.wsj.com/business/telecom/chinas-huawei-convicted-of-fraud-in-u-s-criminal-trial-20e17ac3">Huawei convicted of fraud in US criminal trial</a></h3>
 <div class="byline">
-<span class="src">Reuters (via Bloomberg Evening Briefing)</span> &middot; Nov 23
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 24
 </div>
-<p class="dek">An official identified only as Ma was recruited abroad, then sent 35 state secrets home for over $150,000 — Beijing is making an example of him.</p>
+<p class="dek">A Brooklyn federal jury found Huawei guilty on 10 of 12 counts — bank fraud, wire fraud, sanctions violations, trade-secret theft and money laundering — but acquitted it of racketeering.</p>
 <div class="body">
-<p>China&#x27;s National Administration of State Secrets Protection said the official, identified only by his surname Ma, was approached and recruited by a foreign intelligence agency while working overseas — a handler identified as &quot;Kailin&quot; cultivated him under the guise of wanting to learn Chinese — then sent more than 100 intelligence reports home after returning to China, including 35 items later deemed state secrets, for over $150,000. An unspecified court sentenced him to death and confiscated all his personal property. The report did not disclose which body he worked for, which foreign service recruited him, or when he was sentenced — or whether he has already been executed. Reuters could not independently verify the report, which was briefly the top-trending topic on Weibo on Monday morning.</p>
+<p>After a trial of more than two months and 60+ prosecution witnesses, jurors convicted Huawei and three subsidiaries of deceiving banks about business in Iran, stealing trade secrets from US companies, and laundering money. They acquitted on the two lead charges prosecutors framed as the spine of the case — racketeering conspiracy and conspiracy to obstruct justice — which Huawei&#x27;s lawyer welcomed as a rejection of the portrayal of the company as &quot;corrupt from top to bottom.&quot; Huawei says the guilty verdicts are &quot;without legal or factual merit.&quot; The case dates to January 2019 charges and the US trade blacklist that followed; sentencing is set for September 2027, when the company faces fines, forfeiture and restitution. The verdict lands the same week Washington moves to raise tariffs — the legal and trade fronts of the China tech war, advancing together.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/world/americas/the-mass-exodus-making-cubas-economic-crisis-even-worse-6fed25bd">A mass exodus is making Cuba&#x27;s economic crisis even worse</a></h3>
+<h3><a href="https://www.wsj.com/economy/trade/u-s-prepares-to-raise-tariffs-on-china-and-other-countries-37981740">US prepares tariff hike on China, the EU and a dozen other countries</a></h3>
 <div class="byline">
-<span class="src">WSJ</span> &middot; Nov 23
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 24
 </div>
-<p class="dek">Sanctions, a fuel embargo, a failing state — and now a population shrinking at an alarming rate.</p>
+<p class="dek">USTR Jamieson Greer is expected as soon as this week to unveil the results of a monthslong investigation into the industrial subsidies of China, the EU and 14 other nations.</p>
 <div class="body">
-<p>Conditions in Cuba are deteriorating under mounting US sanctions, a fuel embargo and a failing state apparatus — and the Journal reports the population is now shrinking at an alarmingly rapid rate, compounding every other problem and complicating any hopes of a turnaround.</p>
+<p>The Trump administration argues the subsidies harm American companies by supporting domestic industrial production abroad; the final tariff rates are still unclear, and the timing could slip. Bloomberg adds the market&#x27;s read: before the Huawei verdict, Beijing had been signaling it was holding up its side of the bargain — for now — and Xi Jinping is playing the long game on chip retaliation. The tariff move would land on top of the Huawei conviction and the Huang saga in the same week — a reminder that the AI chip war is being fought on trade, legal and personnel fronts simultaneously.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://www.wsj.com/us-news/law/bayer-clears-major-roundup-hurdle-but-a-new-study-raises-cancer-link-again-15152a03">Bayer clears its big Roundup hurdle — just as a new NIH study links glyphosate to cancer</a></h3>
+<h3><a href="https://www.wsj.com/politics/national-security/ford-general-motors-military-drones-c082d202">The Pentagon wants GM and Ford to mass-produce military drones</a></h3>
 <div class="byline">
-<span class="src">WSJ — What&#x27;s News</span> &middot; Nov 23
+<span class="src">WSJ</span> &middot; Nov 24
 </div>
-<p class="dek">A judge approved a $7.25B settlement closing the bulk of Roundup litigation — as a National Institutes of Health study lands at the same moment.</p>
+<p class="dek">Defense Department leaders are enlisting automakers and their supply chains to ease shortages of unmanned systems — surveillance and strike drones that have become crucial in global conflicts.</p>
 <div class="body">
-<p>After nearly a decade of litigation, Bayer won a judge&#x27;s approval last week for a $7.25 billion settlement designed to close the bulk of its current and future Roundup weedkiller litigation. Released around the same time, a National Institutes of Health study linked Roundup&#x27;s main ingredient — glyphosate — to cancer. The US government hasn&#x27;t said there is any link, while the World Health Organization has deemed it a probable carcinogen. A Bayer spokeswoman said the study&#x27;s conclusions should be considered preliminary.</p>
+<p>The Pentagon has spent months pulling automakers into defense production — missiles, tactical trucks — and now wants them to help scale drone output. Trump administration officials have received mixed reactions from automotive executives so far. The logic is industrial, not ideological: the US defense base can&#x27;t produce unmanned systems at the volume modern conflicts consume, and Detroit is the only domestic manufacturing base with the supply chains and scale to close the gap. Watch whether the automakers take the work — and what it does to their EV-era capacity planning.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://news.bgov.com/bloomberg-government-news/van-hollen-challenges-schumer-for-senate-leader-in-new-congress">Van Hollen&#x27;s challenge to Schumer pushes Democrats toward a bolder agenda</a></h3>
+<div class="byline">
+<span class="src">Bloomberg</span> &middot; Nov 24
+</div>
+<p class="dek">The first challenge to a sitting Senate Democratic leader in more than 40 years — a warning that a growing camp won&#x27;t be satisfied with half measures after the midterm sweep.</p>
+<div class="body">
+<p>Sen. Chris Van Hollen of Maryland is challenging Chuck Schumer to lead Senate Democrats next year, casting Schumer as a status-quo leader unprepared for the moment and calling for an end to the Iran war and a bolder economic agenda. The caucus votes by secret ballot on Dec 1; Schumer, leader since 2017, says he has the votes. The challenge is a long shot — Schumer&#x27;s decades of relationships and fundraising power are formidable — but it mobilizes the activist base at peak influence heading into presidential primaries, and Bernie Sanders has already said he will oppose Schumer. The subtext for the AI world: a Democratic caucus that just won on an anti-AI-backlash message is now debating how confrontational to be, and tech regulation is squarely in that debate.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://www.wsj.com/world/middle-east/yemens-houthis-take-second-swipe-at-tallest-tower-in-saudi-capital-11cc288c">Houthis strike Riyadh&#x27;s tallest tower for the second time in a week — 11 injured</a></h3>
+<div class="byline">
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 24
+</div>
+<p class="dek">A drone hit the Public Investment Fund Tower in Riyadh&#x27;s financial district on Tuesday, wounding 11 people — the second strike on the tower in less than a week.</p>
+<div class="body">
+<p>Saudi civil defense said 11 people were wounded — two Saudis, two Indians, three Nepalis and four Egyptians — in the strike on the tower that houses the kingdom&#x27;s sovereign-wealth fund. A first strike on Nov 19 damaged the building but caused no injuries. The campaign has already disrupted the Gulf&#x27;s biggest economy: the King Abdullah Financial District has been under remote-work orders since Houthi strikes on Riyadh&#x27;s main airport last month killed several people. The Saudi-led coalition called the attack a &quot;cowardly terrorist attack&quot; and promised a decisive response. The Houthis said Wednesday they had also attacked the Ras Tanura oil refinery.</p>
 </div>
 </article>
 </div>
@@ -233,31 +264,39 @@ h3 { font-size: 19px; }
 <section>
 <div class="sec-head">
 <h2>Other</h2>
-<span class="count">2 stories</span>
+<span class="count">3 stories</span>
 </div>
-<p class="ednote">Monday&#x27;s euphoria faded fast on Tuesday morning — and outside the AI trade, a browser built from scratch and a pharma mega-deal.</p>
+<p class="ednote">Thanksgiving eve, and the market gave no thanks: the selloff rolled on, the fast money couldn&#x27;t keep up, and a 218-year-old mystery got solved by a model in 22 minutes.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://www.wsj.com/finance/stocks/i-fell-off-my-chair-investors-marvel-as-huangs-return-sends-stocks-rocketing-98131bc6">Caution returns: the Nvidia rally fades, and strategists see a 2018 echo</a></h3>
+<h3><a href="https://www.wsj.com/finance/stocks/nasdaq-futures-fall-as-questions-linger-over-ai-trade-68ba6d71">Searching for safety: the selloff rolls on, and even the fast money is too slow</a></h3>
 <div class="byline">
-<span class="src">Bloomberg — Markets Daily</span> &middot; Nov 24
+<span class="src">Bloomberg / WSJ</span> &middot; Nov 25
 </div>
-<p class="dek">S&amp;P futures down 1%, Nasdaq 100 down 1.9% — Nvidia slid more than 5% and Anthropic fell below its IPO price in early trading.</p>
+<p class="dek">The Nasdaq fell 1.5% on Tuesday, the Philadelphia Semiconductor Index dropped 7.9%, and Wednesday&#x27;s futures point lower still — while Treasuries rally and quant funds are forced to sell $68 billion of stocks.</p>
 <div class="body">
-<p>Monday was the roar back: the tech-heavy Nasdaq added more than $2 trillion in market value as Huang&#x27;s return rekindled Wall Street&#x27;s passion for AI stocks. Tuesday morning is the fade: S&amp;P 500 futures 7,181.75 (-1.0%), Nasdaq 100 futures 26,290.25 (-1.9%); Nvidia slid more than 5% and Anthropic fell below its IPO price in early trading. Asia went the other way — Nikkei +3.9%, Korea&#x27;s Kospi +6.3% — and the US 10-year yield sits at 4.89%.</p>
-<p>Strategists at Citadel Securities warned that financial markets are signaling a darkening growth outlook just as the Federal Reserve turns increasingly hawkish — a combination echoing late 2018, when a resilient US economy masked deteriorating prospects before a sharp selloff in risk assets. The dollar is rising, cyclical stocks have been sinking, and New York Fed President John Williams said he would not rule out rate hikes at successive meetings if conditions warranted it.</p>
-<p>Elsewhere: Sanofi agreed to buy US biotech Insmed for $41 billion — the biggest pharma acquisition in three years (Insmed up 14%); and America&#x27;s Car-Mart, the used-car seller and subprime lender, filed for bankruptcy as interest rate hikes put an end to ultra-cheap borrowing.</p>
+<p>The numbers: S&amp;P 500 futures -1.8%, Nasdaq 100 futures -2.8% on Wednesday morning; Korea&#x27;s Kospi sank 6.2%, its worst in a month. Tuesday&#x27;s session: Nasdaq -1.5% to 23,733, S&amp;P -0.5%, Dow +0.85% to 50,018 (healthcare and staples, not tech). Nvidia -5.9% after Monday&#x27;s record 31% surge; Micron -11%, AMD -8.9%, the SOX -7.9%; Dell -7.5%, Workday -10% on a weak forecast, Ambarella -37% after hours. &quot;My head is spinning,&quot; said Sanctuary Wealth&#x27;s Mary Ann Bartels, who has raised cash and bought defensive healthcare.</p>
+<p>The mechanics underneath: commodity-trading advisors — quant funds that cue off price trends, not fundamentals — are expected to unload $68 billion of global stocks over the next five days, per Goldman Sachs, and they&#x27;re already short both the S&amp;P and Nasdaq 100 at bottom-quartile positioning. With the Nasdaq moving 3–6% a day in different directions, &quot;it makes it almost impossible for fast money managers to keep up,&quot; as Miller Tabak&#x27;s Matt Maley put it. Meanwhile investors are racing to Treasuries — the 10-year yield is ~4.84% — and the bond market is starting to price a scenario where the Fed overshoots, slows the economy, and is forced back to cutting by late 2027. Today&#x27;s PCE inflation print (expected +3.8% year-on-year, roughly double the Fed&#x27;s goal) is the next data point.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://simonwillison.net/2026/Nov/23/ladybird/">Ladybird, the independent browser, shipped its first alpha — and coding agents helped it pass Safari</a></h3>
+<h3><a href="https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical">GPT-6.2 Astra names the artist of an anonymous 1808 sketchbook — in 22 minutes</a></h3>
 <div class="byline">
-<span class="src">Simon Willison — via X</span> &middot; Nov 23
+<span class="src">X — @HistoryGPT</span> &middot; Nov 24
 </div>
-<p class="dek">A browser with its own engines, built from scratch — and in October, agents pointed at web-platform tests gained it 75,650 passes in a month.</p>
+<p class="dek">Yale&#x27;s Beinecke Library holds an anonymous sketchbook from an 1808 Montreal-to-Lake-Superior trip. With minimal prompting and public sources, Astra proposed a minor French aristocrat — and the handwriting matched.</p>
 <div class="body">
-<p>Ladybird is an independent browser with its own HTML/CSS/layout/JS/Wasm engines (it uses HarfBuzz, Skia, ffmpeg and SQLite) — no Chromium, no WebKit. Simon Willison found it fast and light, and it ran his ffmpeg-in-Wasm and Pyodide tools; Datasette Lite failed on a service-worker API.</p>
-<p>The AI angle is the story: per &quot;This Month in Ladybird,&quot; the team pointed coding agents at web-platform tests in October and gained 75,650 passes in a month — about 2.12M to 2.18M in five days — beating Safari. Earlier this year they ported parts of LibJS to 25,000 lines of Rust in two weeks with Claude Code and Codex. A browser engine is one of the hardest codebases on earth, and agents are now moving its conformance numbers faster than humans did.</p>
+<p>Mark Humphries&#x27; account: the sketchbook had only four dated, labelled images. In 22 minutes, Astra proposed the vicomte de Chabot and pointed to a little-known microfilmed diary of his trip as the test. Humphries ordered scans; the handwriting matched the captions and the itinerary matched the dated drawings. His claim: discovery is starting to generalize beyond verifiable domains like math — the same week OpenAI&#x27;s models claimed advances in complexity theory and protein design, one also did archival detective work. Sam Altman amplified it. The caveat, as always with a single striking anecdote: it&#x27;s one case, not a benchmark — but it&#x27;s the kind of case that changes what historians think is possible to ask a model.</p>
+</div>
+</article>
+<article class="">
+<h3><a href="https://substack.com/@chamath/note/c-394306431">Apple pays for most of Globalstar — and Amazon agreed to buy it</a></h3>
+<div class="byline">
+<span class="src">Substack — Chamath Palihapitiya</span> &middot; Nov 24
+</div>
+<p class="dek">Apple accounted for 64% of Globalstar&#x27;s revenue in the first nine months of 2026, up from 24% in 2022. In April, Amazon agreed to buy Globalstar — the network behind Emergency SOS on the iPhone.</p>
+<div class="body">
+<p>Globalstar runs the satellite network behind features like Emergency SOS on the iPhone, and Apple is paying for much of it — 64% of revenue, up from 24% in 2022. In April, Amazon agreed to buy Globalstar. If the deal closes, the network behind Apple&#x27;s satellite features would belong to Amazon — a strange triangle worth watching as the space economy consolidates. Chamath&#x27;s team put together a Deep Dive on the space economy — who is investing and where value is most likely to accrue: https://research.socialcapital.com/go/space-economy/substack/202611221200-chart-post/socialcapital</p>
 </div>
 </article>
 </div>
@@ -267,42 +306,43 @@ h3 { font-size: 19px; }
 <h2>Learn &amp; Build</h2>
 <span class="count">3 stories</span>
 </div>
-<p class="ednote">Three things worth your time today: how agent shopping actually breaks, how to prove a cloud provider really deletes your prompts, and what a mathematician makes of the machine-proved Riemann proof.</p>
+<p class="ednote">Three things worth your time: why a lower bound is the hard half of OpenAI&#x27;s math drop, Simon Willison&#x27;s map of the year&#x27;s three inflection points, and the org lesson hiding inside the Atlassian experiment.</p>
 <div class="stories">
 <article class="lead">
-<h3><a href="https://gail.wharton.upenn.edu/research-and-insights/technical-report-agentic-shopping/">Agent shopping is fragile: an agent&#x27;s pick flips with page order, headlines, and injected &quot;memory&quot;</a></h3>
+<h3><a href="https://github.com/openai/math">Why &quot;9/4 is tight&quot; is the hard half — lower bounds, explained without the jargon</a></h3>
 <div class="byline">
-<span class="src">Wharton GAIL / X — @omooretweets (a16z)</span> &middot; Nov 23
+<span class="src">OpenAI / X — @SebastienBubeck</span> &middot; Nov 24
 </div>
-<p class="dek">Across 26,000 tests, agents were consistent on a bare product page — then every added bit of context made the choice less predictable.</p>
+<p class="dek">An upper bound is a recipe you can check. A lower bound says no recipe, however clever, can do better — and complexity theory has almost no strong lower bounds for general arithmetic circuits. That&#x27;s why this half is the shock.</p>
 <div class="body">
-<p>Two studies, one warning. Olivia Moore (a16z, with The Prompting Company) ran four consumer agents — Muse, Instinct, Grok Bot, Dots — across 1,270 prompts and 11,307 runs, compared with ChatGPT, Gemini and Perplexity. Agents have default &quot;hero products&quot; for generic asks but respond to use-case and persona marketing; they &quot;ruthlessly optimize value,&quot; fully loading subscription terms, returns, warranties and shipping. The practical advice: optimize for agent crawlers — clear what/cost/why, plus an API/MCP and docs for software.</p>
-<p>Wharton&#x27;s GAIL report (Aug 27; ~26,000 tests, six models) is the counterweight, via @emollick: agents were consistent when shown only a product page — but adding a review screenshot, competing sources, their order, an injected &quot;memory,&quot; or a different retrieval method shifted the pick. &quot;The more context we added, the less predictable the final choice became.&quot; The camps in the replies: &quot;it&#x27;s position bias&quot; (@gpelluet27: &quot;preferences that flip when you reorder the list aren&#x27;t preferences&quot;); &quot;it&#x27;s continuous CRO now&quot;; &quot;it&#x27;s prompt injection from the commerce side&quot;; and a caveat — the Wharton set is GPT-5.5 / Opus 4.8 era, so newer models may behave differently.</p>
-<p>Takeaway: if your agents buy or recommend, the page is the prompt — and whoever controls the page controls the pick. Black Friday this week is the live stress test.</p>
+<p>The schoolbook way to multiply two n×n tables takes about n³ multiplications. In 1969 Strassen found a trick that beats n³, and the exponent ω has been pushed down ever since: 2.81, 2.37, then OpenAI&#x27;s October preprint below 2.258, then 9/4 = 2.25. You can never go below 2 — you have to write down n² answers. The open question for 50+ years was whether ω = 2.</p>
+<p>An upper bound is a construction: &quot;here is a recipe that uses n^2.25 steps&quot; — you check it by checking the recipe. A lower bound is a statement about every possible algorithm, and complexity theory has very few strong ones. That&#x27;s why Bubeck&#x27;s &quot;NOTHING was known for lower bounds&quot; line lands.</p>
+<p>How the paper argues it (from its intro; the proof itself is unchecked): a proof by contradiction across two problems. Start from a sorting network that costs at least w^σ volume per input bit. Suppose matrix multiplication could beat 9/4 — then such an algorithm could compress any tensor network, representing many copies more cheaply than one copy each. Compress a fixed number of times and you drop below the w^σ floor. Contradiction. The glue is the &quot;Euclidean geometry of tensors&quot; paper: it prices each wire by its geometric length — a bit shared between two sites costs their distance — turning &quot;cheap routing&quot; into a violated counting bound.</p>
+<p>What changes in practice: nothing on your GPU — the gap between O(n^2.25) circuits and tiled O(n³) kernels is all constant factors. What changes is the map: if ω = 9/4, the decades-old hope that ω = 2 is dead, and every algorithm whose cost is stated &quot;in terms of ω&quot; — linear algebra, graph algorithms, LP solvers — now has a fixed number. The resource to watch: the repo itself, and the Lean formalization status per theorem.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://vercel.com/blog/introducing-audited-zdr-on-ai-gateway">Vercel&#x27;s Audited ZDR: zero-data-retention you can actually verify</a></h3>
+<h3><a href="https://simonwillison.net/2026/Nov/24/llm-inflection-points/">Three LLM inflection points in twelve months</a></h3>
 <div class="byline">
-<span class="src">Vercel — via X</span> &middot; Nov 23
+<span class="src">Simon Willison</span> &middot; Nov 24
 </div>
-<p class="dek">ZDR today runs on contracts and self-attestation. Vercel&#x27;s new tier has an independent firm review the serving code, run live tests — and plant canary prompts.</p>
+<p class="dek">Simon Willison&#x27;s map of the year: coding agents that are right by default, &quot;Fable class&quot; models that cook with a goal and the right tools, and models that got really good at 3D.</p>
 <div class="body">
-<p>&quot;Zero data retention&quot; today relies on contracts and self-attestation. Vercel&#x27;s new Audited ZDR tier on its AI Gateway changes the mechanism: a provider is listed only after an independent security firm reviews its serving code and infrastructure config and runs live tests — marked prompts sent through the gateway, then a search of logs, traces, crash dumps, prompt caches, backups, support tools and training sets. The checks include KV cache in volatile memory only, no failover from a ZDR request to a non-ZDR endpoint, and no training on customer data.</p>
-<p>Between audits, Vercel sends canary prompts containing unique unindexed URLs — any fetch of one means someone read the prompt. The honest limit, stated by Vercel itself: canaries can&#x27;t catch prompts written to disk and never read. Launch partners are Baseten, Modal and Wafer; audit reports are due by Dec. 8.</p>
-<p>Takeaway for an AI platform handling other people&#x27;s prompts: &quot;trust us&quot; is no longer a retention policy. Auditable ZDR is becoming table stakes — and the canary trick is worth stealing for your own verification.</p>
+<p>Willison counts three inflection points. (1) November 2025 — Claude Opus 4.5 and GPT-5.1-Codex, when coding agents&#x27; &quot;default result was generally the right thing.&quot; (2) June/July — &quot;Fable class&quot; models: give one a goal and the right tools and it cooks. His examples: Fable building its own screenshot tooling to debug Safari, and triangulating a mystery beep to ~40cm from five microphones. He counts Fable 5–5.2, Opus 5.5, GPT-6 Astra and possibly Gemini 4 Neon. (3) September/October — models got really good at 3D (Blender/Three.js), which he links to robotics.</p>
+<p>The takeaway: the inflection points are compounding in the same direction — from &quot;the model writes the code&quot; to &quot;the model runs the loop&quot; to &quot;the model manipulates the physical world.&quot; If you&#x27;re planning an AI foundation platform, the third inflection is the one to staff for: the same capability curve that learned 3D is the one that will learn your robots, your devices and your physical workflows. A good primer if you&#x27;re new to the beat — and a useful calibration if you&#x27;re not.</p>
 </div>
 </article>
 <article class="">
-<h3><a href="https://galoisrepresentations.org/2026/11/23/initial-thoughts-on-rh/">&quot;Initial Thoughts on RH&quot;: a mathematician on the machine-found proof</a></h3>
+<h3><a href="https://www.normaltech.ai/p/management-consulting-is-not-a-thin">The org is the bottleneck: 2–3 person AI teams, the Atlassian reversion, and what consulting actually sells</a></h3>
 <div class="byline">
-<span class="src">Frank Calegari — Galois Representations</span> &middot; Nov 23
+<span class="src">X — @emollick / @lennysan</span> &middot; Nov 24
 </div>
-<p class="dek">&quot;Amazing! Now the work on RH can begin.&quot; Calegari defends releasing a proof its discoverer doesn&#x27;t fully understand — and warns against a false human-vs-machine battle.</p>
+<p class="dek">Mollick hears of scattered 2–3 person AI teams &quot;doing the work of dozens&quot; — and the management fights to match. Atlassian tried all-builder teams with no PM. A month in, everyone had gone back to their old jobs.</p>
 <div class="body">
-<p>Frank Calegari, writing after the AI-assisted Riemann proof landed: &quot;Amazing! Now the work on RH can begin.&quot; He defends Levent Alpöge releasing a proof he doesn&#x27;t fully understand — &quot;does that mean he should have just thrown it in the trash?&quot; — arguing Alpöge &quot;discovered&quot; the proof the way you pull a book off a shelf in Litt&#x27;s Library of Babel, rather than claiming traditional credit. He criticizes Ravi Vakil for posting Masullo&#x27;s human proof on his blog, since it implies an AMS president&#x27;s endorsement and sets up a false human-vs-machine &quot;battle.&quot; And he doesn&#x27;t take AI &quot;analyses&quot; of errors in Masullo&#x27;s paper seriously on their face. (Alpöge has since clarified that &quot;250,000+ pages was a joke.&quot;)</p>
-<p>In the same current, a VP ≠ VNP formal result surfaced via @BlancheMinerva — Valiant&#x27;s algebraic analogue of P vs NP — with the wry note that &quot;we got VP != VNP and it&#x27;s not the biggest math news in the past week.&quot;</p>
-<p>Takeaway: the pattern from DeepMind&#x27;s quantum work repeats — agent search plus a proof checker means the verification, not the discoverer, carries the trust. That distinction is the thing to internalize before the next machine-found result lands in your field.</p>
+<p>Three data points in one day, and they all point the same way. Ethan Mollick: &quot;scattered teams of 2-3 people using AI that are doing the work of dozens of folks… creating large-scale management fights.&quot; His follow-up: &quot;There is no established playbook… these teams are often crossing department boundaries (marketing, legal, engineering, sales).&quot; Lenny Rachitsky, from a talk with Atlassian&#x27;s Sherif Mansour: teams of all &quot;AI builders,&quot; no PM, no designer. &quot;For the first few weeks, it was amazing… A month in, everyone had gone back to their old jobs.&quot; The PM&#x27;s explanation: &quot;Throughput&#x27;s not our problem. Direction&#x27;s our problem.&quot;</p>
+<p>The replies supply the theory: roles carry more than tasks (&quot;They removed the titles, not the work. Deciding what ships and saying no still had to happen&quot;); diffusion is the problem (&quot;Those 2-3 people rebuilt their own workflow. The dozens around them won&#x27;t&quot;); and politics decides it.</p>
+<p>The resource that ties it together is Moshtagi and Kapoor&#x27;s essay &quot;Management consulting is not a thin wrapper on intelligence&quot;: consulting sells five things — analysis, judgment, coordination, credibility and accountability. AI is great at the first. Judgment is harder to train. The last three are about persuading competing managers and owning outcomes. Their prediction: AI integration creates demand for consulting the way business computing and the web did — but firms must build know-how clients lack, staff up in-house AI expertise, partner on deployment and stay neutral across model providers.</p>
+<p>The takeaway for your two orgs: the constraint on AI adoption is not model capability or even tooling — it&#x27;s direction, diffusion and who owns the outcome. When your 2–3 person team starts doing the work of dozens, the fight that follows is the work. Plan for it.</p>
 </div>
 </article>
 </div>
